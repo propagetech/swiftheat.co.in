@@ -219,6 +219,8 @@
     [].forEach.call($('famTiles').querySelectorAll('[data-fam]'), function (b) {
       b.setAttribute('aria-pressed', String(b.getAttribute('data-fam') === key));
     });
+    $('viewToggle').hidden = !hasIso(current);
+    if (!hasIso(current) && viewMode === 'iso') { /* keep the preference, render flat */ }
     renderSpecs(); renderOptions();
     $('specStep').hidden = false; $('optStep').hidden = false; $('addStep').hidden = false;
     // preselect the first option in every group so the part code is always valid
@@ -282,7 +284,7 @@
         art += '<g class="opt-tc"><circle cx="' + (x1 + 22) + '" cy="' + cy + '" r="5" fill="' + heat +
           '"/><path d="M' + (x1 + 22) + ' ' + cy + 'H' + (x2 + 42) + '" stroke="' + heat +
           '" stroke-width="1.2" stroke-dasharray="3 3" fill="none"/>' +
-          '<text x="' + (x1 + 30) + '" y="' + (cy - 10) + '" font-family="Inter,sans-serif" ' +
+          '<text x="' + (x1 + 30) + '" y="' + (cy - bh / 2 - 9) + '" font-family="Inter,sans-serif" ' +
           'font-size="11" fill="' + heat + '">' + opt.tc.replace('TC', 'type ') + '</text></g>';
       }
       if (opt.lead === 'L3' || opt.lead === 'L4') {
@@ -387,9 +389,89 @@
     }
   };
 
+  /* Isometric cylinder. Same anchors as the flat view, so the inputs stay
+     attached to their dimensions. A tube is two cap ellipses plus the
+     silhouette between them; the heated band is a section of the same tube. */
+  var VIEWS_ISO = {
+    cylinder: function (spec, opt) {
+      var d = num2(spec.dia) || 14, L = num2(spec.len) || 200;
+      var ratio = Math.max(0.05, Math.min(0.40, d / Math.max(L, 1)));
+      var bw = 260, bh = Math.max(16, Math.min(104, bw * ratio));
+      var x1 = 165, x2 = x1 + bw, cy = 186, r = bh / 2;
+      var rx = Math.max(3, r * 0.34);              // cap foreshortening
+      var y1 = cy - r, y2 = cy + r;
+      var hl = num2(spec.hlen), hlw = hl && L ? Math.max(0.15, Math.min(1, hl / L)) : 0.82;
+      var hx1 = x1 + bw * (1 - hlw) / 2, hx2 = x2 - bw * (1 - hlw) / 2;
+
+      // tube silhouette: top line, near cap arc, bottom line, far cap arc
+      var body = 'M' + x1 + ' ' + y1 + 'L' + x2 + ' ' + y1 +
+        'A' + rx + ' ' + r + ' 0 0 1 ' + x2 + ' ' + y2 +
+        'L' + x1 + ' ' + y2 +
+        'A' + rx + ' ' + r + ' 0 0 1 ' + x1 + ' ' + y1 + 'Z';
+      // heated band: both edges curve the same way, like a painted ring
+      var band = 'M' + hx1 + ' ' + y1 +
+        'A' + rx + ' ' + r + ' 0 0 1 ' + hx1 + ' ' + y2 +
+        'L' + hx2 + ' ' + y2 +
+        'A' + rx + ' ' + r + ' 0 0 0 ' + hx2 + ' ' + y1 + 'Z';
+
+      var art =
+        '<path class="iso-body" d="' + body + '" fill="hsl(214 16% 96%)" stroke="' + ink + '" stroke-width="1.9"/>' +
+        '<path class="iso-band" d="' + band + '" fill="hsl(30 90% 92%)" stroke="none"/>' +
+        '<path d="' + band + '" fill="none" stroke="hsl(24 60% 72%)" stroke-width="1"/>' +
+        // near end face
+        '<ellipse class="iso-cap" cx="' + x2 + '" cy="' + cy + '" rx="' + rx + '" ry="' + r +
+          '" fill="hsl(214 16% 90%)" stroke="' + ink + '" stroke-width="1.9"/>' +
+        '<ellipse cx="' + x2 + '" cy="' + cy + '" rx="' + (rx * 0.45) + '" ry="' + (r * 0.45) +
+          '" fill="none" stroke="hsl(214 16% 74%)" stroke-width="1"/>' +
+        // top highlight, gives the tube its form
+        '<path d="M' + (x1 + 6) + ' ' + (y1 + Math.max(2, r * 0.18)) + 'H' + (x2 - 4) +
+          '" stroke="#fff" stroke-width="' + Math.max(1, r * 0.16) + '" opacity=".85" fill="none"/>' +
+        // leads off the near face
+        '<path d="M' + (x2 + rx) + ' ' + (cy - r * 0.35) + 'h40M' + (x2 + rx) + ' ' + (cy + r * 0.35) +
+          'h40" stroke="' + ink + '" stroke-width="1.7" fill="none"/>' +
+        dimLineV(y1, y2, 143) + leader(143, cy, 104, 116) + num(1, 78, 96) +
+        dimLineH(x1, x2, 268) + leader(295, 268, 295, 292) + num(2, 295, 318) +
+        dimLineH(hx1, hx2, 122) + leader((hx1 + hx2) / 2, 122, 295, 92) + num(3, 295, 66);
+
+      opt = opt || {};
+      if (opt.term === 'T2') {
+        art += '<path class="opt-term" d="M' + (x2 + rx + 28) + ' ' + (cy - r * 0.35) + 'v-34h20M' +
+          (x2 + rx + 28) + ' ' + (cy + r * 0.35) + 'v-24h20" stroke="' + ink +
+          '" stroke-width="1.7" fill="none"/>';
+      } else if (opt.term === 'T3') {
+        art += '<path class="opt-term" d="M' + x1 + ' ' + (cy - r * 0.35) + 'h-42M' + x1 + ' ' +
+          (cy + r * 0.35) + 'h-42" stroke="' + ink + '" stroke-width="1.7" fill="none"/>';
+      }
+      if (opt.tc && opt.tc !== 'TC0') {
+        art += '<g class="opt-tc"><circle cx="' + (x1 + 26) + '" cy="' + cy + '" r="5" fill="' + heat + '"/>' +
+          '<path d="M' + (x1 + 26) + ' ' + cy + 'H' + (x2 + rx + 40) + '" stroke="' + heat +
+          '" stroke-width="1.2" stroke-dasharray="3 3" fill="none"/>' +
+          '<text x="' + (x1 + 34) + '" y="' + (cy - r - 9) + '" font-family="Inter,sans-serif" font-size="11" fill="' +
+          heat + '">' + opt.tc.replace('TC', 'type ') + '</text></g>';
+      }
+      if (opt.lead === 'L3' || opt.lead === 'L4') {
+        var lx = x2 + rx + 40, hatch = '';
+        for (var q = 0; q < 5; q++) {
+          hatch += 'M' + (lx + q * 7) + ' ' + (cy - r * 0.62) + 'l5 ' + (r * 1.24) + ' ';
+        }
+        art += '<g class="opt-lead"><path d="' + hatch + '" stroke="' + ink + '" stroke-width="1.2" fill="none"/></g>';
+      }
+      return { art: art, anchors: { dia: [86, 96], len: [295, 300], hlen: [295, 62], clen: [470, 300] } };
+    }
+  };
+
+  var viewMode = 'flat';
+
+  /** Which renderer to use: isometric where we have one, flat otherwise. */
+  function viewFor(fam) {
+    if (viewMode === 'iso' && VIEWS_ISO[fam.view]) return VIEWS_ISO[fam.view];
+    return VIEWS[fam.view] || VIEWS.cylinder;
+  }
+  function hasIso(fam) { return !!VIEWS_ISO[fam.view]; }
+
   function renderSpecs() {
-    var view = VIEWS[current.view] || VIEWS.cylinder;
-    var out = view(spec);
+    var view = viewFor(current);
+    var out = view(spec, chosen);
     var dims = current.dims || [];
     var i = 0;
     var dimHtml = '', elecHtml = '';
@@ -429,6 +511,15 @@
     $('dimFields').innerHTML = dimHtml;
     $('elecFields').innerHTML = elecHtml;
     $('vizArt').innerHTML = svgWrap(out.art);
+
+    // Re-rendering replaces the field elements, so put the entered values back.
+    // On a family change spec is empty and this is a no-op; on a redraw (for
+    // example switching flat to isometric) it is what stops the numbers vanishing.
+    current.specs.forEach(function (sp) {
+      if (spec[sp.k] == null || spec[sp.k] === '') return;
+      var el = document.getElementById('sp_' + sp.k);
+      if (el) el.value = spec[sp.k];
+    });
   }
 
   function svgWrap(art) {
@@ -459,8 +550,7 @@
   }
 
   function draw() {
-    var view = VIEWS[current.view] || VIEWS.cylinder;
-    $('vizArt').innerHTML = svgWrap(view(spec, chosen).art);
+    $('vizArt').innerHTML = svgWrap(viewFor(current)(spec, chosen).art);
   }
 
   function update() {
@@ -602,8 +692,19 @@
   }
 
   /* ---------- wire up ---------- */
+  $('viewToggle').hidden = true;
   emptyNode = $('cartEmpty');
   emptyNode.hidden = false;
+
+  $('viewToggle').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-mode]');
+    if (!b) return;
+    viewMode = b.getAttribute('data-mode');
+    [].forEach.call($('viewToggle').querySelectorAll('[data-mode]'), function (x) {
+      x.setAttribute('aria-pressed', String(x.getAttribute('data-mode') === viewMode));
+    });
+    if (current) renderSpecs();
+  });
 
   $('dimFields').addEventListener('input', onSpec);
   $('dimFields').addEventListener('change', onSpec);

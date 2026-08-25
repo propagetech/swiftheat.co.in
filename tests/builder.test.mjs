@@ -212,6 +212,96 @@ describe('drawing responds to the options', () => {
 });
 
 /* ------------------------------------------------------------------ *
+ * Flat and isometric.
+ * ------------------------------------------------------------------ */
+describe('isometric view', () => {
+  test('the toggle is offered only where an isometric drawing exists', async () => {
+    const b = await builder();
+    await b.family('cartridge');
+    assert.equal(await b.toggleHidden(), false, 'cartridge has an isometric view');
+    await b.family('band');
+    assert.equal(await b.toggleHidden(), true, 'band does not, so do not offer it');
+    await b.close();
+  });
+
+  test('switching to isometric draws a tube, switching back removes it', async () => {
+    const b = await builder();
+    await b.family('cartridge');
+    await b.spec({ dia: '16', len: '160', hlen: '120' });
+    assert.equal(await b.has('.iso-body'), false);
+    await b.mode('iso');
+    assert.equal(await b.has('.iso-body'), true, 'tube silhouette');
+    assert.equal(await b.has('.iso-cap'), true, 'near end face');
+    assert.equal(await b.has('.iso-band'), true, 'heated section');
+    await b.mode('flat');
+    assert.equal(await b.has('.iso-body'), false);
+    await b.close();
+  });
+
+  test('switching view keeps the numbers in the boxes', async () => {
+    const b = await builder();
+    await b.family('cartridge');
+    await b.spec({ dia: '16', len: '160', hlen: '120', watt: '400', volt: '230' });
+    const before = await b.partCode();
+    await b.mode('iso');
+    assert.equal(await b.specValues(['dia', 'len', 'hlen', 'watt', 'volt']), '16/160/120/400/230',
+      'redrawing replaces the field elements; the entered values must be put back');
+    assert.equal(await b.partCode(), before, 'the part code must not change with the drawing style');
+    await b.close();
+  });
+
+  test('changing family still clears the boxes', async () => {
+    const b = await builder();
+    await b.family('cartridge');
+    await b.spec({ dia: '16', len: '160' });
+    await b.family('strip');
+    assert.equal(await b.specValues(['len', 'width']), '/', 'a new family starts empty');
+    await b.close();
+  });
+
+  test('option markers survive a view switch', async () => {
+    const b = await builder();
+    await b.family('cartridge');
+    await b.spec({ dia: '16', len: '160' });
+    await b.option('tc', 'TCK');
+    await b.mode('iso');
+    assert.equal(await b.has('.opt-tc'), true, 'isometric must honour the chosen options too');
+    await b.mode('flat');
+    assert.equal(await b.has('.opt-tc'), true);
+    await b.close();
+  });
+
+  test('the first render after picking a family already honours the options', async () => {
+    // renderSpecs used to call the view without the chosen options, so markers
+    // only appeared on a later redraw. Selecting a family last is what catches it.
+    const b = await builder();
+    await b.family('cartridge');
+    await b.option('tc', 'TCK');
+    await b.option('term', 'T3');
+    await b.family('tubular');
+    await b.family('cartridge');
+    assert.equal(await b.has('.opt-tc'), false, 'a fresh family resets its options');
+    await b.option('tc', 'TCJ');
+    await b.mode('iso');
+    assert.equal(await b.has('.opt-tc'), true);
+    await b.close();
+  });
+
+  test('isometric fields stay attached to their dimensions', async () => {
+    const b = await builder();
+    await b.family('cartridge');
+    await b.spec({ dia: '16', len: '160', hlen: '120' });
+    const flat = await b.page.$$eval('#dimFields .dimfield',
+      (els) => els.map((e) => e.style.getPropertyValue('--x') + e.style.getPropertyValue('--y')));
+    await b.mode('iso');
+    const iso = await b.page.$$eval('#dimFields .dimfield',
+      (els) => els.map((e) => e.style.getPropertyValue('--x') + e.style.getPropertyValue('--y')));
+    assert.deepEqual(iso, flat, 'the anchors are the whole point; they must not move');
+    await b.close();
+  });
+});
+
+/* ------------------------------------------------------------------ *
  * Geometry snapshots: catches any unintended change to a drawing.
  * ------------------------------------------------------------------ */
 describe('drawing snapshots', () => {
@@ -226,6 +316,7 @@ describe('drawing snapshots', () => {
     ['sensor-6x300', 'sensor', { dia: '6', len: '300' }, {}],
     ['ir-panel-150', 'ir', { watt: '650', volt: '230', dist: '150' }, {}],
   ];
+
   for (const [name, fam, spec, opts] of cases) {
     test(`${name} is drawn as recorded`, async () => {
       const b = await builder();
@@ -236,6 +327,16 @@ describe('drawing snapshots', () => {
       await b.close();
     });
   }
+
+  test('iso-cartridge-16x160-hl120-TCK is drawn as recorded', async () => {
+    const b = await builder();
+    await b.family('cartridge');
+    await b.spec({ dia: '16', len: '160', hlen: '120' });
+    await b.option('tc', 'TCK');
+    await b.mode('iso');
+    matchSnapshot('iso-cartridge-16x160-hl120-TCK', await b.geometry());
+    await b.close();
+  });
 });
 
 /* ------------------------------------------------------------------ *

@@ -1,0 +1,143 @@
+[
+  {
+    "t": "path",
+    "cls": "iso-body",
+    "w": 1.9,
+    "len": 69
+  },
+  {
+    "t": "path",
+    "cls": "iso-band",
+    "w": null,
+    "len": 69
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 1,
+    "len": 69
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 2.1,
+    "len": 15
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 1.7,
+    "len": 34
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 1.2,
+    "len": 33
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 1.1,
+    "len": 16
+  },
+  {
+    "t": "circle",
+    "cls": "",
+    "cx": 143,
+    "cy": 186,
+    "rad": 2.6
+  },
+  {
+    "t": "circle",
+    "cls": "callout-n",
+    "cx": 78,
+    "cy": 96,
+    "rad": 11
+  },
+  {
+    "t": "text",
+    "cls": "callout-n",
+    "s": "1"
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 1.2,
+    "len": 34
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 1.1,
+    "len": 16
+  },
+  {
+    "t": "circle",
+    "cls": "",
+    "cx": 295,
+    "cy": 268,
+    "rad": 2.6
+  },
+  {
+    "t": "circle",
+    "cls": "callout-n",
+    "cx": 295,
+    "cy": 318,
+    "rad": 11
+  },
+  {
+    "t": "text",
+    "cls": "callout-n",
+    "s": "2"
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 1.2,
+    "len": 40
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 1.1,
+    "len": 15
+  },
+  {
+    "t": "circle",
+    "cls": "",
+    "cx": 295,
+    "cy": 122,
+    "rad": 2.6
+  },
+  {
+    "t": "circle",
+    "cls": "callout-n",
+    "cx": 295,
+    "cy": 66,
+    "rad": 11
+  },
+  {
+    "t": "text",
+    "cls": "callout-n",
+    "s": "3"
+  },
+  {
+    "t": "circle",
+    "cls": "opt-tc",
+    "cx": 191,
+    "cy": 186,
+    "rad": 5
+  },
+  {
+    "t": "path",
+    "cls": "opt-tc",
+    "w": 1.2,
+    "len": 15
+  },
+  {
+    "t": "text",
+    "cls": "opt-tc",
+    "s": "type K"
+  }
+]

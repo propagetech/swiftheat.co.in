@@ -77,6 +77,12 @@ class Driver {
     }, { id, value });
   }
 
+  mode(m) { return this.page.click(`[data-mode="${m}"]`); }
+  toggleHidden() { return this.page.evaluate(() => document.getElementById('viewToggle').hidden); }
+  specValues(keys) {
+    return this.page.evaluate((ks) => ks.map((k) => document.getElementById('sp_' + k).value).join('/'), keys);
+  }
+
   add() { return this.page.click('#addBtn'); }
   review() { return this.page.click('#reviewBtn'); }
   back() { return this.page.click('#backBtn'); }

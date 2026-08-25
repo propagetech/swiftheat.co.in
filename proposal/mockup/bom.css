@@ -167,3 +167,12 @@
 @media (max-width:759px){
   .dimboard .callout-n{display:block}
 }
+
+/* ---------- flat / isometric toggle ---------- */
+.viewtoggle{display:inline-flex;gap:2px;background:var(--surface-sunk);border:1px solid var(--ink-200);
+  border-radius:var(--radius);padding:3px;margin-bottom:var(--s5)}
+.viewtoggle button{background:none;border:0;border-radius:2px;font:inherit;font-size:.82rem;
+  font-weight:600;color:var(--ink-600);padding:var(--s2) var(--s4);min-height:44px;cursor:pointer}
+.viewtoggle button:hover{color:var(--ink-900)}
+.viewtoggle button[aria-pressed="true"]{background:var(--ink-900);color:#fff}
+.viewtoggle[hidden]{display:none}
