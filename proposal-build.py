@@ -811,16 +811,22 @@ BODIES["05-plan.html"] = """
 
     <div class="wrap">
       <h2>On photography</h2>
-      <p>Two workable routes, and the choice is yours.</p>
-      <p><strong>You shoot it.</strong> A recent phone, a plain background, daylight from a
-        window rather than overhead tube lights, and we give you a shot list and a short guide
-        with examples. This works better than people expect and it costs nothing.</p>
-      <p><strong>We arrange a photographer.</strong> Half a day at Peenya covering all seven
-        families plus the plant, priced separately at cost, in the range of Rs 25,000 to
-        45,000 depending on who is available.</p>
+      <p>You shoot these yourselves, and there is no photographer to hire. We send a shot
+        list and a one page guide before you start.</p>
+      <p>A recent phone is enough. What actually matters is not the camera, it is the
+        light and the background. Daylight from a shutter or a doorway beats the overhead
+        tube lights on a shop floor, a plain sheet of paper or cloth behind the part removes
+        the clutter, and shiny metal needs light bounced off a white surface rather than
+        pointed straight at it, or it glares. The guide covers all of that, plus the angles
+        we need per family, how to include something for scale, and the minimum size to
+        shoot at.</p>
+      <p>Set aside an afternoon and one person who knows the products. That is genuinely the
+        whole requirement.</p>
       <p>What will not work is stock photography of somebody else's heaters. Your advantage
         over the trading companies in this market is that you actually manufacture, and the
-        only way a website shows that is with real pictures of your real factory.</p>
+        only way a website shows that is with real pictures of your real products and your
+        real factory. A slightly imperfect photograph of your own coil heater on your own
+        bench is worth more here than a perfect photograph of somebody else's.</p>
 
       <h2>How we handle content that has not arrived</h2>
       <p>Where a specification or a certificate is outstanding, we mark it clearly as
@@ -858,6 +864,8 @@ BODIES["06-investment.html"] = """
         <li><b>Nine industry pages with heating zone tables</b><span>Included</span></li>
         <li><b>Specification driven enquiry form, per product family</b><span>Included</span></li>
         <li><b>Downloadable datasheet, one per product family</b><span>Included</span></li>
+        <li><b>Construction cutaways and dimension drawings, drawn by us</b><span>Included</span></li>
+        <li><b>Photography shot list and guide, so you can shoot it yourselves</b><span>Included</span></li>
         <li><b>Quality and testing section built as evidence</b><span>Included</span></li>
         <li><b>Bangalore and Peenya search coverage</b><span>Included</span></li>
         <li><b>Structured data, sitemap, per page titles and descriptions</b><span>Included</span></li>
@@ -946,28 +954,60 @@ BODIES["06-investment.html"] = """
           twenty eight lakh rupees. A template reads as a template to that reader.</li>
       </ul>
 
-      <h2>Optional, only if you want them</h2>
-      <p>None of these are needed for the site described in this proposal to work. They are
-        priced here so there are no surprises later.</p>
+      <h2>There is nothing else to buy</h2>
+      <p>Most website quotes are followed by three more: a photographer, a copywriter and
+        somebody to draw the diagrams. We have deliberately not built this proposal that way.
+        You would end up briefing four suppliers, holding four schedules and paying four
+        invoices, for a website.</p>
+      <p>Everything this site needs, you already have inside the company or we produce
+        ourselves. Here is the honest division of labour.</p>
     </div>
 
-    <div class="tablewrap">
-      <table>
-        <caption>Optional additions</caption>
-        <thead><tr><th scope="col">Item</th><th scope="col" class="num-cell">Price</th></tr></thead>
-        <tbody>
-          <tr><td>Product and factory photography, half day at Peenya, all seven families</td>
-            <td class="num-cell">Rs 25,000 to 45,000, photographer billed at cost</td></tr>
-          <tr><td>Technical copywriting of specification content, working with your engineers</td><td class="num-cell">Rs 18,000</td></tr>
-          <tr><td>Drawn set: construction cutaways and dimension drawings, per family</td><td class="num-cell">Rs 4,500 each</td></tr>
-          <tr><td>Heater sizing and watt density calculator on the site</td><td class="num-cell">Rs 15,000</td></tr>
-          <tr><td>Technical knowledge base, six written articles</td><td class="num-cell">Rs 24,000</td></tr>
-          <tr><td>Additional product family page beyond seven</td><td class="num-cell">Rs 6,000 each</td></tr>
-          <tr><td>Additional industry page beyond nine</td><td class="num-cell">Rs 4,000 each</td></tr>
-          <tr><td>Changes beyond the care plan allowance</td><td class="num-cell">Rs 1,500 per hour</td></tr>
-          <tr><td>Third and further rounds of changes at preview</td><td class="num-cell">Rs 5,000 per round</td></tr>
-        </tbody>
-      </table>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>What comes from you</h3>
+        <ul>
+          <li><strong>The technical substance.</strong> Diameters, lengths, wattage and
+            voltage ranges, sheath materials, watt density, temperatures, tolerances,
+            thermocouple types, termination and clamping options. Your engineers already know
+            all of this. Rough notes, a marked up old catalogue or a phone call is enough. It
+            does not need to be written well, it needs to be correct.</li>
+          <li><strong>The photographs.</strong> Taken by you, on a recent phone. We send a
+            shot list and a one page guide covering angles, how to light metal so it does not
+            glare, what to stand the parts on and what size to shoot at. What makes these
+            photographs work is that they are your real products and your real factory, not
+            that a studio took them.</li>
+          <li><strong>The proof.</strong> Certificates, test records, a sample test report,
+            the industries and customers you actually supply.</li>
+          <li><strong>One engineer's sign off.</strong> Somebody who knows heaters reads every
+            specification and every drawing before it is published.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>What we do with it</h3>
+        <ul>
+          <li><strong>Write and structure every page</strong> from your notes and your
+            existing catalogue text. You will not be asked to produce finished copy.</li>
+          <li><strong>Draw the construction cutaways, the dimension drawings and the option
+            diagrams</strong> for each product family, then send them to your engineer to
+            check.</li>
+          <li><strong>Build, design, and make it findable:</strong> the structure, the
+            enquiry form, the search work, the accessibility audit, the speed, the hosting.</li>
+          <li><strong>Never invent a number.</strong> Anything not yet confirmed appears on
+            the preview marked clearly as outstanding, in a colour you cannot miss, until you
+            confirm it. Nothing unverified is published.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="wrap">
+    </div>
+
+    <div class="finding">
+      <span class="tag">Why this is worth having</span>
+      <p>One supplier, one price, one schedule. Nothing on your website will be waiting on a
+        photographer's calendar, and nothing will be published that your own people have not
+        read and confirmed.</p>
     </div>
 
     <div class="wrap">
@@ -1000,6 +1040,8 @@ BODIES["06-investment.html"] = """
           <tr><td>Timeline</td><td>Six to eight weeks from receipt of your content</td></tr>
           <tr><td>Changes</td><td>Two rounds included at preview. Further rounds Rs 5,000 each.</td></tr>
           <tr><td>Scope</td><td>Seven product families, nine industries, as listed in section four</td></tr>
+          <tr><td>Beyond that scope</td><td>Additional product family page Rs 6,000. Additional industry page Rs 4,000. Both at your option, never assumed.</td></tr>
+          <tr><td>Later changes</td><td>Rs 1,500 per hour, once the care plan allowance for the year is used</td></tr>
           <tr><td>Ownership</td><td>The site, the code and the domain are yours. No licence, no lock in.</td></tr>
           <tr><td>GST</td><td>Not applicable</td></tr>
         </tbody>
