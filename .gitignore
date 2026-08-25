@@ -10,3 +10,6 @@ docs/
 # Secrets and credentials, never commit any of these
 .env
 .env.*
+
+# Test dependencies
+tests/node_modules/

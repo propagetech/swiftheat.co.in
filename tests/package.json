@@ -1,0 +1,13 @@
+{
+  "name": "swiftheat-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "test:watch": "node --test --watch",
+    "test:update": "UPDATE_SNAPSHOTS=1 node --test"
+  },
+  "dependencies": {
+    "playwright-core": "^1.62.1"
+  }
+}

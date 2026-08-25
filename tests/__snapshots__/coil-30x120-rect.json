@@ -1,0 +1,76 @@
+[
+  {
+    "t": "path",
+    "cls": "opt-prof",
+    "w": 5,
+    "len": 648
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 1,
+    "len": 54
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 1.2,
+    "len": 94
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 1.1,
+    "len": 16
+  },
+  {
+    "t": "circle",
+    "cls": "",
+    "cx": 124,
+    "cy": 170,
+    "rad": 2.6
+  },
+  {
+    "t": "circle",
+    "cls": "callout-n",
+    "cx": 96,
+    "cy": 300,
+    "rad": 11
+  },
+  {
+    "t": "text",
+    "cls": "callout-n",
+    "s": "1"
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 1.2,
+    "len": 79
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 1.1,
+    "len": 31
+  },
+  {
+    "t": "circle",
+    "cls": "",
+    "cx": 216,
+    "cy": 232.7,
+    "rad": 2.6
+  },
+  {
+    "t": "circle",
+    "cls": "callout-n",
+    "cx": 320,
+    "cy": 300,
+    "rad": 11
+  },
+  {
+    "t": "text",
+    "cls": "callout-n",
+    "s": "2"
+  }
+]

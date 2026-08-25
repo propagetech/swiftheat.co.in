@@ -252,7 +252,7 @@
   /* Each view returns the artwork plus the fixed anchor points the inputs sit on.
      Anchors do not move while you type, so a field never jumps under the cursor. */
   var VIEWS = {
-    cylinder: function (spec) {
+    cylinder: function (spec, opt) {
       var d = num2(spec.dia) || 14, L = num2(spec.len) || 200;
       var ratio = Math.max(0.05, Math.min(0.40, d / Math.max(L, 1)));
       var bw = 260, bh = Math.max(16, Math.min(104, bw * ratio));
@@ -269,9 +269,33 @@
         dimLineV(y1, y2, 143) + leader(143, cy, 104, 116) + num(1, 78, 96) +
         dimLineH(x1, x2, 268) + leader(295, 268, 295, 292) + num(2, 295, 318) +
         dimLineH(hx1, hx2, 122) + leader((hx1 + hx2) / 2, 122, 295, 92) + num(3, 295, 66);
+      opt = opt || {};
+      if (opt.term === 'T2') {
+        art += '<path class="opt-term" d="M' + (x2 + 30) + ' ' + (cy - bh * 0.22) + 'v-34h20M' +
+          (x2 + 30) + ' ' + (cy + bh * 0.22) + 'v-24h20" stroke="' + ink +
+          '" stroke-width="1.7" fill="none"/>';
+      } else if (opt.term === 'T3') {
+        art += '<path class="opt-term" d="M' + x1 + ' ' + (cy - bh * 0.22) + 'h-42M' + x1 + ' ' +
+          (cy + bh * 0.22) + 'h-42" stroke="' + ink + '" stroke-width="1.7" fill="none"/>';
+      }
+      if (opt.tc && opt.tc !== 'TC0') {
+        art += '<g class="opt-tc"><circle cx="' + (x1 + 22) + '" cy="' + cy + '" r="5" fill="' + heat +
+          '"/><path d="M' + (x1 + 22) + ' ' + cy + 'H' + (x2 + 42) + '" stroke="' + heat +
+          '" stroke-width="1.2" stroke-dasharray="3 3" fill="none"/>' +
+          '<text x="' + (x1 + 30) + '" y="' + (cy - 10) + '" font-family="Inter,sans-serif" ' +
+          'font-size="11" fill="' + heat + '">' + opt.tc.replace('TC', 'type ') + '</text></g>';
+      }
+      if (opt.lead === 'L3' || opt.lead === 'L4') {
+        var lx = x2 + 42, hatch = '';
+        for (var q = 0; q < 5; q++) {
+          hatch += 'M' + (lx + q * 7) + ' ' + (cy - bh * 0.30) + 'l5 ' + (bh * 0.60) + ' ';
+        }
+        art += '<g class="opt-lead"><path d="' + hatch + '" stroke="' + ink +
+          '" stroke-width="1.2" fill="none"/></g>';
+      }
       return { art: art, anchors: { dia: [86, 96], len: [295, 300], hlen: [295, 62], clen: [470, 300] } };
     },
-    ring: function (spec) {
+    ring: function (spec, opt) {
       var id = num2(spec.id) || 90, wd = num2(spec.width) || num2(spec.len) || 60;
       var r = Math.max(34, Math.min(74, id / 2.6));
       var band = Math.max(9, Math.min(30, wd / 3.2));
@@ -289,9 +313,21 @@
         leader(sx + sw / 2, cy + r + band + 22, 452, 286) + num(2, 470, 300) +
         '<text x="' + (sx + sw / 2) + '" y="' + (cy - r - band - 12) + '" text-anchor="middle" ' +
           'font-family="Inter,sans-serif" font-size="11" fill="hsl(214 14% 40%)">side view</text>';
+      opt = opt || {};
+      if (opt.con === 'C2') {
+        art += '<g class="opt-split"><path d="M' + cx + ' ' + (cy - r - band - 4) + 'v' + (band + 8) +
+          'M' + cx + ' ' + (cy + r - 4) + 'v' + (band + 8) + '" stroke="#fff" stroke-width="5"/>' +
+          '<path d="M' + cx + ' ' + (cy - r - band - 4) + 'v' + (band + 8) + 'M' + cx + ' ' +
+          (cy + r - 4) + 'v' + (band + 8) + '" stroke="' + heat + '" stroke-width="1.8"/></g>';
+      }
+      if (opt.con === 'CP') {
+        art += '<path class="opt-partial" d="M' + cx + ' ' + cy + 'm-' + (r + band) + ' 0a' +
+          (r + band) + ' ' + (r + band) + ' 0 0 1 ' + (2 * (r + band)) + ' 0" fill="none" stroke="' +
+          heat + '" stroke-width="4"/>';
+      }
       return { art: art, anchors: { id: [110, 300], width: [455, 300], len: [455, 300] } };
     },
-    coil: function (spec) {
+    coil: function (spec, opt) {
       var id = num2(spec.id) || 30, hl = num2(spec.hlen) || 120;
       var r = Math.max(16, Math.min(46, id / 1.8));
       var cy = 170, x1 = 150, x2 = Math.min(430, x1 + Math.max(120, Math.min(280, hl * 1.1)));
@@ -302,15 +338,19 @@
         p += 'M' + x + ' ' + (cy - r) + 'q' + (step * 0.55) + ' ' + (r * 1.15) + ' 0 ' + (2 * r) +
              'M' + x + ' ' + (cy - r) + 'h' + step;
       }
+      opt = opt || {};
+      var coilW = opt.prof === 'PT' ? 5 : opt.prof === 'PS' ? 3.4 : 2;
+      var coilCap = opt.prof === 'PR' || !opt.prof ? 'round' : 'butt';
       var art =
-        '<path d="' + p + '" stroke="' + heat + '" stroke-width="2" fill="none"/>' +
+        '<path class="opt-prof" d="' + p + '" stroke="' + heat + '" stroke-width="' + coilW +
+          '" stroke-linecap="' + coilCap + '" fill="none"/>' +
         '<path d="M' + x1 + ' ' + (cy - r) + 'h' + (x2 - x1) + 'M' + x1 + ' ' + (cy + r) + 'h' + (x2 - x1) +
           '" stroke="' + ink + '" stroke-width="1" stroke-dasharray="3 3" fill="none"/>' +
         dimLineV(cy - r, cy + r, x1 - 26) + leader(x1 - 26, cy, 118, 290) + num(1, 96, 300) +
         dimLineH(x1, x2, cy + r + 46) + leader((x1 + x2) / 2, cy + r + 46, 300, 290) + num(2, 320, 300);
       return { art: art, anchors: { id: [110, 300], hlen: [310, 300] } };
     },
-    strip: function (spec) {
+    strip: function (spec, opt) {
       var L = num2(spec.len) || 400, wd = num2(spec.width) || 40;
       var bw = Math.max(160, Math.min(300, L / 1.6));
       var bh = Math.max(16, Math.min(76, wd / 0.9));
@@ -320,9 +360,19 @@
           '" rx="2" fill="none" stroke="' + ink + '" stroke-width="1.9"/>' +
         dimLineH(x1, x2, y2 + 46) + leader((x1 + x2) / 2, y2 + 46, 300, 290) + num(1, 320, 300) +
         dimLineV(y1, y2, x1 - 26) + leader(x1 - 26, cy, 118, 290) + num(2, 96, 300);
+      opt = opt || {};
+      if (opt.prof === 'F1') {
+        var fins = '';
+        for (var q = 1; q < 11; q++) {
+          var fx = x1 + (bw / 11) * q;
+          fins += 'M' + fx + ' ' + (y1 - 12) + 'v' + (bh + 24) + ' ';
+        }
+        art += '<g class="opt-fins"><path d="' + fins + '" stroke="' + heat +
+          '" stroke-width="1.5" fill="none"/></g>';
+      }
       return { art: art, anchors: { len: [310, 300], width: [110, 300] } };
     },
-    panel: function (spec) {
+    panel: function (spec, opt) {
       var dist = num2(spec.dist) || 150;
       var gap = Math.max(60, Math.min(210, dist / 1.4));
       var ex = 150, wx = ex + 60 + gap;
@@ -410,7 +460,7 @@
 
   function draw() {
     var view = VIEWS[current.view] || VIEWS.cylinder;
-    $('vizArt').innerHTML = svgWrap(view(spec).art);
+    $('vizArt').innerHTML = svgWrap(view(spec, chosen).art);
   }
 
   function update() {

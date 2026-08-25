@@ -1,0 +1,109 @@
+[
+  {
+    "t": "circle",
+    "cls": "",
+    "cx": 205,
+    "cy": 168,
+    "rad": 53.4
+  },
+  {
+    "t": "circle",
+    "cls": "",
+    "cx": 205,
+    "cy": 168,
+    "rad": 34.6
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 1.7,
+    "len": 26
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 1.2,
+    "len": 90
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 1.1,
+    "len": 46
+  },
+  {
+    "t": "circle",
+    "cls": "",
+    "cx": 180.8,
+    "cy": 192.2,
+    "rad": 2.6
+  },
+  {
+    "t": "circle",
+    "cls": "callout-n",
+    "cx": 96,
+    "cy": 300,
+    "rad": 11
+  },
+  {
+    "t": "text",
+    "cls": "callout-n",
+    "s": "1"
+  },
+  {
+    "t": "rect",
+    "cls": "",
+    "x": 350,
+    "y": 114.6,
+    "w": 37.5,
+    "h": 106.7
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 1.2,
+    "len": 79
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 1.1,
+    "len": 33
+  },
+  {
+    "t": "circle",
+    "cls": "",
+    "cx": 368.8,
+    "cy": 243.4,
+    "rad": 2.6
+  },
+  {
+    "t": "circle",
+    "cls": "callout-n",
+    "cx": 470,
+    "cy": 300,
+    "rad": 11
+  },
+  {
+    "t": "text",
+    "cls": "callout-n",
+    "s": "2"
+  },
+  {
+    "t": "text",
+    "cls": "",
+    "s": "side view"
+  },
+  {
+    "t": "path",
+    "cls": "opt-split",
+    "w": 5,
+    "len": 57
+  },
+  {
+    "t": "path",
+    "cls": "opt-split",
+    "w": 1.8,
+    "len": 57
+  }
+]
