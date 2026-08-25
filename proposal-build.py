@@ -107,6 +107,11 @@ BODIES["index.html"] = """
 
     <div class="finding">
       <span class="tag">Start here</span>
+      <p><a href="mockup/bom-builder.html"><strong>Open the heater list builder</strong></a>.
+        Pick a heater, set the sizes, tap the options, add it to the list. Build up as many
+        lines as you need, then generate a document you can save as a PDF, email or send on
+        WhatsApp. Your sales team can use the same tool to build a list on a customer's
+        behalf.</p>
       <p><a href="mockup/cartridge-heaters.html"><strong>Open the cartridge heater page</strong></a>.
         It is a working page, not a picture of one: specification tables, a construction
         cutaway, a dimensioned drawing, your ordering options set out with codes, and an
@@ -412,6 +417,11 @@ BODIES["02-what-we-build.html"] = """
         infrared. Numeric fields carry sensible minimum and maximum hints, so an impossible
         enquiry never reaches your desk. Application context comes first, contact details
         come last, and the whole thing stays on one page.</p>
+      <p><strong>The list builder.</strong> The same specification logic also drives a list
+        builder, so a customer ordering six different heaters does it in one pass and sends
+        one document rather than six emails. Your own sales team can use it on a customer's
+        behalf while on the phone. <a href="mockup/bom-builder.html">Open the list
+        builder</a>.</p>
       <p><strong>How it reaches you.</strong> The form assembles everything the visitor
         entered into a clean, readable email and opens it in their own mail application,
         ready to send to your enquiry address. They attach their drawing to that message in
