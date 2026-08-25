@@ -29,7 +29,11 @@ export async function start() {
     try { const r = await fetch(baseURL + '/index.html'); if (r.ok) break; } catch {}
     await new Promise((r) => setTimeout(r, 100));
   }
-  browser = await chromium.launch({ channel: 'chrome' });
+  browser = await chromium.launch({
+    channel: 'chrome',
+    headless: process.env.HEADED !== '1',
+    slowMo: Number(process.env.SLOWMO || 0),
+  });
   return baseURL;
 }
 

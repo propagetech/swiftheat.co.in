@@ -5,7 +5,9 @@
   "scripts": {
     "test": "node --test",
     "test:watch": "node --test --watch",
-    "test:update": "UPDATE_SNAPSHOTS=1 node --test"
+    "test:update": "UPDATE_SNAPSHOTS=1 node --test",
+    "test:headed": "HEADED=1 SLOWMO=250 node --test",
+    "demo": "node demo.mjs"
   },
   "dependencies": {
     "playwright-core": "^1.62.1"
