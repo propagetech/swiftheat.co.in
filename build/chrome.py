@@ -141,6 +141,34 @@ def flow_legend():
     return '<ul class="legend">%s</ul>' % items
 
 
+ICON_CREDITS = {
+    "noun-technical-drawing-8436969.svg": "technical drawing by Ali Nur Rohman from Noun Project (CC BY 3.0)",
+    "noun-caliper-8419059.svg": "caliper by Muhammad Nur Auliady Pamungkas from Noun Project (CC BY 3.0)",
+    "noun-prototype-8201949.svg": "prototype by diyah farida from Noun Project (CC BY 3.0)",
+    "noun-box-stack-8142643.svg": "box stack by Suharsono from Noun Project (CC BY 3.0)",
+    "noun-multimeter-8419064.svg": "multimeter by Muhammad Nur Auliady Pamungkas from Noun Project (CC BY 3.0)",
+    "noun-high-voltage-8368320.svg": "high voltage by Uswa KDT from Noun Project (CC BY 3.0)",
+    "noun-insulation-5848062.svg": "insulation by Andi Nur Abdillah from Noun Project (CC BY 3.0)",
+    "noun-micrometer-8419029.svg": "micrometer by Muhammad Nur Auliady Pamungkas from Noun Project (CC BY 3.0)",
+}
+
+
+def icon_cards(depth, items, numbered=False):
+    """items: (icon file, title, body). The icon is decorative and the card
+    reads identically without it. CC BY attribution rides on every image, and
+    one consolidated comment goes at the end of the list."""
+    li = []
+    for n, (icon, title, body) in enumerate(items, 1):
+        num = '<span class="n">%02d</span>' % n if numbered else ""
+        li.append('<li>%s<img src="%s" width="44" height="44" alt="" title="%s">'
+                  '<h3>%s</h3><p>%s</p></li>'
+                  % (num, rel(depth, "icons/" + icon), html.escape(ICON_CREDITS[icon], quote=True),
+                     esc(title), esc(body)))
+    used = "\n".join("       " + ICON_CREDITS[i] for i, _, _ in items)
+    return ('<ul class="iconcards">%s</ul>\n<!-- Concept icons, Noun Project:\n%s\n-->'
+            % ("".join(li), used))
+
+
 def cards(depth, items):
     """items: (href, title, blurb)"""
     li = "".join(

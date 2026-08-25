@@ -22,7 +22,9 @@ Twenty seven pages, generated into the repository root.
 | `404.html`, `robots.txt`, `sitemap.xml`, `favicon.svg` | Supporting files |
 
 Assets: `css/site.css` and `css/bom.css`, `js/site.js` and `js/bom.js`,
-`fonts/` (five self hosted woff2 faces).
+`fonts/` (five self hosted woff2 faces), `icons/` (eight Noun Project concept
+icons, credited in `icons/CREDITS.md`), `imgs/` (seven accessory photographs
+recovered from the old site).
 
 ### Structure of a product family page
 
@@ -57,6 +59,9 @@ site says lives in `build/`:
 | `build/pages.py` | Home, the two overviews, and the company pages |
 | `build/art/*.svg` | One drawing per family, extracted from the list builder |
 | `build/extract-art.mjs` | Regenerates `build/art/` from the builder |
+| `build/noun-search.py` | Searches the Noun Project, lists only CC BY and public domain results |
+| `build/noun-icons.py` | Fetches the chosen icons, traces, crops and recolours them into `icons/` |
+| `build/prep-imgs.py` | Knocks the background out of the old site's accessory photographs into `imgs/` |
 
 Two rules govern `build/data.py`:
 
@@ -68,6 +73,44 @@ Two rules govern `build/data.py`:
 2. **Industry data is the single source of truth for applications.** A product
    page can only claim an industry that names it in a zone or on its shortlist,
    so the two directions cannot disagree.
+
+## Icons and imagery
+
+Concept icons are Noun Project, CC BY 3.0 only, traced from the published PNG
+with `potrace`, cropped to the artwork and recoloured to `--heat-700`. Eight of
+them, on Home, Capabilities and Quality. Attribution rides on every `title=`
+plus a consolidated comment per page, and `icons/CREDITS.md` is the index.
+Regenerate with:
+
+    python3 build/noun-icons.py
+
+They are decorative: every one is `alt=""` and each card says the same thing in
+words, so a blocked image costs nothing.
+
+### The seven accessory photographs
+
+`imgs/` holds seven small photographs taken from the old site's Products page
+and used in the option catalogue: right angle exit (T2), round flange (M1),
+threaded fitting (M2), the three lead protections (L1, L3, L4) and the coiled
+tubular form (BC). `build/prep-imgs.py` knocks the studio background out to
+transparency and trims the margin, so they sit on the card rather than on a
+white rectangle.
+
+They earn their place because they are shown at 104 px tall, which is inside
+what a 214 to 435 px original can carry, and because those option groups had no
+imagery at all. **Provenance is still unconfirmed.** None of the seven carries a
+watermark, but a file uploaded in the same batch does, so Swiftheat should
+confirm these are theirs before go live. They are the only raster images on the
+site; pull them by deleting the fifth element from the option tuples in
+`build/data.py`.
+
+### Photography is still the blocker
+
+Nothing else from the old site can be used. `archive-old-site/PROVENANCE.md` has
+the detail: `Cartridge-Heaters-2.png` carries a competitor's **DETAI** watermark,
+the family group shots are generic trade catalogue photography, and the largest
+original on the whole site is 835 px. Every place a real photograph belongs
+carries a dashed placeholder with the shot written into it.
 
 ## Checking it
 
@@ -101,11 +144,21 @@ this repository. They live in `docs/` in the working folder and are gitignored.
 
 ## Before go live
 
-Blocking, and all of them are marked in the pages as "to confirm":
+Confirmed since the first build, from Swiftheat's own IndiaMART profile and the
+MCA registry, and now published:
 
-1. **The address.** The old site said Plot B-132, 3rd Cross. The email signature
-   says Plot C-262, 6th Cross. The site currently publishes C-262. One of the
-   two is wrong and Google is using the old one.
+- Founded **August 2021**, so no "decades of experience" claim can be made
+- **11 to 25 people**
+- CIN **U29100KA2021PTC150780**
+
+Still blocking, and all of them are marked in the pages as "to confirm":
+
+1. **The address, and it got worse.** The letterhead says C-262, 6th Cross,
+   which is what the site publishes. Swiftheat's own IndiaMART profile **and**
+   the MCA registry both say **B-132, 3rd Cross, 1st Stage**, which is what the
+   old site said. Two sources against one. Either the company moved and never
+   filed it, or the letterhead is wrong. This has to be settled before Google
+   Business Profile or schema.org go anywhere near it.
 2. **Phone and WhatsApp numbers.** The old site published `+91 12345 67890`. No
    number goes on the site until it has been dialled and answered. `contact/`
    and the footer both carry the placeholder today.
@@ -114,13 +167,30 @@ Blocking, and all of them are marked in the pages as "to confirm":
    `build/data.py` if enquiries should go elsewhere.
 4. **Specification ranges.** Maximum temperature, watt density and tolerances
    per family. These are the "To confirm" cells in every technical data table.
-5. **Photography.** Every `.shot` block on the site is a photography brief with
-   the shot written into it. Nothing on the old site is over 850 px.
+   Swiftheat's IndiaMART product listings are **not** a usable source for these:
+   two separate cartridge heaters are both listed at "10W" on a 17 to 18 mm
+   sheath, which is a form field somebody had to fill in, not a specification.
+5. **Photography.** See the section above. This is the largest single gap. Also
+   confirm the seven accessory photographs in `imgs/` are Swiftheat's own.
 6. **Logo in vector.** Only a 625 px PNG exists, so the masthead uses a type
    lockup and `favicon.svg` is drawn, not supplied.
-7. **Year founded, plant area, people, certifications, machinery list, lead
-   times.** All marked "to confirm" on `about/`, `capabilities/` and `quality/`.
+7. **Plant area, machinery list, certifications, lead times.** Marked "to
+   confirm" on `about/`, `capabilities/` and `quality/`.
 8. **Downloads.** Every datasheet and catalogue is listed as "to be produced"
    and renders as plain text, not as a dead link.
 9. **Product list.** Confirm Immersion Heaters and Control Systems are out, and
    Ceramic IR and Nozzle Heaters are in. The site is built for the second list.
+
+## Sources for published company facts
+
+| Fact | Source |
+| --- | --- |
+| Founded 2021, 11 to 25 people, manufacturer, HDFC | Swiftheat's own IndiaMART company profile |
+| CIN U29100KA2021PTC150780 | MCA registry, via Zauba Corp |
+| Registered address B-132, 3rd Cross | IndiaMART profile and MCA registry |
+| Size ranges per family | The specification agreed in the proposal |
+| Accessory and lead protection options | The old site's Products page, which a heater engineer wrote |
+
+Competitors' catalogue specifications are deliberately **not** a source. Publishing
+another manufacturer's numbers as Swiftheat's would make the technical data
+tables wrong in a way nobody could detect until an element failed.

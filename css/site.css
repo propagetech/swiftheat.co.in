@@ -200,6 +200,15 @@ section.band.alt .opts li{background:var(--paper)}
 .opts p{font-size:.85rem;color:var(--ink-600);margin:0;max-width:none}
 .opts .rating{display:block;font-size:.78rem;color:var(--heat-700);font-weight:600;margin-top:var(--s2);font-variant-numeric:tabular-nums}
 .opts svg{margin-bottom:var(--s2)}
+/* Accessory photographs off the old site. They are small and they vary wildly
+   in aspect, from a 34px wide sleeve to a square fitting, so the slot is fixed
+   and the picture is contained inside it rather than sized by its own width.
+   An empty .optshot holds the same space on the options in the group that have
+   no photograph, which keeps the row aligned. The class is NOT .shot: that name
+   already belongs to the dashed "photograph required" placeholder. */
+.opts .optshot{display:block;height:104px;margin:var(--s3) 0}
+.opts .optshot img{display:block;height:100%;width:auto;max-width:100%;object-fit:contain;
+  object-position:left center}
 
 .note{background:var(--heat-100);border-left:4px solid var(--heat-500);padding:var(--s4) var(--s5);border-radius:0 var(--radius) var(--radius) 0;margin:0 0 var(--s5)}
 .note p:last-child{margin-bottom:0}
@@ -261,6 +270,20 @@ section.band.alt .flow{background:var(--paper)}
 .legend{display:flex;flex-wrap:wrap;gap:var(--s4);list-style:none;padding:0;margin:var(--s4) 0 0;max-width:none;font-size:.8rem;color:var(--ink-600)}
 .legend li{display:flex;align-items:center;gap:var(--s2);margin:0}
 .legend .sw{width:14px;height:14px;border-radius:2px;border:1px solid var(--ink-300);display:block}
+
+/* ---------- concept icon cards ---------- */
+/* The icons are decorative: aria-hidden, and the card says the same thing in
+   words. A blocked image costs nothing. */
+.iconcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:var(--s5);
+  list-style:none;padding:0;margin:0;max-width:none}
+.iconcards li{margin:0;background:var(--surface);border:1px solid var(--ink-200);
+  border-radius:var(--radius);padding:var(--s5)}
+section.band.alt .iconcards li{background:var(--paper)}
+.iconcards img{width:44px;height:44px;display:block;margin:0 0 var(--s4)}
+.iconcards h3{margin-bottom:var(--s2)}
+.iconcards p{font-size:.92rem;color:var(--ink-600);margin:0;max-width:none}
+.iconcards .n{font-family:"Archivo Narrow",sans-serif;font-size:.85rem;color:var(--heat-700);
+  letter-spacing:.1em;display:block;margin-bottom:var(--s2)}
 
 /* ---------- checklist ---------- */
 .check{list-style:none;padding:0;margin:0 0 var(--s5);max-width:64ch}

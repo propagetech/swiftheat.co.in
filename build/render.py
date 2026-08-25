@@ -50,14 +50,27 @@ def _options(f):
     out = []
     for n, (title, opts) in enumerate(f["options"], 1):
         li = []
-        for code, name, why, rating in opts:
+        # Only some options have a photograph. Where any in the group does, the
+        # rest reserve the same slot, so the code badge and the option name sit
+        # on one line across the row instead of stepping up and down.
+        any_shot = any(len(o) > 4 and o[4] for o in opts)
+        for opt in opts:
+            code, name, why, rating = opt[:4]
+            img = opt[4] if len(opt) > 4 else None
             rate = ""
             if rating == TBD:
                 rate = '<span class="rating">Temperature rating to confirm</span>'
             elif rating:
                 rate = '<span class="rating">Rated to %s</span>' % esc(rating)
-            li.append('<li><span class="code">%s</span><h4>%s</h4><p>%s</p>%s</li>'
-                      % (esc(code), esc(name), esc(why), rate))
+            # Decorative: the card names the option in words directly below.
+            if img:
+                shot = '<span class="optshot"><img src="../../imgs/%s" alt="" loading="lazy"></span>' % img
+            elif any_shot:
+                shot = '<span class="optshot"></span>'
+            else:
+                shot = ""
+            li.append('<li><span class="code">%s</span>%s<h4>%s</h4><p>%s</p>%s</li>'
+                      % (esc(code), shot, esc(name), esc(why), rate))
         out.append('<div class="optgroup"><h3><span class="idx">%02d</span> %s</h3>'
                    '<ul class="opts">%s</ul></div>' % (n, esc(title), "".join(li)))
     return "".join(out)

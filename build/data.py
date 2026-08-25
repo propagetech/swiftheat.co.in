@@ -13,6 +13,11 @@ Two rules govern what is in here.
 
 TBD = "To confirm"
 
+# Option tuples are (code, name, why, rating) with an optional fifth element:
+# the filename of a photograph in imgs/. Those photographs are the accessory
+# shots off the old site's Products page, background knocked out by
+# build/prep-imgs.py. Provenance is unconfirmed, see archive-old-site/PROVENANCE.md.
+
 COMPANY = {
     "name": "Swiftheat Thermal Technologies Pvt Ltd",
     "short": "Swiftheat",
@@ -26,6 +31,20 @@ COMPANY = {
     # not confirmed, so the verified one is what goes on the site.
     "email": "info@swiftheat.co.in",
     "phone_display": TBD,
+    # Confirmed from Swiftheat's own IndiaMART company profile and the MCA
+    # registry, August 2026. Both are the company's own filings, not a third
+    # party's description, so they are publishable.
+    #   indiamart.com/swiftheat-thermal-technologies/profile.html
+    #   CIN U29100KA2021PTC150780
+    "founded": "2021",
+    "founded_long": "August 2021",
+    "staff": "11 to 25",
+    "cin": "U29100KA2021PTC150780",
+    # The registry and the IndiaMART profile both give B-132, 3rd Cross, 1st
+    # Stage. The letterhead gives C-262, 6th Cross, which is what the site
+    # publishes because it is the more recent of the two. Still to be settled
+    # with the client: a move that was never filed, or a wrong letterhead.
+    "address_registry": "B-132, 3rd Cross, 1st Stage, Peenya Industrial Estate, Bangalore 560058",
     "domain": "swiftheat.co.in",
     "origin": "https://swiftheat.co.in",
 }
@@ -84,14 +103,14 @@ FAMILIES = [
  "options": [
    ("Termination", [
      ("T1", "Single end, straight", "Leads exit axially from one end. The default.", ""),
-     ("T2", "Single end, right angle", "For tight clearance above the tool face.", ""),
+     ("T2", "Single end, right angle", "For tight clearance above the tool face.", "", "Right-angle-exit.png"),
      ("T3", "Double ended", "One lead from each end, for through holes.", ""),
    ]),
    ("Lead protection", [
-     ("L1", "Silicone coated fibreglass", "General purpose, dry and clean environments.", TBD),
+     ("L1", "Silicone coated fibreglass", "General purpose, dry and clean environments.", TBD, "Silicon-coated-Fibreglass-sleeve.png"),
      ("L2", "PTFE insulated", "Where oil or plasticiser contact is likely.", TBD),
-     ("L3", "Braided metal sleeve", "Abrasion resistance where leads move or rub.", TBD),
-     ("L4", "Armour cable", "Full mechanical protection on a moving platen.", TBD),
+     ("L3", "Braided metal sleeve", "Abrasion resistance where leads move or rub.", TBD, "Braided-Metal-sleeve.png"),
+     ("L4", "Armour cable", "Full mechanical protection on a moving platen.", TBD, "Armour.png"),
      ("L5", "Ceramic beading", "Highest lead exit temperature, no organic insulation.", TBD),
    ]),
    ("Inbuilt thermocouple", [
@@ -102,8 +121,8 @@ FAMILIES = [
    ]),
    ("Mounting and fittings", [
      ("M0", "None", "Plain sheath, no fitting.", ""),
-     ("M1", "Round flange", "Welded, for surface mounting to a plate.", ""),
-     ("M2", "Threaded fitting", "NPT or BSP, size to be specified.", ""),
+     ("M1", "Round flange", "Welded, for surface mounting to a plate.", "", "Flange.png"),
+     ("M2", "Threaded fitting", "NPT or BSP, size to be specified.", "", "Heater-with-Spl-mountable-threads.png"),
      ("M3", "T strain clamp", "Strain relief where the lead is pulled in service.", ""),
    ]),
  ],
@@ -525,7 +544,7 @@ FAMILIES = [
      ("B0", "Straight", "The plain rod.", ""),
      ("BU", "U form", "Folded once, both terminals at the same end.", ""),
      ("BW", "W form", "Folded twice, more heated length in the same envelope.", ""),
-     ("BC", "Coiled", "Wound to a helix. Send a drawing.", ""),
+     ("BC", "Coiled", "Wound to a helix. Send a drawing.", "", "Flexible-Tubular-heaters.png"),
    ]),
    ("Sheath material", [
      ("SS", "Stainless steel", "General process work.", TBD),

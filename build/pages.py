@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """The pages that are not one of the two repeating types."""
-from .chrome import (art, cards, enquiry, esc, page, product_cards, rel, tscale, NAV)
+from .chrome import (art, cards, enquiry, esc, icon_cards, page, product_cards, rel, tscale, NAV)
 from .data import COMPANY, FAMILIES, FAMILY_BY_SLUG, INDUSTRIES, INDUSTRY_BY_SLUG, TBD
 
 ADDRESS = {
@@ -96,7 +96,7 @@ def home():
         <li><b>8</b><span>Product families</span></li>
         <li><b>9</b><span>Industries served</span></li>
         <li><b>%(codes)d</b><span>Coded options published</span></li>
-        <li><b class="tbd">%(founded)s</b><span>Manufacturing since</span></li>
+        <li><b>%(founded)s</b><span>Manufacturing since</span></li>
       </ul>
     </div>
     <div class="shot">
@@ -171,23 +171,24 @@ def home():
       <p>Swiftheat manufactures in Peenya Industrial Area, which is the difference between an
         element built to your drawing and one bought in and relabelled. It is also why a prototype
         can be made and tested before a production quantity is committed.</p>
-      <ul class="cards">
-        <li><a href="capabilities/"><strong>Custom design</strong><span>Built to your drawing, your
-          bore and your fit</span></a></li>
-        <li><a href="capabilities/"><strong>Reverse engineering</strong><span>Send the old element
-          and we will match it</span></a></li>
-        <li><a href="capabilities/"><strong>Prototypes</strong><span>One off before a batch is
-          committed</span></a></li>
-        <li><a href="quality/"><strong>Tested before despatch</strong><span>Resistance, high
-          voltage and dimensional checks</span></a></li>
-      </ul>
+      %(madecards)s
     </div>
   </div>
 </section>
 
 %(enquiry)s
 """ % {
-        "founded": TBD,
+        "founded": COMPANY["founded"],
+        "madecards": icon_cards(0, [
+            ("noun-technical-drawing-8436969.svg", "Custom design",
+             "Built to your drawing, your bore and your fit."),
+            ("noun-caliper-8419059.svg", "Reverse engineering",
+             "Send the old element and we will match it."),
+            ("noun-prototype-8201949.svg", "Prototypes",
+             "One off, made and tested, before a batch is committed."),
+            ("noun-multimeter-8419064.svg", "Tested before despatch",
+             "Resistance, high voltage and dimensional checks."),
+        ]),
         "codes": sum(len(o) for f in FAMILIES for _, o in f["options"]),
         "prods": prods,
         "inds": inds,
@@ -428,9 +429,10 @@ def about():
           <dt>Works and registered office</dt>
           <dd>%(street)s,<br>%(area)s,<br>%(city)s %(pin)s<br>
             <span class="tbd">Address to be confirmed against the letterhead before publication.</span></dd>
-          <dt>Year founded</dt><dd class="tbd">%(tbd)s</dd>
+          <dt>Year founded</dt><dd>%(founded_long)s</dd>
+          <dt>CIN</dt><dd>%(cin)s</dd>
           <dt>Plant area</dt><dd class="tbd">%(tbd)s</dd>
-          <dt>People</dt><dd class="tbd">%(tbd)s</dd>
+          <dt>People</dt><dd>%(staff)s</dd>
           <dt>Certifications</dt><dd class="tbd">%(tbd)s. Nothing is claimed here until the
             certificate itself has been supplied.</dd>
           <dt>GST and Udyam</dt><dd class="tbd">%(tbd)s</dd>
@@ -485,6 +487,8 @@ def about():
 """ % {
         "name": esc(COMPANY["name"]), "street": esc(COMPANY["street"]), "area": esc(COMPANY["area"]),
         "city": esc(COMPANY["city"]), "pin": esc(COMPANY["pin"]), "tbd": TBD,
+        "founded_long": esc(COMPANY["founded_long"]), "cin": esc(COMPANY["cin"]),
+        "staff": esc(COMPANY["staff"]),
         "inds": cards(1, [("applications/%s/" % i["slug"], i["name"], i["problem"]) for i in INDUSTRIES]),
     }
     return page("about/index.html", "About | %s" % COMPANY["name"],
@@ -523,18 +527,7 @@ def capabilities():
     <div class="sechead">
       <h2>Four things we are asked for</h2>
     </div>
-    <ol class="steps">
-      <li><h3>Custom design</h3><p>An element designed around your drawing, your bore, your clearance
-        and your duty. Most of the catalogue exists to give that conversation a starting point, not
-        to be ordered from directly.</p></li>
-      <li><h3>Reverse engineering</h3><p>An element with no drawing, no supplier and a label that has
-        burned off. Send the old part. Dimensions, resistance and construction come off it, and the
-        replacement is made to match.</p></li>
-      <li><h3>Prototype development</h3><p>One piece, made and tested, before a production quantity
-        is committed. Cheaper than finding out at quantity that the fit was wrong.</p></li>
-      <li><h3>Small batch manufacturing</h3><p>Six of one size and four of another is a normal order
-        here. Maintenance stores do not buy in hundreds.</p></li>
-    </ol>
+    %(capcards)s
   </div>
 </section>
 
@@ -593,7 +586,21 @@ def capabilities():
     </div>
   </div>
 </section>
-""" % {"tbd": TBD}
+""" % {"tbd": TBD, "capcards": icon_cards(1, [
+        ("noun-technical-drawing-8436969.svg", "Custom design",
+         "An element designed around your drawing, your bore, your clearance and your duty. Most of "
+         "the catalogue exists to give that conversation a starting point, not to be ordered from "
+         "directly."),
+        ("noun-caliper-8419059.svg", "Reverse engineering",
+         "An element with no drawing, no supplier and a label that has burned off. Send the old part. "
+         "Dimensions, resistance and construction come off it, and the replacement is made to match."),
+        ("noun-prototype-8201949.svg", "Prototype development",
+         "One piece, made and tested, before a production quantity is committed. Cheaper than finding "
+         "out at quantity that the fit was wrong."),
+        ("noun-box-stack-8142643.svg", "Small batch manufacturing",
+         "Six of one size and four of another is a normal order here. Maintenance stores do not buy "
+         "in hundreds."),
+    ], numbered=True)}
     return page("capabilities/index.html", "Custom solutions and capabilities | %s" % COMPANY["name"],
                 "Custom heater design, reverse engineering, prototype development and small batch "
                 "manufacturing at Peenya, Bengaluru.",
@@ -631,20 +638,21 @@ def quality():
       <p>Four named tests, each with what it catches. The equipment used and the pass criteria are
         published once Swiftheat confirms them.</p>
     </div>
-    <div class="tablewrap">
+    %(testcards)s
+    <div class="tablewrap" style="margin-top:32px">
       <table>
-        <caption>Tests carried out before despatch</caption>
-        <thead><tr><th scope="col">Test</th><th scope="col">What it catches</th>
-          <th scope="col">Equipment</th><th scope="col">Criterion</th></tr></thead>
+        <caption>Equipment used and the criterion applied, per test</caption>
+        <thead><tr><th scope="col">Test</th><th scope="col">Equipment</th>
+          <th scope="col">Criterion</th><th scope="col">Recorded against the order</th></tr></thead>
         <tbody>
-          <tr><th scope="row">Resistance</th><td>Wrong wattage, a wrong turn count, a bad joint</td>
+          <tr><th scope="row">Resistance</th><td class="tbd">%(tbd)s</td><td class="tbd">%(tbd)s</td>
+            <td class="tbd">%(tbd)s</td></tr>
+          <tr><th scope="row">High voltage</th><td class="tbd">%(tbd)s</td><td class="tbd">%(tbd)s</td>
+            <td class="tbd">%(tbd)s</td></tr>
+          <tr><th scope="row">Insulation resistance</th><td class="tbd">%(tbd)s</td>
             <td class="tbd">%(tbd)s</td><td class="tbd">%(tbd)s</td></tr>
-          <tr><th scope="row">High voltage</th><td>Insulation that will break down in service</td>
+          <tr><th scope="row">Dimensional inspection</th><td class="tbd">%(tbd)s</td>
             <td class="tbd">%(tbd)s</td><td class="tbd">%(tbd)s</td></tr>
-          <tr><th scope="row">Insulation resistance</th><td>Moisture in the magnesium oxide, and
-            contamination</td><td class="tbd">%(tbd)s</td><td class="tbd">%(tbd)s</td></tr>
-          <tr><th scope="row">Dimensional inspection</th><td>A diameter or a length that will not fit
-            the bore it was made for</td><td class="tbd">%(tbd)s</td><td class="tbd">%(tbd)s</td></tr>
         </tbody>
       </table>
     </div>
@@ -700,7 +708,7 @@ def quality():
           <dt>ISO 9001</dt><dd class="tbd">%(tbd)s</dd>
           <dt>Udyam or MSME registration</dt><dd class="tbd">%(tbd)s</dd>
           <dt>GST</dt><dd class="tbd">%(tbd)s</dd>
-          <dt>CIN</dt><dd class="tbd">%(tbd)s</dd>
+          <dt>CIN</dt><dd>%(cin)s</dd>
         </dl>
       </div>
     </div>
@@ -717,7 +725,20 @@ def quality():
     </div>
   </div>
 </section>
-""" % {"tbd": TBD}
+""" % {"tbd": TBD, "cin": COMPANY["cin"], "testcards": icon_cards(1, [
+        ("noun-multimeter-8419064.svg", "Resistance",
+         "Catches the wrong wattage, a wrong turn count and a bad joint. It is also the number you "
+         "measure against later, on the plant, to tell a failing element from a dead one."),
+        ("noun-high-voltage-8368320.svg", "High voltage",
+         "Catches insulation that would hold at working voltage and break down in service. The test "
+         "that stops an element becoming a shock hazard on a machine frame."),
+        ("noun-insulation-5848062.svg", "Insulation resistance",
+         "Catches moisture in the magnesium oxide and contamination in the sheath. A low reading is "
+         "often recoverable by baking out rather than scrapping."),
+        ("noun-micrometer-8419029.svg", "Dimensional inspection",
+         "Catches a diameter or a length that will not fit the bore it was made for. On a cartridge "
+         "heater this is the measurement that decides how long it lasts."),
+    ])}
     return page("quality/index.html", "Quality and testing | %s" % COMPANY["name"],
                 "Resistance, high voltage, insulation resistance and dimensional testing on every "
                 "element, with what arrives alongside the delivery.",
