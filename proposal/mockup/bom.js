@@ -251,13 +251,38 @@
   }
   function num2(v) { var n = parseFloat(v); return isNaN(n) ? null : n; }
 
+  /* The drawn length is already fixed, so the drawing is a schematic, not a
+     scale drawing. Deriving the drawn diameter from d/L made it half-scale and
+     the aspect ratio bottomed out: at long lengths every diameter clamped to
+     the same 16px and a 25mm heater looked identical to a 12.5mm one.
+     Map diameter onto its own axis instead, spanning the range the family
+     actually offers, so every size is visibly different. The real values are
+     carried by the dimension numbers, which is what an engineer reads. */
+  function dimRange(fam, key) {
+    var def = (fam.specs || []).filter(function (s2) { return s2.k === key; })[0];
+    if (!def) return null;
+    if (def.type === 'select' && def.opts && def.opts.length) {
+      var nums = def.opts.map(parseFloat).filter(function (n) { return !isNaN(n); });
+      return { min: Math.min.apply(null, nums), max: Math.max.apply(null, nums) };
+    }
+    if (def.min != null && def.max != null) return { min: def.min, max: def.max };
+    return null;
+  }
+
+  function drawnThickness(fam, key, value, lo, hi) {
+    var range = dimRange(fam, key);
+    var v = num2(value);
+    if (!range || v == null || range.max === range.min) return (lo + hi) / 2;
+    var t = (v - range.min) / (range.max - range.min);
+    return lo + Math.max(0, Math.min(1, t)) * (hi - lo);
+  }
+
   /* Each view returns the artwork plus the fixed anchor points the inputs sit on.
      Anchors do not move while you type, so a field never jumps under the cursor. */
   var VIEWS = {
-    cylinder: function (spec, opt) {
-      var d = num2(spec.dia) || 14, L = num2(spec.len) || 200;
-      var ratio = Math.max(0.05, Math.min(0.40, d / Math.max(L, 1)));
-      var bw = 260, bh = Math.max(16, Math.min(104, bw * ratio));
+    cylinder: function (spec, opt, fam) {
+      var L = num2(spec.len) || 200;
+      var bw = 260, bh = drawnThickness(fam, 'dia', spec.dia, 22, 92);
       var x1 = 165, x2 = x1 + bw, cy = 186, y1 = cy - bh / 2, y2 = cy + bh / 2;
       var hl = num2(spec.hlen), hlw = hl && L ? Math.max(0.15, Math.min(1, hl / L)) : 0.82;
       var hx1 = x1 + bw * (1 - hlw) / 2, hx2 = x2 - bw * (1 - hlw) / 2;
@@ -297,7 +322,7 @@
       }
       return { art: art, anchors: { dia: [86, 96], len: [295, 300], hlen: [295, 62], clen: [470, 300] } };
     },
-    ring: function (spec, opt) {
+    ring: function (spec, opt, fam) {
       var id = num2(spec.id) || 90, wd = num2(spec.width) || num2(spec.len) || 60;
       var r = Math.max(34, Math.min(74, id / 2.6));
       var band = Math.max(9, Math.min(30, wd / 3.2));
@@ -329,7 +354,7 @@
       }
       return { art: art, anchors: { id: [110, 300], width: [455, 300], len: [455, 300] } };
     },
-    coil: function (spec, opt) {
+    coil: function (spec, opt, fam) {
       var id = num2(spec.id) || 30, hl = num2(spec.hlen) || 120;
       var r = Math.max(16, Math.min(46, id / 1.8));
       var cy = 170, x1 = 150, x2 = Math.min(430, x1 + Math.max(120, Math.min(280, hl * 1.1)));
@@ -352,7 +377,7 @@
         dimLineH(x1, x2, cy + r + 46) + leader((x1 + x2) / 2, cy + r + 46, 300, 290) + num(2, 320, 300);
       return { art: art, anchors: { id: [110, 300], hlen: [310, 300] } };
     },
-    strip: function (spec, opt) {
+    strip: function (spec, opt, fam) {
       var L = num2(spec.len) || 400, wd = num2(spec.width) || 40;
       var bw = Math.max(160, Math.min(300, L / 1.6));
       var bh = Math.max(16, Math.min(76, wd / 0.9));
@@ -374,7 +399,7 @@
       }
       return { art: art, anchors: { len: [310, 300], width: [110, 300] } };
     },
-    panel: function (spec, opt) {
+    panel: function (spec, opt, fam) {
       var dist = num2(spec.dist) || 150;
       var gap = Math.max(60, Math.min(210, dist / 1.4));
       var ex = 150, wx = ex + 60 + gap;
@@ -393,10 +418,9 @@
      attached to their dimensions. A tube is two cap ellipses plus the
      silhouette between them; the heated band is a section of the same tube. */
   var VIEWS_ISO = {
-    cylinder: function (spec, opt) {
-      var d = num2(spec.dia) || 14, L = num2(spec.len) || 200;
-      var ratio = Math.max(0.05, Math.min(0.40, d / Math.max(L, 1)));
-      var bw = 260, bh = Math.max(16, Math.min(104, bw * ratio));
+    cylinder: function (spec, opt, fam) {
+      var L = num2(spec.len) || 200;
+      var bw = 260, bh = drawnThickness(fam, 'dia', spec.dia, 22, 92);
       var x1 = 165, x2 = x1 + bw, cy = 186, r = bh / 2;
       var rx = Math.max(3, r * 0.34);              // cap foreshortening
       var y1 = cy - r, y2 = cy + r;
@@ -471,7 +495,7 @@
 
   function renderSpecs() {
     var view = viewFor(current);
-    var out = view(spec, chosen);
+    var out = view(spec, chosen, current);
     var dims = current.dims || [];
     var i = 0;
     var dimHtml = '', elecHtml = '';
@@ -550,7 +574,7 @@
   }
 
   function draw() {
-    $('vizArt').innerHTML = svgWrap(viewFor(current)(spec, chosen).art);
+    $('vizArt').innerHTML = svgWrap(viewFor(current)(spec, chosen, current).art);
   }
 
   function update() {

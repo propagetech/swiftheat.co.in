@@ -3,37 +3,37 @@
     "t": "path",
     "cls": "iso-body",
     "w": 1.9,
-    "len": 69
+    "len": 202
   },
   {
     "t": "path",
     "cls": "iso-band",
     "w": null,
-    "len": 69
+    "len": 187
   },
   {
     "t": "path",
     "cls": "",
     "w": 1,
-    "len": 69
+    "len": 187
   },
   {
     "t": "path",
     "cls": "",
-    "w": 2.1,
-    "len": 15
+    "w": 4.6,
+    "len": 27
   },
   {
     "t": "path",
     "cls": "",
     "w": 1.7,
-    "len": 34
+    "len": 80
   },
   {
     "t": "path",
     "cls": "",
     "w": 1.2,
-    "len": 33
+    "len": 93
   },
   {
     "t": "path",
@@ -133,7 +133,7 @@
     "t": "path",
     "cls": "opt-tc",
     "w": 1.2,
-    "len": 15
+    "len": 26
   },
   {
     "t": "text",
