@@ -3,23 +3,19 @@
 import html, pathlib
 
 PAGES = [
-    ("index.html",              "Proposal",              "Swiftheat website proposal"),
-    ("01-where-you-stand.html", "Where you stand today", "What your website does right now"),
-    ("02-being-found.html",     "How buyers find you",   "Search visibility and where enquiries go"),
-    ("03-competitors.html",     "The two sites you sent","Nexthermal, Electron Systems, the wider field"),
-    ("04-what-we-build.html",   "What we will build",    "Structure, product pages, industry pages"),
-    ("05-plan.html",            "How the work runs",     "Phases, timeline and what we need"),
-    ("06-investment.html",      "The investment",        "Rs 65,000, and why that is the number"),
+    ("index.html",             "Proposal",             "Swiftheat website proposal"),
+    ("01-what-we-found.html",  "What we found",        "The inputs the build starts from"),
+    ("02-what-we-build.html",  "What we will build",   "Structure, product pages, industry pages"),
+    ("03-plan.html",           "How the work runs",    "Phases, timeline and what we need"),
+    ("04-investment.html",     "The investment",       "Rs 65,000, and what it covers"),
 ]
 
 DESCR = {
  "index.html":"Website redesign proposal for Swiftheat Thermal Technologies, Peenya, Bangalore. Prepared by ProPage.",
- "01-where-you-stand.html":"An audit of swiftheat.co.in as it stands in August 2026, and what it is costing in enquiries.",
- "02-being-found.html":"How Swiftheat is found in search today, why IndiaMART outranks the website, and the unclaimed Peenya searches.",
- "03-competitors.html":"A close read of Nexthermal and Electron Systems, the two competitor sites Swiftheat asked us to review.",
- "04-what-we-build.html":"The proposed structure: seven product family pages, nine industry pages, and an enquiry form that asks for a specification.",
- "05-plan.html":"The five phases of the build, the timeline, and the content and photography we need from Swiftheat.",
- "06-investment.html":"Rs 65,000 for the complete build, set against published Indian market pricing for a custom manufacturer website.",
+ "01-what-we-found.html":"What the current swiftheat.co.in contains, and what the new build needs from it.",
+ "02-what-we-build.html":"The proposed structure: seven product family pages, nine industry pages, and an enquiry form that asks for a specification.",
+ "03-plan.html":"The five phases of the build, the timeline, and the content and photography we need from Swiftheat.",
+ "04-investment.html":"Rs 65,000 for the complete build, and exactly what that covers.",
 }
 
 def nav(current):
@@ -104,77 +100,61 @@ BODIES["index.html"] = """
     </header>
 
     <div class="wrap">
-      <p class="lede">Before writing this proposal we read your current website in full,
-        then more than twenty five competitor websites: heater manufacturers in Bangalore,
-        the strongest names across India, and the international leaders in Germany, the
-        United States and Ireland. Everything in this document is a verified observation,
-        not an opinion about design.</p>
+      <p class="lede">Rather than describe the site we would build for you, we have built a
+        page of it. Everything else in this proposal follows from that page.</p>
       <hr class="rule">
-      <p>Four findings shaped the entire proposal.</p>
     </div>
 
-    <div class="kpis">
-      <div class="kpi"><b>0</b><span>Indian heater manufacturers, local or national, whose enquiry form asks for a single specification</span></div>
-      <div class="kpi"><b>0</b><span>Bangalore manufacturers whose own website appears for Peenya heater searches</span></div>
-      <div class="kpi"><b>1 in 17</b><span>Indian heater sites that name the electrical tests they perform</span></div>
-      <div class="kpi"><b>0</b><span>Indian heater sites that publish a lead time or a minimum order quantity</span></div>
+    <div class="finding">
+      <span class="tag">Start here</span>
+      <p><a href="mockup/cartridge-heaters.html"><strong>Open the cartridge heater page</strong></a>.
+        It is a working page, not a picture of one: specification tables, a construction
+        cutaway, a dimensioned drawing, your ordering options set out with codes, and an
+        enquiry form that shows you the email your works would receive. Every specification
+        value in it is deliberately marked "to confirm", because those numbers come from your
+        engineers, not from us.</p>
     </div>
 
     <div class="wrap">
-      <p>That is the shape of the opportunity. This is not a market where you have to be
-        cleverer than everyone else. It is a market where almost nobody has done the
-        straightforward work of telling an engineer what they need to know.</p>
+      <p>Twenty three pages, built to the same standard as that one. Seven product families,
+        nine industries, your custom work and capabilities, your quality and testing, your
+        downloads, and an enquiry form that asks a customer for a diameter rather than a
+        paragraph.</p>
 
-      <h2>How this proposal is ordered</h2>
-      <p>Each section earns the next one. We start with what exists, then what it is costing
-        you, then what your competitors do and fail to do, then what we would build, how it
-        runs, and only at the end, what it costs.</p>
+      <h2>What is in this proposal</h2>
     </div>
 
     <ol class="steps">
       <li>
-        <h3><a href="01-where-you-stand.html">Where you stand today</a></h3>
-        <p>An audit of swiftheat.co.in as it is right now, including three faults that are
-          turning away enquiries this week.</p>
+        <h3><a href="01-what-we-found.html">What we found</a></h3>
+        <p>What your current site contains, what can be reused, and the handful of things
+          that need a decision from you before the build can start.</p>
       </li>
       <li>
-        <h3><a href="02-being-found.html">How buyers find you</a></h3>
-        <p>Why IndiaMART is currently acting as your homepage, what happens when someone
-          searches for heater manufacturers in Peenya, and one domain name issue you should
-          know about.</p>
+        <h3><a href="02-what-we-build.html">What we will build</a></h3>
+        <p>The full structure, how a product page is put together, how an industry page
+          works, and the enquiry form in detail.</p>
       </li>
       <li>
-        <h3><a href="03-competitors.html">The two sites you sent us</a></h3>
-        <p>A close read of Nexthermal and Electron Systems, what each does better than the
-          other, and where both leave the door open.</p>
+        <h3><a href="03-plan.html">How the work runs</a></h3>
+        <p>Five phases, six to eight weeks, and a straight list of what we need from your
+          side before we can start and before we can launch.</p>
       </li>
       <li>
-        <h3><a href="04-what-we-build.html">What we will build</a></h3>
-        <p>Seven product family pages, nine industry pages, and an enquiry form that asks
-          your customer for a diameter instead of a paragraph. Includes a
-          <a href="mockup/cartridge-heaters.html">working mockup of a product page</a>.</p>
-      </li>
-      <li>
-        <h3><a href="05-plan.html">How the work runs</a></h3>
-        <p>Five phases, six to eight weeks, and an honest list of what we need from your side
-          before we can start and before we can launch.</p>
-      </li>
-      <li>
-        <h3><a href="06-investment.html">The investment</a></h3>
-        <p>Rs 65,000 for the complete build, set against what the Indian market actually
-          charges for a manufacturer website of this size.</p>
+        <h3><a href="04-investment.html">The investment</a></h3>
+        <p>Rs 65,000 for the complete build, what that covers, and the terms.</p>
       </li>
     </ol>
 
     <div class="quiet">
       <p><strong>One promise about content.</strong> We publish only what you send us and can
         verify. No invented certifications, no borrowed photographs, no claims about years or
-        clients or export markets that we cannot stand behind. If a useful claim cannot be
-        supported, it does not go on the site.</p>
+        clients that we cannot stand behind. Anything still unconfirmed appears on the preview
+        marked as outstanding, in a colour you cannot miss, until you confirm it.</p>
     </div>
 """
 
-BODIES["01-where-you-stand.html"] = """
+BODIES["01-what-we-found.html"] = """
     <div class="chapter"><span class="num" aria-hidden="true">01</span>
       <div><p class="eyebrow">Section one</p><h1>Where you stand today</h1></div></div>
     <div class="wrap">
@@ -253,7 +233,7 @@ BODIES["01-where-you-stand.html"] = """
       <p>A full width photograph on a modern site needs roughly 2000 pixels across. Nothing
         here reaches half of that. New photography is not a nice addition to this project, it
         is a requirement, and we have set out the options in
-        <a href="05-plan.html">how the work runs</a>.</p>
+        <a href="03-plan.html">how the work runs</a>.</p>
 
       <h2>Your product list has changed</h2>
       <p>The list in your brief does not match what the website shows. We need this settled
@@ -291,282 +271,9 @@ BODIES["01-where-you-stand.html"] = """
     </div>
 """
 
-BODIES["02-being-found.html"] = """
+BODIES["02-what-we-build.html"] = """
     <div class="chapter"><span class="num" aria-hidden="true">02</span>
-      <div><p class="eyebrow">Section two</p><h1>How buyers find you</h1></div></div>
-    <div class="wrap">
-      <p class="lede">A website that cannot be found is a brochure in a drawer. Three things
-        are happening in search right now, and two of them are working against you.</p>
-      <hr class="rule">
-    </div>
-
-    <div class="finding">
-      <span class="tag">Finding 1</span>
-      <p><strong>Your own website does not appear when someone searches for Swiftheat.</strong>
-        The results are your IndiaMART listing, Zauba Corp, IndiaMART product pages,
-        peenya.info and Justdial. In practice, IndiaMART is acting as your homepage.</p>
-      <p>That matters commercially. On IndiaMART your listing sits next to competitors, the
-        enquiry is shared, and you have no control over how your company is presented. You are
-        paying for that placement in one form or another. Your own domain is free and it is
-        yours.</p>
-    </div>
-
-    <div class="finding">
-      <span class="tag">Finding 2, not a website matter</span>
-      <p><strong>swiftheat.com belongs to a different company.</strong> It is Swift Heat and
-        Control, and their product range is close to identical to yours: cartridge heaters,
-        mica and ceramic band heaters, nozzle heaters, coil heaters, thermocouples and RTDs.
-        Anyone who types the obvious .com address lands on a competitor.</p>
-      <p>We raise it because you should know, not because it is part of this project. It may
-        be worth checking whether that domain can be acquired, separately from the website.</p>
-    </div>
-
-    <div class="wrap">
-      <h2>Peenya is unclaimed</h2>
-      <p>This is the finding we would build the site around. We ran the searches a buyer in
-        Bangalore would actually run and recorded what came back.</p>
-    </div>
-
-    <div class="tablewrap">
-      <table>
-        <caption>What currently ranks for heater searches with a Bangalore or Peenya qualifier</caption>
-        <thead><tr><th scope="col">Search</th><th scope="col">What appears</th><th scope="col">Read</th></tr></thead>
-        <tbody>
-          <tr class="is-us"><td>band heater manufacturers Peenya Bangalore</td>
-            <td>IndiaMART, then two pages from a <strong>Pune</strong> company, then five Justdial listings</td>
-            <td>Not one Bangalore manufacturer's own website appears at all</td></tr>
-          <tr><td>ceramic band heater manufacturers Bangalore</td>
-            <td>A <strong>Pune</strong> company first, then an IndiaMART built site, then Electron Systems</td>
-            <td>A Pune firm outranks every Bangalore manufacturer</td></tr>
-          <tr><td>cartridge heater manufacturers in Bangalore</td>
-            <td>SRI Electronics, Heatcon, Electron Systems</td>
-            <td>Own sites do win here. An exact page title is enough.</td></tr>
-          <tr><td>industrial heater manufacturers in Bangalore</td>
-            <td>Sulekha directory first, then Heatcon and Electron Systems</td>
-            <td>A directory takes the top position</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="wrap">
-      <p>Read the first row again. You manufacture heaters in Peenya Industrial Area Phase 1.
-        When a buyer searches for exactly that, they are shown directories and a company in
-        Pune. There is no Bangalore manufacturer's website in the way, because none of them
-        has built the page.</p>
-      <p>The second row is the same story with a different query. A company several hundred
-        kilometres away is winning a Bangalore search because they wrote a Bangalore page and
-        your neighbours did not.</p>
-
-      <h2>What we would target</h2>
-      <p>These are the searches the new site would be built to answer. Each one maps to a
-        single page with a single job, which is how search engines prefer it.</p>
-    </div>
-
-    <div class="tablewrap">
-      <table>
-        <caption>Target searches and the page that would answer each</caption>
-        <thead><tr><th scope="col">Search</th><th scope="col">Page that answers it</th><th scope="col">Currently held by</th></tr></thead>
-        <tbody>
-          <tr><td>heater manufacturers in Peenya industrial area</td><td>Home and Contact</td><td>Nobody. Directories only.</td></tr>
-          <tr><td>cartridge heater manufacturers in Bangalore</td><td>Cartridge Heaters</td><td>Three local firms, all beatable</td></tr>
-          <tr><td>ceramic band heater manufacturers Bangalore</td><td>Ceramic Band Heaters</td><td>A Pune company</td></tr>
-          <tr><td>mica band heater manufacturers in Bangalore</td><td>Mica Band Heaters</td><td>A Pune company and Justdial</td></tr>
-          <tr><td>hot runner nozzle heater manufacturers Bangalore</td><td>Nozzle Heaters</td><td>Thin coverage locally</td></tr>
-          <tr><td>strip heater manufacturers in Bangalore</td><td>Strip Heaters</td><td>Directories only</td></tr>
-          <tr><td>tubular heater manufacturers in Bangalore</td><td>Tubular Heaters</td><td>Fragmented, no clear owner</td></tr>
-          <tr><td>ceramic infrared heater manufacturers Bangalore</td><td>Ceramic IR Heaters</td><td>Low local depth</td></tr>
-          <tr class="is-us"><td>extruder barrel heater Bangalore, injection moulding machine heater supplier Bangalore</td>
-            <td>The industry pages</td><td><strong>Nobody.</strong> No competitor has application led pages.</td></tr>
-          <tr class="is-us"><td>custom cartridge heater as per drawing Bangalore</td>
-            <td>Custom Solutions and the enquiry form</td><td><strong>Nobody targets this.</strong></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="quiet">
-      <p><strong>A note on honesty in search.</strong> We do not buy links, spin articles or
-        publish machine written city pages. Two of the firms currently ranking against you do
-        exactly that, and one of them still has placeholder testimonials from a fictional
-        company on its homepage. Our approach is slower and it holds: one page, one subject,
-        written properly, marked up so Google can read the specifications.</p>
-    </div>
-"""
-
-BODIES["03-competitors.html"] = """
-    <div class="chapter"><span class="num" aria-hidden="true">03</span>
-      <div><p class="eyebrow">Section three</p><h1>The two sites you sent us</h1></div></div>
-    <div class="wrap">
-      <p class="lede">You pointed us to Nexthermal and Electron Systems, and said Electron
-        is the more appropriate of the two. We had already audited both. There is something
-        important in that judgement, and it is worth separating it from the thing it is
-        easily mistaken for.</p>
-      <hr class="rule">
-      <p><strong>What is right about Electron Systems is what it says, not how it is built.</strong>
-        Somebody who understands heaters wrote those words. The diameter and length matrix,
-        the fit calculation, the instruction telling a buyer exactly which four things to
-        state when ordering: that is a manufacturer talking to an engineer, and almost nobody
-        else in this market does it. That instinct is correct and we would build on it.</p>
-      <p><strong>What is wrong with it is the structure and the presentation, and we would not
-        repeat either.</strong> The navigation is a flat list of thirteen products with
-        "ISO Certificate" sitting in the menu beside them. There is no way in for a buyer who
-        thinks in terms of their machine rather than a product name, because there are no
-        application pages. The catalogue mixes heaters with hopper dryers, sealing machines
-        and welding mirrors, so the company reads as a general supplier rather than a heater
-        manufacturer. The specifications are strewn through bullet prose: the cartridge page
-        contains two tables in total. There is nothing to download, no enquiry form on the
-        product pages, a gmail address for contact, a copyright line reading 2018, and a
-        setting that stops a visitor pinch zooming on a phone.</p>
-      <p>So the honest summary is this. Electron shows the right respect for the buyer's
-        question and then buries the answer in a layout that cannot carry it. Swiftheat should
-        take the respect and discard the layout.</p>
-    </div>
-
-    <div class="finding">
-      <span class="tag">Rather than describe it</span>
-      <p>Section four sets out the page we would build instead. Because that is difficult to
-        picture from a description, we have built one.
-        <a href="mockup/cartridge-heaters.html"><strong>Open the cartridge heater page
-        mockup</strong></a>. It is a real page, not a picture of one: the tables, the drawings,
-        the coded option catalogue and a working enquiry form that shows you the email
-        Swiftheat would receive.</p>
-    </div>
-
-    <h2>Electron Systems</h2>
-    <div class="grid grid-2">
-      <div class="card">
-        <h3>What they get right</h3>
-        <ul>
-          <li>A <strong>page for each product</strong>, with a page title written for the
-            search a buyer actually types: "Cartridge heater manufacturers in Bangalore".</li>
-          <li>A real <strong>diameter and length matrix</strong>: 6.5, 8, 10, 12.5, 16, 19
-            and 25 mm against imperial equivalents, with minimum lengths from 35 to 75 mm
-            and maximums from 250 to 1500 mm.</li>
-          <li>A worked <strong>fit calculation</strong>, with a numeric example arriving at
-            0.18 mm maximum permissible clearance, plus mounting bore guidance of 0.15 to
-            0.30 mm.</li>
-          <li>An explicit instruction to the buyer: <em>when ordering please specify
-            diameter and length, wattage and voltage, type of terminal, and a drawing for
-            special configurations.</em></li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>What they throw away</h3>
-        <ul>
-          <li>Having told the buyer exactly which four things to state, <strong>they give
-            them a blank message box.</strong> The specification never reaches the sales desk
-            in a usable form.</li>
-          <li><strong>Nothing to download.</strong> No catalogue, no datasheet, no drawing,
-            anywhere on the site.</li>
-          <li>The product pages carry <strong>no enquiry form at all</strong>. The buyer has
-            to go and find the contact page.</li>
-          <li>The contact address is a <strong>gmail.com address</strong>, not a company one.</li>
-          <li>The footer reads <strong>Copyright 2018</strong>.</li>
-          <li>The cartridge page sets <code>user-scalable=0</code>, which
-            <strong>stops a visitor pinch zooming on a phone</strong>. For an engineer
-            trying to read a dimension table on a shop floor, that is a real problem, and it
-            is an accessibility failure.</li>
-        </ul>
-      </div>
-    </div>
-
-    <h2>Nexthermal</h2>
-    <div class="grid grid-2">
-      <div class="card">
-        <h3>What they get right</h3>
-        <ul>
-          <li><strong>Five downloadable PDFs</strong>, including a full cartridge catalogue,
-            an abbreviated catalogue, an installation and operation guide, a configuration
-            chart and their ISO certificate. They are the only manufacturer in Bangalore who
-            offers a buyer anything to take away.</li>
-          <li>Genuine <strong>engineering options written out</strong>: distributed wattage,
-            moisture resistance, removal aids, right angle exits and blocks, flanges and NPT
-            fittings, anti seize, and a centreless grind tolerance of plus or minus
-            0.0008 inches.</li>
-          <li>Real <strong>part numbered product photography</strong>, shot properly.</li>
-          <li>A frequently asked questions block on the product page itself.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Where they leave the door open</h3>
-        <ul>
-          <li>It is the Indian arm of a company in Battle Creek, Michigan, and it reads that
-            way. There is <strong>almost no Bangalore or Karnataka signal</strong> anywhere on
-            the site. They do not compete for local searches.</li>
-          <li>Their enquiry form asks name, email, phone, company, subject and message.
-            <strong>No specification, no drawing upload</strong>, despite all that catalogue
-            depth sitting one click away.</li>
-          <li>Their live cartridge heater page still contains <strong>unedited placeholder
-            marketing text</strong>, sitting between two real technical sections. It reads:
-            "Credibly innovate granular internal sources whereas high standards
-            Energistically scale future-proof core competencies vis-a-vis impactful
-            experiences."</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="wrap">
-      <p>We mention that last point without any pleasure, because your own site has the same
-        problem. It is worth knowing that the most technically credible heater website in
-        Bangalore has been shipping nonsense text on a live product page for some time and
-        nobody has caught it. The bar here is lower than it looks.</p>
-
-      <h2>Side by side</h2>
-    </div>
-
-    <div class="tablewrap">
-      <table>
-        <caption>The two sites you sent, your current site, and what we propose</caption>
-        <thead><tr><th scope="col">Capability</th><th scope="col">Electron Systems</th>
-          <th scope="col">Nexthermal</th><th scope="col">Swiftheat today</th>
-          <th scope="col">Swiftheat proposed</th></tr></thead>
-        <tbody>
-          <tr><td>Page per product family</td><td>Yes</td><td>Yes</td><td>No, one combined page</td><td class="is-us">Yes, seven</td></tr>
-          <tr><td>Specification tables</td><td>Partly, two tables</td><td>In PDFs only</td><td>No</td><td class="is-us">Yes, on every family page</td></tr>
-          <tr><td>Dimension drawings</td><td>No</td><td>In PDFs only</td><td>No</td><td class="is-us">Yes</td></tr>
-          <tr><td>Coded option catalogue</td><td>No</td><td>Written as prose</td><td>No</td><td class="is-us">Yes, coded and diagrammed</td></tr>
-          <tr><td>Downloadable datasheets</td><td>None</td><td>Five PDFs</td><td>None</td><td class="is-us">One per family</td></tr>
-          <tr><td>Enquiry form asks for specifications</td><td>No</td><td>No</td><td>No</td><td class="is-us">Yes, per product family</td></tr>
-          <tr><td>Industry or application pages</td><td>No</td><td>Four, US written</td><td>No</td><td class="is-us">Nine, written for your industries</td></tr>
-          <tr><td>Quality and testing content</td><td>ISO page</td><td>ISO certificate PDF</td><td>None</td><td class="is-us">Named tests, rig photos, sample certificate</td></tr>
-          <tr><td>Targets Bangalore and Peenya searches</td><td>Bangalore yes, Peenya no</td><td>No</td><td>No</td><td class="is-us">Both</td></tr>
-          <tr><td>Works properly on a phone</td><td>Zoom blocked</td><td>Yes</td><td>Partly</td><td class="is-us">Yes, and audited to WCAG 2.1 AA</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="wrap">
-      <h2>The wider field, in case it is useful</h2>
-      <p>We did not stop at these two. We read the strongest heater manufacturer websites
-        across India, then the international leaders: Watlow and Tempco in the United States,
-        Hotset, Elstein and Turk plus Hillinger in Germany, and Ceramicx in Ireland.</p>
-      <p>Two things stood out.</p>
-      <p><strong>In India, looking modern and being useful are almost unrelated.</strong>
-        The most useful Indian heater site to a buying engineer, after Tempsens in Udaipur,
-        is Excel Heaters in Mumbai, and it looks like it was built in 2004. Its order forms
-        are built around a dimensioned drawing and capture diameter, length, voltage, wattage,
-        hole positions, slot radius, lead length and quantity. Meanwhile the sites that look
-        current tell an engineer nothing. Almost nobody has done both.</p>
-      <p><strong>The international leaders are beatable on industry pages.</strong> We
-        expected their application pages to be excellent. They are not. Chromalox's plastics
-        page is a banner image, one paragraph and a single case study. Elstein's thermoforming
-        page has no diagram, no numbers and no product links. This is genuinely open ground,
-        not just in Bangalore but anywhere.</p>
-    </div>
-
-    <div class="quiet">
-      <p><strong>What we would take from each.</strong> From Electron Systems, the instinct
-        that a product page exists to answer an engineer's question, and their habit of telling
-        the buyer exactly what to specify. From Nexthermal, downloadable collateral and real
-        product photography. From Excel Heaters in Mumbai, the dimensioned order form. From
-        Tempco in the United States, the coded and diagrammed option catalogue. Then we add the
-        two things none of them have: an enquiry form that captures the specification, and
-        industry pages that show the heating zones on the machine.</p>
-    </div>
-"""
-
-BODIES["04-what-we-build.html"] = """
-    <div class="chapter"><span class="num" aria-hidden="true">04</span>
-      <div><p class="eyebrow">Section four</p><h1>What we will build</h1></div></div>
+      <div><p class="eyebrow">Section two</p><h1>What we will build</h1></div></div>
     <div class="wrap">
       <p class="lede">Every section in your brief, plus the three things the audit says are
         unclaimed: a specification driven enquiry, product pages built like datasheets, and
@@ -613,10 +320,8 @@ BODIES["04-what-we-build.html"] = """
 
     <div class="wrap">
       <h2>The product family page</h2>
-      <p>This is the piece that does the most work. The structure below is drawn from the
-        best pages we found anywhere in the world, chiefly Elstein in Germany, Watlow and
-        Tempco in the United States. No Indian heater manufacturer publishes a page like
-        this today.</p>
+      <p>This is the piece that does the most work. Ten parts, in this order, each one
+        answering a question an engineer will ask before they enquire.</p>
     </div>
 
     <ol class="steps">
@@ -638,11 +343,11 @@ BODIES["04-what-we-build.html"] = """
       <li><h3>The option catalogue</h3><p>Every option you offer, numbered, coded and
         drawn: termination location, electrical termination type, lead protection, sheath
         material, sensor options, mounting. Each one with its temperature or current rating
-        and a line on when to use it. <strong>This is the single strongest thing on the
-        page and nobody in India has one.</strong></p></li>
+        and a line on when to use it. <strong>This is what turns a quotation phone call into
+        a part number.</strong></p></li>
       <li><h3>Selection guidance</h3><p>How to choose a watt density for the application,
-        and how to size the heater. Electron Systems publishes a fit calculation and it is
-        one of the best things on their site. We would do the same, better.</p></li>
+        and how to size the heater, including the bore fit that decides whether a cartridge
+        heater lasts or burns out.</p></li>
       <li><h3>Installation and failure modes</h3><p>Common causes of premature failure and
         how to avoid them. In this category, telling a buyer how your product fails is the
         most credible thing you can do.</p></li>
@@ -653,9 +358,8 @@ BODIES["04-what-we-build.html"] = """
 
     <div class="wrap">
       <h2>The industry page</h2>
-      <p>Nine of these, one per industry in your brief. As noted earlier, the international
-        leaders do this badly, which makes it open ground. The centre of each page is a table
-        that maps the machine to your products.</p>
+      <p>Nine of these, one per industry in your brief. The centre of each page is a table
+        that maps the machine to your products, zone by zone.</p>
     </div>
 
     <div class="tablewrap">
@@ -680,9 +384,9 @@ BODIES["04-what-we-build.html"] = """
         than the whole catalogue, and an enquiry form already set to that industry.</p>
 
       <h2>The enquiry form</h2>
-      <p>The most valuable thing in this proposal, and the cheapest to explain. Today, every
-        heater manufacturer in India asks a customer for a name, a phone number and a message.
-        Your form will ask for a heater.</p>
+      <p>The most valuable thing in this proposal, and the cheapest to explain. A general
+        contact form asks for a name, a phone number and a message. Your form will ask for a
+        heater.</p>
       <p>It changes according to what the visitor selects. Two examples.</p>
     </div>
 
@@ -724,14 +428,14 @@ BODIES["04-what-we-build.html"] = """
         nothing that breaks on an update. Your current site loads 155 KB of HTML on the home
         page before a single image.</p></div>
       <div class="card"><h3>Fast, and on your own domain</h3><p>Served as static files from
-        Cloudflare's global network with HTTPS. Two of the international leaders we tested
-        failed to load fully. Speed is a competitive advantage in this category.</p></div>
+        Cloudflare's global network with HTTPS. Nothing to boot up, nothing to time out, the
+        same speed from Peenya as from Stuttgart.</p></div>
       <div class="card"><h3>Readable by machines</h3><p>Schema.org structured data marks up
         your company, your products and your specifications, so Google and the newer AI
         search tools can read them properly rather than guessing.</p></div>
       <div class="card"><h3>Accessible, and audited</h3><p>WCAG 2.1 AA, checked with a real
-        contrast audit rather than claimed. Every tap target at least 44 pixels. Pinch zoom
-        works, unlike on two of the sites currently outranking you.</p></div>
+        contrast audit rather than claimed. Every tap target at least 44 pixels, and pinch
+        zoom works, which matters when someone is reading a dimension table on a shop floor.</p></div>
       <div class="card"><h3>Nothing borrowed from elsewhere</h3><p>Fonts served from your own
         site, no tracking scripts, no cookie banner needed because there are no cookies to
         consent to.</p></div>
@@ -741,9 +445,9 @@ BODIES["04-what-we-build.html"] = """
     </div>
 """
 
-BODIES["05-plan.html"] = """
-    <div class="chapter"><span class="num" aria-hidden="true">05</span>
-      <div><p class="eyebrow">Section five</p><h1>How the work runs</h1></div></div>
+BODIES["03-plan.html"] = """
+    <div class="chapter"><span class="num" aria-hidden="true">03</span>
+      <div><p class="eyebrow">Section three</p><h1>How the work runs</h1></div></div>
     <div class="wrap">
       <p class="lede">Six to eight weeks from the day your content reaches us. Nothing
         touches swiftheat.co.in until you have seen every page and approved it.</p>
@@ -822,11 +526,11 @@ BODIES["05-plan.html"] = """
         shoot at.</p>
       <p>Set aside an afternoon and one person who knows the products. That is genuinely the
         whole requirement.</p>
-      <p>What will not work is stock photography of somebody else's heaters. Your advantage
-        over the trading companies in this market is that you actually manufacture, and the
-        only way a website shows that is with real pictures of your real products and your
-        real factory. A slightly imperfect photograph of your own coil heater on your own
-        bench is worth more here than a perfect photograph of somebody else's.</p>
+      <p>What will not work is stock photography of somebody else's heaters. You actually
+        manufacture, and the only way a website shows that is with real pictures of your real
+        products and your real factory. A slightly imperfect photograph of your own coil
+        heater on your own bench is worth more here than a perfect photograph of a heater that
+        is not yours.</p>
 
       <h2>How we handle content that has not arrived</h2>
       <p>Where a specification or a certificate is outstanding, we mark it clearly as
@@ -844,12 +548,12 @@ BODIES["05-plan.html"] = """
     </div>
 """
 
-BODIES["06-investment.html"] = """
-    <div class="chapter"><span class="num" aria-hidden="true">06</span>
-      <div><p class="eyebrow">Section six</p><h1>The investment</h1></div></div>
+BODIES["04-investment.html"] = """
+    <div class="chapter"><span class="num" aria-hidden="true">04</span>
+      <div><p class="eyebrow">Section four</p><h1>The investment</h1></div></div>
     <div class="wrap">
       <p class="lede">One price for the whole thing. No phases, no modules, no upgrade path
-        you have to buy later to make the site work.</p>
+        you have to buy later to make the site work, and nothing else to procure.</p>
     </div>
 
     <div class="price">
@@ -882,78 +586,6 @@ BODIES["06-investment.html"] = """
     </div>
 
     <div class="wrap">
-      <h2>Why Rs 65,000, and not less</h2>
-      <p>We did not pick this number from a price list. We checked what Indian agencies
-        publish for a manufacturer website of this size, and set our price below the market
-        floor for it. Here is the whole picture, including the parts that make us look
-        expensive.</p>
-    </div>
-
-    <div class="tablewrap">
-      <table>
-        <caption>Published Indian and international pricing for business and manufacturer
-          websites, 2026. Sources are agency price pages and published project figures.</caption>
-        <thead><tr><th scope="col">What you are buying</th><th scope="col" class="num-cell">Published price</th>
-          <th scope="col">What it actually is</th></tr></thead>
-        <tbody>
-          <tr><td>Bangalore budget package</td><td class="num-cell">Rs 12,999 to 16,999</td>
-            <td>Five to seven pages on a bought template, text swapped in</td></tr>
-          <tr><td>India, basic informational site</td><td class="num-cell">Rs 15,000 to 40,000</td>
-            <td>Template based. Published definitions exclude a product catalogue.</td></tr>
-          <tr><td>Manufacturing site, template</td><td class="num-cell">Rs 25,000 to 75,000</td>
-            <td>Five to ten pages, basic customisation, minimal search work</td></tr>
-          <tr class="is-us"><td><strong>This proposal</strong></td><td class="num-cell"><strong>Rs 65,000</strong></td>
-            <td><strong>Twenty three pages, custom designed, hand built, accessibility audited</strong></td></tr>
-          <tr><td>Manufacturing site, custom, published floor</td><td class="num-cell">Rs 85,000 to 1,80,000</td>
-            <td>Eight to twelve pages, product galleries, contact forms</td></tr>
-          <tr><td>Manufacturing site, semi custom</td><td class="num-cell">Rs 1,00,000 to 2,50,000</td>
-            <td>Fifteen to thirty pages, product catalogue, technical content, quote forms.
-              <strong>This is the tier our page count falls into.</strong></td></tr>
-          <tr><td>Real Indian project, automotive component supplier</td><td class="num-cell">Rs 2,07,000</td>
-            <td>Published 2025 project figure, development plus content</td></tr>
-          <tr><td>Real Indian project, industrial valve manufacturer</td><td class="num-cell">Rs 5,50,000</td>
-            <td>Published 2025 project figure</td></tr>
-          <tr><td>Same site built in the United Kingdom</td><td class="num-cell">Rs 8.9 to 27.8 lakh</td>
-            <td>Custom design, twelve to twenty five pages</td></tr>
-          <tr><td>Same site built in the United States</td><td class="num-cell">Rs 6.2 to 15.8 lakh</td>
-            <td>Small to mid size manufacturer, custom</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="finding">
-      <span class="tag">The comparison that matters most</span>
-      <p>ExportersIndia sells manufacturers and exporters a <strong>template</strong> website
-        at <strong>Rs 60,000 every year, recurring</strong>. This proposal is Rs 65,000 once,
-        for a site designed only for you, that you own outright, and that nobody can switch
-        off. The difference in year two is Rs 60,000 against Rs 12,000.</p>
-    </div>
-
-    <div class="wrap">
-      <h2>If someone quotes you Rs 20,000</h2>
-      <p>Someone will, and they will be quoting honestly for a different product. In the
-        Indian market's own published definitions, the ten to twenty five thousand band means
-        a purchased template with your text dropped into it, and those definitions
-        specifically exclude a product catalogue. That is a real service and for some
-        businesses it is the right one. It is not what your brief describes.</p>
-      <p>Three things worth weighing before comparing the two numbers.</p>
-      <ul>
-        <li><strong>The cheap quote is rarely the cheap cost.</strong> Add the domain,
-          hosting at three to fifteen thousand a year, premium theme and plugin licences, and
-          a WordPress maintenance contract at ten to thirty thousand a year. The Indian
-          guidance on this is blunt: a twelve thousand rupee website that has to be rebuilt in
-          eighteen months costs more than a forty five thousand rupee one that runs for five
-          years.</li>
-        <li><strong>You have already run this experiment.</strong> Your current WordPress site
-          has had a placeholder phone number and Latin filler text live on it for around two
-          years. The problem was never that the platform could not be edited. It is that
-          nobody edits it. A site with no plugins to patch and six updates a year included
-          fails differently.</li>
-        <li><strong>Your buyers are procurement engineers.</strong> Some of them are comparing
-          you against German and American suppliers whose websites cost between six and
-          twenty eight lakh rupees. A template reads as a template to that reader.</li>
-      </ul>
-
       <h2>There is nothing else to buy</h2>
       <p>Most website quotes are followed by three more: a photographer, a copywriter and
         somebody to draw the diagrams. We have deliberately not built this proposal that way.
@@ -1012,9 +644,8 @@ BODIES["06-investment.html"] = """
 
     <div class="wrap">
       <h2>The annual care plan</h2>
-      <p>Included for the first year, Rs 12,000 a year after that. We should be straight
-        about what it is, because the hosting itself is nearly free and you would be right to
-        ask. You are not paying us for server space. You are paying for these seven things.</p>
+      <p>Included for the first year, Rs 12,000 a year after that. Seven things, itemised so
+        you know exactly what it is.</p>
       <ul>
         <li>Hosting, the HTTPS certificate and DNS management</li>
         <li>Uptime monitoring, so we know before you do</li>
@@ -1025,8 +656,7 @@ BODIES["06-investment.html"] = """
         <li>A defined response time when something breaks</li>
         <li>An annual report on site health and search visibility</li>
       </ul>
-      <p>For comparison, Indian agencies publish annual maintenance for a site of this kind at
-        Rs 18,000 to 30,000, and specifically for manufacturing sites at Rs 10,000 to 25,000.</p>
+
 
       <h2>Terms</h2>
     </div>
@@ -1039,7 +669,7 @@ BODIES["06-investment.html"] = """
           <tr><td>Payment</td><td>40 percent to begin, 40 percent on preview approval, 20 percent at go live</td></tr>
           <tr><td>Timeline</td><td>Six to eight weeks from receipt of your content</td></tr>
           <tr><td>Changes</td><td>Two rounds included at preview. Further rounds Rs 5,000 each.</td></tr>
-          <tr><td>Scope</td><td>Seven product families, nine industries, as listed in section four</td></tr>
+          <tr><td>Scope</td><td>Seven product families, nine industries, as listed in section two</td></tr>
           <tr><td>Beyond that scope</td><td>Additional product family page Rs 6,000. Additional industry page Rs 4,000. Both at your option, never assumed.</td></tr>
           <tr><td>Later changes</td><td>Rs 1,500 per hour, once the care plan allowance for the year is used</td></tr>
           <tr><td>Ownership</td><td>The site, the code and the domain are yours. No licence, no lock in.</td></tr>
@@ -1057,8 +687,8 @@ BODIES["06-investment.html"] = """
       <p>If you would rather talk it through first, we are happy to come to Peenya. Seeing the
         plant would improve the site anyway, and it is the fastest way to work out what the
         photography should show.</p>
-      <p>And whether or not we work together: please change the phone number on your contact
-        page this week. It costs nothing and it is currently sending every caller nowhere.</p>
+      <p>One thing regardless of what you decide: the phone number on your current contact
+        page is a placeholder. That one is worth fixing this week.</p>
       <p style="margin-top:32px">
         <a class="btn" href="mailto:propagetech@gmail.com?subject=Swiftheat%20website%20proposal">Reply to this proposal</a>
       </p>
