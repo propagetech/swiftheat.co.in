@@ -1,0 +1,12 @@
+# Internal working material, not part of the site.
+# Research, pricing reasoning and the internal quotation live in docs/ in the
+# working folder and are deliberately kept out of the repository while it is
+# public. Same principle as client-communication/ in the motorover repo.
+docs/
+
+# macOS
+.DS_Store
+
+# Secrets and credentials, never commit any of these
+.env
+.env.*
