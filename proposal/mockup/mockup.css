@@ -16,6 +16,7 @@
   --focus:hsl(215 90% 42%);
   --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;--s9:96px;
   --radius:3px;--wrap:1180px;
+  --header-h:72px;   /* masthead height; the sticky jump nav offsets by it */
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
@@ -51,10 +52,10 @@ strong{font-weight:600;color:var(--ink-900)}
 .topbar a{color:hsl(214 16% 82%);text-decoration:none}
 .topbar a:hover{color:#fff}
 .masthead{background:var(--surface);border-bottom:1px solid var(--ink-200);position:sticky;top:0;z-index:20}
-.masthead .wrap{display:flex;align-items:center;gap:var(--s5);min-height:72px;flex-wrap:wrap}
-.logo{font-family:"Archivo Narrow",sans-serif;font-weight:700;font-size:1.5rem;color:var(--ink-900);text-decoration:none;letter-spacing:-.01em;line-height:1}
+.masthead .wrap{display:flex;align-items:center;gap:var(--s5);min-height:var(--header-h);flex-wrap:wrap}
+.logo{font-family:"Archivo Narrow",sans-serif;font-weight:700;font-size:1.5rem;color:var(--ink-900);text-decoration:none;letter-spacing:-.01em;line-height:1;white-space:nowrap;flex:0 0 auto}
 .logo em{font-style:normal;color:var(--heat-600)}
-.logo small{display:block;font-family:Inter,sans-serif;font-size:.62rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-500);margin-top:3px}
+.logo small{display:block;font-family:Inter,sans-serif;font-size:.75rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-500);margin-top:3px}
 .mainnav{margin-left:auto}
 .mainnav ul{display:flex;gap:var(--s2);list-style:none;margin:0;padding:0;flex-wrap:wrap;max-width:none}
 .mainnav a{display:block;padding:var(--s3);color:var(--ink-700);text-decoration:none;font-size:.92rem;font-weight:500;border-radius:var(--radius)}
@@ -88,12 +89,18 @@ strong{font-weight:600;color:var(--ink-900)}
 .shot{background:repeating-linear-gradient(45deg,hsl(40 20% 95%),hsl(40 20% 95%) 10px,hsl(40 18% 92%) 10px,hsl(40 18% 92%) 20px);
   border:1px dashed var(--ink-300);border-radius:var(--radius);padding:var(--s5);
   display:flex;flex-direction:column;justify-content:center;min-height:280px;text-align:center}
-.shot .label{font-size:.72rem;text-transform:uppercase;letter-spacing:.13em;color:var(--heat-700);font-weight:600}
+.shot .label{font-size:.75rem;text-transform:uppercase;letter-spacing:.13em;color:var(--heat-700);font-weight:600}
 .shot p{font-size:.9rem;color:var(--ink-600);margin:var(--s3) auto 0;max-width:34ch}
 .shot-sm{min-height:150px}
 
 /* jump nav */
-.jump{background:var(--surface-sunk);border-bottom:1px solid var(--ink-200);position:sticky;top:72px;z-index:15}
+.jump{background:var(--surface-sunk);border-bottom:1px solid var(--ink-200);position:sticky;top:var(--header-h);z-index:15}
+/* The link row scrolls sideways when it does not fit. Without an edge fade a
+   phone user sees four of eight links and no hint the rest are there. */
+.jump .wrap{position:relative}
+.jump .wrap::after{content:"";position:absolute;top:0;right:0;bottom:0;width:40px;
+  pointer-events:none;background:linear-gradient(to right,hsl(40 20% 95% / 0),var(--surface-sunk))}
+@media (min-width:1100px){.jump .wrap::after{display:none}}
 .jump ul{display:flex;gap:var(--s1);list-style:none;margin:0;padding:0;overflow-x:auto;max-width:none}
 .jump a{display:block;white-space:nowrap;padding:var(--s3) var(--s4);font-size:.85rem;font-weight:500;
   color:var(--ink-700);text-decoration:none;border-bottom:2px solid transparent}
@@ -127,8 +134,8 @@ td.n,th.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 .opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:var(--s4);list-style:none;padding:0;margin:0;max-width:none}
 .opts li{background:var(--surface);border:1px solid var(--ink-200);border-radius:var(--radius);padding:var(--s4);margin:0}
 section.band.alt .opts li{background:var(--paper)}
-.opts .code{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-size:.72rem;font-weight:600;
-  background:var(--ink-900);color:#fff;padding:2px 7px;border-radius:2px;letter-spacing:.04em}
+.opts .code{display:inline-block;font-family:ui-monospace,Menlo,monospace;font-size:.75rem;font-weight:600;
+  background:var(--ink-900);color:#fff;padding:2px var(--s2);border-radius:2px;letter-spacing:.04em}
 .opts h4{margin:var(--s3) 0 var(--s1)}
 .opts p{font-size:.85rem;color:var(--ink-600);margin:0;max-width:none}
 .opts .rating{display:block;font-size:.78rem;color:var(--heat-700);font-weight:600;margin-top:var(--s2);font-variant-numeric:tabular-nums}
@@ -164,7 +171,7 @@ legend .idx{color:var(--heat-500)}
 .fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:var(--s4)}
 .field{display:flex;flex-direction:column;gap:var(--s2);min-width:0}
 .field label{font-size:.82rem;font-weight:500;color:hsl(214 18% 84%)}
-.field .hint{font-size:.74rem;color:hsl(214 14% 60%)}
+.field .hint{font-size:.75rem;color:hsl(214 14% 60%)}
 .field input,.field select,.field textarea{
   background:hsl(214 30% 15%);border:1px solid hsl(214 24% 26%);border-radius:var(--radius);
   color:#fff;padding:var(--s3);font:inherit;font-size:.92rem;min-height:44px;width:100%}
@@ -185,12 +192,20 @@ footer.site a{color:hsl(214 16% 82%)}
 footer.site ul{list-style:none;padding:0}
 footer.site .tbd{color:var(--heat-200)} /* .tbd is dark orange for light grounds; lighten on the dark footer */
 
+@media (max-width:480px){
+  /* the letterspaced strapline sets the lockup width; tighten it so the brand
+     name cannot be forced to wrap */
+  .logo small{letter-spacing:.06em}
+}
 @media (max-width:900px){
   /* house rule: 44px minimum tap target on touch widths */
   .topbar .wrap{gap:var(--s4)}
   .topbar a{display:inline-flex;align-items:center;min-height:44px}
   .crumb a{display:inline-flex;align-items:center;min-height:44px}
-  .logo{display:flex;flex-direction:column;justify-content:center;min-height:44px}
+  /* NOT flex: a column flex container blockifies the <em> inside the brand,
+     splitting "Swift" and "heat" onto separate rows. Block plus padding gets
+     the 44px tap target without touching the inline flow. */
+  .logo{display:block;min-height:44px;padding:var(--s1) 0}
   .mockbar a{display:inline-flex;align-items:center;min-height:44px}
   .hero .grid{grid-template-columns:1fr;gap:var(--s6)}
   .masthead{position:static}.jump{top:0}

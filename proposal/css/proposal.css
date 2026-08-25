@@ -35,12 +35,14 @@
   --fs-display:clamp(2.75rem,1.6rem + 4.6vw,5rem);
   --fs-h1:clamp(2rem,1.35rem + 2.6vw,3.25rem);
   --fs-h2:clamp(1.4rem,1.15rem + 1.05vw,1.9rem);
-  --fs-h3:clamp(1.1rem,1.02rem + .35vw,1.28rem);
+  --fs-h3:clamp(1.2rem,1.1rem + .35vw,1.35rem);
   --fs-lede:clamp(1.06rem,1rem + .35vw,1.25rem);
   --fs-body:1rem;
   --fs-sm:.9rem;
   --fs-xs:.8rem;
-  --measure:70ch;
+  /* ch is the width of "0", which in Inter is 0.63em while average prose is
+     0.46em, so 70ch rendered as 96 characters. 52ch lands near 70 characters. */
+  --measure:52ch;
   --rail:264px;
   --radius:3px;
 }
@@ -67,7 +69,7 @@ strong{font-weight:600;color:var(--ink-900)}
 a{color:var(--heat-700);text-underline-offset:2px}
 a:hover{color:var(--ink-900)}
 :focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:2px}
-code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;background:var(--ink-100);padding:1px 5px;border-radius:2px;color:var(--ink-800)}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;background:var(--ink-100);padding:1px var(--s1);border-radius:2px;color:var(--ink-800)}
 
 .skip{position:absolute;left:-9999px;top:0;background:var(--ink-900);color:#fff;padding:var(--s3) var(--s4);z-index:99}
 .skip:focus{left:var(--s4);top:var(--s4)}

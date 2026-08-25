@@ -310,7 +310,7 @@
           '"/><path d="M' + (x1 + 22) + ' ' + cy + 'H' + (x2 + 42) + '" stroke="' + heat +
           '" stroke-width="1.2" stroke-dasharray="3 3" fill="none"/>' +
           '<text x="' + (x1 + 30) + '" y="' + (cy - bh / 2 - 9) + '" font-family="Inter,sans-serif" ' +
-          'font-size="11" fill="' + heat + '">' + opt.tc.replace('TC', 'type ') + '</text></g>';
+          'font-size="13" fill="' + heat + '">' + opt.tc.replace('TC', 'type ') + '</text></g>';
       }
       if (opt.lead === 'L3' || opt.lead === 'L4') {
         var lx = x2 + 42, hatch = '';
@@ -339,7 +339,7 @@
         dimLineH(sx, sx + sw, cy + r + band + 22) +
         leader(sx + sw / 2, cy + r + band + 22, 452, 286) + num(2, 470, 300) +
         '<text x="' + (sx + sw / 2) + '" y="' + (cy - r - band - 12) + '" text-anchor="middle" ' +
-          'font-family="Inter,sans-serif" font-size="11" fill="hsl(214 14% 40%)">side view</text>';
+          'font-family="Inter,sans-serif" font-size="13" fill="hsl(214 14% 40%)">side view</text>';
       opt = opt || {};
       if (opt.con === 'C2') {
         art += '<g class="opt-split"><path d="M' + cx + ' ' + (cy - r - band - 4) + 'v' + (band + 8) +
@@ -406,7 +406,7 @@
       var art =
         '<path d="M' + ex + ' 120h60l-10 96h-40z" fill="none" stroke="' + ink + '" stroke-width="1.9"/>' +
         '<path d="M' + (wx) + ' 96v144" stroke="' + ink + '" stroke-width="4"/>' +
-        '<text x="' + (wx + 12) + '" y="172" font-family="Inter,sans-serif" font-size="11" fill="hsl(214 14% 40%)">work</text>' +
+        '<text x="' + (wx + 12) + '" y="172" font-family="Inter,sans-serif" font-size="13" fill="hsl(214 14% 40%)">work</text>' +
         '<path d="M' + (ex + 64) + ' 140h' + (gap - 8) + 'M' + (ex + 64) + ' 168h' + (gap - 8) +
           'M' + (ex + 64) + ' 196h' + (gap - 8) + '" stroke="' + heat + '" stroke-width="1.4" stroke-dasharray="6 4" fill="none"/>' +
         dimLineH(ex + 60, wx, 262) + leader((ex + 60 + wx) / 2, 262, 300, 290) + num(1, 320, 300);
@@ -470,7 +470,7 @@
         art += '<g class="opt-tc"><circle cx="' + (x1 + 26) + '" cy="' + cy + '" r="5" fill="' + heat + '"/>' +
           '<path d="M' + (x1 + 26) + ' ' + cy + 'H' + (x2 + rx + 40) + '" stroke="' + heat +
           '" stroke-width="1.2" stroke-dasharray="3 3" fill="none"/>' +
-          '<text x="' + (x1 + 34) + '" y="' + (cy - r - 9) + '" font-family="Inter,sans-serif" font-size="11" fill="' +
+          '<text x="' + (x1 + 34) + '" y="' + (cy - r - 9) + '" font-family="Inter,sans-serif" font-size="13" fill="' +
           heat + '">' + opt.tc.replace('TC', 'type ') + '</text></g>';
       }
       if (opt.lead === 'L3' || opt.lead === 'L4') {
