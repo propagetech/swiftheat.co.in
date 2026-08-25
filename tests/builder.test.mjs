@@ -40,19 +40,36 @@ describe('regressions', () => {
     await b.close();
   });
 
-  test('dimension fields do not sit on top of the drawn body at desktop width', async () => {
-    const b = await builder();
+  test('the drawing really sticks on a phone (a sticky grid item cannot)', async () => {
+    // The mobile layout put the drawing in its own grid row. A sticky item can
+    // only stick inside its own grid area, which for a single-row item is its
+    // own height, so it scrolled away exactly as if nothing had been set. The
+    // fix is a flex column, where the containing block is the whole column.
+    const b = await builder({ width: 390, height: 844 });
     await b.family('cartridge');
-    await b.spec({ dia: '25', len: '100' });
-    const clash = await b.page.evaluate(() => {
-      const body = [...document.querySelectorAll('#vizArt svg rect')]
-        .map((r) => r.getBoundingClientRect()).sort((a, c) => c.width - a.width)[0];
-      return [...document.querySelectorAll('#dimFields .dimfield')].some((d) => {
-        const r = d.getBoundingClientRect();
-        return !(r.right < body.left || r.left > body.right || r.bottom < body.top || r.top > body.bottom);
-      });
+    await b.spec({ dia: '12.5', len: '120' });
+    await b.page.evaluate(() => window.scrollBy(0, 1200));
+    const top = await b.page.evaluate(() =>
+      document.getElementById('vizPanel').getBoundingClientRect().top);
+    assert.ok(top >= -1 && top < 120,
+      `the drawing left the screen at scroll 1200: top=${Math.round(top)}`);
+    await b.close();
+  });
+
+  test('the drawing panel does not push the page sideways on a phone', async () => {
+    // Bleeding the panel to the screen edges with a negative margin made it
+    // wider than its flex parent, and the whole page scrolled sideways.
+    const b = await builder({ width: 390, height: 844 });
+    await b.family('band');
+    await b.spec({ id: '200', width: '80' });
+    assert.equal(await b.overflows(), false);
+    const wide = await b.page.evaluate(() => {
+      const vw = document.documentElement.clientWidth;
+      return [...document.querySelectorAll('body *')]
+        .filter((e) => e.getBoundingClientRect().width > vw + 1)
+        .map((e) => e.className || e.tagName);
     });
-    assert.equal(clash, false, 'A field is overlapping the heater body');
+    assert.deepEqual(wide, [], `wider than the screen: ${wide.join(', ')}`);
     await b.close();
   });
 });
@@ -112,20 +129,9 @@ describe('drawing responds to the numbers', () => {
     const b = await builder();
     await b.family('band');
     await b.spec({ id: '40', width: '50' });
-    // The heater is the one pair of concentric circles. Leader dots and callout
-    // badges are also circles, so select by shared centre rather than by size.
-    const bore = () => b.page.evaluate(() => {
-      const circles = [...document.querySelectorAll('#vizArt svg circle')]
-        .map((c) => ({ cx: +c.getAttribute('cx'), cy: +c.getAttribute('cy'), r: +c.getAttribute('r') }));
-      const groups = new Map();
-      for (const c of circles) {
-        const key = `${c.cx},${c.cy}`;
-        groups.set(key, [...(groups.get(key) || []), c.r]);
-      }
-      const pair = [...groups.values()].find((rs) => rs.length === 2);
-      if (!pair) throw new Error('no concentric pair found in the drawing');
-      return Math.min(...pair);
-    });
+    // The bore and the wall are named in the drawing, so this cannot pick up a
+    // callout badge or a terminal screw by accident.
+    const bore = async () => (await b.ringRadii()).bore;
     const small = await bore();
     await b.spec({ id: '200' });
     const big = await bore();
@@ -138,13 +144,16 @@ describe('drawing responds to the numbers', () => {
  * The drawing must answer to the options too.
  * ------------------------------------------------------------------ */
 describe('drawing responds to the options', () => {
-  test('default options draw no option markers', async () => {
+  test('the defaults draw a plain heater: no bend, no sensor, no mounting', async () => {
     const b = await builder();
     await b.family('cartridge');
     await b.spec({ dia: '12.5', len: '120' });
-    assert.equal(await b.has('.opt-term'), false);
-    assert.equal(await b.has('.opt-tc'), false);
-    assert.equal(await b.has('.opt-lead'), false);
+    assert.equal(await b.has('.opt-term'), false, 'a straight exit is just the leads');
+    assert.equal(await b.has('.opt-tc'), false, 'no thermocouple was asked for');
+    assert.equal(await b.has('.opt-mount'), false, 'no mounting was asked for');
+    // Lead protection is the exception: every heater has some, so the default
+    // fibreglass sleeve is drawn rather than left off.
+    assert.equal(await b.has('.opt-lead'), true);
     await b.close();
   });
 
@@ -168,14 +177,34 @@ describe('drawing responds to the options', () => {
     await b.close();
   });
 
-  test('armour and braid draw a protected lead, fibreglass does not', async () => {
+  test('all five lead protections draw a different sleeve', async () => {
     const b = await builder();
     await b.family('cartridge');
     await b.spec({ dia: '12.5', len: '120' });
-    await b.option('lead', 'L4');
-    assert.equal(await b.has('.opt-lead'), true);
-    await b.option('lead', 'L1');
-    assert.equal(await b.has('.opt-lead'), false);
+    const seen = new Map();
+    for (const code of ['L1', 'L2', 'L3', 'L4', 'L5']) {
+      await b.option('lead', code);
+      const sleeve = await b.page.$eval('.opt-lead', (g) => g.innerHTML);
+      assert.ok(sleeve.length > 0, `${code} drew nothing on the lead`);
+      assert.ok(!seen.has(sleeve), `${code} draws the same sleeve as ${seen.get(sleeve)}`);
+      seen.set(sleeve, code);
+    }
+    await b.close();
+  });
+
+  test('every mounting draws its own feature, and none draws nothing', async () => {
+    const b = await builder();
+    await b.family('cartridge');
+    await b.spec({ dia: '16', len: '200' });
+    const seen = new Map();
+    for (const code of ['M1', 'M2', 'M3']) {
+      await b.option('mount', code);
+      const art = await b.page.$eval('.opt-mount', (g) => g.innerHTML);
+      assert.ok(!seen.has(art), `${code} draws the same as ${seen.get(art)}`);
+      seen.set(art, code);
+    }
+    await b.option('mount', 'M0');
+    assert.equal(await b.has('.opt-mount'), false, 'no mounting must clear the feature');
     await b.close();
   });
 
@@ -287,16 +316,22 @@ describe('isometric view', () => {
     await b.close();
   });
 
-  test('isometric fields stay attached to their dimensions', async () => {
+  test('the isometric view dimensions the same things, the same way round', async () => {
     const b = await builder();
     await b.family('cartridge');
     await b.spec({ dia: '16', len: '160', hlen: '120' });
-    const flat = await b.page.$$eval('#dimFields .dimfield',
-      (els) => els.map((e) => e.style.getPropertyValue('--x') + e.style.getPropertyValue('--y')));
+    const callouts = () => b.page.evaluate(() =>
+      [...document.querySelectorAll('#vizArt svg .callout-n')].map((g) => ({
+        n: g.querySelector('text').textContent,
+        x: Math.round(+g.querySelector('circle').getAttribute('cx')),
+        y: Math.round(+g.querySelector('circle').getAttribute('cy')),
+      })));
+    const flat = await callouts();
     await b.mode('iso');
-    const iso = await b.page.$$eval('#dimFields .dimfield',
-      (els) => els.map((e) => e.style.getPropertyValue('--x') + e.style.getPropertyValue('--y')));
-    assert.deepEqual(iso, flat, 'the anchors are the whole point; they must not move');
+    const iso = await callouts();
+    assert.equal(flat.length, 3, 'diameter, overall length, heated length');
+    assert.deepEqual(iso, flat,
+      'a callout that moves between views makes the reader hunt for it again');
     await b.close();
   });
 });
@@ -315,6 +350,29 @@ describe('drawing snapshots', () => {
     ['tubular-12.5x600', 'tubular', { dia: '12.5', len: '600' }, {}],
     ['sensor-6x300', 'sensor', { dia: '6', len: '300' }, {}],
     ['ir-panel-150', 'ir', { watt: '650', volt: '230', dist: '150' }, {}],
+    // one per view that the option layer can reshape, so a change to a bend
+    // form or a junction cannot slip through unnoticed
+    ['tubular-16x1200-uform-incoloy', 'tubular',
+      { dia: '16', len: '1200' }, { bend: 'BU', sheath: 'IN', term: 'S1' }],
+    ['tubular-8x2000-coiled-leads', 'tubular',
+      { dia: '8', len: '2000' }, { bend: 'BC', sheath: 'CU', term: 'S3' }],
+    ['band-200x80-expandable-wedge-box', 'band',
+      { id: '200', width: '80' }, { mat: 'MI', con: 'CE1', clamp: 'K3', term: 'S4' }],
+    ['band-90x60-partial-spring-posts', 'band',
+      { id: '90', width: '60' }, { con: 'CP', clamp: 'K4', term: 'S2' }],
+    ['coil-60x300-square-tangential', 'coil',
+      { id: '60', hlen: '300' }, { prof: 'PS', exit: 'ET', tc: 'TCK' }],
+    ['nozzle-40x60-mica-typeK', 'nozzle', { id: '40', len: '60' }, { mat: 'MI', tc: 'TCK' }],
+    ['strip-1200x120-plain-leads', 'strip',
+      { len: '1200', width: '120' }, { prof: 'F0', term: 'S3' }],
+    ['sensor-3x120-exposed-tails', 'sensor',
+      { dia: '3', len: '120', clen: '500' }, { type: 'K', junc: 'E', conn: 'B' }],
+    ['sensor-8x2000-pt100-head', 'sensor',
+      { dia: '8', len: '2000', clen: '10000' }, { type: 'PT1', junc: 'U', conn: 'H' }],
+    ['ir-hollow-900-reflector', 'ir',
+      { watt: '1200', volt: '230', dist: '900' }, { form: 'FH', tc: 'TCK', refl: 'R1' }],
+    ['cartridge-25x1500-double-ended-beads', 'cartridge',
+      { dia: '25', len: '1500', hlen: '1400' }, { term: 'T3', lead: 'L5', tc: 'TCG', mount: 'M2' }],
   ];
 
   for (const [name, fam, spec, opts] of cases) {
@@ -524,21 +582,25 @@ describe('responsive', () => {
     });
   }
 
-  test('dimension fields sit on the drawing on desktop and stack on a phone', async () => {
-    const wide = await builder({ width: 1280 });
-    await wide.family('cartridge');
-    const posWide = await wide.page.evaluate(() => getComputedStyle(document.querySelector('#dimFields .dimfield')).position);
-    assert.equal(posWide, 'absolute');
-    await wide.close();
-
-    const narrow = await builder({ width: 375 });
-    await narrow.family('cartridge');
-    const posNarrow = await narrow.page.evaluate(() => getComputedStyle(document.querySelector('#dimFields .dimfield')).position);
-    assert.equal(posNarrow, 'static');
-    const callouts = await narrow.page.evaluate(() =>
-      [...document.querySelectorAll('.callout-n')].every((g) => getComputedStyle(g).display !== 'none'));
-    assert.equal(callouts, true, 'numbered callouts must appear when the fields are not on the drawing');
-    await narrow.close();
+  test('the size boxes are one numbered grid at every width', async () => {
+    // The boxes used to be positioned on top of the drawing at desktop widths
+    // and stacked on a phone, which meant two layouts to keep working and a
+    // drawing that could not leave the form. Now the drawing lives in the rail
+    // and the boxes are always a plain numbered grid.
+    for (const width of [375, 768, 1280, 1440]) {
+      const b = await builder({ width });
+      await b.family('cartridge');
+      const seen = await b.page.evaluate(() => ({
+        position: getComputedStyle(document.querySelector('#dimFields .dimfield')).position,
+        numbered: [...document.querySelectorAll('#dimFields .num')].length,
+        callouts: [...document.querySelectorAll('#vizArt .callout-n')]
+          .every((g) => getComputedStyle(g).display !== 'none'),
+      }));
+      assert.equal(seen.position, 'static', `boxes are positioned at ${width}`);
+      assert.equal(seen.numbered, 3, `numbers missing from the boxes at ${width}`);
+      assert.equal(seen.callouts, true, `callouts hidden on the drawing at ${width}`);
+      await b.close();
+    }
   });
 });
 

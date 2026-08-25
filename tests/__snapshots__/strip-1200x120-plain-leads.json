@@ -2,34 +2,22 @@
   {
     "t": "rect",
     "cls": "body",
-    "x": 116.4,
-    "y": 132.5,
-    "w": 167.2,
-    "h": 34.9
-  },
-  {
-    "t": "path",
-    "cls": "opt-fins",
-    "w": 1.5,
-    "len": 206
+    "x": 96.2,
+    "y": 117.5,
+    "w": 207.6,
+    "h": 65.1
   },
   {
     "t": "path",
     "cls": "opt-term",
-    "w": 2.4,
-    "len": 34
-  },
-  {
-    "t": "path",
-    "cls": "opt-term",
-    "w": 1.5,
-    "len": 50
+    "w": 1.7,
+    "len": 77
   },
   {
     "t": "path",
     "cls": "",
     "w": 1.3,
-    "len": 46
+    "len": 44
   },
   {
     "t": "circle",
@@ -52,8 +40,8 @@
   {
     "t": "circle",
     "cls": "callout-n",
-    "cx": 92.4,
-    "cy": 112.5,
+    "cx": 72.2,
+    "cy": 97.5,
     "rad": 12
   },
   {
@@ -70,6 +58,6 @@
   {
     "t": "text",
     "cls": "notes",
-    "s": "Finned  ·  Screw terminals"
+    "s": "Plain  ·  Leads"
   }
 ]

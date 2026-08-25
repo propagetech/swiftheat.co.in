@@ -2,50 +2,51 @@
   {
     "t": "path",
     "cls": "",
-    "w": 19.8,
-    "len": 12
+    "w": 1.6,
+    "len": 250
+  },
+  {
+    "t": "path",
+    "cls": "opt-prof",
+    "w": 3.6,
+    "len": 243
   },
   {
     "t": "path",
     "cls": "",
-    "w": 17.2,
-    "len": 12
+    "w": 1,
+    "len": 42
   },
   {
     "t": "path",
-    "cls": "opt-term",
-    "w": 2.6,
-    "len": 12
+    "cls": "opt-exit",
+    "w": 1.7,
+    "len": 66
+  },
+  {
+    "t": "circle",
+    "cls": "opt-tc",
+    "cx": 128,
+    "cy": 150,
+    "rad": 5
   },
   {
     "t": "path",
-    "cls": "opt-term",
-    "w": 1.5,
-    "len": 18
-  },
-  {
-    "t": "path",
-    "cls": "opt-term",
-    "w": 2.6,
-    "len": 11
-  },
-  {
-    "t": "path",
-    "cls": "opt-term",
-    "w": 1.5,
-    "len": 19
+    "cls": "opt-tc",
+    "w": 1.3,
+    "len": 29
   },
   {
     "t": "path",
     "cls": "",
     "w": 1.3,
-    "len": 43
+    "len": 52
   },
   {
     "t": "circle",
     "cls": "callout-n",
-    "cx": 62,
-    "cy": 121.4,
+    "cx": 86,
+    "cy": 93.7,
     "rad": 12
   },
   {
@@ -57,12 +58,12 @@
     "t": "path",
     "cls": "",
     "w": 1.3,
-    "len": 34
+    "len": 46
   },
   {
     "t": "circle",
     "cls": "callout-n",
-    "cx": 250,
+    "cx": 201,
     "cy": 252,
     "rad": 12
   },
@@ -80,6 +81,11 @@
   {
     "t": "text",
     "cls": "notes",
-    "s": "Straight  ·  Stainless sheath  ·  Studs"
+    "s": "Square section  ·  Tangential exit"
+  },
+  {
+    "t": "text",
+    "cls": "notes",
+    "s": "Type K thermocouple"
   }
 ]

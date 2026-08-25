@@ -123,15 +123,28 @@ class Driver {
     });
   }
 
-  /** The body outline and the shaded heated region, the two shapes that carry meaning. */
+  /** The body outline and the shaded heated region, the two shapes that carry
+      meaning. Both are named in the drawing, so this cannot pick up a sleeve or
+      a terminal block by accident. */
   bodyShapes() {
     return this.page.evaluate(() => {
-      const rects = [...document.querySelectorAll('#vizArt svg rect')]
-        .map((r) => ({
-          w: +r.getAttribute('width'), h: +r.getAttribute('height'),
-          x: +r.getAttribute('x'), filled: (r.getAttribute('fill') || 'none') !== 'none',
-        }));
-      return { outline: rects.find((r) => !r.filled) || null, heated: rects.find((r) => r.filled) || null };
+      const read = (sel) => {
+        const r = document.querySelector('#vizArt svg ' + sel);
+        return r ? { x: +r.getAttribute('x'), y: +r.getAttribute('y'),
+          w: +r.getAttribute('width'), h: +r.getAttribute('height') } : null;
+      };
+      return { outline: read('rect.body'), heated: read('rect.heated') };
+    });
+  }
+
+  /** The bore and outer wall of a ring drawing. */
+  ringRadii() {
+    return this.page.evaluate(() => {
+      const r = (sel) => {
+        const el = document.querySelector('#vizArt svg ' + sel);
+        return el ? +el.getAttribute('r') : null;
+      };
+      return { bore: r('circle.bore'), wall: r('circle.wall') };
     });
   }
 
@@ -158,3 +171,179 @@ class Driver {
     })));
   }
 }
+
+/* ------------------------------------------------------------------ *
+ * Exhaustive sweeps.
+ *
+ * A permutation sweep runs entirely inside the page: clicking an option
+ * is synchronous, so a whole cartesian product costs one round trip
+ * instead of one per combination. What comes back is the evidence, not
+ * the raw drawings: every violation found, plus a signature per option
+ * so a group that draws the same thing for two different codes can be
+ * caught.
+ * ------------------------------------------------------------------ */
+Object.assign(Driver.prototype, {
+  /** The family, spec and option model as the page itself sees it. */
+  model() {
+    return this.page.evaluate(() => {
+      const out = [];
+      for (const btn of document.querySelectorAll('[data-fam]')) {
+        btn.click();
+        out.push({
+          fam: btn.getAttribute('data-fam'),
+          iso: !document.getElementById('viewToggle').hidden,
+          dims: [...document.querySelectorAll('#dimFields [data-k]')].map((e) => e.getAttribute('data-k')),
+          elec: [...document.querySelectorAll('#elecFields [data-k]')].map((e) => e.getAttribute('data-k')),
+          specs: [...document.querySelectorAll('[data-k]')].map((e) => ({
+            k: e.getAttribute('data-k'),
+            tag: e.tagName.toLowerCase(),
+            min: e.getAttribute('min'), max: e.getAttribute('max'),
+            opts: [...e.querySelectorAll('option')].map((o) => o.value).filter(Boolean),
+          })),
+          groups: [...document.querySelectorAll('.optgroup')].map((g) => ({
+            k: g.querySelector('[data-g]').getAttribute('data-g'),
+            title: g.querySelector('h3').textContent,
+            opts: [...g.querySelectorAll('[data-c]')].map((b) => b.getAttribute('data-c')),
+          })),
+        });
+      }
+      return out;
+    });
+  },
+
+  /** Run every combination of every option group for one family. */
+  sweep(fam, spec = {}) {
+    return this.page.evaluate(({ fam, spec }) => {
+      const $ = (id) => document.getElementById(id);
+      document.querySelector(`[data-fam="${fam}"]`).click();
+      for (const [k, v] of Object.entries(spec)) {
+        const el = $('sp_' + k);
+        if (!el) continue;
+        el.value = String(v);
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+
+      const groups = [...document.querySelectorAll('.optgroup')].map((g) => ({
+        k: g.querySelector('[data-g]').getAttribute('data-g'),
+        opts: [...g.querySelectorAll('[data-c]')].map((b) => b.getAttribute('data-c')),
+      }));
+
+      /* the drawing, judged: bad numbers, anything drawn outside the frame,
+         an empty drawing, or a part code missing a code that was chosen */
+      const inspect = (combo) => {
+        const bad = [];
+        const svg = document.querySelector('#vizArt svg');
+        if (!svg) return ['no drawing at all'];
+        const box = svg.getAttribute('viewBox').split(' ').map(Number);
+        const markup = svg.innerHTML;
+        const junk = markup.match(/NaN|Infinity|undefined|null|=""/);
+        if (junk) bad.push('bad number or empty attribute in the drawing: ' + junk[0]);
+
+        const shapes = svg.querySelectorAll('rect, circle, ellipse, path');
+        if (shapes.length < 4) bad.push('only ' + shapes.length + ' shapes drawn');
+        for (const el of shapes) {
+          const b = el.getBBox();
+          if (b.width === 0 && b.height === 0) continue;
+          if (b.x < -1 || b.y < -1 || b.x + b.width > box[2] + 1 || b.y + b.height > box[3] + 1) {
+            bad.push(el.tagName + '.' + (el.getAttribute('class') || el.parentElement.getAttribute('class') || '') +
+              ' is drawn outside the frame: ' +
+              [b.x, b.y, b.width, b.height].map((n) => Math.round(n)).join(','));
+          }
+        }
+        for (const t of svg.querySelectorAll('text')) {
+          const b = t.getBBox();
+          if (b.x < -1 || b.x + b.width > box[2] + 1 || b.y + b.height > box[3] + 8) {
+            bad.push('text "' + t.textContent.slice(0, 18) + '" outside the frame');
+          }
+        }
+
+        const code = $('partCode').textContent;
+        for (const c of Object.values(combo)) {
+          if (!code.split('-').includes(c)) bad.push('part code ' + code + ' is missing ' + c);
+        }
+        /* the callouts on the drawing and the numbered boxes in the form must
+           be the same set of numbers, or a number means two different things */
+        const drawn = [...svg.querySelectorAll('.callout-n text')].map((t) => +t.textContent).sort();
+        const boxed = [...document.querySelectorAll('#dimFields .num')].map((n) => +n.textContent).sort();
+        if (drawn.join() !== boxed.join()) {
+          bad.push('callouts ' + drawn.join() + ' do not match the boxes ' + boxed.join());
+        }
+        return bad.map((b) => b + '  [' + Object.values(combo).join(' ') + ']');
+      };
+
+      const violations = [];
+      const sigs = {};       /* group -> code -> drawing signature */
+      let combos = 0;
+
+      const walk = (i, combo) => {
+        if (i === groups.length) {
+          combos++;
+          violations.push(...inspect(combo));
+          const markup = document.querySelector('#vizArt svg').innerHTML;
+          for (const g of groups) {
+            sigs[g.k] = sigs[g.k] || {};
+            /* record one signature per code, all other groups held equal */
+            const key = groups.map((x) => (x.k === g.k ? '*' : combo[x.k])).join('|');
+            sigs[g.k][combo[g.k]] = sigs[g.k][combo[g.k]] || {};
+            sigs[g.k][combo[g.k]][key] = markup.length + ':' + hash(markup);
+          }
+          return;
+        }
+        for (const c of groups[i].opts) {
+          document.querySelector(`[data-g="${groups[i].k}"][data-c="${c}"]`).click();
+          walk(i + 1, { ...combo, [groups[i].k]: c });
+        }
+      };
+      function hash(s) {
+        let h = 5381;
+        for (let i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0;
+        return h.toString(36);
+      }
+      if (groups.length) walk(0, {}); else { combos = 1; violations.push(...inspect({})); }
+
+      /* for every group, is every code drawn differently from its siblings,
+         with the rest of the configuration held constant? */
+      const sameDrawing = [];
+      for (const g of groups) {
+        const codes = Object.keys(sigs[g.k]);
+        const keys = Object.keys(sigs[g.k][codes[0]]);
+        for (const key of keys) {
+          const seen = new Map();
+          for (const c of codes) {
+            const sig = sigs[g.k][c][key];
+            if (seen.has(sig)) sameDrawing.push(g.k + ': ' + seen.get(sig) + ' and ' + c + ' draw the same thing');
+            else seen.set(sig, c);
+          }
+        }
+      }
+      return { combos, violations, sameDrawing: [...new Set(sameDrawing)] };
+    }, { fam, spec });
+  },
+
+  /** Push one value into one spec field and report what the page did with it. */
+  probe(k, value) {
+    return this.page.evaluate(({ k, value }) => {
+      const el = document.getElementById('sp_' + k);
+      if (!el) throw new Error('no spec field: ' + k);
+      el.value = String(value);
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+      const svg = document.querySelector('#vizArt svg');
+      const box = svg.getAttribute('viewBox').split(' ').map(Number);
+      const out = { junk: null, outside: [], warned: false, code: document.getElementById('partCode').textContent };
+      const m = svg.innerHTML.match(/NaN|Infinity|undefined/);
+      out.junk = m ? m[0] : null;
+      for (const el2 of svg.querySelectorAll('rect, circle, ellipse, path')) {
+        const b = el2.getBBox();
+        if (b.width === 0 && b.height === 0) continue;
+        if (b.x < -1 || b.y < -1 || b.x + b.width > box[2] + 1 || b.y + b.height > box[3] + 1) {
+          out.outside.push(el2.tagName + ' ' + [b.x, b.y, b.width, b.height].map((n) => Math.round(n)).join(','));
+        }
+      }
+      const wrap = document.getElementById('wrap_' + k);
+      const err = wrap && wrap.querySelector('.err');
+      out.warned = !!(err && !err.hidden);
+      return out;
+    }, { k, value });
+  },
+});

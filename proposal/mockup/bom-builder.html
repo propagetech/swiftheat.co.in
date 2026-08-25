@@ -54,44 +54,37 @@
       <p class="eyebrow">Requirement list</p>
       <h1>Build your heater list</h1>
       <p class="lede">Pick a heater, set the sizes, choose the options, add it to the list.
-        Add as many as you need. When you are done, generate a document you can print, email
-        or send on WhatsApp. Nothing is stored anywhere and no account is needed.</p>
+        The drawing stays beside you and redraws on every change, so you can see the part you
+        are asking for before you send it. When you are done, generate a document you can
+        print, email or send on WhatsApp. Nothing is stored anywhere and no account is
+        needed.</p>
     </div>
   </section>
 
   <section class="band">
     <div class="wrap builder">
-      <div>
+      <div class="steps">
 
         <div class="step">
           <div class="step-head"><span class="n" aria-hidden="true">01</span><h2>Which heater?</h2></div>
-          <p class="hint">Pick a family. The options below change to suit it.</p>
-          <ul class="tiles tiles-fam" id="famTiles" role="listbox" aria-label="Product family"></ul>
+          <p class="hint">Pick a family. The sizes and options below change to suit it, and so does
+            the drawing.</p>
+          <ul class="tiles tiles-fam" id="famTiles" aria-label="Product family"></ul>
         </div>
 
         <div class="step" id="specStep" hidden>
           <div class="step-head"><span class="n" aria-hidden="true">02</span><h2>Sizes</h2></div>
           <p class="hint">Fill in what you know. Leave anything you are unsure of and our
-            engineers will suggest it.</p>
-          <div class="dimboard" id="dimBoard">
-            <div class="viewtoggle" id="viewToggle" role="group" aria-label="Drawing style">
-              <button type="button" data-mode="flat" aria-pressed="true">Flat drawing</button>
-              <button type="button" data-mode="iso" aria-pressed="false">Isometric</button>
-            </div>
-            <div class="artwrap" id="artWrap">
-              <div id="vizArt"></div>
-              <div class="dimfields" id="dimFields"></div>
-            </div>
-          </div>
-          <p class="cap" id="vizCap">Each box is attached to the dimension it belongs to.
-            The drawing redraws as you type. Not to scale.</p>
+            engineers will suggest it. Each numbered box is the dimension with the same number
+            on the drawing.</p>
+          <div class="dimfields" id="dimFields"></div>
           <div class="elecfields" id="elecFields"></div>
         </div>
 
         <div class="step" id="optStep" hidden>
           <div class="step-head"><span class="n" aria-hidden="true">03</span><h2>Options</h2></div>
-          <p class="hint">Tap to choose. Every option carries the code that appears on the
-            final document.</p>
+          <p class="hint">Tap to choose. Every option changes the drawing and carries the code that
+            appears on the final document.</p>
           <div id="optGroups"></div>
         </div>
 
@@ -104,7 +97,7 @@
           <div class="addrow">
             <div class="spec">
               <label for="qty">Quantity <span class="u">nos</span></label>
-              <input id="qty" type="number" min="1" value="1" inputmode="numeric">
+              <input id="qty" type="number" min="1" max="9999" value="1" inputmode="numeric">
             </div>
             <div class="spec" style="max-width:260px">
               <label for="lineNote">Note for this line <span class="u">optional</span></label>
@@ -116,30 +109,47 @@
 
       </div>
 
-      <!-- the cart -->
-      <aside class="cart" aria-label="Your list">
-        <div class="cart-head">
-          <h2>Your list</h2>
-          <span class="badge" id="cartCount">0</span>
-        </div>
-        <div class="cart-body" id="cartBody">
-          <div class="cart-empty" id="cartEmpty">
-            <svg width="52" height="40" viewBox="0 0 52 40" aria-hidden="true">
-              <g fill="none" stroke="currentColor" stroke-width="1.6">
-                <rect x="8" y="14" width="30" height="12" rx="3"/>
-                <path d="M38 18h8M38 22h8"/>
-                <path d="M4 33h44" stroke-dasharray="3 3"/>
-              </g>
-            </svg>
-            <p>Nothing added yet.<br>Pick a heater to start.</p>
+      <!-- the drawing and the list, both in view while you work -->
+      <div class="rail">
+
+        <section class="viz-panel" id="vizPanel" hidden aria-labelledby="vizTitle">
+          <div class="viz-head">
+            <h2 id="vizTitle">Live drawing</h2>
+            <div class="viewtoggle" id="viewToggle" role="group" aria-label="Drawing style">
+              <button type="button" data-mode="flat" aria-pressed="true">Flat</button>
+              <button type="button" data-mode="iso" aria-pressed="false">Isometric</button>
+            </div>
           </div>
-        </div>
-        <div class="cart-foot" id="cartFoot" hidden>
-          <div class="tot"><span>Line items</span><b id="totLines">0</b></div>
-          <div class="tot"><span>Total pieces</span><b id="totQty">0</b></div>
-          <button class="btn" type="button" id="reviewBtn">Review and generate</button>
-        </div>
-      </aside>
+          <div id="vizArt"></div>
+          <p class="cap" id="vizCap">The numbers match the boxes on the left. Every size and every
+            option redraws this at once. Not to scale.</p>
+        </section>
+
+        <aside class="cart" aria-label="Your list">
+          <div class="cart-head">
+            <h2>Your list</h2>
+            <span class="badge" id="cartCount">0</span>
+          </div>
+          <div class="cart-body" id="cartBody">
+            <div class="cart-empty" id="cartEmpty">
+              <svg width="52" height="40" viewBox="0 0 52 40" aria-hidden="true">
+                <g fill="none" stroke="currentColor" stroke-width="1.6">
+                  <rect x="8" y="14" width="30" height="12" rx="3"/>
+                  <path d="M38 18h8M38 22h8"/>
+                  <path d="M4 33h44" stroke-dasharray="3 3"/>
+                </g>
+              </svg>
+              <p>Nothing added yet.<br>Pick a heater to start.</p>
+            </div>
+          </div>
+          <div class="cart-foot" id="cartFoot" hidden>
+            <div class="tot"><span>Line items</span><b id="totLines">0</b></div>
+            <div class="tot"><span>Total pieces</span><b id="totQty">0</b></div>
+            <button class="btn" type="button" id="reviewBtn">Review and generate</button>
+          </div>
+        </aside>
+
+      </div>
     </div>
   </section>
 

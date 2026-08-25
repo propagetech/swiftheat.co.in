@@ -3,57 +3,89 @@
     "t": "path",
     "cls": "iso-body",
     "w": 1.9,
-    "len": 202
+    "len": 85
   },
   {
     "t": "path",
     "cls": "iso-band",
     "w": null,
-    "len": 187
+    "len": 85
   },
   {
     "t": "path",
     "cls": "",
     "w": 1,
-    "len": 187
+    "len": 85
   },
   {
     "t": "path",
     "cls": "",
-    "w": 4.6,
-    "len": 27
+    "w": 4.5,
+    "len": 14
   },
   {
     "t": "path",
     "cls": "",
     "w": 1.7,
-    "len": 80
+    "len": 110
+  },
+  {
+    "t": "rect",
+    "cls": "opt-lead",
+    "x": 308.5,
+    "y": 136.4,
+    "w": 54,
+    "h": 31.1
   },
   {
     "t": "path",
-    "cls": "",
-    "w": 1.2,
-    "len": 93
+    "cls": "opt-lead",
+    "w": 1,
+    "len": 58
   },
   {
     "t": "path",
-    "cls": "",
-    "w": 1.1,
-    "len": 16
+    "cls": "opt-lead",
+    "w": 1,
+    "len": 58
+  },
+  {
+    "t": "path",
+    "cls": "opt-lead",
+    "w": 1,
+    "len": 58
+  },
+  {
+    "t": "path",
+    "cls": "opt-lead",
+    "w": 1,
+    "len": 58
   },
   {
     "t": "circle",
+    "cls": "opt-tc",
+    "cx": 105,
+    "cy": 152,
+    "rad": 5
+  },
+  {
+    "t": "path",
+    "cls": "opt-tc",
+    "w": 1.3,
+    "len": 26
+  },
+  {
+    "t": "path",
     "cls": "",
-    "cx": 143,
-    "cy": 186,
-    "rad": 2.6
+    "w": 1.3,
+    "len": 43
   },
   {
     "t": "circle",
     "cls": "callout-n",
-    "cx": 78,
-    "cy": 96,
-    "rad": 11
+    "cx": 57,
+    "cy": 104.1,
+    "rad": 12
   },
   {
     "t": "text",
@@ -63,28 +95,15 @@
   {
     "t": "path",
     "cls": "",
-    "w": 1.2,
-    "len": 34
-  },
-  {
-    "t": "path",
-    "cls": "",
-    "w": 1.1,
-    "len": 16
-  },
-  {
-    "t": "circle",
-    "cls": "",
-    "cx": 295,
-    "cy": 268,
-    "rad": 2.6
+    "w": 1.3,
+    "len": 32
   },
   {
     "t": "circle",
     "cls": "callout-n",
-    "cx": 295,
-    "cy": 318,
-    "rad": 11
+    "cx": 177,
+    "cy": 252,
+    "rad": 12
   },
   {
     "t": "text",
@@ -94,28 +113,15 @@
   {
     "t": "path",
     "cls": "",
-    "w": 1.2,
-    "len": 40
-  },
-  {
-    "t": "path",
-    "cls": "",
-    "w": 1.1,
-    "len": 15
-  },
-  {
-    "t": "circle",
-    "cls": "",
-    "cx": 295,
-    "cy": 122,
-    "rad": 2.6
+    "w": 1.3,
+    "len": 39
   },
   {
     "t": "circle",
     "cls": "callout-n",
-    "cx": 295,
-    "cy": 66,
-    "rad": 11
+    "cx": 177,
+    "cy": 84,
+    "rad": 12
   },
   {
     "t": "text",
@@ -123,21 +129,14 @@
     "s": "3"
   },
   {
-    "t": "circle",
-    "cls": "opt-tc",
-    "cx": 191,
-    "cy": 186,
-    "rad": 5
-  },
-  {
     "t": "path",
-    "cls": "opt-tc",
-    "w": 1.2,
-    "len": 26
+    "cls": "notes",
+    "w": 1,
+    "len": 11
   },
   {
     "t": "text",
-    "cls": "opt-tc",
-    "s": "type K"
+    "cls": "notes",
+    "s": "Fibreglass leads  ·  Type K thermocouple"
   }
 ]

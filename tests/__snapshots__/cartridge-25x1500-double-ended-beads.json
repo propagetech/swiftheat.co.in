@@ -2,99 +2,115 @@
   {
     "t": "rect",
     "cls": "heated",
-    "x": 99.4,
-    "y": 130.3,
-    "w": 155.2,
-    "h": 43.4
+    "x": 85.5,
+    "y": 108,
+    "w": 182.9,
+    "h": 88
   },
   {
     "t": "rect",
     "cls": "body",
     "x": 79,
-    "y": 130.3,
+    "y": 108,
     "w": 196,
-    "h": 43.4
+    "h": 88
+  },
+  {
+    "t": "path",
+    "cls": "",
+    "w": 1.7,
+    "len": 30
   },
   {
     "t": "path",
     "cls": "opt-term",
     "w": 1.7,
-    "len": 97
+    "len": 26
   },
   {
-    "t": "rect",
+    "t": "circle",
     "cls": "opt-lead",
-    "x": 299,
-    "y": 138.7,
-    "w": 54,
-    "h": 26.6
+    "cx": 304,
+    "cy": 152,
+    "rad": 7.5
   },
   {
-    "t": "path",
+    "t": "circle",
     "cls": "opt-lead",
-    "w": 1.2,
-    "len": 42
+    "cx": 313,
+    "cy": 152,
+    "rad": 7.5
   },
   {
-    "t": "path",
+    "t": "circle",
     "cls": "opt-lead",
-    "w": 1.2,
-    "len": 42
+    "cx": 322,
+    "cy": 152,
+    "rad": 7.5
   },
   {
-    "t": "path",
+    "t": "circle",
     "cls": "opt-lead",
-    "w": 1.2,
-    "len": 42
+    "cx": 331,
+    "cy": 152,
+    "rad": 7.5
   },
   {
-    "t": "path",
+    "t": "circle",
     "cls": "opt-lead",
-    "w": 1.2,
-    "len": 42
+    "cx": 340,
+    "cy": 152,
+    "rad": 7.5
   },
   {
-    "t": "path",
+    "t": "circle",
     "cls": "opt-lead",
-    "w": 1.2,
-    "len": 42
-  },
-  {
-    "t": "path",
-    "cls": "opt-lead",
-    "w": 1.2,
-    "len": 42
-  },
-  {
-    "t": "path",
-    "cls": "opt-lead",
-    "w": 1.2,
-    "len": 42
+    "cx": 349,
+    "cy": 152,
+    "rad": 7.5
   },
   {
     "t": "circle",
     "cls": "opt-tc",
     "cx": 105,
-    "cy": 152,
+    "cy": 110,
     "rad": 5
   },
   {
     "t": "path",
     "cls": "opt-tc",
     "w": 1.3,
-    "len": 12
+    "len": 20
+  },
+  {
+    "t": "path",
+    "cls": "opt-tc",
+    "w": 2.4,
+    "len": 10
+  },
+  {
+    "t": "path",
+    "cls": "opt-mount",
+    "w": 1.2,
+    "len": 24
+  },
+  {
+    "t": "path",
+    "cls": "opt-mount",
+    "w": 1,
+    "len": 120
   },
   {
     "t": "path",
     "cls": "",
     "w": 1.3,
-    "len": 39
+    "len": 31
   },
   {
     "t": "circle",
     "cls": "callout-n",
     "cx": 57,
-    "cy": 110.3,
+    "cy": 88,
     "rad": 12
   },
   {
@@ -147,11 +163,11 @@
   {
     "t": "text",
     "cls": "notes",
-    "s": "Right angle exit  ·  Armour leads"
+    "s": "Double ended  ·  Ceramic bead leads"
   },
   {
     "t": "text",
     "cls": "notes",
-    "s": "Type K thermocouple"
+    "s": "Grounded thermocouple  ·  Threaded mounting"
   }
 ]

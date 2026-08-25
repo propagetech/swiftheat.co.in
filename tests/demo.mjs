@@ -1,7 +1,7 @@
 /* A watchable run of the same assertions the test suite makes.
    One window, one page, stepping slowly with a caption so you can see the
    drawing answer each change. Not a replacement for `npm test`, which runs
-   the real 52 headless in about 26 seconds. */
+   the real 99 headless in about 32 seconds. */
 import { chromium } from 'playwright-core';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
@@ -26,7 +26,10 @@ for (let i = 0; i < 100; i++) {
 }
 
 const browser = await chromium.launch({
-  channel: 'chrome', headless: false,
+  channel: 'chrome',
+  // the demo is meant to be watched; HEADLESS=1 is only so CI can prove that
+  // the whole script still runs after the builder changes
+  headless: process.env.HEADLESS === '1',
   slowMo: Number(process.env.SLOWMO || 220),      // makes each click visible
 });
 const page = await browser.newPage({ viewport: { width: 1360, height: 940 } });
@@ -45,7 +48,8 @@ await page.addStyleTag({ content: `
   /* un-stick the header for the demo so it cannot cover a field being clicked */
   .masthead{position:static !important}
   .jump{position:static !important}
-  .cart{position:static !important}
+  /* the rail is meant to stay put; at this width it sits beside the form and
+     cannot cover a field, so it is left sticky and you can watch it work */
   html{scroll-behavior:auto !important}
   input,select{scroll-margin-top:120px;scroll-margin-bottom:120px}
 ` });
@@ -89,16 +93,16 @@ const typeInto = async (id, v) => {
 };
 
 const shape = () => page.evaluate(() => {
-  const rs = [...document.querySelectorAll('#vizArt svg rect')].map((r) => ({
-    w: +r.getAttribute('width'), h: +r.getAttribute('height'),
-    filled: (r.getAttribute('fill') || 'none') !== 'none' }));
-  const paths = [...document.querySelectorAll('#vizArt svg path')];
+  const read = (sel) => {
+    const r = document.querySelector('#vizArt svg ' + sel);
+    return r ? { w: +r.getAttribute('width'), h: +r.getAttribute('height') } : null;
+  };
   const iso = document.querySelector('.iso-body');
   if (iso) {
     const bb = iso.getBBox();
     return { outline: { w: Math.round(bb.width), h: Math.round(bb.height) }, heated: null };
   }
-  return { outline: rs.find((r) => !r.filled) || null, heated: rs.find((r) => r.filled) || null };
+  return { outline: read('rect.body'), heated: read('rect.heated') };
 });
 
 const code = () => page.textContent('#partCode');
@@ -155,9 +159,17 @@ await say('Armoured lead protection.');
 await page.click('[data-g="lead"][data-c="L4"]');
 await say('The sleeve is drawn on the lead.', await code());
 
+await say('Ceramic beads instead, for the hottest exit.');
+await page.click('[data-g="lead"][data-c="L5"]');
+await say('A different sleeve, because it is a different part.', await code());
+
+await say('And mount it with a round flange.');
+await page.click('[data-g="mount"][data-c="M1"]');
+await say('The flange is on the drawing, not only in the code.', await code());
+
 await say('Switch to the isometric drawing.');
 await page.click('[data-mode="iso"]');
-await say('Same numbers, same anchors, drawn as a tube.',
+await say('Same numbers, same callouts, drawn as a tube.',
   await page.evaluate(() => ['dia','len','hlen'].map((k) => document.getElementById('sp_' + k).value).join(' / ')));
 
 await say('Back to the flat dimensioned drawing.');
@@ -184,6 +196,23 @@ await say('Added. Two lines, thirty pieces.',
     lines: document.getElementById('totLines').textContent,
     pieces: document.getElementById('totQty').textContent }))));
 
+await say('A tubular heater, bent to a U form.');
+await page.click('[data-fam="tubular"]');
+await set('dia', '12.5'); await set('len', '900'); await set('watt', '2000'); await set('volt', '240');
+await page.click('[data-g="bend"][data-c="BU"]');
+await say('The bend form is the shape of the part, so the part changes shape.', await code());
+await page.click('[data-g="sheath"][data-c="IN"]');
+await say('Incoloy sheath, for the higher temperature.', await code());
+await page.click('#addBtn');
+
+await say('A thermocouple, exposed junction, on bare tails.');
+await page.click('[data-fam="sensor"]');
+await set('dia', '3'); await set('len', '120'); await set('clen', '500');
+await page.click('[data-g="junc"][data-c="E"]');
+await page.click('[data-g="conn"][data-c="B"]');
+await say('Its own drawing: sheath, tip, cable and connection.', await code());
+await page.click('#addBtn');
+
 await say('A strip heater, and make it finned.');
 await page.click('[data-fam="strip"]');
 await set('len', '400'); await set('width', '50'); await set('watt', '800'); await set('volt', '230');
@@ -205,11 +234,12 @@ for (const [id, v] of [['cComp', 'Acme Moulders'], ['cName', 'R Prabhu'],
 
 await say('Generate the document.');
 await page.click('#reviewBtn');
-await say('Three lines, part codes, specifications and quantities.',
+await say('Every line, with part codes, specifications and quantities.',
   `${(await page.$$('#docBody tr')).length} rows`);
 
 await say('From here: save as PDF, email from your own address, or WhatsApp.');
-await say('Done. Run "npm test" for the real suite: 52 checks in about 26 seconds.');
+await say('Done. Run "npm test" for the real suite: 99 checks, about 32 seconds, ' +
+  'including every option of every family crossed with every other.');
 
 await page.waitForTimeout(4000);
 await browser.close();
