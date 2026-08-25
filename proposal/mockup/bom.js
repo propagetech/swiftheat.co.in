@@ -15,7 +15,7 @@
 
   /* ---------- product families ---------- */
   var FAMILIES = [
-    { key: 'cartridge', code: 'CH', name: 'Cartridge',
+    { key: 'cartridge', view: 'cylinder', dims: ['dia','len','hlen'], code: 'CH', name: 'Cartridge',
       blurb: 'Bore mounted in moulds and platens',
       icon: icon('<rect x="8" y="16" width="42" height="13" rx="3"/><path d="M50 19h14M50 26h14"/>'),
       specs: [
@@ -49,7 +49,7 @@
           { c: 'M3', t: 'Strain clamp', d: 'Where the lead is pulled' } ] }
       ] },
 
-    { key: 'coil', code: 'CO', name: 'Coil',
+    { key: 'coil', view: 'coil', dims: ['id','hlen'], code: 'CO', name: 'Coil',
       blurb: 'Hot runner nozzles and manifolds',
       icon: icon('<path d="M10 22c0-6 5-6 5 0s5 6 5 0 5-6 5 0 5 6 5 0 5-6 5 0 5 6 5 0 5-6 5 0"/><path d="M56 22h8"/>'),
       specs: [
@@ -73,7 +73,7 @@
           { c: 'TCK', t: 'Type K', d: '' } ] }
       ] },
 
-    { key: 'band', code: 'BH', name: 'Band',
+    { key: 'band', view: 'ring', dims: ['id','width'], code: 'BH', name: 'Band',
       blurb: 'Barrels and cylinders',
       icon: icon('<circle cx="26" cy="22" r="13"/><circle cx="26" cy="22" r="8"/><path d="M39 22h20"/>'),
       specs: [
@@ -103,7 +103,7 @@
           { c: 'S4', t: 'Terminal box', d: '' } ] }
       ] },
 
-    { key: 'nozzle', code: 'NZ', name: 'Nozzle',
+    { key: 'nozzle', view: 'ring', dims: ['id','len'], code: 'NZ', name: 'Nozzle',
       blurb: 'Injection nozzles',
       icon: icon('<path d="M12 14h26l10 8-10 8H12z"/><path d="M48 22h12"/>'),
       specs: [
@@ -119,7 +119,7 @@
           { c: 'TC0', t: 'None', d: '' }, { c: 'TCJ', t: 'Type J', d: '' }, { c: 'TCK', t: 'Type K', d: '' } ] }
       ] },
 
-    { key: 'strip', code: 'SH', name: 'Strip',
+    { key: 'strip', view: 'strip', dims: ['len','width'], code: 'SH', name: 'Strip',
       blurb: 'Flat and curved surfaces',
       icon: icon('<rect x="8" y="18" width="48" height="9" rx="2"/><path d="M16 18v9M28 18v9M40 18v9"/>'),
       specs: [
@@ -136,7 +136,7 @@
           { c: 'S1', t: 'Screw terminals', d: '' }, { c: 'S3', t: 'Leads', d: '' } ] }
       ] },
 
-    { key: 'tubular', code: 'TH', name: 'Tubular',
+    { key: 'tubular', view: 'cylinder', dims: ['dia','len'], code: 'TH', name: 'Tubular',
       blurb: 'Air, liquids and surfaces',
       icon: icon('<path d="M10 30c0-12 12-16 20-16s20 4 20 16"/><path d="M10 30v4M50 30v4"/>'),
       specs: [
@@ -156,7 +156,7 @@
           { c: 'S0', t: 'Studs', d: '' }, { c: 'S1', t: 'Screw terminals', d: '' }, { c: 'S3', t: 'Leads', d: '' } ] }
       ] },
 
-    { key: 'sensor', code: 'TS', name: 'Thermocouple',
+    { key: 'sensor', view: 'cylinder', dims: ['dia','len','clen'], code: 'TS', name: 'Thermocouple',
       blurb: 'Sensors and RTDs',
       icon: icon('<path d="M12 22h28"/><circle cx="46" cy="22" r="6"/><path d="M12 16v12"/>'),
       specs: [
@@ -175,7 +175,7 @@
           { c: 'P', t: 'Plug', d: '' }, { c: 'B', t: 'Bare tails', d: '' }, { c: 'H', t: 'Terminal head', d: '' } ] }
       ] },
 
-    { key: 'ir', code: 'IR', name: 'Ceramic infrared',
+    { key: 'ir', view: 'panel', dims: ['dist'], code: 'IR', name: 'Ceramic infrared',
       blurb: 'Radiant heating',
       icon: icon('<path d="M14 28h26l-4-12H18z"/><path d="M46 14v16M52 17v10M58 20v4"/>'),
       specs: [
@@ -226,25 +226,165 @@
     update();
   }
 
-  /* ---------- specs ---------- */
-  function renderSpecs() {
-    $('specGrid').innerHTML = current.specs.map(function (s) {
-      var id = 'sp_' + s.k;
-      var field;
-      if (s.type === 'select') {
-        field = '<select id="' + id + '" data-k="' + s.k + '"><option value="">Choose</option>' +
-          s.opts.map(function (o) { return '<option>' + o + '</option>'; }).join('') + '</select>';
-      } else {
-        field = '<input id="' + id + '" data-k="' + s.k + '" type="number" inputmode="decimal"' +
-          (s.min != null ? ' min="' + s.min + '"' : '') + (s.max != null ? ' max="' + s.max + '"' : '') + '>';
+  /* ---------- the drawing is the form ---------- */
+  var W = 560, H = 340;
+
+  function dimLineH(x1, x2, y) {
+    return '<path d="M' + x1 + ' ' + y + 'h' + (x2 - x1) + 'M' + x1 + ' ' + (y - 5) + 'v10M' +
+      x2 + ' ' + (y - 5) + 'v10" stroke="' + heat + '" stroke-width="1.2" fill="none"/>';
+  }
+  function dimLineV(y1, y2, x) {
+    return '<path d="M' + x + ' ' + y1 + 'v' + (y2 - y1) + 'M' + (x - 5) + ' ' + y1 + 'h10M' +
+      (x - 5) + ' ' + y2 + 'h10" stroke="' + heat + '" stroke-width="1.2" fill="none"/>';
+  }
+  function leader(x1, y1, x2, y2) {
+    return '<path d="M' + x1 + ' ' + y1 + 'L' + x2 + ' ' + y2 + '" stroke="' + soft +
+      '" stroke-width="1.1" fill="none" stroke-dasharray="4 3"/>' +
+      '<circle cx="' + x1 + '" cy="' + y1 + '" r="2.6" fill="' + heat + '"/>';
+  }
+  function num(n, x, y) {
+    return '<g class="callout-n"><circle cx="' + x + '" cy="' + y + '" r="11" fill="' + heat +
+      '"/><text x="' + x + '" y="' + (y + 4) + '" text-anchor="middle" font-family="Inter,sans-serif" ' +
+      'font-size="12" font-weight="700" fill="#fff">' + n + '</text></g>';
+  }
+  function num2(v) { var n = parseFloat(v); return isNaN(n) ? null : n; }
+
+  /* Each view returns the artwork plus the fixed anchor points the inputs sit on.
+     Anchors do not move while you type, so a field never jumps under the cursor. */
+  var VIEWS = {
+    cylinder: function (spec) {
+      var d = num2(spec.dia) || 14, L = num2(spec.len) || 200;
+      var ratio = Math.max(0.05, Math.min(0.40, d / Math.max(L, 1)));
+      var bw = 260, bh = Math.max(16, Math.min(104, bw * ratio));
+      var x1 = 165, x2 = x1 + bw, cy = 186, y1 = cy - bh / 2, y2 = cy + bh / 2;
+      var hl = num2(spec.hlen), hlw = hl && L ? Math.max(0.15, Math.min(1, hl / L)) : 0.82;
+      var hx1 = x1 + bw * (1 - hlw) / 2, hx2 = x2 - bw * (1 - hlw) / 2;
+      var art =
+        '<rect x="' + hx1 + '" y="' + y1 + '" width="' + (hx2 - hx1) + '" height="' + bh +
+          '" fill="hsl(30 90% 95%)"/>' +
+        '<rect x="' + x1 + '" y="' + y1 + '" width="' + bw + '" height="' + bh + '" rx="' +
+          Math.min(7, bh / 3) + '" fill="none" stroke="' + ink + '" stroke-width="1.9"/>' +
+        '<path d="M' + x2 + ' ' + (cy - bh * 0.22) + 'h42M' + x2 + ' ' + (cy + bh * 0.22) +
+          'h42" stroke="' + ink + '" stroke-width="1.7" fill="none"/>' +
+        dimLineV(y1, y2, 143) + leader(143, cy, 104, 116) + num(1, 78, 96) +
+        dimLineH(x1, x2, 268) + leader(295, 268, 295, 292) + num(2, 295, 318) +
+        dimLineH(hx1, hx2, 122) + leader((hx1 + hx2) / 2, 122, 295, 92) + num(3, 295, 66);
+      return { art: art, anchors: { dia: [86, 96], len: [295, 300], hlen: [295, 62], clen: [470, 300] } };
+    },
+    ring: function (spec) {
+      var id = num2(spec.id) || 90, wd = num2(spec.width) || num2(spec.len) || 60;
+      var r = Math.max(34, Math.min(74, id / 2.6));
+      var band = Math.max(9, Math.min(30, wd / 3.2));
+      var cx = 205, cy = 168;
+      var sx = 350, sw = Math.max(16, Math.min(78, wd / 1.6));
+      var art =
+        '<circle cx="' + cx + '" cy="' + cy + '" r="' + (r + band) + '" fill="none" stroke="' + ink + '" stroke-width="1.9"/>' +
+        '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="none" stroke="' + ink + '" stroke-width="1.9"/>' +
+        '<path d="M' + (cx + r + band) + ' ' + cy + 'h30" stroke="' + ink + '" stroke-width="1.7" fill="none"/>' +
+        dimLineH(cx - r, cx + r, cy) +
+        leader(cx - r * 0.7, cy + r * 0.7, 120, 286) + num(1, 96, 300) +
+        '<rect x="' + sx + '" y="' + (cy - r - band) + '" width="' + sw + '" height="' +
+          (2 * (r + band)) + '" rx="3" fill="none" stroke="' + ink + '" stroke-width="1.9"/>' +
+        dimLineH(sx, sx + sw, cy + r + band + 22) +
+        leader(sx + sw / 2, cy + r + band + 22, 452, 286) + num(2, 470, 300) +
+        '<text x="' + (sx + sw / 2) + '" y="' + (cy - r - band - 12) + '" text-anchor="middle" ' +
+          'font-family="Inter,sans-serif" font-size="11" fill="hsl(214 14% 40%)">side view</text>';
+      return { art: art, anchors: { id: [110, 300], width: [455, 300], len: [455, 300] } };
+    },
+    coil: function (spec) {
+      var id = num2(spec.id) || 30, hl = num2(spec.hlen) || 120;
+      var r = Math.max(16, Math.min(46, id / 1.8));
+      var cy = 170, x1 = 150, x2 = Math.min(430, x1 + Math.max(120, Math.min(280, hl * 1.1)));
+      var turns = Math.max(5, Math.round((x2 - x1) / 22));
+      var step = (x2 - x1) / turns, p = '';
+      for (var i = 0; i < turns; i++) {
+        var x = x1 + i * step;
+        p += 'M' + x + ' ' + (cy - r) + 'q' + (step * 0.55) + ' ' + (r * 1.15) + ' 0 ' + (2 * r) +
+             'M' + x + ' ' + (cy - r) + 'h' + step;
       }
-      var range = (s.min != null && s.max != null)
-        ? '<span class="range">Usual range ' + s.min + ' to ' + s.max + ' ' + (s.unit || '') + '</span>'
-        : (s.optional ? '<span class="range">Optional</span>' : '');
-      return '<div class="spec" id="wrap_' + s.k + '"><label for="' + id + '">' + s.label +
-        (s.unit ? ' <span class="u">' + s.unit + '</span>' : '') + '</label>' + field + range +
-        '<span class="err" hidden></span></div>';
-    }).join('');
+      var art =
+        '<path d="' + p + '" stroke="' + heat + '" stroke-width="2" fill="none"/>' +
+        '<path d="M' + x1 + ' ' + (cy - r) + 'h' + (x2 - x1) + 'M' + x1 + ' ' + (cy + r) + 'h' + (x2 - x1) +
+          '" stroke="' + ink + '" stroke-width="1" stroke-dasharray="3 3" fill="none"/>' +
+        dimLineV(cy - r, cy + r, x1 - 26) + leader(x1 - 26, cy, 118, 290) + num(1, 96, 300) +
+        dimLineH(x1, x2, cy + r + 46) + leader((x1 + x2) / 2, cy + r + 46, 300, 290) + num(2, 320, 300);
+      return { art: art, anchors: { id: [110, 300], hlen: [310, 300] } };
+    },
+    strip: function (spec) {
+      var L = num2(spec.len) || 400, wd = num2(spec.width) || 40;
+      var bw = Math.max(160, Math.min(300, L / 1.6));
+      var bh = Math.max(16, Math.min(76, wd / 0.9));
+      var x1 = 150, x2 = x1 + bw, cy = 168, y1 = cy - bh / 2, y2 = cy + bh / 2;
+      var art =
+        '<rect x="' + x1 + '" y="' + y1 + '" width="' + bw + '" height="' + bh +
+          '" rx="2" fill="none" stroke="' + ink + '" stroke-width="1.9"/>' +
+        dimLineH(x1, x2, y2 + 46) + leader((x1 + x2) / 2, y2 + 46, 300, 290) + num(1, 320, 300) +
+        dimLineV(y1, y2, x1 - 26) + leader(x1 - 26, cy, 118, 290) + num(2, 96, 300);
+      return { art: art, anchors: { len: [310, 300], width: [110, 300] } };
+    },
+    panel: function (spec) {
+      var dist = num2(spec.dist) || 150;
+      var gap = Math.max(60, Math.min(210, dist / 1.4));
+      var ex = 150, wx = ex + 60 + gap;
+      var art =
+        '<path d="M' + ex + ' 120h60l-10 96h-40z" fill="none" stroke="' + ink + '" stroke-width="1.9"/>' +
+        '<path d="M' + (wx) + ' 96v144" stroke="' + ink + '" stroke-width="4"/>' +
+        '<text x="' + (wx + 12) + '" y="172" font-family="Inter,sans-serif" font-size="11" fill="hsl(214 14% 40%)">work</text>' +
+        '<path d="M' + (ex + 64) + ' 140h' + (gap - 8) + 'M' + (ex + 64) + ' 168h' + (gap - 8) +
+          'M' + (ex + 64) + ' 196h' + (gap - 8) + '" stroke="' + heat + '" stroke-width="1.4" stroke-dasharray="6 4" fill="none"/>' +
+        dimLineH(ex + 60, wx, 262) + leader((ex + 60 + wx) / 2, 262, 300, 290) + num(1, 320, 300);
+      return { art: art, anchors: { dist: [310, 300] } };
+    }
+  };
+
+  function renderSpecs() {
+    var view = VIEWS[current.view] || VIEWS.cylinder;
+    var out = view(spec);
+    var dims = current.dims || [];
+    var i = 0;
+    var dimHtml = '', elecHtml = '';
+
+    current.specs.forEach(function (sp) {
+      var isDim = dims.indexOf(sp.k) !== -1;
+      var id = 'sp_' + sp.k;
+      var field;
+      if (sp.type === 'select') {
+        field = '<select id="' + id + '" data-k="' + sp.k + '"><option value="">Choose</option>' +
+          sp.opts.map(function (o) { return '<option>' + o + '</option>'; }).join('') + '</select>';
+      } else {
+        field = '<input id="' + id + '" data-k="' + sp.k + '" type="number" inputmode="decimal"' +
+          (sp.min != null ? ' min="' + sp.min + '"' : '') +
+          (sp.max != null ? ' max="' + sp.max + '"' : '') + '>';
+      }
+      var range = (sp.min != null && sp.max != null)
+        ? '<span class="range">' + sp.min + ' to ' + sp.max + ' ' + (sp.unit || '') + '</span>'
+        : (sp.optional ? '<span class="range">Optional</span>' : '');
+
+      if (isDim) {
+        i++;
+        var a = out.anchors[sp.k] || [280, 300];
+        dimHtml += '<div class="dimfield" id="wrap_' + sp.k + '" style="--x:' +
+          (a[0] / W * 100).toFixed(2) + '%;--y:' + (a[1] / H * 100).toFixed(2) + '%">' +
+          '<label for="' + id + '"><span class="num" aria-hidden="true">' + i + '</span>' +
+          sp.label + (sp.unit ? ' <span class="sym">' + sp.unit + '</span>' : '') + '</label>' +
+          field + range + '<span class="err" hidden></span></div>';
+      } else {
+        elecHtml += '<div class="spec dimfield" id="wrap_' + sp.k + '" style="position:static;transform:none;width:auto">' +
+          '<label for="' + id + '">' + sp.label +
+          (sp.unit ? ' <span class="sym">' + sp.unit + '</span>' : '') + '</label>' +
+          field + range + '<span class="err" hidden></span></div>';
+      }
+    });
+
+    $('dimFields').innerHTML = dimHtml;
+    $('elecFields').innerHTML = elecHtml;
+    $('vizArt').innerHTML = svgWrap(out.art);
+  }
+
+  function svgWrap(art) {
+    return '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" ' +
+      'aria-label="Dimensioned outline of the heater you are configuring. Each numbered ' +
+      'callout matches a box below.">' + art + '</svg>';
   }
 
   function onSpec(e) {
@@ -256,13 +396,27 @@
   }
 
   function validate(k, el) {
-    var def = current.specs.filter(function (s) { return s.k === k; })[0];
-    var wrap = $('wrap_' + k), err = wrap.querySelector('.err');
+    var def = current.specs.filter(function (s2) { return s2.k === k; })[0];
+    if (!def) return;
+    var wrap = $('wrap_' + k);
+    if (!wrap) return;
+    var err = wrap.querySelector('.err');
     var v = parseFloat(el.value);
     var bad = el.value !== '' && def.min != null && (v < def.min || v > def.max);
     wrap.classList.toggle('bad', bad);
     err.hidden = !bad;
     if (bad) err.textContent = 'Outside the usual range. We will check it is makeable.';
+  }
+
+  function draw() {
+    var view = VIEWS[current.view] || VIEWS.cylinder;
+    $('vizArt').innerHTML = svgWrap(view(spec).art);
+  }
+
+  function update() {
+    if (!current) return;
+    $('partCode').textContent = partCode();
+    draw();
   }
 
   /* ---------- options ---------- */
@@ -309,70 +463,6 @@
       out.push(g.title + ' ' + o.t + ' (' + c + ')');
     });
     return out.join(', ');
-  }
-
-  /* ---------- live drawing ---------- */
-  function draw() {
-    var w = 460, h = 150, art = '';
-    function el(s) { return s; }
-    var d = parseFloat(spec.dia || spec.id || 20) || 20;
-    var L = parseFloat(spec.len || spec.hlen || spec.width || 200) || 200;
-    if (current.key === 'cartridge' || current.key === 'tubular' || current.key === 'sensor') {
-      var ratio = Math.max(0.06, Math.min(0.55, d / Math.max(L, 1)));
-      var bw = 300, bh = Math.max(12, Math.min(74, bw * ratio));
-      var y = (h - bh) / 2;
-      art = '<rect x="70" y="' + y + '" width="' + bw + '" height="' + bh + '" rx="' + Math.min(6, bh / 3) +
-        '" fill="none" stroke="' + ink + '" stroke-width="1.8"/>' +
-        '<path d="M370 ' + (y + bh * 0.3) + 'h40M370 ' + (y + bh * 0.7) + 'h40" stroke="' + ink + '" stroke-width="1.6" fill="none"/>' +
-        '<path d="M70 ' + (h - 14) + 'h300M70 ' + (h - 20) + 'v12M370 ' + (h - 20) + 'v12" stroke="' + heat + '" stroke-width="1.2" fill="none"/>' +
-        '<text x="220" y="' + (h - 2) + '" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="' + ink + '">' +
-        (spec.len ? spec.len + ' mm' : 'length') + '</text>' +
-        '<path d="M56 ' + y + 'v' + bh + 'M50 ' + y + 'h12M50 ' + (y + bh) + 'h12" stroke="' + heat + '" stroke-width="1.2" fill="none"/>' +
-        '<text x="44" y="' + (h / 2 + 4) + '" text-anchor="end" font-family="Inter,sans-serif" font-size="11" fill="' + ink + '">' +
-        (spec.dia ? spec.dia : 'Ø') + '</text>';
-      if (chosen.term === 'T3') {
-        art += '<path d="M70 ' + (y + bh * 0.5) + 'h-14" stroke="' + ink + '" stroke-width="1.6"/>';
-      }
-      if (chosen.tc && chosen.tc !== 'TC0') {
-        art += '<circle cx="110" cy="' + (y + bh / 2) + '" r="4" fill="' + heat + '"/>' +
-          '<text x="118" y="' + (y + bh / 2 - 8) + '" font-family="Inter,sans-serif" font-size="10" fill="' + heat + '">TC</text>';
-      }
-    } else if (current.key === 'band' || current.key === 'nozzle' || current.key === 'coil') {
-      var R = Math.max(28, Math.min(58, (parseFloat(spec.id) || 60) / 4));
-      var band = Math.max(8, Math.min(26, (parseFloat(spec.width) || 40) / 3));
-      art = '<circle cx="230" cy="70" r="' + (R + band) + '" fill="none" stroke="' + ink + '" stroke-width="1.8"/>' +
-        '<circle cx="230" cy="70" r="' + R + '" fill="none" stroke="' + ink + '" stroke-width="1.8"/>' +
-        '<path d="M' + (230 + R + band) + ' 70h34" stroke="' + ink + '" stroke-width="1.6"/>' +
-        '<path d="M230 70m-' + R + ' 0a' + R + ' ' + R + ' 0 0 1 ' + (2 * R) + ' 0" fill="none" stroke="' + heat + '" stroke-width="1.2" stroke-dasharray="3 3"/>' +
-        '<text x="230" y="' + (70 + R + band + 22) + '" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="' + ink + '">ID ' +
-        (spec.id ? spec.id + ' mm' : '?') + (spec.width ? ' · width ' + spec.width + ' mm' : '') + '</text>';
-      if (current.key === 'coil') {
-        art += '<text x="230" y="24" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="' + heat + '">coil section ' +
-          (chosen.prof === 'PS' ? 'square' : chosen.prof === 'PT' ? 'rectangular' : 'round') + '</text>';
-      }
-    } else if (current.key === 'strip') {
-      var sw = 300, sh2 = Math.max(10, Math.min(46, (parseFloat(spec.width) || 40) / 2));
-      art = '<rect x="80" y="' + ((h - sh2) / 2) + '" width="' + sw + '" height="' + sh2 + '" rx="2" fill="none" stroke="' + ink + '" stroke-width="1.8"/>';
-      if (chosen.prof === 'F1') {
-        for (var i = 0; i < 10; i++) {
-          art += '<path d="M' + (95 + i * 30) + ' ' + ((h - sh2) / 2 - 8) + 'v' + (sh2 + 16) + '" stroke="' + heat + '" stroke-width="1.4"/>';
-        }
-      }
-      art += '<text x="230" y="' + (h - 6) + '" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="' + ink + '">' +
-        (spec.len ? spec.len + ' x ' : '') + (spec.width ? spec.width + ' mm' : '') + '</text>';
-    } else {
-      art = '<rect x="150" y="46" width="160" height="52" rx="4" fill="none" stroke="' + ink + '" stroke-width="1.8"/>' +
-        '<path d="M320 58v30M334 52v42M348 60v26" stroke="' + heat + '" stroke-width="1.8" fill="none"/>' +
-        '<text x="230" y="126" text-anchor="middle" font-family="Inter,sans-serif" font-size="11" fill="' + ink + '">' +
-        (spec.watt ? spec.watt + ' W' : 'radiant element') + '</text>';
-    }
-    $('vizArt').innerHTML = '<svg viewBox="0 0 ' + w + ' ' + h + '" role="img" aria-label="Outline of the heater you are configuring">' + art + '</svg>';
-  }
-
-  function update() {
-    if (!current) return;
-    $('partCode').textContent = partCode();
-    draw();
   }
 
   /* ---------- the list ---------- */
@@ -465,8 +555,10 @@
   emptyNode = $('cartEmpty');
   emptyNode.hidden = false;
 
-  $('specGrid').addEventListener('input', onSpec);
-  $('specGrid').addEventListener('change', onSpec);
+  $('dimFields').addEventListener('input', onSpec);
+  $('dimFields').addEventListener('change', onSpec);
+  $('elecFields').addEventListener('input', onSpec);
+  $('elecFields').addEventListener('change', onSpec);
   $('optGroups').addEventListener('click', function (e) {
     var b = e.target.closest('[data-g]');
     if (!b) return;

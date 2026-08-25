@@ -73,11 +73,15 @@
           <div class="step-head"><span class="n" aria-hidden="true">02</span><h2>Sizes</h2></div>
           <p class="hint">Fill in what you know. Leave anything you are unsure of and our
             engineers will suggest it.</p>
-          <div class="specgrid" id="specGrid"></div>
-          <div class="viz" id="viz">
-            <div id="vizArt"></div>
-            <p class="cap" id="vizCap">Drawing updates as you change the sizes. Not to scale.</p>
+          <div class="dimboard" id="dimBoard">
+            <div class="artwrap" id="artWrap">
+              <div id="vizArt"></div>
+              <div class="dimfields" id="dimFields"></div>
+            </div>
           </div>
+          <p class="cap" id="vizCap">Each box is attached to the dimension it belongs to.
+            The drawing redraws as you type. Not to scale.</p>
+          <div class="elecfields" id="elecFields"></div>
         </div>
 
         <div class="step" id="optStep" hidden>
