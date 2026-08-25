@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-IN" class="nojs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build a heater requirement list | Swiftheat Thermal Technologies Pvt Ltd</title>
+<meta name="description" content="Specify several heaters in one pass, see each one drawn as you specify it, and generate a printable requirement document. Nothing is stored and no account needed.">
+<link rel="canonical" href="https://swiftheat.co.in/build-a-list/">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Build a heater requirement list | Swiftheat Thermal Technologies Pvt Ltd">
+<meta property="og:description" content="Specify several heaters in one pass, see each one drawn as you specify it, and generate a printable requirement document. Nothing is stored and no account needed.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://swiftheat.co.in/build-a-list/">
+<meta name="theme-color" content="#0d1620">
+<link rel="preload" href="../fonts/archivo-narrow-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../css/site.css">
+<link rel="stylesheet" href="../css/bom.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="topbar">
+  <div class="wrap">
+    <span class="where">Peenya Industrial Area 1st Phase, Bengaluru 560058</span>
+    <a href="../build-a-list/">Build a list</a>
+    <a href="../resources/">Downloads</a>
+    <a href="mailto:info@swiftheat.co.in">info@swiftheat.co.in</a>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="logo" href="../index.html">Swift<em>heat</em><small>Thermal Technologies</small></a>
+    <button class="navtoggle" type="button" aria-expanded="false" aria-controls="mainnav">
+      <svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true"><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1h16M1 7h16M1 13h16"/></g></svg>
+      Menu
+    </button>
+    <nav class="mainnav" id="mainnav" aria-label="Main">
+      <ul>
+        <li><a href="../products/">Products</a></li>
+        <li><a href="../applications/">Applications</a></li>
+        <li><a href="../capabilities/">Capabilities</a></li>
+        <li><a href="../quality/">Quality</a></li>
+        <li><a href="../resources/">Resources</a></li>
+        <li><a href="../about/">About</a></li>
+        <li><a href="../contact/">Contact</a></li>
+        <li class="cta"><a href="../build-a-list/" aria-current="page">Build a list</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<nav class="crumb" aria-label="Breadcrumb"><div class="wrap"><ol><li><a href="../index.html">Home</a></li><li>Build a list</li></ol></div></nav>
+
+<main id="main">
+
+<div id="builderView">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Requirement list</p>
+      <h1>Build your heater list</h1>
+      <p class="lede">Pick a heater, set the sizes, choose the options, add it to the list. The
+        drawing stays beside you and redraws on every change, so you can see the part you are asking
+        for before you send it. When you are done, generate a document you can print, email or send
+        on WhatsApp. Nothing is stored anywhere and no account is needed.</p>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap builder">
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-head"><span class="n" aria-hidden="true">01</span><h2>Which heater?</h2></div>
+          <p class="hint">Pick a family. The sizes and options below change to suit it, and so does
+            the drawing.</p>
+          <ul class="tiles tiles-fam" id="famTiles" aria-label="Product family"></ul>
+        </div>
+
+        <div class="step" id="specStep" hidden>
+          <div class="step-head"><span class="n" aria-hidden="true">02</span><h2>Sizes</h2></div>
+          <p class="hint">Fill in what you know. Leave anything you are unsure of and our engineers
+            will suggest it. Each numbered box is the dimension with the same number on the drawing.</p>
+          <div class="dimfields" id="dimFields"></div>
+          <div class="elecfields" id="elecFields"></div>
+        </div>
+
+        <div class="step" id="optStep" hidden>
+          <div class="step-head"><span class="n" aria-hidden="true">03</span><h2>Options</h2></div>
+          <p class="hint">Tap to choose. Every option changes the drawing and carries the code that
+            appears on the final document.</p>
+          <div id="optGroups"></div>
+        </div>
+
+        <div class="step" id="addStep" hidden>
+          <div class="step-head"><span class="n" aria-hidden="true">04</span><h2>Add it to the list</h2></div>
+          <div class="partcode">
+            <span class="lab">Part code</span>
+            <span class="val" id="partCode">&mdash;</span>
+          </div>
+          <div class="addrow">
+            <div class="spec">
+              <label for="qty">Quantity <span class="u">nos</span></label>
+              <input id="qty" type="number" min="1" max="9999" value="1" inputmode="numeric">
+            </div>
+            <div class="spec" style="max-width:260px">
+              <label for="lineNote">Note for this line <span class="u">optional</span></label>
+              <input id="lineNote" type="text" placeholder="e.g. for machine 3, urgent">
+            </div>
+            <button class="btn" type="button" id="addBtn">Add to list</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="rail">
+
+        <section class="viz-panel" id="vizPanel" hidden aria-labelledby="vizTitle">
+          <div class="viz-head">
+            <h2 id="vizTitle">Live drawing</h2>
+            <div class="viewtoggle" id="viewToggle" role="group" aria-label="Drawing style">
+              <button type="button" data-mode="flat" aria-pressed="true">Flat</button>
+              <button type="button" data-mode="iso" aria-pressed="false">Isometric</button>
+            </div>
+          </div>
+          <div id="vizArt"></div>
+          <p class="cap" id="vizCap">The numbers match the boxes on the left. Every size and every
+            option redraws this at once. Not to scale.</p>
+        </section>
+
+        <aside class="cart" aria-label="Your list">
+          <div class="cart-head">
+            <h2>Your list</h2>
+            <span class="badge" id="cartCount">0</span>
+          </div>
+          <div class="cart-body" id="cartBody">
+            <div class="cart-empty" id="cartEmpty">
+              <svg width="52" height="40" viewBox="0 0 52 40" aria-hidden="true">
+                <g fill="none" stroke="currentColor" stroke-width="1.6">
+                  <rect x="8" y="14" width="30" height="12" rx="3"/>
+                  <path d="M38 18h8M38 22h8"/>
+                  <path d="M4 33h44" stroke-dasharray="3 3"/>
+                </g>
+              </svg>
+              <p>Nothing added yet.<br>Pick a heater to start.</p>
+            </div>
+          </div>
+          <div class="cart-foot" id="cartFoot" hidden>
+            <div class="tot"><span>Line items</span><b id="totLines">0</b></div>
+            <div class="tot"><span>Total pieces</span><b id="totQty">0</b></div>
+            <button class="btn" type="button" id="reviewBtn">Review and generate</button>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="band alt" id="whoStep" hidden>
+    <div class="wrap">
+      <h2>Who is this for?</h2>
+      <p>Used on the document and so we know who to reply to. Swiftheat staff building a list for a
+        customer can put the customer's details here.</p>
+      <div class="who">
+        <div class="spec"><label for="cName">Name</label><input id="cName" type="text" autocomplete="name"></div>
+        <div class="spec"><label for="cComp">Company</label><input id="cComp" type="text" autocomplete="organization"></div>
+        <div class="spec"><label for="cMail">Email</label><input id="cMail" type="email" autocomplete="email"></div>
+        <div class="spec"><label for="cPhone">Phone or WhatsApp</label><input id="cPhone" type="tel" autocomplete="tel"></div>
+        <div class="spec"><label for="cRef">Your reference <span class="u">optional</span></label><input id="cRef" type="text" placeholder="PO or enquiry number"></div>
+        <div class="spec"><label for="cNeed">Required by <span class="u">optional</span></label><input id="cNeed" type="text" placeholder="e.g. 2 weeks"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="docView" hidden>
+  <div class="docwrap">
+    <div class="docbar">
+      <button class="back" type="button" id="backBtn">&larr; Back to the list</button>
+      <span class="spacer"></span>
+      <button class="btn" type="button" id="printBtn">Save as PDF or print</button>
+      <button class="btn btn-ghost" type="button" id="mailBtn">Send by email</button>
+      <button class="btn wa" type="button" id="waBtn">Send on WhatsApp</button>
+    </div>
+    <article class="doc" id="doc">
+      <h2 class="dochead">Heater requirement list</h2>
+      <div class="docmeta" id="docMeta"></div>
+      <div class="tablewrap" style="border:0;margin:0">
+        <table id="docTable">
+          <thead>
+            <tr>
+              <th scope="col">#</th><th scope="col">Part code</th><th scope="col">Heater</th>
+              <th scope="col">Specification</th><th scope="col" class="n">Qty</th>
+            </tr>
+          </thead>
+          <tbody id="docBody"></tbody>
+        </table>
+      </div>
+      <div class="foot">
+        <p><strong>Swiftheat Thermal Technologies Pvt Ltd</strong><br>
+          Plot No. C-262, 6th Cross, near SVC Co-operative Bank, Peenya Industrial Area 1st Phase, Bengaluru 560058<br>
+          <a href="mailto:info@swiftheat.co.in">info@swiftheat.co.in</a>
+          <span class="tbd">Phone number to be confirmed before publication.</span></p>
+        <p>This is a requirement list, not a quotation. Prices and lead times follow from Swiftheat
+          once the specification is confirmed. Where a value was left blank, our engineers will
+          propose one.</p>
+      </div>
+    </article>
+  </div>
+</div>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h3>Swiftheat Thermal Technologies Pvt Ltd</h3>
+        <p>Plot No. C-262, 6th Cross, near SVC Co-operative Bank,<br>Peenya Industrial Area 1st Phase,<br>Bengaluru 560058</p>
+        <p><a href="mailto:info@swiftheat.co.in">info@swiftheat.co.in</a><br>
+          <span class="tbd">Phone number and registered address to be confirmed before publication.</span></p>
+      </div>
+      <div><h3>Products</h3><ul><li><a href="../products/cartridge-heaters/">Cartridge Heaters</a></li><li><a href="../products/coil-heaters/">Coil Heaters</a></li><li><a href="../products/band-heaters/">Ceramic and Mica Band Heaters</a></li><li><a href="../products/nozzle-heaters/">Ceramic and Mica Nozzle Heaters</a></li><li><a href="../products/strip-heaters/">Strip Heaters</a></li><li><a href="../products/tubular-heaters/">Tubular Heaters</a></li><li><a href="../products/thermocouples-and-sensors/">Thermocouples and Temperature Sensors</a></li><li><a href="../products/ceramic-infrared-heaters/">Ceramic Infrared Heaters</a></li></ul></div>
+      <div><h3>Applications</h3><ul><li><a href="../applications/injection-moulding/">Injection Moulding</a></li><li><a href="../applications/extrusion/">Extrusion</a></li><li><a href="../applications/blow-moulding/">Blow Moulding</a></li><li><a href="../applications/packaging-machinery/">Packaging Machinery</a></li><li><a href="../applications/die-and-mould/">Die and Mould</a></li><li><a href="../applications/food-processing/">Food Processing</a></li><li><a href="../applications/">All industries</a></li></ul></div>
+      <div><h3>Company</h3><ul><li><a href="../about/">About Swiftheat</a></li><li><a href="../capabilities/">Custom solutions and capabilities</a></li><li><a href="../quality/">Quality and testing</a></li><li><a href="../resources/">Resources and downloads</a></li><li><a href="../build-a-list/">Build a requirement list</a></li><li><a href="../contact/">Contact and get a quote</a></li></ul></div>
+    </div>
+    <div class="legal">
+      <p>&copy; 2026 Swiftheat Thermal Technologies Pvt Ltd. Industrial heating elements made in Peenya, Bengaluru.</p>
+      <p>Built as static files. No cookies, no tracking, no third party scripts.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../js/site.js"></script>
+<script src="../js/bom.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Swiftheat">
+  <rect width="64" height="64" rx="8" fill="hsl(214 32% 11%)"/>
+  <path d="M32 10c6 8 3 12 0 15s-6 6-6 11a10 10 0 0 0 20 0c0-6-4-9-6-13 4 2 7 6 7 13a15 15 0 0 1-30 0c0-9 9-14 9-19a12 12 0 0 0-1-7z" fill="hsl(21 92% 51%)"/>
+  <rect x="10" y="50" width="44" height="3" rx="1.5" fill="hsl(215 60% 62%)"/>
+</svg>

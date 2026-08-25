@@ -95,8 +95,16 @@ img{max-width:100%;height:auto}
 .chips li{background:var(--surface-sunk);border:1px solid var(--ink-200);border-radius:var(--radius);
   padding:var(--s3) var(--s4);min-width:140px;margin:0}
 .chips b{display:block;font-family:"Archivo Narrow",sans-serif;font-size:1.5rem;line-height:1;color:var(--ink-900)}
+/* .tbd is less specific than .chips b, so the marker has to be restated here
+   or an unconfirmed figure reads as a confirmed one. */
+.chips b.tbd{color:var(--heat-700)}
+.hero-dark .chips b.tbd{color:var(--heat-200)}
 .chips span{display:block;font-size:.78rem;color:var(--ink-600);text-transform:uppercase;letter-spacing:.07em;margin-top:var(--s2)}
 .actions{display:flex;gap:var(--s3);flex-wrap:wrap;margin-top:var(--s5)}
+/* Four headline figures read as a block of four, not as three and a stray one.
+   Below this width they go back to flowing, because a forced two up squeezes
+   the labels onto three lines. */
+@media (min-width:700px){.hero .chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 /* ---------- hero, photography register (home and industry pages) ---------- */
 .hero-dark{background:var(--ink-900);color:hsl(214 18% 84%);border:0;padding:var(--s8) 0}
@@ -209,6 +217,12 @@ section.band.alt .cards a{background:var(--paper)}
 section.band.ink .cards a{background:hsl(214 30% 15%);border-color:hsl(214 24% 26%);color:hsl(214 16% 78%)}
 section.band.ink .cards strong{color:#fff}
 section.band.ink .cards span{color:hsl(214 14% 70%)}
+/* The dark band recolours every link, which would repaint a button's label and
+   blank out a white card. Both have to be restated for the dark ground. */
+section.band.ink .btn{color:#fff}
+section.band.ink ol.steps > li{background:hsl(214 30% 15%);border-color:hsl(214 24% 26%)}
+section.band.ink ol.steps p{color:hsl(214 16% 78%)}
+section.band.ink ol.steps > li::before{color:var(--heat-500)}
 
 /* product cards carry a drawing above the label */
 .pcards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:var(--s4);list-style:none;padding:0;margin:0;max-width:none}
@@ -236,6 +250,13 @@ section.band.alt .finder{background:var(--paper)}
 
 /* ---------- process flow, industry pages ---------- */
 .flow{background:var(--surface);border:1px solid var(--ink-200);border-radius:var(--radius);padding:var(--s5);margin-bottom:var(--s5)}
+/* A six zone diagram scaled to a 390px phone puts the labels at three pixels.
+   It scrolls sideways at its own size instead, with an edge fade so it is
+   obvious there is more of it. */
+.flow .scroller{overflow-x:auto;position:relative}
+.flow svg{width:100%}
+.flow .hint{font-size:.8rem;color:var(--ink-600);margin:var(--s3) 0 0}
+@media (min-width:1180px){.flow .hint{display:none}}
 section.band.alt .flow{background:var(--paper)}
 .legend{display:flex;flex-wrap:wrap;gap:var(--s4);list-style:none;padding:0;margin:var(--s4) 0 0;max-width:none;font-size:.8rem;color:var(--ink-600)}
 .legend li{display:flex;align-items:center;gap:var(--s2);margin:0}
@@ -258,15 +279,17 @@ section.band.alt .flow{background:var(--paper)}
   color:var(--ink-600);align-items:baseline;min-height:44px}
 
 /* ---------- steps, numbered ---------- */
-.steps{list-style:none;counter-reset:step;padding:0;margin:0;max-width:none;
+/* Scoped to ol deliberately: the list builder has its own .steps container,
+   a div, and an unscoped rule here numbered and boxed its family tiles. */
+ol.steps{list-style:none;counter-reset:step;padding:0;margin:0;max-width:none;
   display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--s5)}
-.steps li{counter-increment:step;margin:0;background:var(--surface);border:1px solid var(--ink-200);
+ol.steps > li{counter-increment:step;margin:0;background:var(--surface);border:1px solid var(--ink-200);
   border-radius:var(--radius);padding:var(--s5);position:relative}
-section.band.alt .steps li{background:var(--paper)}
-.steps li::before{content:counter(step,decimal-leading-zero);font-family:"Archivo Narrow",sans-serif;
+section.band.alt ol.steps > li{background:var(--paper)}
+ol.steps > li::before{content:counter(step,decimal-leading-zero);font-family:"Archivo Narrow",sans-serif;
   font-size:1.5rem;color:var(--heat-400);line-height:1;display:block;margin-bottom:var(--s3)}
-.steps h3{margin-bottom:var(--s2)}
-.steps p{font-size:.92rem;color:var(--ink-600);margin:0;max-width:none}
+ol.steps h3{margin-bottom:var(--s2)}
+ol.steps p{font-size:.92rem;color:var(--ink-600);margin:0;max-width:none}
 
 /* ---------- enquiry ---------- */
 .rfq{background:var(--ink-900);color:hsl(214 18% 84%)}

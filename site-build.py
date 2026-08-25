@@ -1,0 +1,90 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Builds the Swiftheat site into the repository root.
+
+    python3 site-build.py
+
+Everything the site says lives in build/data.py. The shell lives in
+build/chrome.py, the two repeating page types in build/render.py, and the
+one off pages in build/pages.py. Never edit the generated HTML: it is
+overwritten on every run.
+"""
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from build import pages, render
+from build.data import COMPANY, FAMILIES, INDUSTRIES
+
+ROOT = os.path.dirname(os.path.abspath(__file__))
+
+
+def write(path, text):
+    full = os.path.join(ROOT, path)
+    os.makedirs(os.path.dirname(full), exist_ok=True)
+    with open(full, "w", encoding="utf-8") as fh:
+        fh.write(text)
+    return path, len(text.encode("utf-8"))
+
+
+def main():
+    written = []
+
+    written.append(write("index.html", pages.home()))
+    written.append(write("products/index.html", pages.products_index()))
+    for f in FAMILIES:
+        written.append(write("products/%s/index.html" % f["slug"], render.product_page(f)))
+    written.append(write("applications/index.html", pages.applications_index()))
+    for i in INDUSTRIES:
+        written.append(write("applications/%s/index.html" % i["slug"], render.industry_page(i)))
+    written.append(write("about/index.html", pages.about()))
+    written.append(write("capabilities/index.html", pages.capabilities()))
+    written.append(write("quality/index.html", pages.quality()))
+    written.append(write("resources/index.html", pages.resources()))
+    written.append(write("build-a-list/index.html", pages.build_a_list()))
+    written.append(write("contact/index.html", pages.contact()))
+    written.append(write("404.html", pages.not_found()))
+
+    # sitemap and robots
+    urls = ["", "products/", "applications/", "about/", "capabilities/", "quality/",
+            "resources/", "build-a-list/", "contact/"]
+    urls += ["products/%s/" % f["slug"] for f in FAMILIES]
+    urls += ["applications/%s/" % i["slug"] for i in INDUSTRIES]
+    entries = "\n".join("  <url><loc>%s/%s</loc></url>" % (COMPANY["origin"], u) for u in urls)
+    written.append(write("sitemap.xml",
+                         '<?xml version="1.0" encoding="UTF-8"?>\n'
+                         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+                         '%s\n</urlset>\n' % entries))
+    written.append(write("robots.txt",
+                         "User-agent: *\nAllow: /\nDisallow: /proposal/\nDisallow: /archive-old-site/\n\n"
+                         "Sitemap: %s/sitemap.xml\n" % COMPANY["origin"]))
+
+    _drift_check()
+
+    total = sum(n for _, n in written)
+    for path, n in written:
+        print("%7d  %s" % (n, path))
+    print("%7d  bytes in %d files" % (total, len(written)))
+
+
+def _drift_check():
+    """The list builder exists twice: once in the live site, once frozen inside
+    the client proposal. The proposal is a dated sales artefact and is not meant
+    to track the site, but a bug fixed in one and not the other is worth saying
+    out loud rather than discovering later."""
+    import difflib
+    pairs = [("js/bom.js", "proposal/mockup/bom.js"), ("css/bom.css", "proposal/mockup/bom.css")]
+    for live, frozen in pairs:
+        a, b = os.path.join(ROOT, live), os.path.join(ROOT, frozen)
+        if not os.path.isfile(b):
+            continue
+        la = open(a, encoding="utf-8").read().splitlines()
+        lb = open(b, encoding="utf-8").read().splitlines()
+        if la != lb:
+            n = sum(1 for d in difflib.unified_diff(lb, la, n=0) if d[:1] in "+-" and d[:3] not in ("+++", "---"))
+            print("note: %s and %s differ by %d lines" % (live, frozen, n))
+
+
+if __name__ == "__main__":
+    main()
