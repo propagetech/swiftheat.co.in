@@ -2,19 +2,25 @@
 """Generates the Swiftheat proposal pages. One shell, seven bodies."""
 import html, pathlib
 
+# The private preview address. Set this once the preview is deployed, then
+# rerun this script. Everything in the proposal that points at the built site
+# reads from here, so it is a one line change. The build refuses to stay quiet
+# while it is still the placeholder.
+PREVIEW = "PREVIEW-URL-NOT-SET"
+
 PAGES = [
     ("index.html",             "Proposal",             "Swiftheat website proposal"),
     ("01-what-we-found.html",  "What we found",        "The inputs the build starts from"),
-    ("02-what-we-build.html",  "What we will build",   "Structure, product pages, industry pages"),
-    ("03-plan.html",           "How the work runs",    "Phases, timeline and what we need"),
+    ("02-what-we-build.html",  "What we built",        "Structure, product pages, industry pages"),
+    ("03-plan.html",           "Where it stands",      "What is done, what is left before launch"),
     ("04-investment.html",     "The investment",       "Rs 65,000, and what it covers"),
 ]
 
 DESCR = {
  "index.html":"Website redesign proposal for Swiftheat Thermal Technologies, Peenya, Bangalore. Prepared by ProPage.",
  "01-what-we-found.html":"What the current swiftheat.co.in contains, and what the new build needs from it.",
- "02-what-we-build.html":"The proposed structure: seven product family pages, nine industry pages, and an enquiry form that asks for a specification.",
- "03-plan.html":"The five phases of the build, the timeline, and the content and photography we need from Swiftheat.",
+ "02-what-we-build.html":"The delivered structure: eight product family pages, nine industry pages, and an enquiry form that asks for a specification.",
+ "03-plan.html":"What is built, and the short list still outstanding before swiftheat.co.in can be switched over.",
  "04-investment.html":"Rs 65,000 for the complete build, and exactly what that covers.",
 }
 
@@ -63,10 +69,10 @@ SHELL = """<!DOCTYPE html>
 <div class="shell">
   <aside class="rail">
     <a class="brandmark" href="index.html">Pro<span>Page</span></a>
-    <p class="rail-meta">Website proposal<br>Swiftheat Thermal Technologies<br>25 August 2026</p>
+    <p class="rail-meta">Website build<br>Swiftheat Thermal Technologies<br>Built 26 August 2026</p>
     <button class="railtoggle" type="button" aria-expanded="true" aria-controls="contents">Contents</button>
     <nav id="contents" aria-label="Proposal contents">
-      <p class="rail-title">In this proposal</p>
+      <p class="rail-title">In this document</p>
       <ol>
 {navitems}
       </ol>
@@ -87,14 +93,17 @@ BODIES = {}
 
 BODIES["index.html"] = """
     <header class="cover">
-      <p class="eyebrow">Website design and development proposal</p>
+      <p class="eyebrow">Website build, ready for your review</p>
       <h1>The heater is made to a drawing. The website should be too.</h1>
       <p>A redesign of swiftheat.co.in built around the one thing your buyer is actually
-        trying to do: describe a heater precisely enough to get a price.</p>
+        trying to do: describe a heater precisely enough to get a price. It is built. This
+        document is now the record of what was delivered, and of the short list still
+        standing between it and go live.</p>
       <dl class="meta">
         <div><dt>Prepared for</dt><dd>Rekha Prabhu, Swiftheat Thermal Technologies Pvt Ltd</dd></div>
         <div><dt>Prepared by</dt><dd>ProPage</dd></div>
-        <div><dt>Date</dt><dd>25 August 2026</dd></div>
+        <div><dt>Proposed</dt><dd>25 August 2026</dd></div>
+        <div><dt>Built</dt><dd>26 August 2026, awaiting your approval</dd></div>
         <div><dt>Investment</dt><dd>Rs 65,000 complete, first year of care included</dd></div>
       </dl>
     </header>
@@ -107,26 +116,29 @@ BODIES["index.html"] = """
 
     <div class="finding">
       <span class="tag">Start here</span>
-      <p><a href="mockup/bom-builder.html"><strong>Open the heater list builder</strong></a>.
+      <p><a href="{preview}/"><strong>Open the site</strong></a>. All twenty six pages, on a
+        private address that only you have. Read it on your phone and on a computer, and get
+        an engineer to read the product pages.</p>
+      <p><a href="{preview}/build-a-list/"><strong>Open the heater list builder</strong></a>.
         Pick a heater, set the sizes, tap the options, add it to the list. Build up as many
         lines as you need, then generate a document you can save as a PDF, email or send on
         WhatsApp. Your sales team can use the same tool to build a list on a customer's
         behalf.</p>
-      <p><a href="mockup/cartridge-heaters.html"><strong>Open the cartridge heater page</strong></a>.
-        It is a working page, not a picture of one: specification tables, a construction
-        cutaway, a dimensioned drawing, your ordering options set out with codes, and an
-        enquiry form that shows you the email your works would receive. Every specification
-        value in it is deliberately marked "to confirm", because those numbers come from your
-        engineers, not from us.</p>
+      <p><a href="{preview}/products/cartridge-heaters/"><strong>Open the cartridge heater
+        page</strong></a>. Specification tables, a construction cutaway, a dimensioned
+        drawing, your ordering options set out with codes, and an enquiry form that shows you
+        the email your works would receive. The dimensions and lead ratings on it came off
+        your own brochure. The values still marked "to confirm" are the ones we are waiting on
+        from your engineers, and they are the reason this is a preview and not a launch.</p>
     </div>
 
     <div class="wrap">
-      <p>Twenty three pages, built to the same standard as that one. Seven product families,
-        nine industries, your custom work and capabilities, your quality and testing, your
+      <p>Twenty six pages, all to the same standard. Eight product families, nine
+        industries, your custom work and capabilities, your quality and testing, your
         downloads, and an enquiry form that asks a customer for a diameter rather than a
         paragraph.</p>
 
-      <h2>What is in this proposal</h2>
+      <h2>What is in this document</h2>
     </div>
 
     <ol class="steps">
@@ -136,14 +148,14 @@ BODIES["index.html"] = """
           that need a decision from you before the build can start.</p>
       </li>
       <li>
-        <h3><a href="02-what-we-build.html">What we will build</a></h3>
+        <h3><a href="02-what-we-build.html">What we built</a></h3>
         <p>The full structure, how a product page is put together, how an industry page
           works, and the enquiry form in detail.</p>
       </li>
       <li>
-        <h3><a href="03-plan.html">How the work runs</a></h3>
-        <p>Five phases, six to eight weeks, and a straight list of what we need from your
-          side before we can start and before we can launch.</p>
+        <h3><a href="03-plan.html">Where it stands</a></h3>
+        <p>What is finished, what arrived from you on 26 August, and the straight list of
+          what is still outstanding before swiftheat.co.in can be switched over.</p>
       </li>
       <li>
         <h3><a href="04-investment.html">The investment</a></h3>
@@ -152,10 +164,11 @@ BODIES["index.html"] = """
     </ol>
 
     <div class="quiet">
-      <p><strong>One promise about content.</strong> We publish only what you send us and can
-        verify. No invented certifications, no borrowed photographs, no claims about years or
-        clients that we cannot stand behind. Anything still unconfirmed appears on the preview
-        marked as outstanding, in a colour you cannot miss, until you confirm it.</p>
+      <p><strong>One promise about content, and we kept it.</strong> We publish only what you
+        send us and can verify. No invented certifications, no borrowed photographs, no claims
+        about years or clients we cannot stand behind. Everything still unconfirmed is on the
+        preview marked as outstanding, in a colour you cannot miss. That is why the preview has
+        visible gaps in it: they are honest gaps, and section three lists every one.</p>
     </div>
 """
 
@@ -187,8 +200,10 @@ BODIES["01-what-we-found.html"] = """
       <p><strong>The address on the site is not the address on your letterhead.</strong> The
         website says Plot No. B-132, 3rd Cross, E Main, near Peenya Police Station. Your email
         signature says Plot No. C-262, 6th Cross, near SVC Co-operative Bank. Google is
-        currently working from the first one. We need you to confirm which is correct before
-        anything is published.</p>
+        currently working from the first one.</p>
+      <p><em>Updated 26 August.</em> Your printed brochure gives a third: No. C-205, 2nd Floor,
+        4th Cross, Peenya 1st Stage. So there are now three plots on record rather than two,
+        and this is still the first thing we need confirmed.</p>
     </div>
 
     <div class="wrap">
@@ -278,14 +293,14 @@ BODIES["01-what-we-found.html"] = """
 
 BODIES["02-what-we-build.html"] = """
     <div class="chapter"><span class="num" aria-hidden="true">02</span>
-      <div><p class="eyebrow">Section two</p><h1>What we will build</h1></div></div>
+      <div><p class="eyebrow">Section two</p><h1>What we built</h1></div></div>
     <div class="wrap">
       <p class="lede">Every section in your brief, plus the three things the audit says are
         unclaimed: a specification driven enquiry, product pages built like datasheets, and
         an industry page for each of the nine industries you named.</p>
       <hr class="rule">
       <h2>The structure</h2>
-      <p>Eight sections, containing twenty three pages.</p>
+      <p>Eight sections, containing twenty six pages.</p>
     </div>
 
     <div class="finding">
@@ -304,9 +319,10 @@ BODIES["02-what-we-build.html"] = """
         summary, quality summary, Peenya location.</p></div>
       <div class="card"><h3>About Us</h3><p>Company profile, capabilities, vision and
         mission, why Swiftheat, infrastructure and team. Written from facts you supply.</p></div>
-      <div class="card"><h3>Products</h3><p>An overview page plus <strong>seven family
+      <div class="card"><h3>Products</h3><p>An overview page plus <strong>eight family
         pages</strong>: cartridge, coil, ceramic and mica band, ceramic and mica nozzle,
-        strip, tubular, thermocouples and sensors, ceramic infrared.</p></div>
+        strip, tubular, thermocouples and sensors, ceramic infrared. Four of those eight are
+        awaiting your confirmation, see section three.</p></div>
       <div class="card"><h3>Applications</h3><p>An overview plus <strong>nine industry
         pages</strong>: injection moulding, packaging machinery, extrusion, blow moulding,
         die and mould, food processing, pharmaceutical machinery, rubber, and other
@@ -390,7 +406,7 @@ BODIES["02-what-we-build.html"] = """
 
       <h2>The enquiry form</h2>
       <p>The most valuable thing in this proposal, and the cheapest to explain. A general
-        contact form asks for a name, a phone number and a message. Your form will ask for a
+        contact form asks for a name, a phone number and a message. Your form asks for a
         heater.</p>
       <p>It changes according to what the visitor selects. Two examples.</p>
     </div>
@@ -457,70 +473,125 @@ BODIES["02-what-we-build.html"] = """
 
 BODIES["03-plan.html"] = """
     <div class="chapter"><span class="num" aria-hidden="true">03</span>
-      <div><p class="eyebrow">Section three</p><h1>How the work runs</h1></div></div>
+      <div><p class="eyebrow">Section three</p><h1>Where it stands</h1></div></div>
     <div class="wrap">
-      <p class="lede">Six to eight weeks from the day your content reaches us. Nothing
-        touches swiftheat.co.in until you have seen every page and approved it.</p>
+      <p class="lede">The build is finished and on a private address. Nothing has touched
+        swiftheat.co.in, and nothing will until you approve it. What is left is content that
+        only you can supply, and it is a short list.</p>
       <hr class="rule">
     </div>
 
+    <div class="kpis">
+      <div class="kpi"><b>26</b><span>Pages built</span></div>
+      <div class="kpi"><b>8</b><span>Product families</span></div>
+      <div class="kpi"><b>9</b><span>Industry pages</span></div>
+      <div class="kpi"><b>76</b><span>Coded options published</span></div>
+    </div>
+
+    <div class="wrap">
+      <h2>What is done</h2>
+    </div>
+
     <ol class="steps">
-      <li><h3>Week 1. Content and confirmation</h3><p>We confirm your address, phone numbers,
-        enquiry email and final product list. You send the logo in a vector file, your
-        specification ranges per family, your testing detail, certificates, and any existing
-        catalogues in whatever state they are in. We agree the photography route.</p></li>
-      <li><h3>Weeks 2 to 3. Structure and design</h3><p>We build the page structure and design
-        the look on the two hardest pages first: the home page and one product family page.
-        You review those two before we build the other twenty one. Changing a direction here
-        costs an hour. Changing it in week six costs a week.</p></li>
-      <li><h3>Weeks 3 to 5. Build</h3><p>All twenty three pages, the enquiry form with its
-        conditional specification fields, the datasheet templates, structured data, the map,
-        WhatsApp and calling. Photography is shot or supplied during this window.</p></li>
-      <li><h3>Week 6. Review on a private link</h3><p>You get a private preview address that
-        only you have. Read every page on your phone and on a computer, with your engineers.
-        Two rounds of changes are included.</p></li>
-      <li><h3>Weeks 7 to 8. Accessibility audit and go live</h3><p>Contrast and accessibility
-        audit, link check, speed check, then we point swiftheat.co.in at the new site, enable
-        HTTPS, submit the sitemap, and map the old pages so no existing link breaks.</p></li>
+      <li><h3>Structure and design</h3><p>Twenty six pages, one stylesheet, self hosted
+        fonts, no third party trackers. The look was set on the home page and the cartridge
+        heater page first, then applied across the rest.</p></li>
+      <li><h3>Product and industry pages</h3><p>Eight family pages built as datasheets, with
+        specification tables, construction cutaways, dimensioned drawings and coded ordering
+        options. Nine industry pages, each with a heating zone table that maps the machine to
+        the element type.</p></li>
+      <li><h3>The requirement list builder</h3><p>Built and tested. A customer picks a
+        heater, sets sizes, chooses coded options and generates a document to print, email or
+        send on WhatsApp. Nothing is stored and no account is needed. It carries a live
+        drawing that redraws on every change.</p></li>
+      <li><h3>Your brochure, mined and applied</h3><p>The write up and the two brochure
+        photographs you sent on 26 August went straight in. Cartridge diameters 6.35 to
+        25.4 mm and both watt density classes. Nine thermocouple types where the old site
+        claimed two. The washer, lug, bolt, spring loaded, mineral insulated and manifold
+        ranges. Lead temperature limits by insulation. One hundred percent calibration,
+        Class 1 and Class A. Your mission and vision, in your words.</p></li>
+      <li><h3>Your logo, in vector for the first time</h3><p>No vector file exists, so the
+        625 pixel image was traced into one and the masthead carries it. The site palette was
+        then retuned to your logo red, since it had been built before we had the logo.</p></li>
+      <li><h3>Accessibility and quality checks</h3><p>WCAG 2.1 AA contrast audit passing on
+        2,172 text elements across thirteen pages. No horizontal overflow from 360 to 1440
+        pixels wide. One hundred automated tests on the list builder, all passing.</p></li>
     </ol>
 
     <div class="wrap">
-      <h2>What we need from you</h2>
-      <p>We want to be direct about this, because content is what slows these projects down,
-        not building. The list is not long but it is real.</p>
+      <h2>What is outstanding</h2>
+      <p>Split honestly into the items that stop us launching and the items that can follow
+        after. Every one is content, not building.</p>
     </div>
 
-    <div class="grid grid-2">
-      <div class="card">
-        <h3>Before we start</h3>
-        <ul>
-          <li>Your correct registered address, confirmed against the two we found</li>
-          <li>Real phone numbers, and a WhatsApp number if you want that option</li>
-          <li>The email address enquiries should reach</li>
-          <li>Your logo as a vector file: AI, EPS, PDF or SVG. Only a small image exists
-            online today.</li>
-          <li>The final product list, including whether immersion heaters and control
-            systems are in or out</li>
-          <li>The year Swiftheat was founded</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h3>Before we can launch</h3>
-        <ul>
-          <li><strong>Photographs.</strong> Two to four clean shots per product family, at
-            least one of each installed on a machine, plus your plant, machinery, assembly
-            and test bench.</li>
-          <li><strong>Specification ranges per family:</strong> diameters, lengths, wattage
-            and voltage ranges, sheath materials, watt density, maximum temperatures,
-            tolerances, thermocouple types, termination and lead options, clamping styles.</li>
-          <li><strong>Testing detail:</strong> which tests, on what equipment, at what stage,
-            what is recorded, and what the customer receives.</li>
-          <li><strong>Certificates and numbers:</strong> ISO, MSME or Udyam, GST, CIN.</li>
-          <li>Any existing catalogues, datasheets or brochures, including old files and
-            printed scans.</li>
-          <li>The industries and customers you actually supply, and any export markets.</li>
-        </ul>
-      </div>
+    <div class="tablewrap">
+      <table>
+        <caption>Outstanding items, in the order they block the launch</caption>
+        <thead><tr><th scope="col">Item</th><th scope="col">What we need</th>
+          <th scope="col">Why it blocks</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Photographs</strong></td>
+            <td>Two to four clean shots per family, at least one installed on a machine, plus
+              plant, machinery, assembly and test bench</td>
+            <td>Forty nine places on the site carry a marked placeholder instead of a
+              photograph. This is the largest single gap by a wide margin.</td></tr>
+          <tr><td><strong>Your address</strong></td>
+            <td>Which plot a courier reaches you at today</td>
+            <td>Three different plots are on record and your brochure introduced a third.
+              It goes on every page, in your map pin and in your search listing.</td></tr>
+          <tr><td><strong>Enquiry email</strong></td>
+            <td>Confirm the address enquiries should reach</td>
+            <td>Your brochure gives rekha@ and sales@ and never mentions info@, which is what
+              the site uses. If info@ is not a live mailbox, web enquiries are being lost
+              right now.</td></tr>
+          <tr><td><strong>Phone numbers</strong></td>
+            <td>Which of the two brochure numbers is the sales line, and which takes
+              WhatsApp</td>
+            <td>We have 9108803706 and 8553002014 from your brochure but publish neither
+              until it has been dialled and answered.</td></tr>
+          <tr><td><strong>Final product list</strong></td>
+            <td>A yes or no on Ceramic Infrared, Nozzle, Strip and Tubular heaters</td>
+            <td>Those four have pages, but they appear in neither your write up nor your
+              brochure. We will not sell a family you do not make.</td></tr>
+          <tr><td><strong>Domain access</strong></td>
+            <td>Registrar login for swiftheat.co.in, or the ability to change nameservers</td>
+            <td>Required to point the domain at the new site. The domain currently sits at
+              Hostinger.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Wanted, but the site can launch without them</caption>
+        <thead><tr><th scope="col">Item</th><th scope="col">What we need</th></tr></thead>
+        <tbody>
+          <tr><td>Performance figures</td><td>Maximum sheath temperature, maximum watt density
+            and tolerances per family. Nine places still read "to confirm".</td></tr>
+          <tr><td>Heater testing detail</td><td>Which tests, on what equipment, at what stage,
+            recorded against what. Your sensor calibration is already published because the
+            brochure states it; the heater equivalent is not.</td></tr>
+          <tr><td>Certificates</td><td>ISO if you hold one, Udyam or MSME, GST. Numbers and
+            certificates, not claims. Nothing appears until the document does.</td></tr>
+          <tr><td>Logo artwork</td><td>AI, EPS, PDF or SVG. Our trace works, but a trace of a
+            625 pixel image is a copy of a copy.</td></tr>
+          <tr><td>Print ready brochure</td><td>The PDF or source file your printer was given.
+            It goes in Downloads, and it very likely contains the logo artwork above.</td></tr>
+          <tr><td>Specification sign off</td><td>One engineer to read every specification
+            table and every drawing before it is published.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="finding">
+      <span class="tag">Two decisions, not deliveries</span>
+      <p><strong>The four unevidenced families.</strong> Confirm them and they stay as built.
+        Tell us they are out and we remove them, redirect the addresses and tidy the
+        navigation, at no cost. Tell us they are bought in rather than made, and we say so on
+        the page, the way the coil heater page now says the element is German made.</p>
+      <p><strong>Your applications list.</strong> Your write up names nine. Two of them,
+        hot runner systems and laboratories, have no page. Two pages we built, blow moulding
+        and die and mould, are not on your list. Confirm which nine you want.</p>
     </div>
 
     <div class="wrap">
@@ -536,18 +607,22 @@ BODIES["03-plan.html"] = """
         shoot at.</p>
       <p>Set aside an afternoon and one person who knows the products. That is genuinely the
         whole requirement.</p>
-      <p>What will not work is stock photography of somebody else's heaters. You actually
-        manufacture, and the only way a website shows that is with real pictures of your real
-        products and your real factory. A slightly imperfect photograph of your own coil
-        heater on your own bench is worth more here than a perfect photograph of a heater that
-        is not yours.</p>
+      <p>Two things we cannot use. Stock photography of somebody else's heaters: your old
+        site carried a cartridge heater image with a Chinese manufacturer's watermark still
+        on it, and reverse image search makes that trivial to spot. And your own brochure
+        photographs, which are yours but sit at roughly 200 to 400 pixels once cropped out of
+        a printed page. They are a useful guide to what to shoot, not the shoot itself.</p>
+      <p>A slightly imperfect photograph of your own coil heater on your own bench is worth
+        more here than a perfect photograph of a heater that is not yours.</p>
 
-      <h2>How we handle content that has not arrived</h2>
-      <p>Where a specification or a certificate is outstanding, we mark it clearly as
-        outstanding on the preview and we do not invent a value to fill the gap. If content is
-        still outstanding past an agreed date, the build clock pauses rather than the scope
-        quietly shrinking. We would rather have that conversation early than hand you a site
-        with placeholder text on it, which is the position you are in today.</p>
+      <h2>If you would rather launch sooner</h2>
+      <p>There is a middle path, and it is your call rather than ours. We can launch on the
+        four items that are pure fact, which is the address, the email, the phone and the
+        product list, and hold back the pages that lean hardest on photography until the
+        photographs exist. You would go live with fewer pages that are all complete, instead
+        of waiting for every page to be complete at once.</p>
+      <p>It costs nothing either way and it changes no part of the price. Say which you
+        prefer.</p>
     </div>
 
     <div class="quiet">
@@ -562,19 +637,22 @@ BODIES["04-investment.html"] = """
     <div class="chapter"><span class="num" aria-hidden="true">04</span>
       <div><p class="eyebrow">Section four</p><h1>The investment</h1></div></div>
     <div class="wrap">
-      <p class="lede">One price for the whole thing. No phases, no modules, no upgrade path
-        you have to buy later to make the site work, and nothing else to procure.</p>
+      <p class="lede">One price for the whole thing, unchanged from the proposal. No phases,
+        no modules, no upgrade path you have to buy later to make the site work, and nothing
+        else to procure.</p>
     </div>
 
     <div class="price">
-      <p class="figure">Rs 65,000<small>One time, for the complete website described in this
-        proposal. Includes the first year of the annual care plan, so there is nothing further
-        to pay in year one. GST not applicable.</small></p>
+      <p class="figure">Rs 65,000<small>One time, for the complete website as built.
+        Includes the first year of the annual care plan, so there is nothing further to pay in
+        year one. GST not applicable. The proposal miscounted the product families as seven
+        while listing eight; eight were always the scope and eight were built, at no
+        change to this figure.</small></p>
       <hr>
       <h3>What that covers</h3>
       <ul class="linelist">
-        <li><b>All eight sections, twenty three pages</b><span>Included</span></li>
-        <li><b>Seven product family pages, built as datasheets</b><span>Included</span></li>
+        <li><b>All eight sections, twenty six pages</b><span>Included</span></li>
+        <li><b>Eight product family pages, built as datasheets</b><span>Included</span></li>
         <li><b>Nine industry pages with heating zone tables</b><span>Included</span></li>
         <li><b>Specification driven enquiry form, per product family</b><span>Included</span></li>
         <li><b>Downloadable datasheet, one per product family</b><span>Included</span></li>
@@ -679,7 +757,7 @@ BODIES["04-investment.html"] = """
           <tr><td>Payment</td><td>40 percent to begin, 40 percent on preview approval, 20 percent at go live</td></tr>
           <tr><td>Timeline</td><td>Six to eight weeks from receipt of your content</td></tr>
           <tr><td>Changes</td><td>Two rounds included at preview. Further rounds Rs 5,000 each.</td></tr>
-          <tr><td>Scope</td><td>Seven product families, nine industries, as listed in section two</td></tr>
+          <tr><td>Scope</td><td>Eight product families, nine industries, as listed in section two and as delivered</td></tr>
           <tr><td>Beyond that scope</td><td>Additional product family page Rs 6,000. Additional industry page Rs 4,000. Both at your option, never assumed.</td></tr>
           <tr><td>Later changes</td><td>Rs 1,500 per hour, once the care plan allowance for the year is used</td></tr>
           <tr><td>Ownership</td><td>The site, the code and the domain are yours. No licence, no lock in.</td></tr>
@@ -690,17 +768,28 @@ BODIES["04-investment.html"] = """
 
     <div class="wrap">
       <h2>The next step</h2>
-      <p>If this reads right to you, reply and say so, and we will send a one page scope note
-        confirming everything above for your records. We will also send the content checklist
-        from section five as a simple list you can forward to whoever holds the specifications
-        and the certificates.</p>
+      <p>Read the preview, with an engineer alongside you for the product pages. Then reply
+        with three things and we can move.</p>
+      <ol>
+        <li><strong>Your approval of the build</strong>, or the changes you want. Two rounds
+          are included and this is the first.</li>
+        <li><strong>The six items in the first table of section three.</strong> Address,
+          enquiry email, which phone is the sales line, a yes or no on the four unconfirmed
+          product families, the photographs, and registrar access for the domain.</li>
+        <li><strong>Whether you want to launch complete or launch sooner</strong>, as set out
+          at the end of section three.</li>
+      </ol>
+      <p>Approval and the first four of those six can come back in one reply. The photographs
+        are the item with a real lead time, so if only one thing happens this week, let it be
+        an afternoon with a phone camera.</p>
       <p>If you would rather talk it through first, we are happy to come to Peenya. Seeing the
         plant would improve the site anyway, and it is the fastest way to work out what the
         photography should show.</p>
-      <p>One thing regardless of what you decide: the phone number on your current contact
-        page is a placeholder. That one is worth fixing this week.</p>
+      <p>One thing worth doing regardless: send a test email to info@swiftheat.co.in from an
+        outside address and see whether it arrives. Your brochure does not list it, the old
+        site did, and if it is dead then enquiries have been going nowhere.</p>
       <p style="margin-top:32px">
-        <a class="btn" href="mailto:propagetech@gmail.com?subject=Swiftheat%20website%20proposal">Reply to this proposal</a>
+        <a class="btn" href="mailto:propagetech@gmail.com?subject=Swiftheat%20website%20approval%20for%20go%20live">Approve the build</a>
       </p>
       <p style="color:var(--ink-600);font-size:.9rem">ProPage, +91 9945 62 1717</p>
     </div>
@@ -714,8 +803,13 @@ for href, short, sub in PAGES:
         title=html.escape(title),
         descr=html.escape(DESCR[href]),
         navitems=nav(href),
-        body=BODIES[href].rstrip(),
+        body=BODIES[href].rstrip().replace("{preview}", PREVIEW),
         pagerhtml=pager(href),
     )
     (out / href).write_text(page, encoding="utf-8")
     print("wrote %-26s %6d bytes" % (href, len(page)))
+
+if PREVIEW == "PREVIEW-URL-NOT-SET":
+    print("\nWARNING: PREVIEW is still the placeholder, so every link to the built site\n"
+          "         in this proposal is dead. Deploy the private preview, set PREVIEW at\n"
+          "         the top of this script, and rerun before sending anything to Swiftheat.")

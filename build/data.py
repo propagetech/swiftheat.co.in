@@ -22,15 +22,23 @@ COMPANY = {
     "name": "Swiftheat Thermal Technologies Pvt Ltd",
     "short": "Swiftheat",
     "street": "Plot No. C-262, 6th Cross, near SVC Co-operative Bank",
-    "area": "Peenya Industrial Area 1st Phase",
+    # Both client sources, the MCA filing and the 2026 brochure, say "1st Stage".
+    # "1st Phase" came off the old site and is the odd one out.
+    "area": "Peenya Industrial Area 1st Stage",
     "city": "Bengaluru",
     "state": "Karnataka",
     "pin": "560058",
     "country": "IN",
-    # The only address the company has ever published. enquiry@ was proposed but is
-    # not confirmed, so the verified one is what goes on the site.
+    # Held back pending the client, see the address and contact note below.
+    # The 2026 brochure gives rekha@ and sales@ and does not mention info@ at all,
+    # so info@ may not even be a live mailbox. Nothing changes until that is answered.
     "email": "info@swiftheat.co.in",
     "phone_display": TBD,
+    # From the brochure, both ordinary mobiles rather than an IndiaMART 8047x
+    # call tracking number. Not published: the house rule is that a number is
+    # dialled and answered directly before it goes on the site.
+    "phone_unverified": ("9108803706", "8553002014"),
+    "email_unverified": ("rekha@swiftheat.co.in", "sales@swiftheat.co.in"),
     # Confirmed from Swiftheat's own IndiaMART company profile and the MCA
     # registry, August 2026. Both are the company's own filings, not a third
     # party's description, so they are publishable.
@@ -40,11 +48,14 @@ COMPANY = {
     "founded_long": "August 2021",
     "staff": "11 to 25",
     "cin": "U29100KA2021PTC150780",
-    # The registry and the IndiaMART profile both give B-132, 3rd Cross, 1st
-    # Stage. The letterhead gives C-262, 6th Cross, which is what the site
-    # publishes because it is the more recent of the two. Still to be settled
-    # with the client: a move that was never filed, or a wrong letterhead.
+    # Three sources, three different plots, and the brochure made it worse rather
+    # than better. Nothing goes live until the client says which plot a courier
+    # reaches them at today.
+    #   B-132, 3rd Cross  MCA filing at incorporation, and the old site
+    #   C-262, 6th Cross  email signature, and what this file still publishes
+    #   C-205, 4th Cross  the 2026 printed brochure, 2nd Floor, Peenya 1st Stage
     "address_registry": "B-132, 3rd Cross, 1st Stage, Peenya Industrial Estate, Bangalore 560058",
+    "address_brochure": "No. C-205, 2nd Floor, 4th Cross, Peenya 1st Stage, Peenya Industrial Area, Bangalore 560058",
     "domain": "swiftheat.co.in",
     "origin": "https://swiftheat.co.in",
 }
@@ -61,11 +72,11 @@ FAMILIES = [
  "lede": "Swaged, high watt density heaters for bore mounting in moulds, platens and dies. "
          "Built to your drawing, with or without an inbuilt thermocouple.",
  "summary": "Bore mounted in moulds, platens and dies. Round, swaged, made to your length.",
- "meta": "Cartridge heaters made in Peenya, Bangalore. Diameters 6.5 to 25 mm, swaged "
+ "meta": "Cartridge heaters made in Peenya, Bangalore. Diameters 6.35 to 25.4 mm, swaged "
          "construction, single or double ended, inbuilt thermocouple optional. Built to your drawing.",
  "facets": {"heats": "metal|liquid", "industry": "injection-moulding|die-and-mould|packaging-machinery|blow-moulding|rubber|food-processing",
             "form": "insert"},
- "chips": [("6.5 to 25 mm", "Diameter range", False),
+ "chips": [("6.35 to 25.4 mm", "Diameter range", False),
            ("35 to 1500 mm", "Length range", False),
            (TBD, "Max sheath temp", True),
            (TBD, "Max watt density", True)],
@@ -85,8 +96,9 @@ FAMILIES = [
  "spec_rows": [
    ("Maximum sheath temperature", TBD, TBD),
    ("Maximum watt density", TBD, TBD),
+   ("Watt density classes made", "High and medium", "High and medium"),
    ("Standard voltages", "110, 230, 240, 415 V", "110, 230, 240, 415 V"),
-   ("Diameter range", "6.5 to 25 mm", "6.5 to 25 mm"),
+   ("Diameter range", "6.35 to 25.4 mm", "6.35 to 25.4 mm"),
    ("Length range", "35 to 1500 mm", "35 to 1500 mm"),
    ("Wattage range", "20 to 6000 W", "20 to 6000 W"),
    ("Diameter tolerance", TBD, TBD),
@@ -96,9 +108,9 @@ FAMILIES = [
  ],
  "dim_caption": "Standard diameters and available lengths",
  "dim_cols": ["Diameter D", "Inch", "Min L", "Max L"],
- "dim_rows": [("6.5 mm", "1/4", TBD, TBD), ("8 mm", "5/16", TBD, TBD), ("10 mm", "3/8", TBD, TBD),
-              ("12.5 mm", "1/2", TBD, TBD), ("16 mm", "5/8", TBD, TBD), ("19 mm", "3/4", TBD, TBD),
-              ("25 mm", "1", TBD, TBD)],
+ "dim_rows": [("6.35 mm", "1/4", TBD, TBD), ("7.94 mm", "5/16", TBD, TBD), ("9.53 mm", "3/8", TBD, TBD),
+              ("12.7 mm", "1/2", TBD, TBD), ("15.88 mm", "5/8", TBD, TBD), ("19.05 mm", "3/4", TBD, TBD),
+              ("25.4 mm", "1", TBD, TBD)],
  "dim_keys": "L overall length, HL heated length, CZ cold zone, D diameter, LL lead length",
  "options": [
    ("Termination", [
@@ -126,7 +138,9 @@ FAMILIES = [
      ("M3", "T strain clamp", "Strain relief where the lead is pulled in service.", ""),
    ]),
  ],
- "options_note": "Thermocouple junction position is specified separately: disc end, mid length or lead end.",
+ "options_note": "Thermocouple junction position is specified separately: disc end, mid length or lead end. "
+                 "Continuous lead temperature limits, as published by Swiftheat: Teflon 270 C, "
+                 "fibreglass 450 C, ceramic 900 to 1000 C.",
  "selection": [
    ("Watt density",
     "Watt density is the load on the sheath surface. Too high and the element burns out early, too "
@@ -161,8 +175,8 @@ FAMILIES = [
  "lede": "Spiral wound elements that wrap a nozzle or a manifold and put a high watt density into a "
          "very small area, with the thermocouple built into the coil.",
  "summary": "Hot runner nozzles and manifolds. Wound to the diameter, profiled along the length.",
- "meta": "Coil heaters for hot runner nozzles and manifolds, made in Peenya, Bangalore. Round, square "
-         "and rectangular profiles, inside diameters 8 to 120 mm, inbuilt thermocouple optional.",
+ "meta": "Coil heaters for hot runner nozzles and manifolds, supplied from Peenya, Bangalore. German "
+         "made element, standard profile 2.2 by 4.2 mm, inbuilt Type J thermocouple, Teflon leads.",
  "facets": {"heats": "metal", "industry": "injection-moulding|blow-moulding|packaging-machinery|extrusion", "form": "wrap"},
  "chips": [("8 to 120 mm", "Inside diameter", False),
            ("20 to 600 mm", "Heated length", False),
@@ -178,6 +192,10 @@ FAMILIES = [
    "always specifies it. Round section is easier to wind to a tight radius.",
    "Pitch can be varied along the length, so more turns can be placed where the heat is needed and "
    "fewer where it is not. That is how a manifold gets an even melt without hot spots at the ends.",
+   "These are the one family Swiftheat supplies rather than winds. The element is German made, and "
+   "the standard item is a 2.2 by 4.2 mm section with Teflon leads, an inbuilt Type J thermocouple, "
+   "a 900 mm black fibreglass sleeve and a ground wire. We say so because where a part is made is a "
+   "fair question, and the answer here is not Peenya.",
  ],
  "spec_cols": ["Property", "Value"],
  "spec_rows": [
@@ -188,8 +206,12 @@ FAMILIES = [
    ("Heated length range", "20 to 600 mm"),
    ("Wattage range", "100 to 3000 W"),
    ("Profile sections offered", "Round, square, rectangular"),
+   ("Standard stock section", "2.2 mm thick by 4.2 mm wide"),
+   ("Standard lead", "Teflon insulated, with ground wire"),
+   ("Standard sleeve", "900 mm black fibreglass"),
    ("Resistance tolerance", TBD),
-   ("Thermocouple types", "J and K, inbuilt"),
+   ("Thermocouple types", "J and K, inbuilt. Type J on the standard item"),
+   ("Manufacture", "German made element, supplied by Swiftheat"),
  ],
  "dim_caption": "What we need in order to wind a coil",
  "dim_cols": ["Dimension", "Symbol", "Range"],
@@ -214,7 +236,9 @@ FAMILIES = [
      ("TCK", "Type K", "Higher range than Type J.", ""),
    ]),
  ],
- "options_note": "State which end the leads leave from, and whether a reflection tube or sleeve is required.",
+ "options_note": "State which end the leads leave from, and whether a reflection tube or sleeve is required. "
+                 "The standard stock item is a 2.2 by 4.2 mm section with Teflon leads, an inbuilt "
+                 "Type J thermocouple, a 900 mm black fibreglass sleeve and a ground wire.",
  "selection": [
    ("Match the bore, not the nominal size",
     "A coil heater works by contact. Give us the actual measured diameter of the nozzle or the pocket, "
@@ -586,16 +610,16 @@ FAMILIES = [
  "nav": "Sensors",
  "code": "TS",
  "art": "sensor",
- "lede": "The measuring half of the job. Type J and K thermocouples and PT100 class RTDs, made to the "
+ "lede": "The measuring half of the job. Nine thermocouple types and PT100 class RTDs, made to the "
          "immersion length, junction and connection your controller expects.",
- "summary": "Type J and K thermocouples, PT100, PT500 and PT1000 RTDs, made to length.",
- "meta": "Thermocouples and temperature sensors made in Peenya, Bangalore. Type J and K, PT100, PT500 "
-         "and PT1000 RTDs, sheath diameters 1.5 to 8 mm, immersion lengths to 2000 mm.",
+ "summary": "Types J, K, N, T, E, R, S, B and C, plus PT100, PT500 and PT1000 RTDs, made to length.",
+ "meta": "Thermocouples and temperature sensors made in Peenya, Bangalore. Types J, K, N, T, E, R, S, "
+         "B and C, PT100, PT500 and PT1000 RTDs, washer, lug, bolt, spring loaded and manifold styles.",
  "facets": {"heats": "sensor", "industry": "injection-moulding|extrusion|food-processing|pharmaceutical-machinery|industrial-heating|packaging-machinery|blow-moulding|die-and-mould|rubber", "form": "sensor"},
  "chips": [("1.5 to 8 mm", "Sheath diameter", False),
            ("20 to 2000 mm", "Immersion length", False),
-           ("J, K, PT100", "Types offered", False),
-           (TBD, "Tolerance class", True)],
+           ("9 types, PT100", "Types offered", False),
+           ("Class 1 and Class A", "Tolerance class", False)],
  "temps": (0, 1100),
  "construction": [
    "A thermocouple is two dissimilar wires joined at one end. The junction produces a small voltage "
@@ -610,14 +634,22 @@ FAMILIES = [
  ],
  "spec_cols": ["Property", "Thermocouple", "RTD"],
  "spec_rows": [
-   ("Types offered", "J, K", "PT100, PT500, PT1000"),
+   ("Types offered", "J, K, N, T, E, R, S, B, C", "PT100, PT500, PT1000"),
    ("Useful range", TBD, TBD),
-   ("Tolerance class", TBD, TBD),
+   ("Tolerance class", "Class 1", "Class A"),
+   ("Calibration", "100 percent, certificate on request", "100 percent, certificate on request"),
    ("Sheath diameters", "1.5, 3, 4.5, 6, 8 mm", "3, 4.5, 6, 8 mm"),
    ("Immersion length range", "20 to 2000 mm", "20 to 2000 mm"),
    ("Cable length range", "100 to 10000 mm", "100 to 10000 mm"),
    ("Junction arrangements", "Grounded, ungrounded, exposed", "Not applicable"),
    ("Connections", "Plug, bare tails, terminal head", "Plug, bare tails, terminal head"),
+   ("Terminals", "PVC pin, round lug, fork", "PVC pin, round lug, fork"),
+   ("Washer style", "OD 8 to 16 mm, bolt M3 to M10, 3 to 6 mm thick", TBD),
+   ("Lug style", "OD 8 to 20 mm, bolt M3 to M12, 0.5 to 3 mm thick", TBD),
+   ("Bolt style, fixed or rotational", "Standard thread sizes", "Standard thread sizes"),
+   ("Spring loaded style", "Bayonet ID 11 to 18 mm, spring 100 to 1000 mm", "Bayonet ID 11 to 18 mm, spring 100 to 1000 mm"),
+   ("Mineral insulated sheath", "2 to 8 mm", TBD),
+   ("Manifold style", "TEF-68, 4 mm diameter, 11 and 12 mm tip", "Not applicable"),
  ],
  "dim_caption": "What we need in order to make a sensor",
  "dim_cols": ["Dimension", "Symbol", "Note"],
@@ -645,9 +677,13 @@ FAMILIES = [
      ("H", "Terminal head", "Cast head with a terminal block.", ""),
    ]),
  ],
- "options_note": "PT1000 elements, bayonet caps, washer styles, compression fittings and extension "
-                 "cable are all available. State the controller make and model if you want us to "
-                 "match an existing sensor.",
+ "options_note": "The coded list above is the part the requirement builder covers. Types N, T, E, R, "
+                 "S, B and C are made to order alongside them, as are washer, lug, bolt, spring "
+                 "loaded, mineral insulated and manifold styles, compression fittings, bulkheads, "
+                 "NPT and BSP bushes, connectors and extension cable. Continuous limits by lead "
+                 "insulation: Teflon 270 C, fibreglass 450 C, ceramic 900 to 1000 C, and mineral "
+                 "insulated sensors run to 1200 to 1400 C. State the controller make and model if "
+                 "you want us to match an existing sensor.",
  "selection": [
    ("Match the type to the controller",
     "A Type K sensor read by a controller set to Type J is wrong at every temperature, and it is a "

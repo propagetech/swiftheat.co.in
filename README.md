@@ -23,8 +23,8 @@ Twenty seven pages, generated into the repository root.
 
 Assets: `css/site.css` and `css/bom.css`, `js/site.js` and `js/bom.js`,
 `fonts/` (five self hosted woff2 faces), `icons/` (eight Noun Project concept
-icons, credited in `icons/CREDITS.md`), `imgs/` (seven accessory photographs
-recovered from the old site).
+icons, credited in `icons/CREDITS.md`), `imgs/` (the logo in vector, plus seven
+accessory photographs recovered from the old site).
 
 ### Structure of a product family page
 
@@ -62,6 +62,7 @@ site says lives in `build/`:
 | `build/noun-search.py` | Searches the Noun Project, lists only CC BY and public domain results |
 | `build/noun-icons.py` | Fetches the chosen icons, traces, crops and recolours them into `icons/` |
 | `build/prep-imgs.py` | Knocks the background out of the old site's accessory photographs into `imgs/` |
+| `build/logo-svg.py` | Traces Swiftheat's logo into `imgs/swiftheat-logo.svg`, two colours, one coordinate system |
 
 Two rules govern `build/data.py`:
 
@@ -103,6 +104,37 @@ watermark, but a file uploaded in the same batch does, so Swiftheat should
 confirm these are theirs before go live. They are the only raster images on the
 site; pull them by deleting the fifth element from the option tuples in
 `build/data.py`.
+
+### The logo
+
+Swiftheat have no vector logo. Three rasters of the same artwork exist: a
+625 x 208 PNG in the old site's media library, a 535 x 180 JPEG the client sent
+on 26 Aug 2026, and the impression printed on their brochure. `build/logo-svg.py`
+traces the largest into `imgs/swiftheat-logo.svg` and the masthead carries that.
+
+It is a trace of their artwork, not a redesign: the slab serif letterforms, the
+flame, the two rules that swap colour across it, and the two colours are all
+theirs. The colours are raw `#0000ff` and `#ff0000`, sampled off the source,
+which is what a logo drawn in an office application looks like. Published as
+found rather than tidied, because it is their mark and not ours to restyle.
+
+The site palette answers the logo rather than the other way round. The accent
+ramp in `css/site.css` was rust orange while the logo was still unknown; it is
+now that logo red deepened into something usable on screen, and the ink ramp was
+already the navy that answers the logo blue. Red at a given lightness is darker
+than orange, so `--heat-700`, `--heat-600` and `--heat-400` all gained contrast
+in the move. `--heat-500` went the other way: every text use of it sits on a
+dark surface, and the palest of those is the photograph placeholder rather than
+`--ink-900`, so it is lightened and pushed to full saturation to stay a red
+rather than drifting to salmon. The contrast audit is the gate on all of it.
+
+Regenerate with:
+
+    python3 build/logo-svg.py
+
+Ask the client for AI, EPS, PDF or SVG anyway. A trace of a 625 px raster is a
+copy of a copy, and the brochure's print ready file is the likeliest place the
+real curves survive.
 
 ### Photography is still the blocker
 

@@ -392,7 +392,7 @@ def page(path, title, description, body, active="", depth=None, jsonld=None, jum
 
 <header class="masthead">
   <div class="wrap">
-    <a class="logo" href="%(home)s">Swift<em>heat</em><small>Thermal Technologies</small></a>
+    <a class="logo" href="%(home)s"><img src="%(logo)s" alt="Swiftheat" width="2154" height="361"><small>Thermal Technologies</small></a>
     <button class="navtoggle" type="button" aria-expanded="false" aria-controls="mainnav">
       <svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true"><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 1h16M1 7h16M1 13h16"/></g></svg>
       Menu
@@ -429,6 +429,7 @@ def page(path, title, description, body, active="", depth=None, jsonld=None, jum
         "builder": rel(depth, "build-a-list/"),
         "resources": rel(depth, "resources/"),
         "home": rel(depth, ""),
+        "logo": rel(depth, "imgs/swiftheat-logo.svg"),
         "nav": _nav(depth, active),
         "crumbs": crumbs(depth, crumb) if crumb else "",
         "jump": jumpnav,

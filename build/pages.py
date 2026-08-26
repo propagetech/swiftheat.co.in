@@ -418,6 +418,9 @@ def about():
         strip, tubular and ceramic infrared heaters, along with the thermocouples and RTDs that
         control them. The company designs to a customer drawing, reverse engineers an element that
         no longer has a drawing, and makes prototypes before a production quantity is committed.</p>
+      <p>The range runs from standard sensing elements held in stock, which ship as they are, through
+        to developments drawn up for one customer and one machine. Most orders sit somewhere between
+        the two: a standard form, in a size and a set of options that only you use.</p>
       <p>Manufacturing happens in Peenya, which matters more than it sounds. An element built in the
         same city as the machine it serves can be measured, made, fitted and corrected inside a week.</p>
     </div>
@@ -440,6 +443,21 @@ def about():
       </div>
       <p class="cap">Every item marked "to confirm" is waiting on a document from Swiftheat, not on
         a decision. Claims that cannot be evidenced are not published.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band ink">
+  <div class="wrap two">
+    <div>
+      <h2>Mission</h2>
+      <p>To be a customer centric company where customers can find the right products and the right
+        solution for all their heating and sensing related problems.</p>
+    </div>
+    <div>
+      <h2>Vision</h2>
+      <p>To lead the market by manufacturing the best products, customised to the requirement of the
+        customer, at a competitive price and with great customer service.</p>
     </div>
   </div>
 </section>
@@ -668,6 +686,35 @@ def quality():
 <section class="band alt">
   <div class="wrap two">
     <div>
+      <h2>Sensor calibration</h2>
+      <p>The one part of this page that is already confirmed, because Swiftheat publish it
+        themselves. Every temperature sensor is calibrated, not a sample from the batch, and the
+        certificate is issued against your order when you ask for it.</p>
+      <div class="contactcard">
+        <dl>
+          <dt>Coverage</dt><dd>100 percent of sensors, not a sample</dd>
+          <dt>Thermocouple accuracy</dt><dd>Class 1</dd>
+          <dt>RTD accuracy</dt><dd>Class A</dd>
+          <dt>Certificate</dt><dd>Issued on request, per customer requirement</dd>
+          <dt>Calibration equipment and its own traceability</dt><dd class="tbd">%(tbd)s</dd>
+        </dl>
+      </div>
+      <p class="cap">Ask for the certificate at the enquiry stage rather than after delivery. It is
+        issued per requirement, which means it has to be a requirement.</p>
+    </div>
+    <div>
+      <h2>Heater testing</h2>
+      <p>The equivalent statement for heating elements has not been supplied yet. The four tests
+        above are the ones the industry runs and the ones we expect to publish, but what Swiftheat
+        actually runs, on what equipment and to what criterion, is still to be confirmed. Nothing
+        goes on this page until it has.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap two">
+    <div>
       <h2>Material traceability</h2>
       <p>Sheath material, resistance wire and insulation are the three things a buyer cannot verify
         by looking. What is recorded against a batch, and what can be produced afterwards, will be
@@ -696,7 +743,7 @@ def quality():
   </div>
 </section>
 
-<section class="band">
+<section class="band alt">
   <div class="wrap two">
     <div>
       <h2>Certifications</h2>
@@ -860,7 +907,7 @@ def contact():
   <div class="wrap grid">
     <div>
       <p class="eyebrow">Contact and get a quote</p>
-      <h1>Peenya Industrial Area, 1st Phase</h1>
+      <h1>Peenya Industrial Area, 1st Stage</h1>
       <p class="lede">Send a specification and it is quoted from directly. Send a photograph of the
         old element and we will work it out. Either way it reaches an engineer, not a form inbox.</p>
       <div class="actions">
@@ -903,7 +950,7 @@ def contact():
     </div>
     <div>
       <h2>Finding the works</h2>
-      <p>Peenya Industrial Area 1st Phase, near SVC Co-operative Bank. Come and see the plant if you
+      <p>Peenya Industrial Area 1st Stage, near SVC Co-operative Bank. Come and see the plant if you
         are specifying anything unusual: half an hour on the shop floor settles more than a week of
         email.</p>
       <div class="shot shot-sm">
@@ -932,7 +979,7 @@ def contact():
     ld = dict(ORG)
     ld["@type"] = "LocalBusiness"
     return page("contact/index.html", "Contact and get a quote | %s" % COMPANY["name"],
-                "Swiftheat Thermal Technologies, Peenya Industrial Area 1st Phase, Bengaluru 560058. "
+                "Swiftheat Thermal Technologies, Peenya Industrial Area 1st Stage, Bengaluru 560058. "
                 "Send a heater specification and it is quoted from directly.",
                 body, active="contact/", depth=1, jsonld=ld,
                 crumb=[("", "Home"), (None, "Contact")])
