@@ -176,6 +176,29 @@ this repository. They live in `docs/` in the working folder and are gitignored.
 
 ## Before go live
 
+### Item zero: turn the preview noindex off
+
+The preview lives at <https://propagetech.github.io/swiftheat.co.in/>, which is
+GitHub Pages on a public repository. It is unlisted, not private: Pages cannot
+set a password, and a `robots.txt` served from a subdirectory is ignored, because
+crawlers only read the one at the domain root. So `PREVIEW_NOINDEX` in
+`build/data.py` puts `noindex, nofollow` on every page, and that is the only thing
+keeping the preview out of search.
+
+**It has to come off at go live, or the real site will never rank.** Set it to
+`False`, rerun `site-build.py`, and the shouting stops. `site-build.py` prints a
+banner on every run while it is `True`, which is the reminder.
+
+The deploy workflow also strips `docs/` and `archive-old-site/` from the published
+artifact. The archive stays in the repository as the record of the old site but
+must never be served: `Cartridge-Heaters-2.png` carries a competitor's DETAI
+watermark, and every archived page still carries the old Rank Math `follow, index`
+tag. `proposal/` **is** served, because the client needs to read it, and it
+carries its own `noindex`. Note that the repository being public means the
+proposal's pricing is readable on GitHub regardless.
+
+### The rest
+
 Confirmed since the first build, from Swiftheat's own IndiaMART profile and the
 MCA registry, and now published:
 

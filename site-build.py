@@ -15,7 +15,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from build import pages, render
-from build.data import COMPANY, FAMILIES, INDUSTRIES
+from build.data import COMPANY, FAMILIES, INDUSTRIES, PREVIEW_NOINDEX
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -66,6 +66,14 @@ def main():
     for path, n in written:
         print("%7d  %s" % (n, path))
     print("%7d  bytes in %d files" % (total, len(written)))
+
+    if PREVIEW_NOINDEX:
+        print("\n" + "!" * 72)
+        print("!! PREVIEW_NOINDEX is True: every page carries noindex, nofollow.")
+        print("!! Correct while the preview is on a public github.io URL.")
+        print("!! Set it False in build/data.py and rebuild AT GO LIVE, or the")
+        print("!! real swiftheat.co.in will be invisible to Google.")
+        print("!" * 72)
 
 
 def _drift_check():

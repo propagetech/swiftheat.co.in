@@ -18,7 +18,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment:
-      name: github-pages
+      name: "github-pages"
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
@@ -34,7 +34,15 @@ jobs:
       - name: Strip internal files from the deploy
         run: |
           rm -rf docs .claude tools drafts
-          echo "removed internal planning files from the published artifact"
+          # The archive of the old WordPress site stays in the repository as the
+          # record of what was there, but it must not be served. Two reasons.
+          # Cartridge-Heaters-2.png carries a competitor's DETAI watermark, and
+          # re-hosting another manufacturer's photograph on a public URL we
+          # control is the exact exposure we told the client to avoid. And every
+          # archived page still carries the old Rank Math "follow, index" tag,
+          # so it actively invites crawlers.
+          rm -rf archive-old-site
+          echo "removed internal planning files and the old site archive"
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

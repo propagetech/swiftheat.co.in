@@ -2,11 +2,14 @@
 """Generates the Swiftheat proposal pages. One shell, seven bodies."""
 import html, pathlib
 
-# The private preview address. Set this once the preview is deployed, then
-# rerun this script. Everything in the proposal that points at the built site
-# reads from here, so it is a one line change. The build refuses to stay quiet
-# while it is still the placeholder.
-PREVIEW = "PREVIEW-URL-NOT-SET"
+# The preview address. Everything in the proposal that points at the built site
+# reads from here, so moving the preview is a one line change.
+#
+# Note what this is: GitHub Pages on a public repository. It is unlisted, not
+# private. There is no password, because GitHub Pages cannot do one. What keeps
+# it out of Google is the noindex on every page, set by PREVIEW_NOINDEX in
+# build/data.py. Do not describe it to the client as private.
+PREVIEW = "https://propagetech.github.io/swiftheat.co.in"
 
 PAGES = [
     ("index.html",             "Proposal",             "Swiftheat website proposal"),
@@ -117,8 +120,8 @@ BODIES["index.html"] = """
     <div class="finding">
       <span class="tag">Start here</span>
       <p><a href="{preview}/"><strong>Open the site</strong></a>. All twenty six pages, on a
-        private address that only you have. Read it on your phone and on a computer, and get
-        an engineer to read the product pages.</p>
+        working address that is not linked from anywhere and is kept out of Google. Read it on
+        your phone and on a computer, and get an engineer to read the product pages.</p>
       <p><a href="{preview}/build-a-list/"><strong>Open the heater list builder</strong></a>.
         Pick a heater, set the sizes, tap the options, add it to the list. Build up as many
         lines as you need, then generate a document you can save as a PDF, email or send on
@@ -475,9 +478,10 @@ BODIES["03-plan.html"] = """
     <div class="chapter"><span class="num" aria-hidden="true">03</span>
       <div><p class="eyebrow">Section three</p><h1>Where it stands</h1></div></div>
     <div class="wrap">
-      <p class="lede">The build is finished and on a private address. Nothing has touched
-        swiftheat.co.in, and nothing will until you approve it. What is left is content that
-        only you can supply, and it is a short list.</p>
+      <p class="lede">The build is finished and published to a working address that is not
+        linked from anywhere and is kept out of search. Nothing has touched swiftheat.co.in,
+        and nothing will until you approve it. What is left is content that only you can
+        supply, and it is a short list.</p>
       <hr class="rule">
     </div>
 
@@ -809,7 +813,7 @@ for href, short, sub in PAGES:
     (out / href).write_text(page, encoding="utf-8")
     print("wrote %-26s %6d bytes" % (href, len(page)))
 
-if PREVIEW == "PREVIEW-URL-NOT-SET":
-    print("\nWARNING: PREVIEW is still the placeholder, so every link to the built site\n"
-          "         in this proposal is dead. Deploy the private preview, set PREVIEW at\n"
-          "         the top of this script, and rerun before sending anything to Swiftheat.")
+if "github.io" in PREVIEW:
+    print("\nNote: PREVIEW points at GitHub Pages, which is unlisted but public and has\n"
+          "      no password. The only thing keeping it out of search is PREVIEW_NOINDEX\n"
+          "      in build/data.py. Confirm that is True and pushed before sending links.")

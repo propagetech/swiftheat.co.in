@@ -9,7 +9,7 @@ import html
 import os
 import re
 
-from .data import COMPANY, FAMILIES, INDUSTRIES, TBD
+from .data import COMPANY, FAMILIES, INDUSTRIES, PREVIEW_NOINDEX, TBD
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ART = os.path.join(HERE, "art")
@@ -367,7 +367,7 @@ def page(path, title, description, body, active="", depth=None, jsonld=None, jum
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>%(title)s</title>
 <meta name="description" content="%(desc)s">
-<link rel="canonical" href="%(canonical)s">
+%(robots)s<link rel="canonical" href="%(canonical)s">
 <link rel="icon" href="%(icon)s" type="image/svg+xml">
 <meta property="og:title" content="%(title)s">
 <meta property="og:description" content="%(desc)s">
@@ -417,6 +417,8 @@ def page(path, title, description, body, active="", depth=None, jsonld=None, jum
         "title": html.escape(title, quote=True),
         "desc": html.escape(description, quote=True),
         "canonical": canonical,
+        "robots": ('<meta name="robots" content="noindex, nofollow">\n'
+                   if PREVIEW_NOINDEX else ""),
         "icon": rel(depth, "favicon.svg"),
         "f1": rel(depth, "fonts/archivo-narrow-latin-700-normal.woff2"),
         "f2": rel(depth, "fonts/inter-latin-400-normal.woff2"),

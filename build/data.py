@@ -13,6 +13,17 @@ Two rules govern what is in here.
 
 TBD = "To confirm"
 
+# The preview is published at https://propagetech.github.io/swiftheat.co.in/,
+# which is a public URL on a public repository. GitHub Pages cannot password
+# protect a site, and a robots.txt served from a subdirectory is ignored, because
+# crawlers only read the one at the domain root. So the only thing that actually
+# keeps the preview out of search is a noindex on every page.
+#
+# It has to come off at go live or the real site will never rank. site-build.py
+# shouts about it on every run while it is True, and it is the first item on the
+# go live checklist in README.md.
+PREVIEW_NOINDEX = True
+
 # Option tuples are (code, name, why, rating) with an optional fifth element:
 # the filename of a photograph in imgs/. Those photographs are the accessory
 # shots off the old site's Products page, background knocked out by
