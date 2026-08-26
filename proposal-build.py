@@ -680,46 +680,56 @@ BODIES["04-investment.html"] = """
     <div class="wrap">
       <h2>There is nothing else to buy</h2>
       <p>Most website quotes are followed by three more: a photographer, a copywriter and
-        somebody to draw the diagrams. We have deliberately not built this proposal that way.
-        You would end up briefing four suppliers, holding four schedules and paying four
-        invoices, for a website.</p>
-      <p>Everything this site needs, you already have inside the company or we produce
-        ourselves. Here is the honest division of labour.</p>
+        somebody to draw the diagrams. We deliberately did not run this project that way.
+        You would have ended up briefing four suppliers, holding four schedules and paying
+        four invoices, for a website.</p>
+      <p>All twenty six pages are built and the whole of the right hand column below is
+        finished. Here is the honest division of labour, and where it now stands.</p>
     </div>
 
     <div class="grid grid-2">
       <div class="card">
-        <h3>What comes from you</h3>
+        <h3>What still comes from you</h3>
         <ul>
-          <li><strong>The technical substance.</strong> Diameters, lengths, wattage and
-            voltage ranges, sheath materials, watt density, temperatures, tolerances,
-            thermocouple types, termination and clamping options. Your engineers already know
-            all of this. Rough notes, a marked up old catalogue or a phone call is enough. It
-            does not need to be written well, it needs to be correct.</li>
-          <li><strong>The photographs.</strong> Taken by you, on a recent phone. We send a
-            shot list and a one page guide covering angles, how to light metal so it does not
-            glare, what to stand the parts on and what size to shoot at. What makes these
-            photographs work is that they are your real products and your real factory, not
-            that a studio took them.</li>
+          <li><strong>The photographs.</strong> The one item that has not moved, and the one
+            that sets the launch date. Taken by you, on a recent phone. We send a shot list
+            and a one page guide covering angles, how to light metal so it does not glare,
+            what to stand the parts on and what size to shoot at. What makes these photographs
+            work is that they are your real products and your real factory, not that a studio
+            took them.</li>
+          <li><strong>The rest of the technical substance.</strong> Your brochure covered more
+            than we expected: cartridge diameters, the thermocouple ranges, the lead
+            temperature limits, your calibration classes. All of that is published. What is
+            still missing is the performance side, which is maximum sheath temperature,
+            maximum watt density and tolerances per family. Nine cells still read "to
+            confirm". Rough notes or a phone call is enough; it does not need to be written
+            well, it needs to be correct.</li>
           <li><strong>The proof.</strong> Certificates, test records, a sample test report,
             the industries and customers you actually supply.</li>
           <li><strong>One engineer's sign off.</strong> Somebody who knows heaters reads every
-            specification and every drawing before it is published.</li>
+            specification and every drawing before it is published. The drawings are drawn and
+            waiting for exactly this.</li>
         </ul>
       </div>
       <div class="card">
-        <h3>What we do with it</h3>
+        <h3>What we did with it</h3>
         <ul>
-          <li><strong>Write and structure every page</strong> from your notes and your
-            existing catalogue text. You will not be asked to produce finished copy.</li>
-          <li><strong>Draw the construction cutaways, the dimension drawings and the option
-            diagrams</strong> for each product family, then send them to your engineer to
-            check.</li>
-          <li><strong>Build, design, and make it findable:</strong> the structure, the
-            enquiry form, the search work, the accessibility audit, the speed, the hosting.</li>
-          <li><strong>Never invent a number.</strong> Anything not yet confirmed appears on
-            the preview marked clearly as outstanding, in a colour you cannot miss, until you
-            confirm it. Nothing unverified is published.</li>
+          <li><strong>Wrote and structured all twenty six pages</strong> from your brochure,
+            your write up and your old catalogue text. You were not asked to produce a line of
+            finished copy, and you will not be.</li>
+          <li><strong>Drew the construction cutaways, the dimension drawings and the option
+            diagrams</strong> for all eight product families. They are on the pages now,
+            waiting for your engineer to check rather than waiting to be drawn.</li>
+          <li><strong>Built, designed and made it findable:</strong> the structure, the
+            enquiry form, the requirement list builder, the search work, the structured data,
+            the hosting. The accessibility audit passes WCAG 2.1 AA on 2,172 text elements,
+            and one hundred automated tests pass on the list builder.</li>
+          <li><strong>Traced your logo into vector,</strong> which had never existed, and
+            retuned the site palette to your own red rather than the placeholder we started
+            with.</li>
+          <li><strong>Never invented a number.</strong> Every value we could not verify is on
+            the preview marked as outstanding, in a colour you cannot miss. That is why the
+            gaps are visible: they are honest gaps, and section three lists every one.</li>
         </ul>
       </div>
     </div>
@@ -729,9 +739,11 @@ BODIES["04-investment.html"] = """
 
     <div class="finding">
       <span class="tag">Why this is worth having</span>
-      <p>One supplier, one price, one schedule. Nothing on your website will be waiting on a
-        photographer's calendar, and nothing will be published that your own people have not
-        read and confirmed.</p>
+      <p>One supplier, one price, one schedule. The site is waiting on photographs, but it is
+        waiting on your camera and your afternoon, not on a photographer's calendar and an
+        invoice you did not plan for. And nothing has been published that your own people have
+        not read and confirmed, which is the whole reason the remaining gaps are visible
+        rather than filled with something plausible.</p>
     </div>
 
     <div class="wrap">
