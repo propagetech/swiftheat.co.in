@@ -21,7 +21,7 @@ PAGES = [
 
 DESCR = {
  "index.html":"Website redesign proposal for Swiftheat Thermal Technologies, Peenya, Bangalore. Prepared by ProPage.",
- "01-what-we-found.html":"What the current swiftheat.co.in contains, and what the new build needs from it.",
+ "01-what-we-found.html":"What the current swiftheat.co.in contains, where Swiftheat stands in search, and what the Bangalore competitor field does and does not do.",
  "02-what-we-build.html":"The delivered structure: eight product family pages, nine industry pages, and an enquiry form that asks for a specification.",
  "03-plan.html":"What is built, and the short list still outstanding before swiftheat.co.in can be switched over.",
  "04-investment.html":"Rs 65,000 for the complete build, and exactly what that covers.",
@@ -147,8 +147,9 @@ BODIES["index.html"] = """
     <ol class="steps">
       <li>
         <h3><a href="01-what-we-found.html">What we found</a></h3>
-        <p>What your current site contains, what can be reused, and the handful of things
-          that need a decision from you before the build can start.</p>
+        <p>What your current site contains and what was worth keeping. Then the research:
+          where you stand in search today, what the eight Bangalore competitors with their own
+          site do and do not do, and the thirteen gaps none of them fill.</p>
       </li>
       <li>
         <h3><a href="02-what-we-build.html">What we built</a></h3>
@@ -181,7 +182,9 @@ BODIES["01-what-we-found.html"] = """
     <div class="wrap">
       <p class="lede">swiftheat.co.in runs on WordPress with the Elementor page builder,
         hosted at Hostinger. Every image on it was uploaded in June or July 2024. There are
-        four pages: Home, About Us, Products and Contact Us.</p>
+        four pages: Home, About Us, Products and Contact Us. The second half of this section
+        is the competitor and search research, which is where most of the build decisions
+        came from.</p>
       <hr class="rule">
       <h2>Three faults that are costing you enquiries now</h2>
     </div>
@@ -289,8 +292,159 @@ BODIES["01-what-we-found.html"] = """
         round and oval flanges, special mountable threads), the lead protection types
         (silicone coated fibreglass sleeve, braided metal sleeve, armour), the coil heater
         spiral construction, and the RTD types PT100, PT500 and PT1000.</p>
-      <p>That material is a real head start. We would edit it up and build on it rather than
-        start from a blank page.</p>
+      <p>That material is a real head start. We edited it up and built on it rather than
+        starting from a blank page.</p>
+    </div>
+
+    <div class="wrap">
+      <hr class="rule">
+      <h2>Where you stand in search</h2>
+      <p>We read every Bangalore competitor site live, plus seventeen national manufacturers
+        and a shortlist of the best in the world, in August 2026. Two findings came out of it
+        that matter more than anything on your current site.</p>
+    </div>
+
+    <div class="finding">
+      <span class="tag">Finding 1</span>
+      <p><strong>Swiftheat does not rank for its own name.</strong> Searching the brand
+        returns Zauba Corp, your IndiaMART profile, IndiaMART product pages, peenya.info and
+        Justdial. <code>swiftheat.co.in</code> did not surface at all.</p>
+      <p><strong>Your IndiaMART listing is currently your homepage in search.</strong> Every
+        enquiry that starts with your name is being handed to a lead broker who also sells
+        your competitors the same enquiry.</p>
+    </div>
+
+    <div class="finding">
+      <span class="tag">Finding 2, and it is not a website problem</span>
+      <p><strong><code>swiftheat.com</code> belongs to a different company.</strong> Swift
+        Heat &amp; Control, with a near identical product line: cartridge, mica and ceramic
+        band, nozzle, coil heaters, thermocouples and RTDs. Anyone who guesses the .com lands
+        on a competitor.</p>
+      <p>We cannot fix that with a website and we are not suggesting you buy the domain. We
+        are telling you because it is worth a commercial decision at your end, and because
+        nobody had told you.</p>
+    </div>
+
+    <div class="wrap">
+      <h2>The local field, as it actually is</h2>
+      <p>Eight Bangalore manufacturers with their own site. The last two columns are the ones
+        that matter.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Bangalore industrial heater manufacturers, read live August 2026</caption>
+        <thead><tr><th scope="col">Company</th><th scope="col">Area</th>
+          <th scope="col">Downloads</th><th scope="col">Form asks for a specification?</th></tr></thead>
+        <tbody>
+          <tr><td>Nexthermal India</td><td>Gerupalaya</td><td>4 PDFs, cartridge only</td><td>No</td></tr>
+          <tr><td>Technobel Heating Solutions</td><td>Attibele</td><td>None</td><td>No</td></tr>
+          <tr><td>Heatcon Sensors</td><td>Hessarghatta</td><td>None</td><td>No</td></tr>
+          <tr><td>Electron Systems</td><td>Sunkadakatte</td><td>None</td><td>No</td></tr>
+          <tr><td>SRI Electronics</td><td>Nandini Layout</td><td>None</td><td>No form at all</td></tr>
+          <tr><td>Sushma Heaters</td><td>Yeshwantpur</td><td>None</td><td>IndiaMART widget</td></tr>
+          <tr><td>TMH Heating Technologies</td><td>Kamakshipalya</td><td>None</td><td>IndiaMART widget</td></tr>
+          <tr><td>India Heaters</td><td>Banashankari</td><td>None</td><td>IndiaMART widget</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="wrap">
+      <p>Three of the eight are IndiaMART built microsites. One ships downloadable
+        collateral, and only for one product family. <strong>Not one form in the entire
+        local field asks a buyer for a diameter.</strong></p>
+      <p>Two more things worth knowing. On the query <em>ceramic band heater manufacturers
+        Bangalore</em>, a Pune company outranks every Bangalore manufacturer. On <em>band
+        heater manufacturers Peenya Bangalore</em>, no Bangalore manufacturer's own site
+        appears at all: only directories and out of town firms farming your city's
+        enquiries.</p>
+    </div>
+
+    <div class="finding">
+      <span class="tag">The single highest value gap</span>
+      <p><strong>Nobody claims Peenya.</strong> Searches for heater manufacturers in Peenya
+        return Justdial and companies in Pune and Delhi. Not one manufacturer's own site
+        targets Peenya, Rajajinagar, Bommasandra, Jigani or Hosur Road.</p>
+      <p>You are physically in Peenya 1st Stage. That is the cheapest ground on this list to
+        take, and it is the reason Peenya appears in the page titles, the descriptions and the
+        structured data on the new site rather than only in the footer.</p>
+    </div>
+
+    <div class="wrap">
+      <h2>Thirteen things nobody in the local field does</h2>
+      <p>We checked each of these across every competitor. The right hand column is what the
+        new site does about it, which is where most of the build decisions came from.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Gaps in the local field, and the answer built into your site</caption>
+        <thead><tr><th scope="col">Nobody does this</th><th scope="col">Your site</th></tr></thead>
+        <tbody>
+          <tr><td>No form anywhere asks for diameter, length, wattage, voltage, sheath or
+            terminal type</td><td>Specification driven enquiry, per product family, plus the
+            requirement list builder</td></tr>
+          <tr><td>No drawing or sample upload, in an industry whose sales motion is "send us
+            a drawing"</td><td>Enquiry form accepts a drawing</td></tr>
+          <tr><td>Almost no downloadable collateral a buyer could forward to
+            purchasing</td><td>A datasheet per product family</td></tr>
+          <tr><td>Specs written as prose, not tables. One competitor's cartridge page has no
+            table at all</td><td>Specification tables with units on every family page</td></tr>
+          <tr><td>No dimensional drawings on any competitor product page</td><td>Dimensioned
+            drawings and construction cutaways, drawn for each family</td></tr>
+          <tr><td>Peenya and the Bangalore industrial corridor unclaimed</td><td>Peenya in
+            titles, descriptions and structured data</td></tr>
+          <tr><td>Certifications asserted, never shown</td><td>Nothing claimed until the
+            certificate is supplied. Currently marked outstanding.</td></tr>
+          <tr><td>No proof of manufacture. A buyer cannot tell a maker from a
+            trader</td><td>Factory and process photography, which is the outstanding item in
+            section three</td></tr>
+          <tr><td>No application led entry point. Everything organised by product
+            type</td><td>Nine industry pages, each mapping the machine to the element</td></tr>
+          <tr><td>Two of the top ranking local sites block pinch zoom</td><td>WCAG 2.1 AA
+            audited, no horizontal overflow from 360 pixels up</td></tr>
+          <tr><td>Visible content rot at the top of the market: filler copy, lorem ipsum
+            testimonials, a 2020 copyright</td><td>Nothing published that is not
+            verified</td></tr>
+          <tr><td>No lead time, minimum order or delivery commitment stated
+            anywhere</td><td>Ready to state once you confirm the numbers</td></tr>
+          <tr><td>No sizing or watt density guidance</td><td>Selection guidance and failure
+            modes on every family page</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="wrap">
+      <h2>What we measured your site against</h2>
+      <p>Not against the local field, because the local field is a low bar. Two other
+        reference points went into this.</p>
+      <p><strong>Seventeen Indian manufacturers, to find the median.</strong> A typical
+        Indian heater manufacturer site in 2026 runs a rotating hero, product pages of 150 to
+        400 words with specs as prose, an ISO badge that is a photograph of a certificate, and
+        one contact form asking name, email, phone and message. Above that median means a
+        downloadable catalogue, a named industry list, and specs as numbers with units. Your
+        site clears the median on every count. At the bottom of that set, one manufacturer
+        with a genuine TUV Austria certification ships live lorem ipsum and has no enquiry
+        form at all.</p>
+      <p><strong>Nine of the best in the world, to set the ceiling.</strong> Tempco in the
+        United States for the deepest coded option taxonomy in the category, which is where
+        your seventy six option codes come from. Watlow for engineering calculators and
+        industry led structure. Hotset in Germany for completely ungated downloads, which is
+        why your datasheets ask for nothing. Thermocoax in France for how quality and
+        traceability should be presented. Ceramicx in Ireland for real factory photography.
+        Backer in Sweden for a product finder that searches by article number.</p>
+      <p>We are not pretending a Rs 65,000 site matches Watlow. The point of reading them was
+        to take the specific mechanics that work at that level and that a small manufacturer
+        can actually maintain: coded options, specs as tables, ungated downloads, and industry
+        pages that start from the machine rather than the product.</p>
+    </div>
+
+    <div class="quiet">
+      <p><strong>On the research itself.</strong> Sites were read live in August 2026 from
+        their published markup. Search positions came from a non Bangalore index, so exact
+        rankings should be rechecked from a local connection before anyone treats them as a
+        target. The pattern held across five separate queries, which is what we are relying
+        on rather than any single position.</p>
     </div>
 """
 
@@ -789,9 +943,8 @@ BODIES["04-investment.html"] = """
         an afternoon with a phone camera.</p>
       <p>Nothing about this reply commits you to a payment. The invoice follows go live, not
         approval, so you are free to take as long over the review as it needs.</p>
-      <p>If you would rather talk it through first, we are happy to come to Peenya. Seeing the
-        plant would improve the site anyway, and it is the fastest way to work out what the
-        photography should show.</p>
+      <p>If you would rather talk it through first, a call is easiest. Phone or WhatsApp,
+        whichever suits you, and we can settle the photography list on the same call.</p>
       <p>One thing worth doing regardless: send a test email to info@swiftheat.co.in from an
         outside address and see whether it arrives. Your brochure does not list it, the old
         site did, and if it is dead then enquiries have been going nowhere.</p>
