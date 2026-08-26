@@ -599,25 +599,18 @@ BODIES["03-plan.html"] = """
     </div>
 
     <div class="wrap">
-      <h2>On photography</h2>
-      <p>You shoot these yourselves, and there is no photographer to hire. We send a shot
-        list and a one page guide before you start.</p>
-      <p>A recent phone is enough. What actually matters is not the camera, it is the
-        light and the background. Daylight from a shutter or a doorway beats the overhead
-        tube lights on a shop floor, a plain sheet of paper or cloth behind the part removes
-        the clutter, and shiny metal needs light bounced off a white surface rather than
-        pointed straight at it, or it glares. The guide covers all of that, plus the angles
-        we need per family, how to include something for scale, and the minimum size to
-        shoot at.</p>
-      <p>Set aside an afternoon and one person who knows the products. That is genuinely the
-        whole requirement.</p>
-      <p>Two things we cannot use. Stock photography of somebody else's heaters: your old
-        site carried a cartridge heater image with a Chinese manufacturer's watermark still
-        on it, and reverse image search makes that trivial to spot. And your own brochure
-        photographs, which are yours but sit at roughly 200 to 400 pixels once cropped out of
-        a printed page. They are a useful guide to what to shoot, not the shoot itself.</p>
-      <p>A slightly imperfect photograph of your own coil heater on your own bench is worth
-        more here than a perfect photograph of a heater that is not yours.</p>
+      <h2>What the photographs need to be</h2>
+      <p><strong>Coverage.</strong> Two to four shots of each product family, and at least
+        one of each family fitted on a machine or in the application. Separately, the plant
+        itself: machinery, winding, assembly, and the test bench.</p>
+      <p><strong>Technical.</strong> Minimum 2000 pixels on the long edge. In focus, evenly
+        lit, and on a plain uncluttered background for the product shots.</p>
+      <p><strong>Two things we cannot use.</strong> Stock photography of somebody else's
+        heaters: your old site carried a cartridge heater image with a Chinese manufacturer's
+        watermark still on it, and reverse image search makes that trivial to spot. And your
+        own brochure photographs, which are yours but sit at roughly 200 to 400 pixels once
+        cropped out of a printed page. They show us what to expect, but they are not usable
+        at the size the site needs.</p>
 
       <h2>If you would rather launch sooner</h2>
       <p>There is a middle path, and it is your call rather than ours. We can launch on the
@@ -661,28 +654,33 @@ BODIES["04-investment.html"] = """
         <li><b>Specification driven enquiry form, per product family</b><span>Included</span></li>
         <li><b>Downloadable datasheet, one per product family</b><span>Included</span></li>
         <li><b>Construction cutaways and dimension drawings, drawn by us</b><span>Included</span></li>
-        <li><b>Photography shot list and guide, so you can shoot it yourselves</b><span>Included</span></li>
         <li><b>Quality and testing section built as evidence</b><span>Included</span></li>
         <li><b>Bangalore and Peenya search coverage</b><span>Included</span></li>
         <li><b>Structured data, sitemap, per page titles and descriptions</b><span>Included</span></li>
         <li><b>WCAG 2.1 AA accessibility audit</b><span>Included</span></li>
         <li><b>Hosting, HTTPS, domain cutover and go live</b><span>Included</span></li>
         <li><b>Old site archived, existing links mapped</b><span>Included</span></li>
-        <li><b>Two rounds of changes at preview</b><span>Included</span></li>
+        <li><b>Changes at preview</b><span>Included</span></li>
         <li><b>Annual care plan, first year</b><span>Included</span></li>
       </ul>
       <hr>
+      <p><strong style="color:#fff">You pay nothing until the site is live.</strong> No
+        deposit, no stage payments, nothing on approval. The full amount falls due when
+        swiftheat.co.in is switched over and you have confirmed it is working. If it never goes
+        live, you never pay, and the work already done costs you nothing.</p>
       <p style="margin-bottom:0">From year two, the care plan renews at <strong
         style="color:#fff">Rs 12,000 per year</strong>. It is optional and you can stop it at
         any time without losing the site.</p>
     </div>
 
     <div class="wrap">
-      <h2>There is nothing else to buy</h2>
-      <p>Most website quotes are followed by three more: a photographer, a copywriter and
-        somebody to draw the diagrams. We deliberately did not run this project that way.
-        You would have ended up briefing four suppliers, holding four schedules and paying
-        four invoices, for a website.</p>
+      <h2>What is in the price</h2>
+      <p>Most website quotes are followed by two more: a copywriter and somebody to draw the
+        diagrams. We deliberately did not run this project that way. Every page was written
+        here, and every cutaway, dimension drawing and option diagram was drawn here. Neither
+        is a separate invoice and neither is a separate schedule.</p>
+      <p>Photography is the one input that is yours rather than ours. The specification is in
+        section three.</p>
       <p>All twenty six pages are built and the whole of the right hand column below is
         finished. Here is the honest division of labour, and where it now stands.</p>
     </div>
@@ -692,11 +690,8 @@ BODIES["04-investment.html"] = """
         <h3>What still comes from you</h3>
         <ul>
           <li><strong>The photographs.</strong> The one item that has not moved, and the one
-            that sets the launch date. Taken by you, on a recent phone. We send a shot list
-            and a one page guide covering angles, how to light metal so it does not glare,
-            what to stand the parts on and what size to shoot at. What makes these photographs
-            work is that they are your real products and your real factory, not that a studio
-            took them.</li>
+            that sets the launch date. Two to four per family, one of each in application,
+            plus the plant. Minimum 2000 pixels, in focus, plain background.</li>
           <li><strong>The rest of the technical substance.</strong> Your brochure covered more
             than we expected: cartridge diameters, the thermocouple ranges, the lead
             temperature limits, your calibration classes. All of that is published. What is
@@ -739,11 +734,9 @@ BODIES["04-investment.html"] = """
 
     <div class="finding">
       <span class="tag">Why this is worth having</span>
-      <p>One supplier, one price, one schedule. The site is waiting on photographs, but it is
-        waiting on your camera and your afternoon, not on a photographer's calendar and an
-        invoice you did not plan for. And nothing has been published that your own people have
-        not read and confirmed, which is the whole reason the remaining gaps are visible
-        rather than filled with something plausible.</p>
+      <p>One supplier, one price, one schedule. Nothing has been published that your own
+        people have not read and confirmed, which is the whole reason the remaining gaps are
+        visible rather than filled with something plausible.</p>
     </div>
 
     <div class="wrap">
@@ -770,13 +763,10 @@ BODIES["04-investment.html"] = """
         <caption>Commercial terms</caption>
         <thead><tr><th scope="col">Item</th><th scope="col">Terms</th></tr></thead>
         <tbody>
-          <tr><td>Payment</td><td>40 percent to begin, 40 percent on preview approval, 20 percent at go live</td></tr>
-          <tr><td>Timeline</td><td>Six to eight weeks from receipt of your content</td></tr>
-          <tr><td>Changes</td><td>Two rounds included at preview. Further rounds Rs 5,000 each.</td></tr>
+          <tr><td>Payment</td><td>Nothing until go live. The full Rs 65,000 falls due when swiftheat.co.in is switched over to the new site and you have confirmed it is working.</td></tr>
+          <tr><td>Timeline</td><td>The build is complete. Go live follows 5 to 10 working days after the outstanding items in section three reach us.</td></tr>
           <tr><td>Scope</td><td>Eight product families, nine industries, as listed in section two and as delivered</td></tr>
-          <tr><td>Beyond that scope</td><td>Additional product family page Rs 6,000. Additional industry page Rs 4,000. Both at your option, never assumed.</td></tr>
           <tr><td>Later changes</td><td>Rs 1,500 per hour, once the care plan allowance for the year is used</td></tr>
-          <tr><td>Ownership</td><td>The site, the code and the domain are yours. No licence, no lock in.</td></tr>
           <tr><td>GST</td><td>Not applicable</td></tr>
         </tbody>
       </table>
@@ -787,8 +777,7 @@ BODIES["04-investment.html"] = """
       <p>Read the preview, with an engineer alongside you for the product pages. Then reply
         with three things and we can move.</p>
       <ol>
-        <li><strong>Your approval of the build</strong>, or the changes you want. Two rounds
-          are included and this is the first.</li>
+        <li><strong>Your approval of the build</strong>, or the changes you want.</li>
         <li><strong>The six items in the first table of section three.</strong> Address,
           enquiry email, which phone is the sales line, a yes or no on the four unconfirmed
           product families, the photographs, and registrar access for the domain.</li>
@@ -798,6 +787,8 @@ BODIES["04-investment.html"] = """
       <p>Approval and the first four of those six can come back in one reply. The photographs
         are the item with a real lead time, so if only one thing happens this week, let it be
         an afternoon with a phone camera.</p>
+      <p>Nothing about this reply commits you to a payment. The invoice follows go live, not
+        approval, so you are free to take as long over the review as it needs.</p>
       <p>If you would rather talk it through first, we are happy to come to Peenya. Seeing the
         plant would improve the site anyway, and it is the fastest way to work out what the
         photography should show.</p>
