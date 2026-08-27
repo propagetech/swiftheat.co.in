@@ -14,6 +14,7 @@ PREVIEW = "https://propagetech.github.io/swiftheat.co.in"
 PAGES = [
     ("index.html",             "Proposal",             "Swiftheat website proposal"),
     ("01-what-we-found.html",  "What we found",        "The inputs the build starts from"),
+    ("research.html",          "The research",         "Bangalore, India, and the world"),
     ("02-what-we-build.html",  "What we built",        "Structure, product pages, industry pages"),
     ("03-plan.html",           "Where it stands",      "What is done, what is left before launch"),
     ("04-investment.html",     "The investment",       "Rs 65,000, and what it covers"),
@@ -21,7 +22,8 @@ PAGES = [
 
 DESCR = {
  "index.html":"Website redesign proposal for Swiftheat Thermal Technologies, Peenya, Bangalore. Prepared by ProPage.",
- "01-what-we-found.html":"What the current swiftheat.co.in contains, where Swiftheat stands in search, and what the Bangalore competitor field does and does not do.",
+ "01-what-we-found.html":"What the current swiftheat.co.in contains, and the three faults on it that are costing enquiries now.",
+ "research.html":"Heater manufacturer websites read live in August 2026: eight in Bangalore, seventeen across India, twelve of the best in the world, and what each one changed about the build.",
  "02-what-we-build.html":"The delivered structure: eight product family pages, nine industry pages, and an enquiry form that asks for a specification.",
  "03-plan.html":"What is built, and the short list still outstanding before swiftheat.co.in can be switched over.",
  "04-investment.html":"Rs 65,000 for the complete build, and exactly what that covers.",
@@ -147,9 +149,15 @@ BODIES["index.html"] = """
     <ol class="steps">
       <li>
         <h3><a href="01-what-we-found.html">What we found</a></h3>
-        <p>What your current site contains and what was worth keeping. Then the research:
-          where you stand in search today, what the eight Bangalore competitors with their own
-          site do and do not do, and the thirteen gaps none of them fill.</p>
+        <p>What your current site contains, the three faults on it costing you enquiries now,
+          the photography problem, and the part of it worth keeping.</p>
+      </li>
+      <li>
+        <h3><a href="research.html">The research</a></h3>
+        <p>Competitor websites read live in August 2026, in three tiers. Where you stand in
+          search, what the eight Bangalore competitors do and do not do, the median across
+          seventeen Indian manufacturers, the ceiling set by twelve of the best in the world,
+          and the build decision that came out of each one.</p>
       </li>
       <li>
         <h3><a href="02-what-we-build.html">What we built</a></h3>
@@ -172,19 +180,18 @@ BODIES["index.html"] = """
         send us and can verify. No invented certifications, no borrowed photographs, no claims
         about years or clients we cannot stand behind. Everything still unconfirmed is on the
         preview marked as outstanding, in a colour you cannot miss. That is why the preview has
-        visible gaps in it: they are honest gaps, and section three lists every one.</p>
+        visible gaps in it: they are honest gaps, and section four lists every one.</p>
     </div>
 """
 
 BODIES["01-what-we-found.html"] = """
     <div class="chapter"><span class="num" aria-hidden="true">01</span>
-      <div><p class="eyebrow">Section one</p><h1>Where you stand today</h1></div></div>
+      <div><p class="eyebrow">Section one</p><h1>The site you have now</h1></div></div>
     <div class="wrap">
       <p class="lede">swiftheat.co.in runs on WordPress with the Elementor page builder,
         hosted at Hostinger. Every image on it was uploaded in June or July 2024. There are
-        four pages: Home, About Us, Products and Contact Us. The second half of this section
-        is the competitor and search research, which is where most of the build decisions
-        came from.</p>
+        four pages: Home, About Us, Products and Contact Us. This section is the audit of
+        that site alone. The competitor and search research is section two.</p>
       <hr class="rule">
       <h2>Three faults that are costing you enquiries now</h2>
     </div>
@@ -298,10 +305,39 @@ BODIES["01-what-we-found.html"] = """
 
     <div class="wrap">
       <hr class="rule">
-      <h2>Where you stand in search</h2>
-      <p>We read every Bangalore competitor site live, plus seventeen national manufacturers
-        and a shortlist of the best in the world, in August 2026. Two findings came out of it
-        that matter more than anything on your current site.</p>
+      <p>That is your own site. The second half of the work was reading everybody else's, and
+        that is <a href="research.html">section two</a>: eight Bangalore competitors, seventeen
+        manufacturers across India and twelve of the best in the world, all read live in August
+        2026. Almost every build decision in this proposal came out of it.</p>
+    </div>
+"""
+
+BODIES["research.html"] = """
+    <div class="chapter"><span class="num" aria-hidden="true">02</span>
+      <div><p class="eyebrow">Section two</p><h1>What we read before we built anything</h1></div></div>
+    <div class="wrap">
+      <p class="lede">Heater manufacturers' websites, read live in August 2026, in three
+        tiers: eight in Bangalore, seventeen across India and twelve of the best in the world.
+        Not to collect ideas, but to find the things a buying engineer needs that nobody in
+        this category is giving them. Almost every decision in section three came out of
+        this.</p>
+      <hr class="rule">
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><b>8</b><span>Bangalore competitors, read live</span></div>
+      <div class="kpi"><b>17</b><span>Across India, to find the median</span></div>
+      <div class="kpi"><b>12</b><span>International, to set the ceiling</span></div>
+    </div>
+
+    <div class="wrap">
+      <p>It is written up as three reports, one per tier. They are working documents rather
+        than client documents, but they are yours and we will send all three on request. What
+        follows is what came out of them.</p>
+      <h2>Bangalore first, because that is who you lose enquiries to</h2>
+      <p>Every Bangalore heater manufacturer with a website of their own, plus five search
+        queries a buyer would actually type. Two findings came out of it that matter more than
+        anything on your current site.</p>
     </div>
 
     <div class="finding">
@@ -398,7 +434,7 @@ BODIES["01-what-we-found.html"] = """
             certificate is supplied. Currently marked outstanding.</td></tr>
           <tr><td>No proof of manufacture. A buyer cannot tell a maker from a
             trader</td><td>Factory and process photography, which is the outstanding item in
-            section three</td></tr>
+            section four</td></tr>
           <tr><td>No application led entry point. Everything organised by product
             type</td><td>Nine industry pages, each mapping the machine to the element</td></tr>
           <tr><td>Two of the top ranking local sites block pinch zoom</td><td>WCAG 2.1 AA
@@ -415,42 +451,246 @@ BODIES["01-what-we-found.html"] = """
     </div>
 
     <div class="wrap">
-      <h2>What we measured your site against</h2>
-      <p>Not against the local field, because the local field is a low bar. Two other
-        reference points went into this.</p>
-      <p><strong>Seventeen Indian manufacturers, to find the median.</strong> A typical
-        Indian heater manufacturer site in 2026 runs a rotating hero, product pages of 150 to
-        400 words with specs as prose, an ISO badge that is a photograph of a certificate, and
-        one contact form asking name, email, phone and message. Above that median means a
-        downloadable catalogue, a named industry list, and specs as numbers with units. Your
-        site clears the median on every count. At the bottom of that set, one manufacturer
-        with a genuine TUV Austria certification ships live lorem ipsum and has no enquiry
-        form at all.</p>
-      <p><strong>Nine of the best in the world, to set the ceiling.</strong> Tempco in the
-        United States for the deepest coded option taxonomy in the category, which is where
-        your seventy six option codes come from. Watlow for engineering calculators and
-        industry led structure. Hotset in Germany for completely ungated downloads, which is
-        why your datasheets ask for nothing. Thermocoax in France for how quality and
-        traceability should be presented. Ceramicx in Ireland for real factory photography.
-        Backer in Sweden for a product finder that searches by article number.</p>
+      <hr class="rule">
+      <h2>Then seventeen manufacturers across India, to find the median</h2>
+      <p>The local field is a low bar, so we went and found what a competent Indian heater
+        manufacturer's site looks like in 2026, and what it takes to be above it.</p>
+    </div>
+
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>The median site</h3>
+        <p>A rotating hero. Product pages of 150 to 400 words with specifications written as
+          prose sentences rather than tables. No drawing, no ordering code, no datasheet. An
+          ISO badge that is a photograph of a certificate, often unlabelled. One contact form
+          asking name, email, phone and message. A WhatsApp button, which is now table stakes.
+          A vague export claim with no country list. No pricing, no lead times, no stock.</p>
+      </div>
+      <div class="card">
+        <h3>What counts as above it</h3>
+        <p>A downloadable catalogue PDF, a named client or industry list, and specifications
+          given as numbers with units. That is the whole bar. Your site clears it on every
+          count, and clears it before a single photograph arrives.</p>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <h2>The five worth borrowing from</h2>
+      <p>Out of seventeen, five had something genuinely worth taking. Each one is named here
+        because you should be able to check the claim yourself.</p>
+    </div>
+
+    <ol class="steps">
+      <li><h3>Tempsens, Udaipur</h3><p>The best product page on any Indian heater site. A
+        specification table keyed on nominal diameter giving lead gauge, maximum amps and
+        maximum volts, a cutaway, a datasheet, and an ungated library of more than fifty PDFs.
+        Crucially they <strong>publish their tolerances</strong>, plus or minus 3 percent on
+        length and plus 5 minus 10 percent on wattage. For a die and mould buyer a stated
+        tolerance is more persuasive than any ISO logo. That is why your family pages have a
+        tolerance row, and why it is one of the nine cells still waiting on your engineers.</p></li>
+      <li><h3>Pratik Heat Products, Mumbai</h3><p>The best shaped mid size site in the set.
+        Two commercial actions promoted into the top navigation, Download Catalogue and Request
+        For Quote, and quote links that carry the product with them so the buyer never has to
+        restate which heater they were looking at. Your product pages carry an enquiry already
+        scoped to that family for the same reason.</p></li>
+      <li><h3>Excel Heaters, Mumbai and Daman</h3><p>A dated skin over the best engineering
+        artifacts in India. Their ceramic heater order form is built around a dimensioned order
+        diagram that captures drawing number, diameter, length, volts, watts, junction box,
+        hole location and diameter, slot radius, lead length and quantity. It is the closest
+        thing in the country to the enquiry form in section three. It sits behind a nav label
+        reading "Order Forms" that a first time visitor never clicks. Their facilities page also
+        names four real electrical tests, resistance tolerance, high voltage, insulation
+        resistance and leakage current, which is the model for your quality section.</p></li>
+      <li><h3>DHE Heaters, Ahmedabad</h3><p>The best trust page structure in the set. Four
+        credibility pages promoted to top level navigation that almost nobody else gives a page
+        to at all: Industries, Process, Certifications, Clientele.</p></li>
+      <li><h3>Elmec, Chennai</h3><p>Thermocouples merchandised as a peer product line rather
+        than an afterthought, and an explicit "what to specify when ordering" block. Their
+        founding date is inconsistent across their own site, which is a lesson of a different
+        kind.</p></li>
+    </ol>
+
+    <div class="finding">
+      <span class="tag">The finding that shaped the whole build</span>
+      <p><strong>In this market, looking modern and being useful to an engineer are almost
+        completely unrelated.</strong> Excel Heaters looks like 2004 and is the second most
+        useful site in India to a buying engineer. The sites that look current tell an engineer
+        nothing. Nobody is doing both.</p>
+      <p>You can take both at once, which is exactly what this build is: a site that looks like
+        2026 and reads like a datasheet.</p>
+    </div>
+
+    <div class="wrap">
+      <p>For scale, the bottom of that national set: one Pune manufacturer with a genuine TUV
+        Austria certification ships live placeholder Latin text, counters stuck at "0+" and no
+        enquiry form at all. Another's enquiry page returns an error. One cites ISO 9001:2000,
+        a revision that was superseded in 2008. Simply shipping a site with no
+        filler text, no broken form and no stale copyright puts you ahead of roughly half the
+        field on the day it goes live.</p>
+
+      <h2>Five things not one of the seventeen does</h2>
+      <ul>
+        <li><strong>A working sizing or watt density calculator.</strong> Not one Indian heater
+          manufacturer has one. The calculators that rank on these searches are Chinese and
+          American.</li>
+        <li><strong>Lead time or minimum order.</strong> Not one site in seventeen states
+          either.</li>
+        <li><strong>A cross reference guide.</strong> No Indian site helps a maintenance
+          engineer identify and replace a failed heater from a competitor or from an imported
+          machine, which is exactly how an urgent buyer searches.</li>
+        <li><strong>Quality shown as evidence.</strong> Nobody in seventeen publishes a test rig
+          photograph, a sample test certificate, a dimensional inspection report or a material
+          traceability statement.</li>
+        <li><strong>Real technical writing in HTML.</strong> The blogs that exist are search
+          filler. The one company with substantial technical literature has locked it inside
+          PDFs, where search cannot read it.</li>
+      </ul>
+      <p>The first three are open ground you can take later. The last two are built into your
+        site now.</p>
+    </div>
+
+    <div class="wrap">
+      <hr class="rule">
+      <h2>Then twelve of the best in the world, to set the ceiling</h2>
       <p>We are not pretending a Rs 65,000 site matches Watlow. The point of reading them was
-        to take the specific mechanics that work at that level and that a small manufacturer
-        can actually maintain: coded options, specs as tables, ungated downloads, and industry
-        pages that start from the machine rather than the product.</p>
+        to find the specific mechanics that work at that level and that a small manufacturer can
+        actually maintain. Each of these is in your site somewhere.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>International benchmark, read live August 2026, and what each one contributed</caption>
+        <thead><tr><th scope="col">Company</th><th scope="col">Country</th>
+          <th scope="col">What we took from it</th></tr></thead>
+        <tbody>
+          <tr><td>Tempco</td><td>United States</td><td>The deepest coded option taxonomy in the
+            category, more than twenty termination types, each coded and drawn, wired to a save
+            for quote list. This is where your seventy six option codes and the list builder
+            come from.</td></tr>
+          <tr><td>Watlow</td><td>United States</td><td>Request a quote and download the
+            datasheet placed directly under the product title, above the fold.</td></tr>
+          <tr><td>Chromalox</td><td>United States</td><td>Industries treated as a first class
+            entry point rather than a footnote to the product list.</td></tr>
+          <tr><td>Hotset</td><td>Germany</td><td>Completely ungated downloads. It is why your
+            datasheets ask a visitor for nothing.</td></tr>
+          <tr><td>Elstein</td><td>Germany</td><td>The best single product page in the category,
+            and the cleanest bridge from a product to the industries that use it.</td></tr>
+          <tr><td>Türk+Hillinger</td><td>Germany</td><td>Element family codes used as the
+            navigation itself, so the catalogue and the part number are the same
+            system.</td></tr>
+          <tr><td>Thermocoax</td><td>France</td><td>The best quality and traceability
+            presentation anywhere: nine named certifications and downloadable quality manuals.
+            The shape of your quality section.</td></tr>
+          <tr><td>Ceramicx</td><td>Ireland</td><td>The best real factory photography in the set,
+            macro shots of racked elements on a live line. This is the single reason section
+            four is so insistent about photographs.</td></tr>
+          <tr><td>Backer</td><td>Sweden</td><td>A product finder that searches by article
+            number, not just by name.</td></tr>
+          <tr><td>Thermal Corporation</td><td>United States</td><td>Tolerance and failure mode
+            tables. Their common causes of failure page was the highest trust content on any
+            page read in the entire research. Every one of your family pages now carries an
+            installation and failure modes block because of it.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="finding">
+      <span class="tag">Where your site beats them rather than matching them</span>
+      <p><strong>Industry pages are the weakest content type in the entire international set.</strong>
+        The best of the twelve treats an industry page as a curated product shortlist. One
+        leader's plastics page is a banner, one paragraph, a case study and a contact block.
+        Another's thermoforming page has no diagram, no numbers and no links to products.</p>
+      <p>Nobody publishes the thing a process engineer actually wants, which is the machine
+        broken into heating zones with a product and a duty against each zone. That table is the
+        centre of all nine of your industry pages, and it does not exist anywhere in this
+        research at any price.</p>
+      <p><strong>The same is true of their enquiry forms.</strong> One German leader's contact
+        form asks salutation, name, job title, company, phone, email and message. Another
+        leader's quote request has no conditional logic at all. A specification driven form
+        beats every European leader on this one axis.</p>
+    </div>
+
+    <div class="wrap">
+      <p>One more thing worth knowing, because it is free ground. <strong>The international
+        leaders are slow and broken.</strong> During this research two of them failed to render
+        fully, one returned server errors on two of its own product pages, and another has moved
+        its industry addresses twice and left the dead links live. A fast, stable, correctly
+        linked site is a real competitive advantage in this category, and a static site like
+        yours is the cheapest way there is to hold it.</p>
+
+      <h2>What the research decided about how it looks</h2>
+      <p>Art direction was measured off the rendered pages rather than guessed. The category
+        has clear conventions: one hot accent colour against a neutral, almost always orange,
+        red or amber. Condensed display type at very large sizes, up to 112 and 120 pixels on
+        the two American leaders, which is the strongest shared signal of heavy industry in the
+        set. Real photography rather than renders. Minimal motion.</p>
+      <p>And one gap: <strong>technical illustration is the differentiator and it is badly
+        underused.</strong> Only two of the twelve publish drawings at any scale, and nobody in
+        India does at all. That is why the cutaways, dimension drawings and option diagrams on
+        your site were drawn rather than bought or skipped.</p>
+      <p>Three directions were drawn up from that. The site takes photography led treatment for
+        the home and industry pages, dry datasheet treatment for the product and specification
+        pages, and a temperature range bar as the one device that recurs across both. The accent
+        is your own logo red rather than the category's orange, which was retuned once the logo
+        reached us.</p>
+    </div>
+
+    <div class="wrap">
+      <h2>What the research changed, line by line</h2>
+      <p>The short version of this whole section. Left column is what we read. Right column is
+        what it became on your site.</p>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Research findings and the build decisions that came out of them</caption>
+        <thead><tr><th scope="col">What the research found</th>
+          <th scope="col">What it became</th></tr></thead>
+        <tbody>
+          <tr><td>Nobody in Bangalore, India or the world asks a buyer for a
+            specification</td><td>An enquiry form that changes by product family, and the
+            requirement list builder</td></tr>
+          <tr><td>Only one Indian manufacturer in the whole of this research accepts a
+            drawing</td><td>Your enquiry accepts a drawing</td></tr>
+          <tr><td>Tempco's coded, diagrammed option taxonomy</td><td>Seventy six coded options
+            published across eight families</td></tr>
+          <tr><td>Hotset's ungated downloads</td><td>Datasheets that ask a visitor for
+            nothing</td></tr>
+          <tr><td>Thermal Corporation's failure mode tables</td><td>Installation and failure
+            modes on every family page</td></tr>
+          <tr><td>Thermocoax's named certifications and quality manuals</td><td>Quality and
+            testing built as evidence, published only when your certificate arrives</td></tr>
+          <tr><td>Ceramicx's real factory photography</td><td>The photography specification in
+            section four, and the reason it is the item that sets your launch date</td></tr>
+          <tr><td>Industry pages are weak everywhere, at every price</td><td>Nine heating zone
+            tables mapping the machine to the element</td></tr>
+          <tr><td>Peenya is unclaimed by every manufacturer's own site</td><td>Peenya in titles,
+            descriptions and structured data</td></tr>
+          <tr><td>Two of the top ranking local sites block pinch zoom</td><td>WCAG 2.1 AA
+            audited, and pinch zoom works</td></tr>
+          <tr><td>Visible content rot at the top of both markets</td><td>Nothing published that
+            is not verified, and every gap marked as a gap</td></tr>
+        </tbody>
+      </table>
     </div>
 
     <div class="quiet">
-      <p><strong>On the research itself.</strong> Sites were read live in August 2026 from
-        their published markup. Search positions came from a non Bangalore index, so exact
-        rankings should be rechecked from a local connection before anyone treats them as a
-        target. The pattern held across five separate queries, which is what we are relying
-        on rather than any single position.</p>
+      <p><strong>On the research itself, and its limits.</strong> Sites were read live in
+        August 2026 from their published markup, so what is described is what those companies
+        published on the day, not what they may have changed since. Rendered screenshots were
+        not taken, so judgements about visual quality are inferred from markup and from the
+        pages that did render. Search positions came from a non Bangalore index, so exact
+        rankings should be rechecked from a local connection before anyone treats a position as
+        a target. The pattern held across five separate queries, and that pattern is what we
+        relied on rather than any single result. A handful of competitor pages refused
+        automated reading, and those are recorded as unverified in the reports rather than
+        guessed at.</p>
     </div>
 """
 
 BODIES["02-what-we-build.html"] = """
-    <div class="chapter"><span class="num" aria-hidden="true">02</span>
-      <div><p class="eyebrow">Section two</p><h1>What we built</h1></div></div>
+    <div class="chapter"><span class="num" aria-hidden="true">03</span>
+      <div><p class="eyebrow">Section three</p><h1>What we built</h1></div></div>
     <div class="wrap">
       <p class="lede">Every section in your brief, plus the three things the audit says are
         unclaimed: a specification driven enquiry, product pages built like datasheets, and
@@ -479,7 +719,7 @@ BODIES["02-what-we-build.html"] = """
       <div class="card"><h3>Products</h3><p>An overview page plus <strong>eight family
         pages</strong>: cartridge, coil, ceramic and mica band, ceramic and mica nozzle,
         strip, tubular, thermocouples and sensors, ceramic infrared. Four of those eight are
-        awaiting your confirmation, see section three.</p></div>
+        awaiting your confirmation, see section four.</p></div>
       <div class="card"><h3>Applications</h3><p>An overview plus <strong>nine industry
         pages</strong>: injection moulding, packaging machinery, extrusion, blow moulding,
         die and mould, food processing, pharmaceutical machinery, rubber, and other
@@ -629,8 +869,8 @@ BODIES["02-what-we-build.html"] = """
 """
 
 BODIES["03-plan.html"] = """
-    <div class="chapter"><span class="num" aria-hidden="true">03</span>
-      <div><p class="eyebrow">Section three</p><h1>Where it stands</h1></div></div>
+    <div class="chapter"><span class="num" aria-hidden="true">04</span>
+      <div><p class="eyebrow">Section four</p><h1>Where it stands</h1></div></div>
     <div class="wrap">
       <p class="lede">The build is finished and published to a working address that is not
         linked from anywhere and is kept out of search. Nothing has touched swiftheat.co.in,
@@ -785,8 +1025,8 @@ BODIES["03-plan.html"] = """
 """
 
 BODIES["04-investment.html"] = """
-    <div class="chapter"><span class="num" aria-hidden="true">04</span>
-      <div><p class="eyebrow">Section four</p><h1>The investment</h1></div></div>
+    <div class="chapter"><span class="num" aria-hidden="true">05</span>
+      <div><p class="eyebrow">Section five</p><h1>The investment</h1></div></div>
     <div class="wrap">
       <p class="lede">One price for the whole thing, unchanged from the proposal. No phases,
         no modules, no upgrade path you have to buy later to make the site work, and nothing
@@ -834,7 +1074,7 @@ BODIES["04-investment.html"] = """
         here, and every cutaway, dimension drawing and option diagram was drawn here. Neither
         is a separate invoice and neither is a separate schedule.</p>
       <p>Photography is the one input that is yours rather than ours. The specification is in
-        section three.</p>
+        section four.</p>
       <p>All twenty six pages are built and the whole of the right hand column below is
         finished. Here is the honest division of labour, and where it now stands.</p>
     </div>
@@ -878,7 +1118,7 @@ BODIES["04-investment.html"] = """
             with.</li>
           <li><strong>Never invented a number.</strong> Every value we could not verify is on
             the preview marked as outstanding, in a colour you cannot miss. That is why the
-            gaps are visible: they are honest gaps, and section three lists every one.</li>
+            gaps are visible: they are honest gaps, and section four lists every one.</li>
         </ul>
       </div>
     </div>
@@ -918,8 +1158,8 @@ BODIES["04-investment.html"] = """
         <thead><tr><th scope="col">Item</th><th scope="col">Terms</th></tr></thead>
         <tbody>
           <tr><td>Payment</td><td>Nothing until go live. The full Rs 65,000 falls due when swiftheat.co.in is switched over to the new site and you have confirmed it is working.</td></tr>
-          <tr><td>Timeline</td><td>The build is complete. Go live follows 5 to 10 working days after the outstanding items in section three reach us.</td></tr>
-          <tr><td>Scope</td><td>Eight product families, nine industries, as listed in section two and as delivered</td></tr>
+          <tr><td>Timeline</td><td>The build is complete. Go live follows 5 to 10 working days after the outstanding items in section four reach us.</td></tr>
+          <tr><td>Scope</td><td>Eight product families, nine industries, as listed in section three and as delivered</td></tr>
           <tr><td>Later changes</td><td>Rs 1,500 per hour, once the care plan allowance for the year is used</td></tr>
           <tr><td>GST</td><td>Not applicable</td></tr>
         </tbody>
@@ -932,11 +1172,11 @@ BODIES["04-investment.html"] = """
         with three things and we can move.</p>
       <ol>
         <li><strong>Your approval of the build</strong>, or the changes you want.</li>
-        <li><strong>The six items in the first table of section three.</strong> Address,
+        <li><strong>The six items in the first table of section four.</strong> Address,
           enquiry email, which phone is the sales line, a yes or no on the four unconfirmed
           product families, the photographs, and registrar access for the domain.</li>
         <li><strong>Whether you want to launch complete or launch sooner</strong>, as set out
-          at the end of section three.</li>
+          at the end of section four.</li>
       </ol>
       <p>Approval and the first four of those six can come back in one reply. The photographs
         are the item with a real lead time, so if only one thing happens this week, let it be

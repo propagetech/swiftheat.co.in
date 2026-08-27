@@ -1,0 +1,33 @@
+- main [ref=e2]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - heading [level=1] [ref=e7]:
+          - text: 14 results for
+          - strong [ref=e8]: fan
+        - paragraph [ref=e9]: Showing 1–14 of 14
+      - searchbox [ref=e12]: fan
+    - navigation "Filter results by type" [ref=e13]:
+      - list [ref=e14]:
+        - listitem [ref=e15]:
+          - button "View All (14)" [pressed] [ref=e16] [cursor=pointer]
+        - listitem [ref=e17]:
+          - button "Content (14)" [ref=e18] [cursor=pointer]
+        - listitem [ref=e19]:
+          - button "Product (3)" [ref=e20] [cursor=pointer]
+    - navigation "zero" [ref=e21]:
+      - list [ref=e22]:
+        - listitem [ref=e23]:
+          - button "View All (14)" [pressed] [ref=e24] [cursor=pointer]
+        - listitem [ref=e25]:
+          - button "Content (14)" [ref=e26] [cursor=pointer]
+        - listitem [ref=e27]:
+          - button "Product (0)" [disabled] [ref=e28]
+    - list [ref=e29]:
+      - listitem [ref=e30]:
+        - generic [ref=e32]:
+          - generic [ref=e33]: Page
+          - heading [level=2] [ref=e35]:
+            - link "Inline Exhaust Fan SP-A110" [ref=e36] [cursor=pointer]:
+              - /url: "#"
+          - generic [ref=e37]: Centrifugal inline fan for general exhaust applications.

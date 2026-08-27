@@ -1,0 +1,349 @@
+- generic [active] [ref=f13e1]:
+  - generic [ref=f13e4]:
+    - paragraph [ref=f13e5]:
+      - text: We encourage you to read our updated
+      - link "privacy statement" [ref=f13e6] [cursor=pointer]:
+        - /url: /about-us/privacy-statement
+      - text: .
+    - generic "Reject cookies" [ref=f13e7] [cursor=pointer]: 
+  - banner:
+    - generic [ref=f13e10]:
+      - link [ref=f13e12] [cursor=pointer]:
+        - /url: /
+        - img "Valent" [ref=f13e13]
+        - img "Valent"
+      - button "Open menu" [ref=f13e14] [cursor=pointer]:
+        - generic [ref=f13e15]: menu
+  - main [ref=f13e16]:
+    - generic [ref=f13e17]:
+      - navigation "Breadcrumb navigation" [ref=f13e20]:
+        - list [ref=f13e21]:
+          - listitem [ref=f13e22]:
+            - link "Home" [ref=f13e23] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=f13e24]:
+            - generic [ref=f13e25]: arrow_forward_ios
+          - listitem [ref=f13e26]:
+            - generic [ref=f13e27]: SearchResults
+      - generic [ref=f13e28]: Page Title
+      - generic [ref=f13e33]:
+        - generic [ref=f13e35]:
+          - heading "Filter results" [level=3] [ref=f13e36]
+          - text: Applied filters
+          - generic [ref=f13e37]:
+            - heading "Categories" [level=4] [ref=f13e38]
+            - list [ref=f13e39]:
+              - listitem [ref=f13e40]:
+                - checkbox "Dedicated Outdoor Air Systems" [ref=f13e41]
+                - text: Dedicated Outdoor Air Systems (2)
+              - listitem [ref=f13e42]:
+                - checkbox "Energy Recovery Ventilators" [ref=f13e43]
+                - text: Energy Recovery Ventilators (2)
+              - listitem [ref=f13e44]:
+                - checkbox "Brochures" [ref=f13e45]
+                - text: Brochures (1)
+              - listitem [ref=f13e46]:
+                - checkbox "Data Sheet" [ref=f13e47]
+                - text: Data Sheet (1)
+        - generic [ref=f13e50]:
+          - generic [ref=f13e51]:
+            - status [ref=f13e52]:
+              - heading [level=1] [ref=f13e53]:
+                - text: search results for
+                - emphasis [ref=f13e54]: VIV
+            - search [ref=f13e56]:
+              - generic [ref=f13e57]: Search this site
+              - searchbox "Search this site" [ref=f13e58]: VIV
+              - button "Search" [ref=f13e59] [cursor=pointer]
+          - navigation "Filter results by type" [ref=f13e63]:
+            - list [ref=f13e64]:
+              - listitem [ref=f13e65]:
+                - link "View All (14)" [ref=f13e66] [cursor=pointer]:
+                  - /url: javascript:void(0);
+              - listitem [ref=f13e67]:
+                - link "Content (14)" [ref=f13e68] [cursor=pointer]:
+                  - /url: javascript:void(0);
+              - listitem [ref=f13e69]:
+                - link "Product (0)" [ref=f13e70]:
+                  - /url: javascript:void(0);
+          - list [ref=f13e71]:
+            - listitem [ref=f13e72]:
+              - generic [ref=f13e76]:
+                - generic [ref=f13e77]:
+                  - generic [ref=f13e78]: Document
+                  - generic [ref=f13e79]: PDF
+                  - generic "https://webcontent-test.greenheck.com/greenheck-atg-v2-work/docs/valentairlibraries/resource-library-assets/datasheet/vive-sales-flyer_dec-1225.pdf?sfvrsn=6f52ab7f_5" [ref=f13e80]:
+                    - generic [ref=f13e81]: Greenheck Atg V2 Work
+                    - generic [ref=f13e85]: …
+                    - generic [ref=f13e89]: Datasheet
+                    - generic [ref=f13e93]: vive-sales-flyer_dec-1225.pdf
+                  - generic [ref=f13e94]: Updated Aug 18, 2026
+                - heading [level=2] [ref=f13e95]:
+                  - link "Valent VIVE Products Datasheet" [ref=f13e96] [cursor=pointer]:
+                    - /url: https://webcontent-test.greenheck.com/greenheck-atg-v2-work/docs/valentairlibraries/resource-library-assets/datasheet/vive-sales-flyer_dec-1225.pdf?sfvrsn=6f52ab7f_5
+                - generic [ref=f13e97]:
+                  - text: DATASHEET valentair.com Valent
+                  - strong [ref=f13e98]: VIVE
+                  - text: "DS 030326 ENGINEERED FOR EFFICIENCY  100% outdoor air  500-2,400 cfm  Direct drive plenum fans  Enthalpy wheel recovers up to 85% of latent and sensible energy TEMPERING OPTIONS:  Electric post heat up to 25 kW  Hot water/chilled water INSTALLATION AND OPERATION  Designed for indoor installation  Fits through a 30-inch doorway  Single-point power  Microprocessor controls simplify start-up and maintenance CONSTRUCTION FEATURES  Low-profile, modular design with 18-inch or 23-inch height  Flexible configuration with end or side discharge, left or right side access  Injected foam insulation  Pre-painted exterior MODEL"
+                  - strong [ref=f13e99]: VIVE
+                  - text: INDOOR MODULAR ENERGY RECOVERY Valent
+                  - strong [ref=f13e100]: VIVE
+                  - text: energy recovery ventilator is designed for indoor installation and features a compact 3-inch polymer enthalpy wheel., With modular construction that fits through a 30-inch door and can be ceiling-hung,
+                  - strong [ref=f13e101]: VIVE
+                  - text: can be installed in tight spaces like a mechanical room, attic, or basement, and is ideal for usage in schools, hospitals, high-rise buildings, and buildings with roof constraints., LEARN MORE ABOUT VALENT
+                  - strong [ref=f13e102]: VIVE
+                  - text: www.valentair.com Contact your Valent Representative, Valent
+                  - strong [ref=f13e103]: VIVE
+                  - text: Products Datasheet
+            - listitem [ref=f13e104]:
+              - generic [ref=f13e108]:
+                - generic [ref=f13e109]:
+                  - generic [ref=f13e110]: Document
+                  - generic [ref=f13e111]: PDF
+                  - generic "https://webcontent-test.greenheck.com/greenheck-atg-v2-work/docs/valentairlibraries/resource-library-assets/installation-manuals/487171-vive-viv_val.pdf?sfvrsn=3b9d0e81_4" [ref=f13e112]:
+                    - generic [ref=f13e113]: Greenheck Atg V2 Work
+                    - generic [ref=f13e117]: …
+                    - generic [ref=f13e121]: Installation Manuals
+                    - generic [ref=f13e125]: 487171-vive-viv_val.pdf
+                  - generic [ref=f13e126]: Updated Aug 24, 2026
+                - heading [level=2] [ref=f13e127]:
+                  - link "487171-vive-viv_val" [ref=f13e128] [cursor=pointer]:
+                    - /url: https://webcontent-test.greenheck.com/greenheck-atg-v2-work/docs/valentairlibraries/resource-library-assets/installation-manuals/487171-vive-viv_val.pdf?sfvrsn=3b9d0e81_4
+                - generic [ref=f13e129]:
+                  - text: Modular Dedicated Outdoor Air Unit 1 Refrigerant Safety Group A2L Document 487171 Model
+                  - strong [ref=f13e130]: VIVE
+                  - text: /
+                  - strong [ref=f13e131]: VIV
+                  - text: Modular Dedicated Outdoor Air Unit Installation, Operation and Maintenance Manual Please read and save these instructions for future reference., OR 0.000 - 0.995 KPA Model Family IVVE - Indoor Ventilator Wheel
+                  - strong [ref=f13e132]: VIV
+                  - text: "- Indoor Ventilator V I V E - 1 0 - H F - C W - H W - L H E Housing Size 10 - 500 to 1,500 cfm 20 - 1,000 to 2,500 Energy Recovery Characteristic HF - High Flow HE - High Effectiveness Cooling Ty p e C W - C h i l l e d Water Heating Ty p e H - E l e c t r i c H e a t H W - H o t Water Access R - Right L - Left Orientation H - Horizontal Discharge E - Ends S - Sides Modular Dedicated Outdoor Air Unit 5 Installation - This unit is suitable for INDOOR installation ONLY W h e re minimum room areas, minimum airflows and conditioned space areas are defined, the following tables can be utilized to verify the installation in accordance with the releasable charge within a unit.,"
+                  - strong [ref=f13e133]: VIVE
+                  - text: "-2) Unit Serial Number _______________________________ (e.g. 10111000) Energy Wheel Date Code ___________________________ (e.g. 0450) Start-Up Date _______________________________ Start-Up Personnel Name __________________________ Start-Up Company _______________________________ Phone Number _______________________________ Pre Start-Up Checklist – check as items are completed., Wheel Unbalance Mechanical Looseness Poor Inlet/Outlet Conditions Foundation Stiffness Energy Recovery Wheel"
+                  - strong [ref=f13e134]: VIVE
+                  - text: models that contain a total energy recovery wheel are inspected for proper mechanical operation at the factory., Troubleshooting – Unit Modular Dedicated Outdoor Air Unit 25 Maintenance Log Date ___________________Time _____________ AM/PM Notes:___________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ Date ___________________Time _____________ AM/PM Notes:___________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ Date ___________________Time _____________ AM/PM Notes:___________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ Date ___________________Time _____________ AM/PM Notes:___________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ Date ___________________Time _____________ AM/PM Notes:___________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ Date ___________________Time _____________ AM/PM Notes:___________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ Date ___________________Time _____________ AM/PM Notes:___________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ Date ___________________Time _____________ AM/PM Notes:___________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ Date ___________________Time _____________ AM/PM Notes:___________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ Date ___________________Time _____________ AM/PM Notes:___________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ Date ___________________Time _____________ AM/PM Notes:___________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ Date ___________________Time _____________ AM/PM Notes:___________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ _________________________________________________ Modular Dedicated Outdoor Air Unit 26 This page is intentionally left blank for printing purposes Modular Dedicated Outdoor Air Unit 27 Modular Dedicated Outdoor Air Unit
+                  - strong [ref=f13e135]: VIVE
+                  - text: /
+                  - strong [ref=f13e136]: VIV
+                  - text: "Manual Part number: 487171 Rev. 2 August 2026 Contact Us Te c h n i c a l S u p p o r t a n d S e r v i c e 8 0 0 - 7 8 9 - 8 5 5 0 Valent 60–28th Avenue North Minneapolis, MN 55411 Main: 612-877-4800 More Information Unit Schematics For configuration and connection questions, see the schematics that shipped with your unit., 487171-"
+                  - strong [ref=f13e137]: vive
+                  - text: "-"
+                  - strong [ref=f13e138]: viv_val
+            - listitem [ref=f13e139]:
+              - generic [ref=f13e143]:
+                - generic [ref=f13e144]:
+                  - generic [ref=f13e145]: Document
+                  - generic [ref=f13e146]: PDF
+                  - generic "https://webcontent-test.greenheck.com/greenheck-atg-v2-work/docs/valentairlibraries/resource-library-assets/brochure/valent_energy_recovery_applications_brochure.pdf?sfvrsn=cc067672_5" [ref=f13e147]:
+                    - generic [ref=f13e148]: Greenheck Atg V2 Work
+                    - generic [ref=f13e152]: …
+                    - generic [ref=f13e156]: Brochure
+                    - generic [ref=f13e160]: valent_energy_recovery_applications_brochure.pdf
+                  - generic [ref=f13e161]: Updated Aug 18, 2026
+                - heading [level=2] [ref=f13e162]:
+                  - link "valent_energy_recovery_applications_brochure" [ref=f13e163] [cursor=pointer]:
+                    - /url: https://webcontent-test.greenheck.com/greenheck-atg-v2-work/docs/valentairlibraries/resource-library-assets/brochure/valent_energy_recovery_applications_brochure.pdf?sfvrsn=cc067672_5
+                - generic [ref=f13e164]:
+                  - text: FULL-SIZE WHEELS PROPER DEFROST MANAGEMENT BREADTH OF TECHNOLOGIES  Multiple energy recovery options ensure the right product fit for the application  ASHRAE 90.1 compliant  Heat transfer material options provide high-efficiency moisture removal, low maintenance, and low cross- contamination  Winter defrost cycle keeps supply fan and heat source operational, not shutting the unit down to defrost  Space temperature and ventilation stays consistent at all times  Energy recovery sized to handle full outdoor and exhaust air volume  Delivers maximum enthalpy effectiveness  Low pressure drop across wheel does not require economizer bypass Valent Energy Recovery Applications BR 071725 OUTDOOR AIR EXPERTS | ROBUST DESIGNS | DEDICATED SUPPORT valentair.com LEARN MORE  www.valentair.com  Valent Energy Recovery Applications webpage  Valent DOAS Products Catalog  Valent DOAS Products Datasheet ENTHALPY WHEEL ENTHALPY CORE HEAT TRANSFER MEDIUM HEAT TRANSFER MEDIUM Polymer Aluminum Polymer Fiber LATENT AND SENSIBLE ENERGY RECOVERY LATENT AND SENSIBLE ENERGY RECOVERY Best Best Better Good INTERNAL PRESSURE DROP INTERNAL PRESSURE DROP Moderate Moderate High High LEAKAGE ACROSS AIRSTREAMS LEAKAGE ACROSS AIRSTREAMS Some Some Low Low MAINTENANCE MAINTENANCE Some Some Low Low AVAILABLE ON MODELS AVAILABLE ON MODELS VXE-12, 112, 212, 312 ERW,
+                  - strong [ref=f13e165]: VIVE
+                  - text: VXE-112, 212, 312 VXC-112, 212 ERC VXC-112, 212 MEETING EFFICIENCY, IAQ, AND MAINTENANCE REQUIREMENTS Valent is known for offering a broad selection of energy recovery technologies.
+            - listitem [ref=f13e166]:
+              - generic [ref=f13e170]:
+                - generic [ref=f13e171]:
+                  - generic [ref=f13e172]: Document
+                  - generic [ref=f13e173]: PDF
+                  - generic "https://webcontent-test.greenheck.com/greenheck-atg-v2-work/docs/valentairlibraries/resource-library-assets/installation-manuals/487416-ive-microprocessor-controller_val.pdf?sfvrsn=7602703f_3" [ref=f13e174]:
+                    - generic [ref=f13e175]: Greenheck Atg V2 Work
+                    - generic [ref=f13e179]: …
+                    - generic [ref=f13e183]: Installation Manuals
+                    - generic [ref=f13e187]: 487416-ive-microprocessor-controller_val.pdf
+                  - generic [ref=f13e188]: Updated Aug 20, 2026
+                - heading [level=2] [ref=f13e189]:
+                  - link "487416-ive-microprocessor-controller_val" [ref=f13e190] [cursor=pointer]:
+                    - /url: https://webcontent-test.greenheck.com/greenheck-atg-v2-work/docs/valentairlibraries/resource-library-assets/installation-manuals/487416-ive-microprocessor-controller_val.pdf?sfvrsn=7602703f_3
+                - generic [ref=f13e191]:
+                  - strong [ref=f13e192]: VIVE
+                  - text: v1.3 Ve r s i o n d a t e 5 / 2 6 Document 487416 Microprocessor Controller for Energy Recovery Ventilators R e f e rence Guide for Microprocessor Controller Please read and save these instructions for future reference.
+            - listitem [ref=f13e193]:
+              - generic [ref=f13e197]:
+                - generic [ref=f13e198]:
+                  - generic [ref=f13e199]: Page
+                  - generic [ref=f13e200]: Updated Aug 9, 2026
+                - heading [level=2] [ref=f13e201]:
+                  - link "Home | Valentair" [ref=f13e202] [cursor=pointer]:
+                    - /url: https://cms-work-v2.valentair.com/home
+                - generic [ref=f13e203]:
+                  - text: Resources August 13, 2026 New ERV Fits Where Other Equipment Can’t The modular Valent
+                  - strong [ref=f13e204]: VIVE
+                  - text: features electric preheat and post-heat up to 25 KW and a compact 3-inch rotating polymer enthalpy wheel that is up to 85% effective at recovering energy., MORE August 13, 2026 New ERV Fits Where Other Equipment Can’t The modular Valent
+                  - strong [ref=f13e205]: VIVE
+                  - text: features electric preheat and post-heat up to 25 KW and a compact 3-inch rotating polymer enthalpy wheel that is up to 85% effective at recovering energy., MORE August 13, 2026 New ERV Fits Where Other Equipment Can’t The modular Valent
+                  - strong [ref=f13e206]: VIVE
+                  - text: features electric preheat and post-heat up to 25 KW and a compact 3-inch rotating polymer enthalpy wheel that is up to 85% effective at recovering energy., Explore New ERV Fits Where Other Equipment Can’t The modular Valent
+                  - strong [ref=f13e207]: VIVE
+                  - text: features electric preheat and post-heat up to 25 KW and a compact 3-inch rotating polymer enthalpy wheel that is up to 85% effective at recovering energy.
+            - listitem [ref=f13e208]:
+              - generic [ref=f13e212]:
+                - generic [ref=f13e213]:
+                  - generic [ref=f13e214]: Page
+                  - generic "https://cms-work-v2.valentair.com/products/dedicated-outdoor-air-systems" [ref=f13e215]: Products
+                  - generic [ref=f13e217]: Updated Aug 11, 2026
+                - heading [level=2] [ref=f13e218]:
+                  - link "Dedicated Outdoor Air Systems (DOAS)" [ref=f13e219] [cursor=pointer]:
+                    - /url: https://cms-work-v2.valentair.com/products/dedicated-outdoor-air-systems
+                - generic [ref=f13e220]:
+                  - text: Home arrow_forward_ios Products arrow_forward_ios Dedicated Outdoor Air Systems Dedicated Outdoor Air Systems
+                  - strong [ref=f13e221]: VIV
+                  - text: Modular Indoor Ventilator with 100% Outdoor Air Quick View Indoor ventilator for tight mechanical spaces., Modular sections fit through 30-in doors and support ceiling-hung install; configurable end/side discharge for 100% outdoor air. 500 to 2,500 cfm
+                  - strong [ref=f13e222]: VIVE
+                  - text: Modular Indoor Energy Recovery Ventilator with Enthalpy Wheel Quick View Indoor energy recovery unit with enthalpy wheel.
+            - listitem [ref=f13e223]:
+              - generic [ref=f13e227]:
+                - generic [ref=f13e228]:
+                  - generic [ref=f13e229]: Page
+                  - generic "https://cms-work-v2.valentair.com/products/energy-recovery-ventilators" [ref=f13e230]: Products
+                  - generic [ref=f13e232]: Updated Aug 11, 2026
+                - heading [level=2] [ref=f13e233]:
+                  - link "Energy Recovery Ventilators | Valentair" [ref=f13e234] [cursor=pointer]:
+                    - /url: https://cms-work-v2.valentair.com/products/energy-recovery-ventilators
+                - generic [ref=f13e235]:
+                  - text: Configurable intake supports floor or ceiling install; includes backdraft dampers and EC motors for efficient operation. 150 to 850 cfm Up to 1 in. wg
+                  - strong [ref=f13e236]: VIV
+                  - text: Modular Indoor Ventilator with 100% Outdoor Air Quick View Indoor ventilator for tight mechanical spaces., Modular sections fit through 30-in doors and support ceiling-hung install; configurable end/side discharge for 100% outdoor air. 500 to 2,500 cfm
+                  - strong [ref=f13e237]: VIVE
+                  - text: Modular Indoor Energy Recovery Ventilator with Enthalpy Wheel Quick View Indoor energy recovery unit with enthalpy wheel.
+            - listitem [ref=f13e238]:
+              - generic [ref=f13e242]:
+                - generic [ref=f13e243]:
+                  - generic [ref=f13e244]: Page
+                  - generic "https://cms-work-v2.valentair.com/application-expertise/energy-recovery" [ref=f13e245]: Application Expertise
+                  - generic [ref=f13e247]: Updated Aug 11, 2026
+                - heading [level=2] [ref=f13e248]:
+                  - link "Energy Recovery | Valentair" [ref=f13e249] [cursor=pointer]:
+                    - /url: https://cms-work-v2.valentair.com/application-expertise/energy-recovery
+                - generic [ref=f13e250]:
+                  - text: ENTHALPY WHEEL HEAT TRANSFER MEDIUM Polymer | Aluminum ENTHALPY RECOVERY Best INTERNAL PRESSURE DROP Moderate LEAKAGE ACROSS AIRSTREAMS Some MAINTENANCE Some Polymer available on Valent ERW units and Valent VXE 12 units Polymer and aluminum available on Valent VXE 112, 212, and 312 units ENTHALPY CORE HEAT TRANSFER MEDIUM Polymer | Fiber ENTHALPY RECOVERY Better | Good INTERNAL PRESSURE DROP High LEAKAGE ACROSS AIRSTREAMS Low MAINTENANCE Low Polymer available on Valent VXC 112, and 212 units and Valent ERC units Fiber available on Valent VXC 112 and 212 units and Valent ERC units Learn More DOAS Product Datasheet ERV Product Datasheet Energy Recovery Brochure
+                  - strong [ref=f13e251]: VIVE
+                  - text: Product Datasheet Energy Recovery App Guide
+            - listitem [ref=f13e252]:
+              - generic [ref=f13e256]:
+                - generic [ref=f13e257]:
+                  - generic [ref=f13e258]: Page
+                  - generic "https://cms-work-v2.valentair.com/resources/resource-library" [ref=f13e259]: Resources
+                  - generic [ref=f13e261]: Updated Aug 11, 2026
+                - heading [level=2] [ref=f13e262]:
+                  - link "Resource Library | Valentair" [ref=f13e263] [cursor=pointer]:
+                    - /url: https://cms-work-v2.valentair.com/resources/resource-library
+                - generic [ref=f13e264]:
+                  - text: "Resource Library Show Filters Current filter results: Resources Found: 51 Clear Filters Close grid_view list Sort resources by Z-A A-Z keyboard_arrow_down Search within results Clear Search View All Resources View All Resources Resource Type Brochures Case Study Catalog Installation Manual Video expand_more View More Product Category expand_more View More BACnet Integration Guide build Installation Manual Contractor's Choice for Rooftops auto_stories Brochures Dedicated Outdoor Air System (DOAS) Applications auto_stories Brochures Dedicated Outdoor Air Systems (DOAS) menu_book Catalog DOAS Products Datasheet description Technical Data Energy Recovery Applications menu_book Catalog ERV Products Datasheet description Technical Data Full Width Energy Recovery Wheels Datasheet description Technical Data GRTC Curb IOM build Installation Manual Hatfield Elementary School description Case Study Legacy Manual: Valent Jene Controller build Installation Manual Legacy Manual: Valent VPR Controller build Installation Manual Legacy Manual: Valent VPR Controls Lite Controller build Installation Manual Legacy Manual: Valent VPR IOM build Installation Manual Legacy Manual: Valent VRC IOM (Split System) build Installation Manual Legacy Manual: Valent VX Remote Condensing Unit IOM build Installation Manual Model"
+                  - strong [ref=f13e265]: VIVE
+                  - text: Datasheet description Technical Data Product Overview - Model VR play_circle Video RTU Products Datasheet description Technical Data Ultra-Quiet Condenser Fans Datasheet description Technical Data Valent Air Flow Measurement Datasheet description Technical Data Valent Air-Source Heat Pump Datasheet description Technical Data Valent Control Sequences Datasheet description Technical Data Valent End of Line Testing Datasheet description Technical Data Valent Enthalpy Core Datasheet description Technical Data Valent ERC-E IOM build Installation Manual Valent ERC-M IOM build Installation Manual Valent ERV Controller Manual build Installation Manual Valent ERV Exhaust Weatherhood IOM build Installation Manual Valent ERW-E IOM build Installation Manual Valent ERW-E Roof Curb and Duct Assembly IOM build Installation Manual Valent ERW-I IOM build Installation Manual Valent ERW-M IOM build Installation Manual Valent Heat-Cool Only Control IOM Supplement build Installation Manual Valent Inverter Scroll Compressors Datasheet description Technical Data Valent Psychrometric Software User Manual description Technical Data Valent PVG Indirect Gas-Fired Furnaces/Heat Modules build Installation Manual Valent Robust Cabinets Datasheet description Technical Data Valent Sensor Datasheet description Technical Data Valent
+                  - strong [ref=f13e266]: VIVE
+                  - text: Controller Manual build Installation Manual Valent
+                  - strong [ref=f13e267]: VIVE
+                  - text: IOM build Installation Manual Valent VR Controller Manual build Installation Manual Valent VR IOM build Installation Manual Valent VX Controller Manual (R-410A) build Installation Manual Valent VX Controller Manual (R-454B) build Installation Manual Valent VX Gas-Fired Furnace IOM build Installation Manual Valent VX IOM (R-410A) build Installation Manual Valent VX IOM (R-454B) build Installation Manual Valent Web User Interface (Web UI) Datasheet description Technical Data Web UI Brochure auto_stories Brochures Why Choose Valent Brochure auto_stories Brochures Load More Close
+            - listitem [ref=f13e268]:
+              - generic [ref=f13e272]:
+                - generic [ref=f13e273]:
+                  - generic [ref=f13e274]: Page
+                  - generic "https://cms-work-v2.valentair.com/about-us/news" [ref=f13e275]: About Us
+                  - generic [ref=f13e277]: Updated Aug 11, 2026
+                - heading [level=2] [ref=f13e278]:
+                  - link "News | Valentair" [ref=f13e279] [cursor=pointer]:
+                    - /url: https://cms-work-v2.valentair.com/about-us/news
+                - generic [ref=f13e280]:
+                  - text: January 2026 New ERV Fits Where Other Equipment Can't The modular Valent
+                  - strong [ref=f13e281]: VIVE
+                  - text: features electric preheat and post-heat up to 25 kW and a compact 3-inch rotating polymer enthalpy wheel that is up to 85% effective at recovering energy.
+            - listitem [ref=f13e282]:
+              - generic [ref=f13e286]:
+                - generic [ref=f13e287]:
+                  - generic [ref=f13e288]: News
+                  - generic "https://cms-work-v2.valentair.com/about-us/news/2026/08/14/new-erv-fits-where-other-equipment-cant" [ref=f13e289]:
+                    - generic [ref=f13e290]: About Us
+                    - generic [ref=f13e294]: …
+                    - generic [ref=f13e298]: "08"
+                    - generic [ref=f13e302]: "14"
+                  - generic [ref=f13e303]: Updated Aug 24, 2026
+                - heading [level=2] [ref=f13e304]:
+                  - link "New ERV Fits Where Other Equipment Can't" [ref=f13e305] [cursor=pointer]:
+                    - /url: https://cms-work-v2.valentair.com/about-us/news/2026/08/14/new-erv-fits-where-other-equipment-cant
+                - generic [ref=f13e306]:
+                  - text: Get more outdoor air in a smaller, modular installation package with the Valent
+                  - strong [ref=f13e307]: VIVE
+                  - text: ., The
+                  - strong [ref=f13e308]: VIVE
+                  - text: can be configured with electric heat, hot water, and/or chilled water options., The
+                  - strong [ref=f13e309]: VIVE
+                  - text: fits through a 30-inch doorway and can be ceiling-hung., The
+                  - strong [ref=f13e310]: VIVE
+                  - text: has a low-profile height of either 18 or 23 inches., The
+                  - strong [ref=f13e311]: VIVE
+                  - text: can be added to ceiling spaces and mechanical rooms on different floors.
+            - listitem [ref=f13e312]:
+              - generic [ref=f13e316]:
+                - generic [ref=f13e317]:
+                  - generic [ref=f13e318]: Resource
+                  - generic [ref=f13e319]: Updated Aug 24, 2026
+                - heading "Valent VIVE IOM" [level=2] [ref=f13e320]
+                - generic [ref=f13e321]:
+                  - text: Valent
+                  - strong [ref=f13e322]: VIVE
+                  - text: IOM
+            - listitem [ref=f13e323]:
+              - generic [ref=f13e327]:
+                - generic [ref=f13e328]:
+                  - generic [ref=f13e329]: Resource
+                  - generic [ref=f13e330]: Updated Aug 20, 2026
+                - heading "Valent VIVE Controller Manual" [level=2] [ref=f13e331]
+                - generic [ref=f13e332]:
+                  - text: Valent
+                  - strong [ref=f13e333]: VIVE
+                  - text: Controller Manual
+            - listitem [ref=f13e334]:
+              - generic [ref=f13e338]:
+                - generic [ref=f13e339]:
+                  - generic [ref=f13e340]: Resource
+                  - generic [ref=f13e341]: Updated Aug 17, 2026
+                - heading "Model VIVE Datasheet" [level=2] [ref=f13e342]
+                - generic [ref=f13e343]:
+                  - text: Model
+                  - strong [ref=f13e344]: VIVE
+                  - text: Datasheet
+  - contentinfo [ref=f13e345]:
+    - navigation "Footer" [ref=f13e346]:
+      - button "Products" [ref=f13e348] [cursor=pointer]:
+        - text: Products
+        - generic [ref=f13e349]: add_2
+      - button "Application Expertise" [ref=f13e351] [cursor=pointer]:
+        - text: Application Expertise
+        - generic [ref=f13e352]: add_2
+      - button "Resources" [ref=f13e354] [cursor=pointer]:
+        - text: Resources
+        - generic [ref=f13e355]: add_2
+      - button "About Us" [ref=f13e357] [cursor=pointer]:
+        - text: About Us
+        - generic [ref=f13e358]: add_2
+      - button "Find My Rep" [ref=f13e360] [cursor=pointer]:
+        - text: Find My Rep
+        - generic [ref=f13e361]: add_2
+    - generic [ref=f13e364]:
+      - generic [ref=f13e365]:
+        - link [ref=f13e367] [cursor=pointer]:
+          - /url: /
+          - img "Valent" [ref=f13e368]
+        - generic [ref=f13e369]:
+          - link "Compliance Policies|" [ref=f13e370] [cursor=pointer]:
+            - /url: /compliance-policies
+          - link "Privacy Statement" [ref=f13e371] [cursor=pointer]:
+            - /url: /privacy-statement
+        - generic [ref=f13e372]:
+          - generic [ref=f13e373]:
+            - superscript [ref=f13e374]: ©
+            - text: 2026 Valent |
+          - generic [ref=f13e375]: 60 28th Avenue North|
+          - generic [ref=f13e376]: Minneapolis, MN 55411|
+          - link "612-877-4800" [ref=f13e377] [cursor=pointer]:
+            - /url: tel:612-877-4800
+      - link "REPNET" [ref=f13e379] [cursor=pointer]:
+        - /url: https://repnet.valentair.com/
+  - status
