@@ -430,15 +430,15 @@ def about():
         <dl>
           <dt>Registered name</dt><dd>%(name)s</dd>
           <dt>Works and registered office</dt>
-          <dd>%(street)s,<br>%(area)s,<br>%(city)s %(pin)s<br>
-            <span class="tbd">Address to be confirmed against the letterhead before publication.</span></dd>
+          <dd>%(street)s,<br>%(area)s,<br>%(city)s %(pin)s</dd>
           <dt>Year founded</dt><dd>%(founded_long)s</dd>
           <dt>CIN</dt><dd>%(cin)s</dd>
           <dt>Plant area</dt><dd class="tbd">%(tbd)s</dd>
           <dt>People</dt><dd>%(staff)s</dd>
-          <dt>Certifications</dt><dd class="tbd">%(tbd)s. Nothing is claimed here until the
+          <dt>Certifications</dt><dd>%(iso)s. Nothing further is claimed until the
             certificate itself has been supplied.</dd>
-          <dt>GST and Udyam</dt><dd class="tbd">%(tbd)s</dd>
+          <dt>GST</dt><dd>%(gst)s</dd>
+          <dt>Udyam or MSME</dt><dd class="tbd">%(tbd)s</dd>
         </dl>
       </div>
       <p class="cap">Every item marked "to confirm" is waiting on a document from Swiftheat, not on
@@ -506,7 +506,7 @@ def about():
         "name": esc(COMPANY["name"]), "street": esc(COMPANY["street"]), "area": esc(COMPANY["area"]),
         "city": esc(COMPANY["city"]), "pin": esc(COMPANY["pin"]), "tbd": TBD,
         "founded_long": esc(COMPANY["founded_long"]), "cin": esc(COMPANY["cin"]),
-        "staff": esc(COMPANY["staff"]),
+        "staff": esc(COMPANY["staff"]), "iso": esc(COMPANY["iso"]), "gst": esc(COMPANY["gst"]),
         "inds": cards(1, [("applications/%s/" % i["slug"], i["name"], i["problem"]) for i in INDUSTRIES]),
     }
     return page("about/index.html", "About | %s" % COMPANY["name"],
@@ -752,9 +752,9 @@ def quality():
         proves nothing.</p>
       <div class="contactcard">
         <dl>
-          <dt>ISO 9001</dt><dd class="tbd">%(tbd)s</dd>
+          <dt>ISO 9001</dt><dd>%(iso)s</dd>
           <dt>Udyam or MSME registration</dt><dd class="tbd">%(tbd)s</dd>
-          <dt>GST</dt><dd class="tbd">%(tbd)s</dd>
+          <dt>GST</dt><dd>%(gst)s</dd>
           <dt>CIN</dt><dd>%(cin)s</dd>
         </dl>
       </div>
@@ -772,7 +772,8 @@ def quality():
     </div>
   </div>
 </section>
-""" % {"tbd": TBD, "cin": COMPANY["cin"], "testcards": icon_cards(1, [
+""" % {"tbd": TBD, "cin": COMPANY["cin"], "iso": esc(COMPANY["iso"]), "gst": esc(COMPANY["gst"]),
+       "testcards": icon_cards(1, [
         ("noun-multimeter-8419064.svg", "Resistance",
          "Catches the wrong wattage, a wrong turn count and a bad joint. It is also the number you "
          "measure against later, on the plant, to tell a failing element from a dead one."),

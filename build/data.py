@@ -40,14 +40,21 @@ COMPANY = {
     "state": "Karnataka",
     "pin": "560058",
     "country": "IN",
-    # Held back pending the client, see the address and contact note below.
-    # The 2026 brochure gives rekha@ and sales@ and does not mention info@ at all,
-    # so info@ may not even be a live mailbox. Nothing changes until that is answered.
+    # Still held back. A WhatsApp photo received 31 Aug 2026 shows the premises
+    # signboard, and it prints "sales@swiftheat.co.in" as the company email, same
+    # as the brochure. Neither source mentions info@ at all, which is now two
+    # independent signals that info@ may not be a live, monitored mailbox. This
+    # is exactly the case rule 1 exists for: nothing changes until Swiftheat
+    # answers which address receives enquiries, but the site should not keep
+    # publishing info@ unexamined.
     "email": "info@swiftheat.co.in",
     "phone_display": TBD,
     # From the brochure, both ordinary mobiles rather than an IndiaMART 8047x
-    # call tracking number. Not published: the house rule is that a number is
-    # dialled and answered directly before it goes on the site.
+    # call tracking number. The same two numbers are also painted on the
+    # premises signboard (WhatsApp photo, 31 Aug 2026), so two independent
+    # sources now agree. Still not published: the house rule is that a number
+    # is dialled and answered directly before it goes on the site, and that
+    # call has not been made yet.
     "phone_unverified": ("9108803706", "8553002014"),
     "email_unverified": ("rekha@swiftheat.co.in", "sales@swiftheat.co.in"),
     # Confirmed from Swiftheat's own IndiaMART company profile and the MCA
@@ -59,11 +66,24 @@ COMPANY = {
     "founded_long": "August 2021",
     "staff": "11 to 25",
     "cin": "U29100KA2021PTC150780",
-    # Three sources, three different plots, and the brochure made it worse rather
-    # than better. Nothing goes live until the client says which plot a courier
-    # reaches them at today.
+    # Confirmed 31 Aug 2026: the premises signboard, photographed by the client,
+    # prints this GST number directly under the Swiftheat name. It matches the
+    # public MCA/GST record already on file, and it is now first party evidence
+    # rather than a public-record inference.
+    "gst": "29ABGCS6671R1Z8",
+    # Confirmed 31 Aug 2026: the same signboard photo prints "ISO 9001:2015
+    # Certified Company" directly under the Swiftheat name, and a separate
+    # image supplied the same day (docs/image001.png) shows a BSCIC/NABCB
+    # "ISO 9001 REGISTERED" mark, QM 030. Treated as confirmed; the certificate
+    # itself has not been supplied, so this is not yet a certificate number.
+    "iso": "ISO 9001:2015 Certified Company",
+    # Settled 31 Aug 2026. A WhatsApp photo of the premises signboard, bolted to
+    # the building Swiftheat actually operates from, prints this address, and it
+    # is the one address that matches what the site (and the email signature)
+    # already published. Neither the MCA filing plot nor the 2026 brochure's
+    # plot is where the signboard is. Kept for the record, not for republishing.
     #   B-132, 3rd Cross  MCA filing at incorporation, and the old site
-    #   C-262, 6th Cross  email signature, and what this file still publishes
+    #   C-262, 6th Cross  email signature, the signboard photo, and street/area below
     #   C-205, 4th Cross  the 2026 printed brochure, 2nd Floor, Peenya 1st Stage
     "address_registry": "B-132, 3rd Cross, 1st Stage, Peenya Industrial Estate, Bangalore 560058",
     "address_brochure": "No. C-205, 2nd Floor, 4th Cross, Peenya 1st Stage, Peenya Industrial Area, Bangalore 560058",
@@ -89,8 +109,8 @@ FAMILIES = [
             "form": "insert"},
  "chips": [("6.35 to 25.4 mm", "Diameter range", False),
            ("35 to 1500 mm", "Length range", False),
-           (TBD, "Max sheath temp", True),
-           (TBD, "Max watt density", True)],
+           ("800 °C", "Max sheath temp", False),
+           ("120 W/sq in", "Max watt density", False)],
  "temps": (200, 750),
  "construction": [
    "A resistance coil is wound over a ceramic core and centred inside a metal sheath. The void is "
@@ -105,23 +125,24 @@ FAMILIES = [
  ],
  "spec_cols": ["Property", "Stainless steel", "Incoloy 800"],
  "spec_rows": [
-   ("Maximum sheath temperature", TBD, TBD),
-   ("Maximum watt density", TBD, TBD),
+   ("Maximum sheath temperature", "400 °C", "800 °C"),
+   ("Maximum watt density", "60 to 120 W/sq in", "60 to 120 W/sq in"),
    ("Watt density classes made", "High and medium", "High and medium"),
    ("Standard voltages", "110, 230, 240, 415 V", "110, 230, 240, 415 V"),
    ("Diameter range", "6.35 to 25.4 mm", "6.35 to 25.4 mm"),
    ("Length range", "35 to 1500 mm", "35 to 1500 mm"),
    ("Wattage range", "20 to 6000 W", "20 to 6000 W"),
-   ("Diameter tolerance", TBD, TBD),
-   ("Wattage tolerance", TBD, TBD),
-   ("Resistance tolerance", TBD, TBD),
+   ("Diameter tolerance", "-0.02 to -0.06 mm", "-0.02 to -0.06 mm"),
+   ("Wattage tolerance", "± 10%", "± 10%"),
+   ("Resistance tolerance", "± 10%", "± 10%"),
    ("Lead temperature rating", "By lead type, see options", "By lead type, see options"),
  ],
  "dim_caption": "Standard diameters and available lengths",
  "dim_cols": ["Diameter D", "Inch", "Min L", "Max L"],
- "dim_rows": [("6.35 mm", "1/4", TBD, TBD), ("7.94 mm", "5/16", TBD, TBD), ("9.53 mm", "3/8", TBD, TBD),
-              ("12.7 mm", "1/2", TBD, TBD), ("15.88 mm", "5/8", TBD, TBD), ("19.05 mm", "3/4", TBD, TBD),
-              ("25.4 mm", "1", TBD, TBD)],
+ "dim_rows": [("6.35 mm", "1/4", "40 mm", "800 mm"), ("8 mm", "5/16", "40 mm", "800 mm"),
+              ("9.5 mm", "3/8", "40 mm", "800 mm"), ("10 mm", "-", "40 mm", "800 mm"),
+              ("12.7 mm", "1/2", "40 mm", "1000 mm"), ("16 mm", "5/8", "40 mm", "1500 mm"),
+              ("19.05 mm", "3/4", "50 mm", "1500 mm"), ("25.4 mm", "1", "50 mm", "1000 mm")],
  "dim_keys": "L overall length, HL heated length, CZ cold zone, D diameter, LL lead length",
  "options": [
    ("Termination", [
@@ -189,10 +210,10 @@ FAMILIES = [
  "meta": "Coil heaters for hot runner nozzles and manifolds, supplied from Peenya, Bangalore. German "
          "made element, standard profile 2.2 by 4.2 mm, inbuilt Type J thermocouple, Teflon leads.",
  "facets": {"heats": "metal", "industry": "injection-moulding|blow-moulding|packaging-machinery|extrusion", "form": "wrap"},
- "chips": [("8 to 120 mm", "Inside diameter", False),
-           ("20 to 600 mm", "Heated length", False),
-           ("100 to 3000 W", "Wattage range", False),
-           (TBD, "Max sheath temp", True)],
+ "chips": [("15 to 50 mm", "Inside diameter", False),
+           ("300 to 1200 mm", "Heated length", False),
+           ("200 to 1200 W", "Wattage range", False),
+           ("400 °C", "Max sheath temp", False)],
  "temps": (200, 750),
  "construction": [
    "A resistance conductor and its mineral insulation are drawn down inside a metal sheath, then the "
@@ -210,24 +231,24 @@ FAMILIES = [
  ],
  "spec_cols": ["Property", "Value"],
  "spec_rows": [
-   ("Maximum sheath temperature", TBD),
-   ("Maximum watt density", TBD),
+   ("Maximum sheath temperature", "400 °C"),
+   ("Maximum watt density", "60 W/sq in"),
    ("Standard voltages", "110, 230, 240 V"),
-   ("Inside diameter range", "8 to 120 mm"),
-   ("Heated length range", "20 to 600 mm"),
-   ("Wattage range", "100 to 3000 W"),
+   ("Inside diameter range", "15 to 50 mm"),
+   ("Heated length range", "300 to 1200 mm"),
+   ("Wattage range", "200 to 1200 W"),
    ("Profile sections offered", "Round, square, rectangular"),
    ("Standard stock section", "2.2 mm thick by 4.2 mm wide"),
    ("Standard lead", "Teflon insulated, with ground wire"),
    ("Standard sleeve", "900 mm black fibreglass"),
-   ("Resistance tolerance", TBD),
+   ("Resistance tolerance", "± 10%"),
    ("Thermocouple types", "J and K, inbuilt. Type J on the standard item"),
    ("Manufacture", "German made element, supplied by Swiftheat"),
  ],
  "dim_caption": "What we need in order to wind a coil",
  "dim_cols": ["Dimension", "Symbol", "Range"],
- "dim_rows": [("Inside diameter", "ID", "8 to 120 mm"), ("Heated length", "HL", "20 to 600 mm"),
-              ("Total length including cold ends", "L", TBD), ("Coil pitch", "P", "State if profiled"),
+ "dim_rows": [("Inside diameter", "ID", "15 to 50 mm"), ("Heated length", "HL", "300 to 1200 mm"),
+              ("Total length including cold ends", "L", "20 to 200 mm"), ("Coil pitch", "P", "State if profiled"),
               ("Lead length", "LL", "State per end")],
  "dim_keys": "ID inside diameter, HL heated length, P pitch, LL lead length",
  "options": [
@@ -286,7 +307,7 @@ FAMILIES = [
  "chips": [("20 to 800 mm", "Inside diameter", False),
            ("20 to 400 mm", "Width", False),
            ("100 to 9000 W", "Wattage range", False),
-           (TBD, "Max working temp", True)],
+           ("500 °C", "Max working temp", False)],
  "temps": (150, 700),
  "construction": [
    "A ceramic band carries the resistance wire threaded through interlocking ceramic tiles, held in a "
@@ -302,13 +323,13 @@ FAMILIES = [
  ],
  "spec_cols": ["Property", "Ceramic", "Mica"],
  "spec_rows": [
-   ("Maximum working temperature", TBD, TBD),
-   ("Maximum watt density", TBD, TBD),
+   ("Maximum working temperature", "500 °C", "250 °C"),
+   ("Maximum watt density", "50 W/sq in", "20 W/sq in"),
    ("Standard voltages", "230, 240, 415 V", "230, 240, 415 V"),
    ("Inside diameter range", "20 to 800 mm", "20 to 800 mm"),
    ("Width range", "20 to 400 mm", "20 to 400 mm"),
    ("Wattage range", "100 to 9000 W", "100 to 9000 W"),
-   ("Section thickness", TBD, TBD),
+   ("Section thickness", "Not required", "Not required"),
    ("Cutouts and holes", "Yes, to your drawing", "Yes, to your drawing"),
    ("Insulation blanket", "Optional", "Not applicable"),
  ],
@@ -323,8 +344,8 @@ FAMILIES = [
  "dim_keys": "ID inside diameter, W width, G joint gap, A angle of coverage",
  "options": [
    ("Material", [
-     ("CE", "Ceramic", "Higher temperature, insulated, heat directed inward.", TBD),
-     ("MI", "Mica", "Thinner section, lower temperature, lower cost.", TBD),
+     ("CE", "Ceramic", "Higher temperature, insulated, heat directed inward.", "500 °C"),
+     ("MI", "Mica", "Thinner section, lower temperature, lower cost.", "250 °C"),
    ]),
    ("Construction", [
      ("C1", "One piece", "Full circle, slides on from the end of the barrel.", ""),
