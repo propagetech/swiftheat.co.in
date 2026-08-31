@@ -15,7 +15,48 @@ machine to the element type.
 """
 from .chrome import (art, cards, crumbs, enquiry, esc, flow, flow_legend, page,
                      product_cards, rel, tscale)
-from .data import COMPANY, FAMILIES, FAMILY_BY_SLUG, FORMS, INDUSTRIES, INDUSTRY_BY_SLUG, TBD
+from .data import (COMPANY, FAMILIES, FAMILY_BY_SLUG, FAMILY_PHOTOS, FORMS, INDUSTRIES,
+                   INDUSTRY_BY_SLUG, TBD)
+
+
+def _photo(slug, key):
+    return FAMILY_PHOTOS.get(slug, {}).get(key)
+
+
+def _img(shot, depth, eager=False):
+    f, w, h, alt = shot
+    return ('<img src="%s" width="%d" height="%d" loading="%s"\n        alt="%s">'
+            % (rel(depth, "imgs/photos/" + f), w, h, "eager" if eager else "lazy",
+               esc(alt)))
+
+
+def _hero_figure(f, slug, depth):
+    """A photograph of the family where the client supplied one, otherwise the
+    drawing. The dimensioned drawing still appears further down the page in the
+    Dimensions section, so nothing is lost by giving the hero to a photograph."""
+    shot = _photo(slug, "hero")
+    if shot:
+        return ('<figure class="drawing figure-photo">\n        %s\n'
+                '        <figcaption>%s, made to order in Peenya. Every dimension and option on '
+                'this page is one you choose.</figcaption>\n      </figure>'
+                % (_img(shot, depth, eager=True), esc(f["name"])))
+    return ('<figure class="drawing">\n        %s\n'
+            '        <figcaption>The same drawing the list builder produces. Every number on it '
+            'is a box you\n          fill in, and every option you choose changes the picture.'
+            '</figcaption>\n      </figure>' % art(
+                f["art"], "Drawing of a %s, with the principal dimensions called out"
+                % f["name"].lower()))
+
+
+def _shot(slug, key, depth, classes, placeholder):
+    shot = _photo(slug, key)
+    if not shot:
+        return ('<div class="%s">\n      <span class="label">Photograph required</span>\n'
+                '      <p>%s</p>\n    </div>' % (classes, placeholder))
+    # contain, not cover: these are parts on a knocked out ground, and cropping
+    # one to fill a box cuts the ends off the product.
+    return ('<div class="%s filled shot-part">\n      %s\n    </div>'
+            % (classes, _img(shot, depth)))
 
 
 def _val(v):
@@ -181,11 +222,7 @@ def product_page(f):
       </div>
     </div>
     <div>
-      <figure class="drawing">
-        %(art)s
-        <figcaption>The same drawing the list builder produces. Every number on it is a box you
-          fill in, and every option you choose changes the picture.</figcaption>
-      </figure>
+      %(herofig)s
     </div>
   </div>
 </section>
@@ -198,11 +235,7 @@ def product_page(f):
       <h3>Where this family sits on temperature</h3>
       %(tscale)s
     </div>
-    <div class="shot">
-      <span class="label">Photograph required</span>
-      <p>%(name)s, three quarter view on white, macro. Minimum 2000 px wide. One of a set of four
-        for this family.</p>
-    </div>
+    %(conshot)s
   </div>
 </section>
 
@@ -255,10 +288,7 @@ def product_page(f):
       <h2>Choosing the right heater</h2>
       %(selection)s
     </div>
-    <div class="shot shot-sm">
-      <span class="label">Photograph required</span>
-      <p>%(name)s installed on a customer machine. One application shot per family.</p>
-    </div>
+    %(selshot)s
   </div>
 </section>
 
@@ -308,7 +338,13 @@ def product_page(f):
         "lede": esc(f["lede"]),
         "chips": _chips(f["chips"]),
         "builder": rel(depth, "build-a-list/"),
-        "art": art(f["art"], "Drawing of a %s, with the principal dimensions called out" % f["name"].lower()),
+        "herofig": _hero_figure(f, slug, depth),
+        "conshot": _shot(slug, "construction", depth, "shot",
+                         "%s, three quarter view on white, macro. Minimum 2000 px wide. One of a "
+                         "set of four\n        for this family." % esc(f["name"])),
+        "selshot": _shot(slug, "selection", depth, "shot shot-sm",
+                         "%s installed on a customer machine. One application shot per family."
+                         % esc(f["name"])),
         "art2": art(f["art"], "Dimensioned drawing of a %s" % f["name"].lower()),
         "construction": "".join("<p>%s</p>" % esc(p) for p in f["construction"]),
         "tscale": tscale(lo, hi),

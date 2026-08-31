@@ -33,7 +33,6 @@
           { c: 'T3', t: 'Double ended', d: 'One lead each end' } ] },
         { title: 'Lead protection', k: 'lead', opts: [
           { c: 'L1', t: 'Fibreglass', d: 'General purpose' },
-          { c: 'L2', t: 'PTFE', d: 'Oil and plasticiser' },
           { c: 'L3', t: 'Metal braid', d: 'Abrasion resistance' },
           { c: 'L4', t: 'Armour', d: 'Full mechanical protection' },
           { c: 'L5', t: 'Ceramic bead', d: 'Highest exit temperature' } ] },
@@ -446,14 +445,11 @@
       for (q = 0; q < 6; q++) beads += CIR(sl0 + 5 + q * (sw / 6), cy, Math.max(4, Math.min(7.5, sh / 1.9)), { w: 1.3 });
       art += '<g class="opt-lead">' + beads + '</g>';
     } else {
-      var sleeve = RECT(sl0, sy, sw, sh, { rx: sh / 2, fill: opt.lead === 'L2' ? shell : 'none', w: 1.4 });
+      var sleeve = RECT(sl0, sy, sw, sh, { rx: sh / 2, fill: 'none', w: 1.4 });
       var fill = '';
       if (opt.lead === 'L1') {              /* woven glass: light weave */
         for (q = 0; q < 4; q++) fill += P('M' + (sl0 + 8 + q * 13) + ' ' + (sy + sh) + 'l9 -' + sh,
           { stroke: mid, w: 1 });
-      } else if (opt.lead === 'L2') {       /* PTFE: smooth, two highlights */
-        fill += P('M' + (sl0 + 6) + ' ' + (sy + sh * 0.32) + 'H' + (sl1 - 6) +
-          'M' + (sl0 + 6) + ' ' + (sy + sh * 0.68) + 'H' + (sl1 - 6), { stroke: mid, w: 1 });
       } else if (opt.lead === 'L3') {       /* braid: cross hatch */
         for (q = 0; q < 5; q++) {
           fill += P('M' + (sl0 + 4 + q * 11) + ' ' + (sy + sh) + 'l11 -' + sh +

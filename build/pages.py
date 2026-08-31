@@ -99,10 +99,10 @@ def home():
         <li><b>%(founded)s</b><span>Manufacturing since</span></li>
       </ul>
     </div>
-    <div class="shot">
-      <span class="label">Photograph required</span>
-      <p>The Peenya works: winding, assembly or the test bench, with people in shot. Landscape,
-        minimum 2400 px wide. This is the picture the whole home page rests on.</p>
+    <div class="shot filled">
+      <img src="imgs/photos/home-hero-works.jpg" width="1100" height="733" loading="eager"
+        alt="Three views of Swiftheat in Peenya: an engineer checking a drawing at his desk, an
+          operator at a machine on the shop floor, and the works entrance at Plot C-262">
     </div>
   </div>
 </section>
@@ -229,10 +229,10 @@ def products_index():
         <a class="btn btn-ghost" href="../applications/">Browse by industry instead</a>
       </div>
     </div>
-    <div class="shot">
-      <span class="label">Photograph required</span>
-      <p>The full range laid out together on a clean surface, shot from above. One picture that
-        shows the breadth in a single frame.</p>
+    <div class="shot filled shot-part">
+      <img src="../imgs/photos/products-hero.jpg" width="409" height="622" loading="eager"
+        alt="Cartridge, coil, band and nozzle heaters laid out together with thermocouples,
+          sensors and a tubular element">
     </div>
   </div>
 </section>
@@ -398,10 +398,9 @@ def about():
         <a class="btn btn-ghost" href="../contact/">Come and see the works</a>
       </div>
     </div>
-    <div class="shot">
-      <span class="label">Photograph required</span>
-      <p>The works from the shop floor, wide, with people at the benches. Landscape, minimum
-        2400 px wide.</p>
+    <div class="shot filled">
+      <img src="../imgs/photos/about-hero-works-floor.jpg" width="1810" height="1200" loading="eager"
+        alt="Two Swiftheat operators at benches on the Peenya shop floor, winding and finishing elements">
     </div>
   </div>
 </section>
@@ -864,10 +863,14 @@ def resources():
         connected, instrument reading visible.</p></div>
       <div class="shot"><span class="label">Photograph required</span><p>Finished goods packed and
         labelled for despatch.</p></div>
-      <div class="shot"><span class="label">Photograph required</span><p>Product range group shot on
-        a clean surface, from above.</p></div>
-      <div class="shot"><span class="label">Photograph required</span><p>The building and the
-        signage, so a first time visitor can find it.</p></div>
+      <div class="shot filled">
+        <img src="../imgs/photos/works-product-range.jpg" width="3714" height="2475" loading="lazy"
+          alt="A set of finished Swiftheat cartridge heaters laid out on paper">
+      </div>
+      <div class="shot filled">
+        <img src="../imgs/photos/works-building-signage.jpg" width="2041" height="900" loading="lazy"
+          alt="The Swiftheat works at Plot C-262, 6th Cross, Peenya Industrial Area, from three angles">
+      </div>
     </div>
   </div>
 </section>

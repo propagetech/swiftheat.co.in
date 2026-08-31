@@ -68,7 +68,7 @@ img{max-width:100%;height:auto}
    build/logo-svg.py, over the descriptor the logo itself does not carry. */
 .logo{display:block;text-decoration:none;flex:0 0 auto;line-height:1}
 .logo img{display:block;width:172px;height:auto}
-.logo small{display:block;font-family:Inter,sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-500);margin-top:5px}
+.logo small{display:block;font-family:Inter,sans-serif;font-size:.75rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-500);margin-top:5px}
 .navtoggle{display:none;margin-left:auto;align-items:center;gap:var(--s2);min-height:44px;padding:var(--s2) var(--s3);
   background:var(--surface);border:1px solid var(--ink-300);border-radius:var(--radius);color:var(--ink-900);
   font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}
@@ -139,6 +139,16 @@ img{max-width:100%;height:auto}
 .shot .label{font-size:.75rem;text-transform:uppercase;letter-spacing:.13em;color:var(--heat-700);font-weight:600}
 .shot p{font-size:.9rem;color:var(--ink-600);margin:var(--s3) auto 0;max-width:34ch}
 .shot-sm{min-height:150px}
+.shot.filled{display:block;padding:0;background:none;border-style:solid;overflow:hidden}
+.shot.filled img{display:block;width:100%;height:100%;object-fit:cover;border-radius:calc(var(--radius) - 1px)}
+/* A part on a knocked out ground rather than a photograph of a room. Cover
+   would crop the ends off the element, so it is contained and given a surface
+   to sit on, and the panel takes its height from the picture. */
+.shot.filled.shot-part{background:var(--surface);border-color:var(--ink-200);
+  padding:var(--s5);min-height:0;display:flex;align-items:center;justify-content:center}
+.shot.filled.shot-part img{width:auto;max-width:100%;height:auto;max-height:340px;object-fit:contain}
+section.band.alt .shot.filled.shot-part{background:var(--paper)}
+.hero .shot.filled.shot-part{background:var(--surface)}
 
 /* ---------- jump nav ---------- */
 .jump{background:var(--surface-sunk);border-bottom:1px solid var(--ink-200);position:sticky;top:var(--header-h);z-index:15}
@@ -170,6 +180,9 @@ figure{margin:0}
 figure svg{width:100%;height:auto;display:block}
 figcaption{font-size:.82rem;color:var(--ink-600);margin-top:var(--s3)}
 .drawing{background:var(--surface);border:1px solid var(--ink-200);border-radius:var(--radius);padding:var(--s5)}
+/* Same frame as the drawing it replaces, so a family with a photograph in the
+   hero and one without still look like the same page. */
+.figure-photo img{display:block;width:100%;height:auto;max-height:400px;object-fit:contain}
 section.band.alt .drawing{background:var(--paper)}
 section.band.ink .drawing{background:hsl(214 30% 15%);border-color:hsl(214 24% 26%)}
 section.band.ink figcaption{color:hsl(214 14% 66%)}
@@ -193,7 +206,7 @@ td.n,th.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
 .tscale .span{position:absolute;top:-5px;height:24px;border-radius:3px;
   background:hsl(214 32% 11% / .16);border:2px solid var(--ink-900)}
 .tscale .ticks{display:flex;justify-content:space-between;list-style:none;margin:var(--s2) 0 0;padding:0;max-width:none;
-  font-size:.72rem;color:var(--ink-600);font-variant-numeric:tabular-nums}
+  font-size:.75rem;color:var(--ink-600);font-variant-numeric:tabular-nums}
 .tscale .ticks li{margin:0}
 .tscale .cap{font-size:.82rem;color:var(--ink-600);margin:var(--s3) 0 0}
 section.band.ink .tscale .span{border-color:#fff;background:hsl(0 0% 100% / .18)}
@@ -218,9 +231,11 @@ section.band.alt .opts li{background:var(--paper)}
    An empty .optshot holds the same space on the options in the group that have
    no photograph, which keeps the row aligned. The class is NOT .shot: that name
    already belongs to the dashed "photograph required" placeholder. */
-.opts .optshot{display:block;height:104px;margin:var(--s3) 0}
-.opts .optshot img{display:block;height:100%;width:auto;max-width:100%;object-fit:contain;
-  object-position:left center}
+/* Taller and centred at the client's request against the option catalogue:
+   "the images should be little bigger and to be in center". */
+.opts .optshot{display:block;height:132px;margin:var(--s3) 0}
+.opts .optshot img{display:block;height:100%;width:100%;object-fit:contain;
+  object-position:center}
 
 .note{background:var(--heat-100);border-left:4px solid var(--heat-500);padding:var(--s4) var(--s5);border-radius:0 var(--radius) var(--radius) 0;margin:0 0 var(--s5)}
 .note p:last-child{margin-bottom:0}
@@ -252,6 +267,10 @@ section.band.ink ol.steps > li::before{color:var(--heat-500)}
   border:1px solid var(--ink-200);border-radius:var(--radius);padding:var(--s4);text-decoration:none;color:var(--ink-700)}
 .pcards a:hover{border-color:var(--heat-500)}
 .pcards .art{background:var(--surface-sunk);border-radius:var(--radius);padding:var(--s4)}
+/* A photograph of the family instead of the line drawing. Fixed height so the
+   eight cards line their titles up whatever shape the part happens to be. */
+.pcards .art-photo{display:flex;align-items:center;justify-content:center}
+.pcards .art-photo img{width:100%;height:116px;object-fit:contain;object-position:center}
 .pcards strong{display:block;font-family:"Archivo Narrow",sans-serif;font-size:1.2rem;color:var(--ink-900)}
 .pcards span{font-size:.88rem;color:var(--ink-600)}
 .pcards .meta{font-size:.76rem;color:var(--ink-500);text-transform:uppercase;letter-spacing:.07em;margin-top:auto}
