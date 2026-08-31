@@ -447,12 +447,16 @@ PRESENTATION = [
 
 
 def main():
-    for label, dest, table, cap, drawn in (("family cards -> imgs/cards", CARDS, FAMILY_CARDS, 420, 116),
-                                    ("option thumbnails -> imgs/parts", PARTS, OPTION_PARTS, 300, 132)):
+    for label, dest, table, cap, drawn in (("family cards -> imgs/cards", CARDS, FAMILY_CARDS, 560, 116),
+                                    ("option thumbnails -> imgs/parts", PARTS, OPTION_PARTS, 620, 132)):
         print(label)
         for name, out, kw in table:
             kw = dict(kw)
             kw.setdefault("cap", cap)
+            # Twice the drawn height, but the width cap is what usually binds:
+            # a single column phone layout draws these wider than the desktop
+            # grid does, and sizing for desktop alone ships a soft image to the
+            # viewport that most buyers will actually use.
             kw.setdefault("cap_h", drawn * 2)
             p, size = cutout(name, out, dest, display_h=drawn, **kw)
             print("  %-34s %-32s %dx%d %7d B"

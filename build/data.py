@@ -100,7 +100,7 @@ FAMILIES = [
  "nav": "Cartridge",
  "code": "CH",
  "art": "cartridge",
- "card": ("cartridge-heaters.png", 420, 232),
+ "card": ("cartridge-heaters.png", 421, 232),
  "lede": "Swaged, high watt density heaters for bore mounting in moulds, platens and dies. "
          "Built to your drawing, with or without an inbuilt thermocouple.",
  "summary": "Bore mounted in moulds, platens and dies. Round, swaged, made to your length.",
@@ -307,7 +307,7 @@ FAMILIES = [
  "nav": "Band",
  "code": "BH",
  "art": "band",
- "card": ("band-heaters.png", 420, 231),
+ "card": ("band-heaters.png", 422, 232),
  "lede": "Clamped around barrels and cylinders to heat them evenly. Ceramic for the higher "
          "temperatures and insulated running, mica where the section has to stay thin.",
  "summary": "Barrels, cylinders and pipes. One piece, split, expandable or partial coverage.",
@@ -564,7 +564,7 @@ FAMILIES = [
  "nav": "Tubular",
  "code": "TH",
  "art": "tubular",
- "card": ("tubular-heaters.png", 420, 137),
+ "card": ("tubular-heaters.png", 509, 166),
  "lede": "The general purpose element. A mineral insulated tube that can be bent to almost any form "
          "and put into air, into liquid or clamped against a surface.",
  "summary": "Air, liquids and surfaces. Straight, U form, W form or coiled to your drawing.",
