@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """The pages that are not one of the two repeating types."""
+from . import imgmeta
 from .chrome import (art, cards, enquiry, esc, icon_cards, page, product_cards, rel, tscale, NAV)
 from .data import COMPANY, FAMILIES, FAMILY_BY_SLUG, INDUSTRIES, INDUSTRY_BY_SLUG, TBD
 
@@ -229,8 +230,9 @@ def products_index():
         <a class="btn btn-ghost" href="../applications/">Browse by industry instead</a>
       </div>
     </div>
-    <div class="shot filled shot-part">
-      <img src="../imgs/photos/products-hero.jpg" width="409" height="622" loading="eager"
+    <div class="shot filled shot-part"%(herobg)s>
+      <img src="../imgs/photos/products-hero.png" width="%(herow)d" height="%(heroh)d"
+        style="max-width:min(100%%,%(herow)dpx)" loading="eager"
         alt="Cartridge, coil, band and nozzle heaters laid out together with thermocouples,
           sensors and a tubular element">
     </div>
@@ -303,6 +305,13 @@ def products_index():
         "indopts": "".join('<option value="%s">%s</option>' % (i["slug"], esc(i["name"])) for i in INDUSTRIES),
         "n": len(FAMILIES),
         "prods": product_cards(depth, [f["slug"] for f in FAMILIES], facets=True),
+        # The montage the client supplied is on a saturated blue, so the panel
+        # behind it is painted that blue rather than the picture being cut off
+        # its ground. Every lead and every white braided sleeve in it survives
+        # that way, which no knockout of a blue this strong managed.
+        "herobg": imgmeta.bg("photos/products-hero.png", pad=True),
+        "herow": imgmeta.size("photos/products-hero.png")[0],
+        "heroh": imgmeta.size("photos/products-hero.png")[1],
     }
     ld = {"@context": "https://schema.org", "@type": "CollectionPage",
           "name": "Products", "description": "Eight families of industrial heating element.",

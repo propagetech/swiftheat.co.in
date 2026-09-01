@@ -144,11 +144,16 @@ img{max-width:100%;height:auto}
 /* A part on a knocked out ground rather than a photograph of a room. Cover
    would crop the ends off the element, so it is contained and given a surface
    to sit on, and the panel takes its height from the picture. */
-.shot.filled.shot-part{background:var(--surface);border-color:var(--ink-200);
-  padding:var(--s5);min-height:0;display:flex;align-items:center;justify-content:center}
+/* --art-bg is the colour the photograph's own background was measured at, set
+   on the element by the build. The client asked for the borders off their
+   pictures and the backgrounds left on, so the panel matches the picture rather
+   than the picture being cut out to match the panel. The fallback is what the
+   panel was before any photograph landed in it. */
+.shot.filled.shot-part{background:var(--art-bg,var(--surface));border-color:var(--ink-200);
+  padding:var(--art-pad,var(--s5));min-height:0;display:flex;align-items:center;justify-content:center}
 .shot.filled.shot-part img{width:auto;max-width:100%;height:auto;max-height:340px;object-fit:contain}
-section.band.alt .shot.filled.shot-part{background:var(--paper)}
-.hero .shot.filled.shot-part{background:var(--surface)}
+section.band.alt .shot.filled.shot-part{background:var(--art-bg,var(--paper))}
+.hero .shot.filled.shot-part{background:var(--art-bg,var(--surface))}
 
 /* ---------- jump nav ---------- */
 .jump{background:var(--surface-sunk);border-bottom:1px solid var(--ink-200);position:sticky;top:var(--header-h);z-index:15}
@@ -179,11 +184,13 @@ section.band.ink a{color:hsl(30 90% 78%)}
 figure{margin:0}
 figure svg{width:100%;height:auto;display:block}
 figcaption{font-size:.82rem;color:var(--ink-600);margin-top:var(--s3)}
-.drawing{background:var(--surface);border:1px solid var(--ink-200);border-radius:var(--radius);padding:var(--s5)}
+.drawing{background:var(--art-bg,var(--surface));border:1px solid var(--ink-200);border-radius:var(--radius);padding:var(--s5)}
 /* Same frame as the drawing it replaces, so a family with a photograph in the
    hero and one without still look like the same page. */
-.figure-photo img{display:block;width:100%;height:auto;max-height:400px;object-fit:contain}
-section.band.alt .drawing{background:var(--paper)}
+/* The build caps each photograph at its own pixel width, so centre what is
+   narrower than the figure rather than leaving it hard against the left. */
+.figure-photo img{display:block;width:100%;height:auto;max-height:400px;object-fit:contain;margin-inline:auto}
+section.band.alt .drawing{background:var(--art-bg,var(--paper))}
 section.band.ink .drawing{background:hsl(214 30% 15%);border-color:hsl(214 24% 26%)}
 section.band.ink figcaption{color:hsl(214 14% 66%)}
 
@@ -240,9 +247,16 @@ section.band.alt .opts li{background:var(--paper)}
    leave a small one alone. Some of these arrive from the client as 132 px line
    diagrams, and a single column phone layout was blowing one of them up to 308
    px wide, which is 2.2x and looks it. Small and sharp beats big and soft. */
+/* The client photographs keep the ground they were shot on, so each tile is
+   painted that ground. The fallback is white rather than transparent so the
+   accessories carried over from the old site, which were knocked out of a white
+   studio ground years ago, sit on the same tile as the ones that still have
+   theirs: a row of four where two are framed and two float reads as a mistake. */
 .opts .optshot{display:flex;align-items:center;justify-content:center;
-  height:132px;margin:var(--s3) 0}
-.opts .optshot img{display:block;max-width:100%;max-height:100%;width:auto;height:auto}
+  height:132px;margin:var(--s3) 0;
+  background:var(--art-bg,var(--surface));border-radius:calc(var(--radius) - 2px)}
+.opts .optshot img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;
+  border-radius:calc(var(--radius) - 2px)}
 
 .note{background:var(--heat-100);border-left:4px solid var(--heat-500);padding:var(--s4) var(--s5);border-radius:0 var(--radius) var(--radius) 0;margin:0 0 var(--s5)}
 .note p:last-child{margin-bottom:0}
@@ -274,6 +288,10 @@ section.band.ink ol.steps > li::before{color:var(--heat-500)}
   border:1px solid var(--ink-200);border-radius:var(--radius);padding:var(--s4);text-decoration:none;color:var(--ink-700)}
 .pcards a:hover{border-color:var(--heat-500)}
 .pcards .art{background:var(--surface-sunk);border-radius:var(--radius);padding:var(--s4)}
+/* A family that has a photograph paints its panel the photograph's own ground.
+   The sunk warm grey is what a line drawing sits on; under a photograph it
+   frames the studio white as a rectangle pasted onto the card. */
+.pcards .art-photo{background:var(--art-bg,var(--surface-sunk))}
 /* A photograph of the family instead of the line drawing. Fixed height so the
    eight cards line their titles up whatever shape the part happens to be, and
    the same no-upscaling rule as the option shots: at 390 px the cards go single
@@ -285,6 +303,7 @@ section.band.ink ol.steps > li::before{color:var(--heat-500)}
 .pcards .meta{font-size:.76rem;color:var(--ink-500);text-transform:uppercase;letter-spacing:.07em;margin-top:auto}
 section.band.alt .pcards a{background:var(--paper)}
 section.band.alt .pcards .art{background:var(--surface)}
+section.band.alt .pcards .art-photo{background:var(--art-bg,var(--surface))}
 
 /* ---------- product finder ---------- */
 .finder{background:var(--surface);border:1px solid var(--ink-200);border-radius:var(--radius);padding:var(--s5);margin-bottom:var(--s6)}

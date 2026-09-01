@@ -13,6 +13,7 @@ The industry page carries the thing no site in that benchmark set has: a process
 diagram with the heated zones called out, and a zone by zone table mapping the
 machine to the element type.
 """
+from . import imgmeta
 from .chrome import (art, cards, crumbs, enquiry, esc, flow, flow_legend, page,
                      product_cards, rel, tscale)
 from .data import (COMPANY, FAMILIES, FAMILY_BY_SLUG, FAMILY_PHOTOS, FORMS, INDUSTRIES,
@@ -24,10 +25,30 @@ def _photo(slug, key):
 
 
 def _img(shot, depth, eager=False):
+    """A client photograph, never drawn larger than the pixels it has.
+
+    Several of these arrive around 300 px and the panels they sit in are 750 px
+    wide, so left to fill their box they are drawn at two and a half times their
+    own resolution and read as blurred. The cap only bites on the small ones:
+    the band hero is a thousand pixels wide and fills its panel either way.
+
+    min() and not a bare pixel cap. The inline style wins over the stylesheet,
+    so a bare cap also cancels the max-width:100% the panels rely on, and a
+    picture wider than its panel then runs out past the edge and is clipped by
+    it. The cutaways are a thousand pixels wide and the two column panel they
+    sit in is not, so this is the difference between a whole cutaway and a
+    cropped one.
+    """
     f, w, h, alt = shot
-    return ('<img src="%s" width="%d" height="%d" loading="%s"\n        alt="%s">'
-            % (rel(depth, "imgs/photos/" + f), w, h, "eager" if eager else "lazy",
+    return ('<img src="%s" width="%d" height="%d" style="max-width:min(100%%,%dpx)" loading="%s"\n'
+            '        alt="%s">'
+            % (rel(depth, "imgs/photos/" + f), w, h, w, "eager" if eager else "lazy",
                esc(alt)))
+
+
+def _bg(shot, pad=False):
+    """Repaint the panel behind a photograph to the ground it was shot on."""
+    return imgmeta.bg("photos/" + shot[0], pad=pad)
 
 
 def _hero_figure(f, slug, depth):
@@ -36,7 +57,7 @@ def _hero_figure(f, slug, depth):
     Dimensions section, so nothing is lost by giving the hero to a photograph."""
     shot = _photo(slug, "hero")
     if shot:
-        return ('<figure class="drawing figure-photo">\n        %s\n'
+        return ('<figure class="drawing figure-photo"' + _bg(shot) + '>\n        %s\n'
                 '        <figcaption>%s, made to order in Peenya. Every dimension and option on '
                 'this page is one you choose.</figcaption>\n      </figure>'
                 % (_img(shot, depth, eager=True), esc(f["name"])))
@@ -55,8 +76,15 @@ def _shot(slug, key, depth, classes, placeholder):
                 '      <p>%s</p>\n    </div>' % (classes, placeholder))
     # contain, not cover: these are parts on a knocked out ground, and cropping
     # one to fill a box cuts the ends off the product.
-    return ('<div class="%s filled shot-part">\n      %s\n    </div>'
-            % (classes, _img(shot, depth)))
+    #
+    # The panel keeps its 24 px padding. These grounds are a single measured
+    # colour, so the panel is painted the same colour as the picture and the
+    # padding does not read as a band around it: it reads as breathing room
+    # between the part and the panel edge, which is what a cutaway running to
+    # the border was missing. Only the products montage closes the padding up,
+    # because its ground is a gradient no flat colour can match.
+    return ('<div class="%s filled shot-part"%s>\n      %s\n    </div>'
+            % (classes, _bg(shot), _img(shot, depth)))
 
 
 def _val(v):
@@ -105,7 +133,10 @@ def _options(f):
                 rate = '<span class="rating">Rated to %s</span>' % esc(rating)
             # Decorative: the card names the option in words directly below.
             if img:
-                shot = '<span class="optshot"><img src="../../imgs/%s" alt="" loading="lazy"></span>' % img
+                w, h = imgmeta.size(img) or (0, 0)
+                shot = ('<span class="optshot"%s><img src="../../imgs/%s" width="%d" '
+                        'height="%d" alt="" loading="lazy"></span>'
+                        % (imgmeta.bg(img), img, w, h))
             elif any_shot:
                 shot = '<span class="optshot"></span>'
             else:

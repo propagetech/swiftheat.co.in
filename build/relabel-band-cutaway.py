@@ -19,12 +19,17 @@ the prose it illustrates is worse than a drawing set in the wrong font.
 """
 import colorsys
 import os
+import sys
 
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 from scipy import ndimage
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+
+from imgprep import crop_borders  # noqa: E402
+
 ROOT = os.path.join(HERE, "..")
 SRC = os.path.join(ROOT, "docs", "uploads-2026-08-31", "web1-ppt-images", "image59.png")
 DEST = os.path.join(ROOT, "imgs", "photos", "band-construction.png")
@@ -133,7 +138,17 @@ def main():
         for i, line in enumerate(lines):
             draw.text((cx, top + i * step), line, font=font, fill=INK, anchor="ma")
 
-    # 4. knock the white ground back out, so it sits on any surface
+    # 4. take the supplier's border off.
+    #
+    # Two columns of pale grey rule down the right hand edge, and nothing on the
+    # other three sides. At 243 it is light enough to look like paper and dark
+    # enough to survive the knockout below, so it came through onto the page as
+    # a hairline down the side of the drawing. The crop happens here rather than
+    # on the source because the label blocks are measured in the source's own
+    # coordinates and a crop before they are set would shift every one of them.
+    big = crop_borders(big)
+
+    # 5. knock the white ground back out, so it sits on any surface
     arr = np.asarray(big).astype(int)
     ground = arr.min(axis=2) > 244
     lab, n = ndimage.label(ground)

@@ -7,333 +7,189 @@
 The client marked up screenshots of the preview site in PowerPoint and dropped a
 photograph onto each slot they wanted filled. Those photographs come out of the
 deck as ppt/media/imageNN, which is what docs/uploads-2026-08-31/web1-ppt-images
-holds. This turns them into the three shapes the site actually uses:
+holds, byte for byte. This turns them into the three shapes the site uses:
 
-  imgs/cards/   one cutout per product family, for the family cards
-  imgs/parts/   option thumbnails, matching the existing knocked out accessories
+  imgs/cards/   one per product family, for the family cards
+  imgs/parts/   option thumbnails for the option catalogue
   imgs/photos/  the larger presentation images: hero, construction, selection
 
-Nearly all of them arrive on a flat studio background: white for most, a blue
-gradient for the products montage, a pale blue grey for the cartridge group.
-Knocking that out to transparency is what lets one sit on a warm card surface
-and the next on a sunk panel without three different rectangles showing. The
-flood fill starts at the border and compares each candidate against the pixel it
-came from, so it follows a smooth gradient outward but stops at the product edge.
+The background stays. An earlier cut of this knocked the studio ground out to
+transparency so one picture could sit on a warm card and the next on a sunk
+panel, and it cost real product: the white braided lead off the Type K
+thermocouple, the fine wire off the grounded probe, and most of the pile of
+ceramic beads, which came out as confetti. A flood fill cannot tell a white lead
+on a white sweep from the sweep. So nothing is erased here. What comes off is
+the border, and where the ground that is left is not the colour of the panel it
+lands on, the panel is repainted to match it: every output records its own
+ground colour in imgs/client-imgs.json and the build reads it back.
+
+Sharpening is the other half. Most of these arrive between 200 and 500 px, which
+is at or just under the size the page draws them at on a 2x screen, so they go
+up by at most 1.4x on Lanczos and take an unsharp mask scaled to how far they
+were stretched. That does not invent detail. It recovers the edge contrast the
+resample costs, which is the part that reads as blur.
 
 image40.jpg is deliberately absent: it carries another supplier's watermark.
 """
+import json
 import os
+import sys
 import warnings
-from collections import deque
 
 import numpy as np
 from PIL import Image
+from scipy import ndimage
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+
+from imgprep import _hex, crop_borders, enhance, ground  # noqa: E402
+
 ROOT = os.path.join(HERE, "..")
 SRC = os.path.join(ROOT, "docs", "uploads-2026-08-31", "web1-ppt-images")
-CARDS = os.path.join(ROOT, "imgs", "cards")
-PARTS = os.path.join(ROOT, "imgs", "parts")
-PHOTOS = os.path.join(ROOT, "imgs", "photos")
+IMGS = os.path.join(ROOT, "imgs")
+CARDS = os.path.join(IMGS, "cards")
+PARTS = os.path.join(IMGS, "parts")
+PHOTOS = os.path.join(IMGS, "photos")
+META = os.path.join(IMGS, "client-imgs.json")
+
+# Crops the client set in PowerPoint, as the deck records them: a fraction of
+# each side, in hundred thousandths. Honouring them is not a nicety. On the coil
+# selection shot the client cropped away half the frame, and a build that reads
+# only ppt/media ships the half they cut.
+PPT_CROP = {
+    "image26.jpeg": {"l": 5461, "t": 12122, "r": 5598, "b": 5454},
+    "image55.jpg": {"t": 26500, "b": 26917},
+    "image65.jpg": {"t": 28584, "r": -2, "b": 18244},
+    "image66.jpg": {"l": 25969, "r": 18744, "b": -1},
+}
+
+_meta = {}
 
 
-def load(name):
+def load(name, ppt_crop=True):
     im = Image.open(os.path.join(SRC, name))
     if im.mode in ("RGBA", "LA", "P"):
         im = im.convert("RGBA")
         flat = Image.new("RGBA", im.size, (255, 255, 255, 255))
         im = Image.alpha_composite(flat, im)
-    return im.convert("RGB")
+    im = im.convert("RGB")
+    if ppt_crop and name in PPT_CROP:
+        im = _srcrect(im, PPT_CROP[name])
+    return im
 
 
-def _label(mask):
-    """Label the True regions of mask with 1..n, background 0."""
-    out = np.zeros(mask.shape, np.int32)
-    n = 0
-    h, w = mask.shape
-    for sy in range(h):
-        for sx in range(w):
-            if not mask[sy, sx] or out[sy, sx]:
-                continue
-            n += 1
-            q = deque([(sx, sy)])
-            out[sy, sx] = n
-            while q:
-                x, y = q.popleft()
-                for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
-                    if 0 <= nx < w and 0 <= ny < h and mask[ny, nx] and not out[ny, nx]:
-                        out[ny, nx] = n
-                        q.append((nx, ny))
-    return out, n
+def _srcrect(im, c):
+    """Apply a PowerPoint srcRect. Negative values are bleed, not a crop."""
+    w, h = im.size
+    return im.crop((int(w * max(0, c.get("l", 0)) / 100000),
+                    int(h * max(0, c.get("t", 0)) / 100000),
+                    w - int(w * max(0, c.get("r", 0)) / 100000),
+                    h - int(h * max(0, c.get("b", 0)) / 100000)))
 
 
-def _components(mask):
-    """Label the True regions of mask. Yields (indices, touches_border)."""
-    h, w = mask.shape
-    seen = np.zeros((h, w), bool)
-    for sy in range(h):
-        row = mask[sy]
-        for sx in range(w):
-            if not row[sx] or seen[sy, sx]:
-                continue
-            q = deque([(sx, sy)])
-            seen[sy, sx] = True
-            pts = []
-            edge = False
-            while q:
-                x, y = q.popleft()
-                pts.append((y, x))
-                if x == 0 or y == 0 or x == w - 1 or y == h - 1:
-                    edge = True
-                for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
-                    if 0 <= nx < w and 0 <= ny < h and mask[ny, nx] and not seen[ny, nx]:
-                        seen[ny, nx] = True
-                        q.append((nx, ny))
-            yield pts, edge
+def save(im, path, quality=88, line_art=False, has_ground=True):
+    """Write the picture and record its size and its ground colour.
 
-
-def knockout(im, local=30, glob=70, hole=180, hole_tol=12, blue=False):
-    """Punch the studio background out to transparency.
-
-    local  how far a neighbour may drift from the pixel it was reached from,
-           which is what lets a gradient background come out in one piece
-    glob   how far it may drift from the border colour overall, so a smooth
-           ramp into the product does not carry the fill inside with it
-    hole   an enclosed patch of background this size or larger also goes. The
-           inside of a coil loop or a clamp is background too, and the border
-           fill can never reach it. Small patches stay: those are specular
-           highlights on steel, and punching them out drills holes in the part.
-    blue   separate on hue instead of distance. Used for the one montage that
-           arrives on a saturated blue gradient, where the products are grey
-           and white and so are cleanly on the other side of the hue split.
+    JPEG for a photograph. The one exception is the three coil exit drawings,
+    which are pen on white: a palette PNG of those is both smaller than the
+    JPEG and lossless, where a JPEG rings visibly along every line.
     """
-    rgb = np.asarray(im).astype(np.int16)
-    h, w, _ = rgb.shape
-
-    if blue:
-        b = rgb[..., 2]
-        warm = np.maximum(rgb[..., 0], rgb[..., 1])
-        bg = (b - warm) > 22
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    if line_art:
+        q = im.quantize(colors=256, method=Image.FASTOCTREE)
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", UserWarning)
+            q.save(path, "PNG", optimize=True)
     else:
-        ref = np.median(np.concatenate([rgb[0], rgb[-1], rgb[:, 0], rgb[:, -1]]), axis=0)
-        bg = np.full((h, w), False)
-        q = deque()
-        for x in range(w):
-            q.append((x, 0, rgb[0, x]))
-            q.append((x, h - 1, rgb[h - 1, x]))
-        for y in range(h):
-            q.append((0, y, rgb[y, 0]))
-            q.append((w - 1, y, rgb[y, w - 1]))
-        while q:
-            x, y, came = q.popleft()
-            if x < 0 or y < 0 or x >= w or y >= h or bg[y, x]:
-                continue
-            px = rgb[y, x]
-            if np.abs(px - came).max() > local or np.abs(px - ref).max() > glob:
-                continue
-            bg[y, x] = True
-            q.append((x + 1, y, px)); q.append((x - 1, y, px))
-            q.append((x, y + 1, px)); q.append((x, y - 1, px))
-
-        # Enclosed background the border fill could not reach.
-        flat = (np.abs(rgb - ref).max(axis=2) <= hole_tol) & ~bg
-        for pts, _ in _components(flat):
-            if len(pts) >= hole:
-                ys, xs = zip(*pts)
-                bg[list(ys), list(xs)] = True
-
-    # Close pinholes: a handful of pixels of background surrounded by product is
-    # compression noise, and it reads as dirt on the part.
-    #
-    # There is deliberately no pass in the other direction. Removing small
-    # islands of product looks like the same tidying job, but a callout label is
-    # made of small islands: it costs the dot of every i and the stem of every l,
-    # and the first cut of this silently ate six words off the band heater
-    # cutaway. Stray specks in the background are the cheaper mistake.
-    for pts, edge in _components(bg):
-        if not edge and len(pts) <= 12:
-            ys, xs = zip(*pts)
-            bg[list(ys), list(xs)] = False
-
-    res = np.dstack([rgb.astype(np.uint8), np.where(bg, 0, 255).astype(np.uint8)])
-
-    if blue:
-        # Neutralise the blue that survives as a halo on the product edges.
-        keep = ~bg
-        b = res[..., 2].astype(np.int16)
-        warm = np.maximum(res[..., 0], res[..., 1]).astype(np.int16)
-        fringe = keep & ((b - warm) > 8)
-        res[..., 2] = np.where(fringe, warm, b).astype(np.uint8)
-
-    return Image.fromarray(res, "RGBA")
+        im.save(path, "JPEG", quality=quality, optimize=True, progressive=True)
+    # A photograph of a room has no studio ground, so it records none: it is
+    # drawn cover, filling its box edge to edge, and there is no panel showing
+    # round it that would need repainting to match.
+    g = _hex(ground(np.asarray(im).astype(np.int16))) if has_ground else None
+    key = os.path.relpath(path, IMGS).replace(os.sep, "/")
+    _meta[key] = {"w": im.width, "h": im.height, "ground": g}
+    return path, im.size, g
 
 
-def trim(im, pad=0):
-    box = im.split()[3].getbbox() if im.mode == "RGBA" else im.getbbox()
-    if not box:
-        return im
-    if pad:
-        box = (max(0, box[0] - pad), max(0, box[1] - pad),
-               min(im.width, box[2] + pad), min(im.height, box[3] + pad))
-    return im.crop(box)
-
-
-def fit(im, w, h):
-    """Contain im inside w by h without upscaling past 2x, keeping aspect."""
-    scale = min(w / im.width, h / im.height)
-    scale = min(scale, 2.0)
-    return im.resize((max(1, round(im.width * scale)), max(1, round(im.height * scale))),
-                     Image.LANCZOS)
-
-
-def flat_jpeg(im, path, quality=88):
-    """Composite the cutout onto white and write it as a photograph.
-
-    --surface is #fff, and every slot these land in is painted --surface, so the
-    white ground is invisible and the transparency was never buying anything.
-    What it cost was real: a photographic montage of steel forced through 256
-    palette entries bands visibly across every smooth face, and on the band
-    heater hero the palette PNG was both larger than this JPEG and six times
-    further from the original. Cutouts still go out as PNG wherever the ground
-    behind them is not white, which is the product cards on their sunk panel.
-    """
-    white = Image.new("RGBA", im.size, (255, 255, 255, 255))
-    out = Image.alpha_composite(white, im.convert("RGBA")).convert("RGB")
-    out.save(path, "JPEG", quality=quality, optimize=True, progressive=True)
-    return path
-
-
-def save_png(im, path, p95=4, worst=24, display_h=None):
-    """Write the cutout, palettised only when that is smaller and near enough.
-
-    Judge the loss where the image is opaque: a palette PNG carries one
-    transparent index, so everything under the knocked out ground collapses to a
-    single colour, which scores terribly and is never seen.
-
-    The test is on the 95th percentile and the worst pixel, not the mean. The
-    first cut of this allowed a mean of 12, which a photograph of brushed steel
-    passes comfortably while banding right across the middle of every face:
-    the mean is held down by the large flat areas that quantise perfectly, and
-    it hides exactly the gradients that show. Line art and text pass this
-    easily; photographs mostly do not, and should be going through flat_jpeg.
-    """
-    im.save(path, "PNG", optimize=True)
-    plain = os.path.getsize(path)
-    try:
-        q = im.quantize(colors=256, method=Image.FASTOCTREE, dither=Image.Dither.FLOYDSTEINBERG)
-        alt = path + ".palette.png"
-        q.save(alt, "PNG", optimize=True)
-        keep = os.path.getsize(alt) < plain
-        if keep and im.mode == "RGBA":
-            with warnings.catch_warnings():
-                # Reading back a palette PNG whose transparency is a byte string.
-                warnings.simplefilter("ignore", UserWarning)
-                back = Image.open(alt).convert("RGBA")
-            ref, got = im, back
-            if display_h:
-                # Judge the loss at the size the browser will draw it, not at the
-                # size it is stored. These are exported at twice their drawn
-                # height, so the downscale averages dithering back out; scoring
-                # the dither at full size rejects a palette that is in fact
-                # indistinguishable on the page.
-                k = display_h / im.height
-                if k < 1:
-                    wh = (max(1, round(im.width * k)), display_h)
-                    ref = im.resize(wh, Image.LANCZOS)
-                    got = back.resize(wh, Image.LANCZOS)
-            a = np.asarray(ref.split()[3]).astype(np.int16)
-            before = np.asarray(ref.convert("RGB"), dtype=np.int16)
-            after = np.asarray(got.convert("RGB"), dtype=np.int16)
-            solid = a > 200
-            if solid.any():
-                d = np.abs(before - after).max(axis=2)[solid]
-                keep = np.percentile(d, 95) <= p95 and d.max() <= worst
-        if keep:
-            os.replace(alt, path)
-        else:
-            os.remove(alt)
-    except (ValueError, OSError):
-        pass
-    return path
-
-
-def cut_jpeg(name, out, dest, quality=88, **kw):
-    """Cut the studio ground off, then flatten back onto white and ship a JPEG.
-
-    The knockout still earns its keep here even though the result is opaque: it
-    is what finds the edge of the product so the frame can be trimmed to it, and
-    it removes the gradient and the drop shadows that the original was shot on.
-    """
-    im, size = _prepare(name, **kw)
-    os.makedirs(dest, exist_ok=True)
-    return flat_jpeg(im, os.path.join(dest, out), quality), size
-
-
-def _prepare(name, local=30, glob=70, cap=1600, crop=None, blue=False,
-             hole=180, hole_tol=12, cap_h=None):
+def prep(name, out, dest, target_h=None, target_w=None, max_up=1.4, cap=1600,
+         crop=None, quality=88, line_art=False, tol=10, pad_frac=0.012):
     im = load(name)
     if crop:
         im = im.crop(crop)
-    im = trim(knockout(im, local, glob, hole=hole, hole_tol=hole_tol, blue=blue))
-    # Cap the longest side, not the width: these are exported at about twice the
-    # size they are drawn at, and several of them are portrait.
-    longest = max(im.size)
-    k = min(cap / longest, 1.0)
-    if cap_h:
-        # What the CSS actually constrains on a card and an option shot is the
-        # height, so that is what decides the export size. Capping the long side
-        # alone leaves a tall part carrying three times the pixels it can show.
-        k = min(k, cap_h / im.height)
-    if k < 1:
-        im = im.resize((max(1, round(im.width * k)), max(1, round(im.height * k))), Image.LANCZOS)
-    return im, im.size
+    im = enhance(crop_borders(im, tol=tol, pad_frac=pad_frac),
+                 target_h=target_h, target_w=target_w, max_up=max_up, cap=cap)
+    return save(im, os.path.join(dest, out), quality=quality, line_art=line_art)
 
 
-def cutout(name, out, dest, display_h=None, **kw):
-    """A cutout that keeps its transparency, for the ground that is not white.
+def pair(names, out, dest, target_h=None, gutter=14, quality=88):
+    """Two photographs butted together with a gutter, for the one slot the
+    client filled twice. Each keeps its own ground, so the gutter is drawn in
+    the lighter of the two and the seam reads as two pictures rather than one
+    picture with a tide line across it."""
+    parts = [crop_borders(load(n)) for n in names]
+    h = max(p.height for p in parts)
+    parts = [p.resize((max(1, round(p.width * h / p.height)), h), Image.LANCZOS)
+             if p.height != h else p for p in parts]
+    grounds = [ground(np.asarray(p).astype(np.int16)) for p in parts]
+    seam = tuple(int(v) for v in max(grounds, key=lambda g: g.mean()))
+    W = sum(p.width for p in parts) + gutter * (len(parts) - 1)
+    canvas = Image.new("RGB", (W, h), seam)
+    x = 0
+    for p in parts:
+        canvas.paste(p, (x, 0))
+        x += p.width + gutter
+    return save(enhance(canvas, target_h=target_h, max_up=1.0), os.path.join(dest, out),
+                quality=quality)
 
-    The option catalogue and the product cards both sit on --paper or
-    --surface-sunk rather than white, so these cannot be flattened the way the
-    presentation photographs are: a white rectangle would show.
+
+def panel(name, out, dest, box, cap=1000, sat=26, quality=88):
+    """A rectangle lifted out of a composite the client assembled themselves.
+
+    The panels are white cards with rounded corners on a blue to red gradient,
+    so a rectangular crop keeps four slivers of that gradient in the corners.
+    They read as purple and crimson flecks against the page.
+
+    Whiten only the blobs of colour that actually contain a corner pixel. The
+    first attempt whitened everything saturated within a margin of the edge,
+    which is the same idea done bluntly, and it cost the end of "Element" and of
+    "Electrical Connection" on the cartridge panel: those labels run close to the
+    edge, and there is no margin wide enough to catch a rounded corner that does
+    not also reach them. A corner sliver is connected to its corner and the
+    labels are not, so connectivity separates them and crop tightness stops
+    mattering.
     """
-    im, size = _prepare(name, **kw)
-    os.makedirs(dest, exist_ok=True)
-    return save_png(im, os.path.join(dest, out), display_h=display_h), size
+    im = load(name, ppt_crop=False).crop(box)
+    a = np.asarray(im).astype(np.int16).copy()
+    h, w, _ = a.shape
+    lab, _ = ndimage.label((a.max(axis=2) - a.min(axis=2)) > sat)
+    corners = {lab[0, 0], lab[0, w - 1], lab[h - 1, 0], lab[h - 1, w - 1]} - {0}
+    if corners:
+        a[np.isin(lab, list(corners))] = (255, 255, 255)
+    im = crop_borders(Image.fromarray(a.astype(np.uint8), "RGB"))
+    return save(enhance(im, target_w=cap, max_up=1.0), os.path.join(dest, out),
+                quality=quality)
 
 
-def collage(names, out, dest, cell=(760, 700), gutter=64, pad=48, local=30, glob=70, cap=1000):
-    """Two or more cutouts on one transparent canvas, each fitted to an equal
-    cell and centred in it. Equal cells rather than a shared scale: these arrive
-    at unrelated magnifications, so matching the frames reads as deliberate
-    where matching the pixels would just look accidental."""
-    parts = [trim(knockout(load(n), local, glob)) for n in names]
-    parts = [fit(p, *cell) for p in parts]
-    n = len(parts)
-    W = pad * 2 + cell[0] * n + gutter * (n - 1)
-    H = pad * 2 + cell[1]
-    canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    for i, p in enumerate(parts):
-        cx = pad + i * (cell[0] + gutter) + (cell[0] - p.width) // 2
-        cy = pad + (cell[1] - p.height) // 2
-        canvas.paste(p, (cx, cy), p)
-    canvas = trim(canvas, pad=pad // 2)
-    longest = max(canvas.size)
-    if longest > cap:
-        k = cap / longest
-        canvas = canvas.resize((round(canvas.width * k), round(canvas.height * k)), Image.LANCZOS)
-    os.makedirs(dest, exist_ok=True)
-    return flat_jpeg(canvas, os.path.join(dest, out)), canvas.size
+def photo(name, out, dest, box=None, cap=2000, quality=84):
+    """A photograph of a room or a building. No ground to find and no border to
+    take off, so it is only cropped and sized."""
+    im = load(name)
+    if box:
+        im = im.crop(box)
+    if im.width > cap:
+        im = im.resize((cap, round(im.height * cap / im.width)), Image.LANCZOS)
+    return save(im, os.path.join(dest, out), quality=quality, has_ground=False)
 
 
 def photo_collage(names, out, dest, size=(1800, 1200), gutter=12, quality=80):
     """Several photographs butted together into one frame.
 
-    Not the same job as collage(): these are rooms and buildings, not parts on a
-    studio ground, so there is no background to knock out and nothing to centre.
-    Each one is centre cropped to a single cell and the cells are laid side by
-    side, which is how the two collages already on the site are built. Portrait
-    cells, because every one of these came off a phone held upright and cropping
-    them to landscape throws away the half that shows what the place is.
+    Not the same job as pair(): these are rooms and buildings, not parts on a
+    studio ground, so there is nothing to centre. Each is centre cropped to a
+    single cell and the cells are laid side by side. Portrait cells, because
+    every one of these came off a phone held upright and cropping them to
+    landscape throws away the half that shows what the place is.
     """
     n = len(names)
     W, H = size
@@ -347,128 +203,85 @@ def photo_collage(names, out, dest, size=(1800, 1200), gutter=12, quality=80):
         left = (im.width - cw) // 2
         top = (im.height - H) // 2
         canvas.paste(im.crop((left, top, left + cw, top + H)), (i * (cw + gutter), 0))
-    os.makedirs(dest, exist_ok=True)
-    path = os.path.join(dest, out)
-    canvas.save(path, "JPEG", optimize=True, quality=quality, progressive=True)
-    return path, canvas.size
+    return save(canvas, os.path.join(dest, out), quality=quality, has_ground=False)
 
 
-def panel(name, out, dest, box, cap=1000, sat=26):
-    """A rectangle lifted out of a composite the client assembled themselves.
-
-    The panels are white cards with rounded corners on a blue to red gradient, so
-    a rectangular crop keeps four slivers of that gradient in the corners. They
-    read as purple and crimson flecks against the page.
-
-    Whiten only the blobs of colour that actually contain a corner pixel. The
-    first attempt whitened everything saturated within a margin of the edge,
-    which is the same idea done bluntly, and it cost the end of "Element" and of
-    "Electrical Connection" on the cartridge panel: those labels run close to the
-    edge, and there is no margin wide enough to catch a rounded corner that does
-    not also reach them. A corner sliver is connected to its corner and the
-    labels are not, so connectivity separates them and crop tightness stops
-    mattering.
-    """
-    im = load(name).crop(box)
-    a = np.asarray(im).astype(np.int16).copy()
-    h, w, _ = a.shape
-    coloured = (a.max(axis=2) - a.min(axis=2)) > sat
-    lab, _ = _label(coloured)
-    corners = {lab[0, 0], lab[0, w - 1], lab[h - 1, 0], lab[h - 1, w - 1]} - {0}
-    if corners:
-        a[np.isin(lab, list(corners))] = (255, 255, 255)
-    im = Image.fromarray(a.astype(np.uint8), "RGB")
-    if im.width > cap:
-        im = im.resize((cap, round(im.height * cap / im.width)), Image.LANCZOS)
-    os.makedirs(dest, exist_ok=True)
-    path = os.path.join(dest, out)
-    im.save(path, optimize=True, quality=88)
-    return path, im.size
-
-
-def photo(name, out, dest, box=None, cap=2000, quality=82):
-    im = load(name)
-    if box:
-        im = im.crop(box)
-    if im.width > cap:
-        im = im.resize((cap, round(im.height * cap / im.width)), Image.LANCZOS)
-    os.makedirs(dest, exist_ok=True)
-    path = os.path.join(dest, out)
-    im.save(path, optimize=True, quality=quality, progressive=True)
-    return path, im.size
-
-
-# ---- one cutout per product family, for the cards on home and products ------
-# image16 arrives as a rounded white card on white: the border fill stops at the
-# card outline and leaves it drawn on the page, so crop inside the outline first.
+# ---- one per product family, for the cards on home and products ------------
+#
+# Drawn 116 px tall inside a card that is at least 250 px wide, so 232 by about
+# 440 covers a 2x screen. The width cap is the one that usually binds: a phone
+# goes single column and draws these wider than the desktop grid does.
 FAMILY_CARDS = [
-    ("image9.jpg", "cartridge-heaters.png", {}),
-    ("image10.jpg", "coil-heaters.png", {}),
-    ("image11.png", "band-heaters.png", {}),
-    ("image12.png", "nozzle-heaters.png", {}),
-    ("image14.jpg", "strip-heaters.png", {}),
-    ("image15.jpg", "tubular-heaters.png", {}),
-    ("image16.jpg", "thermocouples-and-sensors.png", {"crop": (13, 13, 387, 317)}),
-    ("image17.jpeg", "ceramic-infrared-heaters.png", {"local": 26, "glob": 60}),
+    ("image9.jpg", "cartridge-heaters.jpg", {}),
+    ("image10.jpg", "coil-heaters.jpg", {}),
+    ("image11.png", "band-heaters.jpg", {}),
+    ("image12.png", "nozzle-heaters.jpg", {}),
+    ("image14.jpg", "strip-heaters.jpg", {}),
+    ("image15.jpg", "tubular-heaters.jpg", {}),
+    # The only one whose border is not found by measurement. It is a rounded
+    # rule, so the last tenth of every side is corner radius and reads as
+    # ground, and JPEG has left a warm three by three smudge in each of the four
+    # corners outside it, which is far enough off white to be product and so
+    # holds the box out past the rule. Crop inside the rule and the general
+    # trim finishes the job.
+    ("image16.jpg", "thermocouples-and-sensors.jpg", {"crop": (13, 13, 387, 317)}),
+    ("image17.jpeg", "ceramic-infrared-heaters.jpg", {}),
 ]
 
-# ---- option thumbnails, to sit beside the existing knocked out accessories --
+# ---- option thumbnails, drawn in a 132 px slot -----------------------------
 OPTION_PARTS = [
-    ("image31.jpg", "ch-straight.png", {}),
-    ("image33.jpg", "ch-ceramic-beading.png", {"local": 22, "glob": 58}),
-    ("image35.jpg", "ch-thermocouple-j.png", {"hole_tol": 26}),
-    ("image36.jpg", "ch-thermocouple-k.png", {}),
-    ("image37.png", "ch-thermocouple-grounded.png", {}),
-    ("image38.png", "ch-strain-clamp.png", {}),
-    ("image48.png", "co-exit-tangential.png", {}),
-    ("image49.png", "co-exit-radial.png", {}),
-    ("image50.png", "co-exit-axial.png", {}),
-    ("image51.jpg", "co-thermocouple-none.png", {}),
-    # Soft shadow inside the braided loop, so the enclosed background
-    # needs a looser match than a flat studio ground.
-    ("image52.jpg", "co-thermocouple-j.png", {"hole_tol": 34}),
-    ("image53.jpg", "co-thermocouple-k.png", {}),
+    ("image31.jpg", "ch-straight.jpg", {}),
+    ("image33.jpg", "ch-ceramic-beading.jpg", {}),
+    ("image35.jpg", "ch-thermocouple-j.jpg", {}),
+    ("image36.jpg", "ch-thermocouple-k.jpg", {}),
+    ("image37.png", "ch-thermocouple-grounded.jpg", {}),
+    ("image38.png", "ch-strain-clamp.jpg", {}),
+    ("image48.png", "co-exit-tangential.png", {"line_art": True}),
+    ("image49.png", "co-exit-radial.png", {"line_art": True}),
+    ("image50.png", "co-exit-axial.png", {"line_art": True}),
+    ("image51.jpg", "co-thermocouple-none.jpg", {}),
+    ("image52.jpg", "co-thermocouple-j.jpg", {}),
+    ("image53.jpg", "co-thermocouple-k.jpg", {}),
 ]
 
 # ---- the larger presentation images ----------------------------------------
-#
-# All of these are photographs, so they go out as JPEG flattened onto white
-# rather than as palettised cutouts. See flat_jpeg for why.
 #
 # band-construction is not here: it is a line drawing with callout labels, it
 # wants lossless, and build/relabel-band-cutaway.py owns it because the labels
 # are reset into Inter on the way through.
 PRESENTATION = [
-    ("image57.jpg", "band-hero.jpg", {}),
-    ("image22.png", "products-hero.jpg", {"blue": True}),
-    ("image43.png", "coil-construction.jpg", {}),
-    ("image55.jpg", "coil-selection.jpg", {}),
+    ("image57.jpg", "band-hero.jpg", {"cap": 1000}),
+    ("image22.png", "products-hero.png", {"cap": 820, "max_up": 1.2}),
+    ("image43.png", "coil-construction.jpg", {"target_h": 420}),
+    ("image55.jpg", "coil-selection.jpg", {"cap": 900}),
+    ("image24.jpg", "cartridge-hero.jpg", {"cap": 1000, "quality": 86}),
 ]
 
 
 def main():
-    for label, dest, table, cap, drawn in (("family cards -> imgs/cards", CARDS, FAMILY_CARDS, 560, 116),
-                                    ("option thumbnails -> imgs/parts", PARTS, OPTION_PARTS, 620, 132)):
-        print(label)
-        for name, out, kw in table:
-            kw = dict(kw)
-            kw.setdefault("cap", cap)
-            # Twice the drawn height, but the width cap is what usually binds:
-            # a single column phone layout draws these wider than the desktop
-            # grid does, and sizing for desktop alone ships a soft image to the
-            # viewport that most buyers will actually use.
-            kw.setdefault("cap_h", drawn * 2)
-            p, size = cutout(name, out, dest, display_h=drawn, **kw)
-            print("  %-34s %-32s %dx%d %7d B"
-                  % (name, out, size[0], size[1], os.path.getsize(p)))
+    print("family cards -> imgs/cards")
+    for name, out, kw in FAMILY_CARDS:
+        kw = dict(kw)
+        kw.setdefault("target_h", 232)
+        kw.setdefault("target_w", 440)
+        p, size, g = prep(name, out, CARDS, **kw)
+        print("  %-14s %-32s %4dx%-4d %7d B  ground %s"
+              % (name, out, size[0], size[1], os.path.getsize(p), g))
+
+    print("option thumbnails -> imgs/parts")
+    for name, out, kw in OPTION_PARTS:
+        kw = dict(kw)
+        kw.setdefault("target_h", 264)
+        kw.setdefault("target_w", 400)
+        p, size, g = prep(name, out, PARTS, **kw)
+        print("  %-14s %-32s %4dx%-4d %7d B  ground %s"
+              % (name, out, size[0], size[1], os.path.getsize(p), g))
 
     print("presentation -> imgs/photos")
     for name, out, kw in PRESENTATION:
-        kw = dict(kw)
-        kw.setdefault("cap", 1000)
-        p, size = cut_jpeg(name, out, PHOTOS, **kw)
-        print("  %-34s %-32s %dx%d %7d B"
-              % (name, out, size[0], size[1], os.path.getsize(p)))
+        p, size, g = prep(name, out, PHOTOS, **dict(kw))
+        print("  %-14s %-32s %4dx%-4d %7d B  ground %s"
+              % (name, out, size[0], size[1], os.path.getsize(p), g))
 
     # The client's own composite: three cutaway panels on a blue to red
     # gradient. The gradient fights every colour on the site, and the third
@@ -479,15 +292,16 @@ def main():
     print("client composite image26.jpeg -> panels")
     for out, box in [("cartridge-construction.jpg", (86, 268, 1379, 872)),
                      ("tubular-construction.jpg", (96, 911, 1367, 1582))]:
-        p, size = panel("image26.jpeg", out, PHOTOS, box)
-        print("  %-34s %-32s %dx%d %6d B" % ("image26.jpeg", out, size[0], size[1],
-                                             os.path.getsize(p)))
+        p, size, g = panel("image26.jpeg", out, PHOTOS, box)
+        print("  %-14s %-32s %4dx%-4d %7d B  ground %s"
+              % ("image26.jpeg", out, size[0], size[1], os.path.getsize(p), g))
 
-    # Two photographs for one slot: the band heater application shot.
-    print("collage -> imgs/photos")
-    p, size = collage(["image65.jpg", "image66.jpg"], "band-selection.jpg", PHOTOS)
-    print("  %-34s %-32s %dx%d %6d B" % ("image65+image66", "band-selection.jpg",
-                                         size[0], size[1], os.path.getsize(p)))
+    # Two photographs for one slot: the band heater application shot. Both carry
+    # a crop the client set in PowerPoint, which is where the framing came from.
+    print("pair -> imgs/photos")
+    p, size, g = pair(["image65.jpg", "image66.jpg"], "band-selection.jpg", PHOTOS)
+    print("  %-14s %-32s %4dx%-4d %7d B  ground %s"
+          % ("image65+66", "band-selection.jpg", size[0], size[1], os.path.getsize(p), g))
 
     # The home page hero. The client piled six photographs of the works onto
     # this one slot: three of the building, two of the floor, one of an engineer
@@ -495,28 +309,22 @@ def main():
     # pages, so this takes one frame from each of the three registers rather
     # than repeating either of those collages wholesale.
     print("home hero collage -> imgs/photos")
-    p, size = photo_collage(["image1.jpeg", "image5.jpeg", "image7.jpeg"],
-                            "home-hero-works.jpg", PHOTOS, size=(1100, 733))
-    print("  %-34s %-32s %dx%d %7d B" % ("image1+image5+image7", "home-hero-works.jpg",
-                                         size[0], size[1], os.path.getsize(p)))
+    p, size, g = photo_collage(["image1.jpeg", "image5.jpeg", "image7.jpeg"],
+                               "home-hero-works.jpg", PHOTOS, size=(1100, 733))
+    print("  %-14s %-32s %4dx%-4d %7d B  ground %s"
+          % ("image1+5+7", "home-hero-works.jpg", size[0], size[1], os.path.getsize(p), g))
 
-    # Photographs rather than cutouts.
-    #
-    # image24 was a cutout first and it cost the leads: the pale blue grey
-    # studio ground runs from 215 to 255, the white braided fibreglass leads sit
-    # inside that range, and no distance or hue threshold separates them without
-    # eating the leads a strand at a time. A clean rectangle inside the hero
-    # figure beats a cutout with its wiring nibbled off.
-    #
-    # image30 is a seamless grey sweep, which is a photograph by any measure.
     print("photographs -> imgs/photos")
-    p, size = photo("image24.jpg", "cartridge-hero.jpg", PHOTOS, cap=1000, quality=84)
-    print("  %-34s %-32s %dx%d %7d B" % ("image24.jpg", "cartridge-hero.jpg",
-                                         size[0], size[1], os.path.getsize(p)))
-    p, size = photo("image30.jpeg", "cartridge-double-ended.jpg", PHOTOS,
-                    box=(300, 250, 3450, 2300), cap=1200)
-    print("  %-34s %-32s %dx%d %6d B" % ("image30.jpeg", "cartridge-double-ended.jpg",
-                                         size[0], size[1], os.path.getsize(p)))
+    p, size, g = photo("image30.jpeg", "cartridge-double-ended.jpg", PHOTOS,
+                       box=(300, 250, 3450, 2300), cap=1200)
+    print("  %-14s %-32s %4dx%-4d %7d B  ground %s"
+          % ("image30.jpeg", "cartridge-double-ended.jpg", size[0], size[1],
+             os.path.getsize(p), g))
+
+    with open(META, "w", encoding="utf-8") as fh:
+        json.dump(dict(sorted(_meta.items())), fh, indent=1, sort_keys=True)
+        fh.write("\n")
+    print("\n%s  %d entries" % (os.path.relpath(META, ROOT), len(_meta)))
 
 
 if __name__ == "__main__":

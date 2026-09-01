@@ -100,7 +100,7 @@ FAMILIES = [
  "nav": "Cartridge",
  "code": "CH",
  "art": "cartridge",
- "card": ("cartridge-heaters.png", 421, 232),
+ "card": ("cartridge-heaters.jpg", 413, 232),
  "lede": "Swaged, high watt density heaters for bore mounting in moulds, platens and dies. "
          "Built to your drawing, with or without an inbuilt thermocouple.",
  "summary": "Bore mounted in moulds, platens and dies. Round, swaged, made to your length.",
@@ -148,7 +148,7 @@ FAMILIES = [
  "options": [
    ("Termination", [
      ("T1", "Single end, straight", "Leads exit axially from one end. The default.", "",
-      "parts/ch-straight.png"),
+      "parts/ch-straight.jpg"),
      ("T2", "Single end, right angle", "For tight clearance above the tool face.", "", "Right-angle-exit.png"),
      ("T3", "Double ended", "One lead from each end, for through holes.", "",
       "photos/cartridge-double-ended.jpg"),
@@ -158,23 +158,23 @@ FAMILIES = [
      ("L3", "Braided metal sleeve", "Abrasion resistance where leads move or rub.", TBD, "Braided-Metal-sleeve.png"),
      ("L4", "Armour cable", "Full mechanical protection on a moving platen.", TBD, "Armour.png"),
      ("L5", "Ceramic beading", "Highest lead exit temperature, no organic insulation.", TBD,
-      "parts/ch-ceramic-beading.png"),
+      "parts/ch-ceramic-beading.jpg"),
    ]),
    ("Inbuilt thermocouple", [
-     ("TC0", "None", "Control from a separate sensor.", "", "parts/ch-straight.png"),
+     ("TC0", "None", "Control from a separate sensor.", "", "parts/ch-straight.jpg"),
      ("TCJ", "Type J, ungrounded", "Iron constantan, isolated from the sheath.", "",
-      "parts/ch-thermocouple-j.png"),
+      "parts/ch-thermocouple-j.jpg"),
      ("TCK", "Type K, ungrounded", "Higher range than Type J.", "",
-      "parts/ch-thermocouple-k.png"),
+      "parts/ch-thermocouple-k.jpg"),
      ("TCG", "Grounded junction", "Faster response, junction bonded to the sheath.", "",
-      "parts/ch-thermocouple-grounded.png"),
+      "parts/ch-thermocouple-grounded.jpg"),
    ]),
    ("Mounting and fittings", [
-     ("M0", "None", "Plain sheath, no fitting.", "", "parts/ch-straight.png"),
+     ("M0", "None", "Plain sheath, no fitting.", "", "parts/ch-straight.jpg"),
      ("M1", "Round flange", "Welded, for surface mounting to a plate.", "", "Flange.png"),
      ("M2", "Threaded fitting", "NPT or BSP, size to be specified.", "", "Heater-with-Spl-mountable-threads.png"),
      ("M3", "T strain clamp", "Strain relief where the lead is pulled in service.", "",
-      "parts/ch-strain-clamp.png"),
+      "parts/ch-strain-clamp.jpg"),
    ]),
  ],
  "options_note": "Thermocouple junction position is specified separately: disc end, mid length or lead end. "
@@ -211,7 +211,7 @@ FAMILIES = [
  "nav": "Coil",
  "code": "CO",
  "art": "coil",
- "card": ("coil-heaters.png", 191, 232),
+ "card": ("coil-heaters.jpg", 193, 232),
  "lede": "Spiral wound elements that wrap a nozzle or a manifold and put a high watt density into a "
          "very small area, with the thermocouple built into the coil.",
  "summary": "Hot runner nozzles and manifolds. Wound to the diameter, profiled along the length.",
@@ -272,9 +272,9 @@ FAMILIES = [
       "parts/co-exit-tangential.png"),
    ]),
    ("Inbuilt thermocouple", [
-     ("TC0", "None", "Control from a separate sensor.", "", "parts/co-thermocouple-none.png"),
-     ("TCJ", "Type J", "Iron constantan.", "", "parts/co-thermocouple-j.png"),
-     ("TCK", "Type K", "Higher range than Type J.", "", "parts/co-thermocouple-k.png"),
+     ("TC0", "None", "Control from a separate sensor.", "", "parts/co-thermocouple-none.jpg"),
+     ("TCJ", "Type J", "Iron constantan.", "", "parts/co-thermocouple-j.jpg"),
+     ("TCK", "Type K", "Higher range than Type J.", "", "parts/co-thermocouple-k.jpg"),
    ]),
  ],
  "options_note": "State which end the leads leave from, and whether a reflection tube or sleeve is required. "
@@ -307,7 +307,7 @@ FAMILIES = [
  "nav": "Band",
  "code": "BH",
  "art": "band",
- "card": ("band-heaters.png", 422, 232),
+ "card": ("band-heaters.jpg", 411, 232),
  "lede": "Clamped around barrels and cylinders to heat them evenly. Ceramic for the higher "
          "temperatures and insulated running, mica where the section has to stay thin.",
  "summary": "Barrels, cylinders and pipes. One piece, split, expandable or partial coverage.",
@@ -405,7 +405,7 @@ FAMILIES = [
  "nav": "Nozzle",
  "code": "NZ",
  "art": "nozzle",
- "card": ("nozzle-heaters.png", 395, 148),
+ "card": ("nozzle-heaters.jpg", 440, 174),
  "lede": "Short bands sized for the nozzle itself, where there is very little room, the temperature "
          "has to hold steady and the thermocouple usually has to come built in.",
  "summary": "Injection nozzles and short cylindrical sections with no room for a full band.",
@@ -485,7 +485,7 @@ FAMILIES = [
  "nav": "Strip",
  "code": "SH",
  "art": "strip",
- "card": ("strip-heaters.png", 221, 103),
+ "card": ("strip-heaters.jpg", 314, 154),
  "lede": "Flat elements bolted to a plate, a platen or a sealing bar, in plain form for conduction "
          "and finned form for moving air.",
  "summary": "Flat and gently curved surfaces, sealing bars, platens and duct air.",
@@ -564,7 +564,7 @@ FAMILIES = [
  "nav": "Tubular",
  "code": "TH",
  "art": "tubular",
- "card": ("tubular-heaters.png", 509, 166),
+ "card": ("tubular-heaters.jpg", 440, 152),
  "lede": "The general purpose element. A mineral insulated tube that can be bent to almost any form "
          "and put into air, into liquid or clamped against a surface.",
  "summary": "Air, liquids and surfaces. Straight, U form, W form or coiled to your drawing.",
@@ -655,7 +655,7 @@ FAMILIES = [
  "nav": "Sensors",
  "code": "TS",
  "art": "sensor",
- "card": ("thermocouples-and-sensors.png", 326, 232),
+ "card": ("thermocouples-and-sensors.jpg", 344, 232),
  "lede": "The measuring half of the job. Nine thermocouple types and PT100 class RTDs, made to the "
          "immersion length, junction and connection your controller expects.",
  "summary": "Types J, K, N, T, E, R, S, B and C, plus PT100, PT500 and PT1000 RTDs, made to length.",
@@ -758,7 +758,7 @@ FAMILIES = [
  "nav": "Ceramic IR",
  "code": "IR",
  "art": "ir",
- "card": ("ceramic-infrared-heaters.png", 202, 167),
+ "card": ("ceramic-infrared-heaters.jpg", 276, 232),
  "lede": "Radiant elements that heat the surface of the work directly, without heating the air in "
          "between. Trough, flat panel and hollow forms, with or without a reflector.",
  "summary": "Radiant surface heating, thermoforming, drying and preheating.",
@@ -865,35 +865,35 @@ FAMILY_BY_SLUG = {f["slug"]: f for f in FAMILIES}
 # (file, width, height, alt)
 FAMILY_PHOTOS = {
  "cartridge-heaters": {
-   "hero": ("cartridge-hero.jpg", 680, 451,
+   "hero": ("cartridge-hero.jpg", 798, 631,
             "Cartridge heaters in a range of diameters and lengths, straight and right angle, "
             "with braided and fibreglass leads"),
-   "construction": ("cartridge-construction.jpg", 1000, 467,
+   "construction": ("cartridge-construction.jpg", 1000, 399,
                     "Cutaway of a cartridge heater, labelled: cold area, sheath, insulation, "
                     "resistive heating element, power pin, seal and electrical connection"),
  },
  "coil-heaters": {
-   "construction": ("coil-construction.jpg", 191, 195,
+   "construction": ("coil-construction.jpg", 272, 276,
                     "Coil heaters wound in square and round section, with fibreglass leads and "
                     "brass and steel bodies"),
-   "selection": ("coil-selection.jpg", 438, 201,
+   "selection": ("coil-selection.jpg", 623, 290,
                  "Coil heaters and nozzle heaters laid out together, showing the range of "
                  "diameters and pitches wound to order"),
  },
  "band-heaters": {
-   "hero": ("band-hero.jpg", 1000, 654,
+   "hero": ("band-hero.jpg", 1000, 663,
             "Six ceramic and mica band heaters of different diameters, some clamped closed and "
             "some opened out"),
-   "construction": ("band-construction.png", 851, 854,
+   "construction": ("band-construction.png", 824, 751,
                     "Cutaway of a ceramic band heater, labelled: nickel chrome resistance wire, "
                     "ceramic fibre insulation, stainless steel housing, stainless steel screw "
                     "terminals, terminal box and strap welded barrel nuts"),
-   "selection": ("band-selection.jpg", 1000, 404,
+   "selection": ("band-selection.jpg", 896, 298,
                  "Ceramic and mica band heaters across the diameter range, with terminal boxes, "
                  "screw terminals and clamping straps"),
  },
  "tubular-heaters": {
-   "construction": ("tubular-construction.jpg", 1000, 528,
+   "construction": ("tubular-construction.jpg", 1000, 453,
                     "Cutaway of a tubular heater, labelled: tube diameter, tube material, "
                     "insulation material, resistance wire and lead wire"),
  },

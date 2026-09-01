@@ -9,6 +9,7 @@ import html
 import os
 import re
 
+from . import imgmeta
 from .data import COMPANY, FAMILIES, INDUSTRIES, PREVIEW_NOINDEX, TBD
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -189,18 +190,24 @@ def product_cards(depth, slugs, facets=False):
         # A photograph of the family where the client has supplied one, the line
         # drawing where they have not. The card names the family in words
         # directly underneath either way, so the image is decorative.
+        # The photograph keeps the background it was shot on, so the panel it
+        # sits in takes that background's colour rather than the sunk warm grey
+        # the line drawings use. Otherwise a white studio ground reads as a
+        # white rectangle pasted onto a grey panel.
+        art_bg = ""
         if f.get("card"):
             picture = ('<img src="%s" width="%d" height="%d" alt="" loading="lazy">'
                        % (rel(depth, "imgs/cards/" + f["card"][0]), f["card"][1], f["card"][2]))
             art_class = "art art-photo"
+            art_bg = imgmeta.bg("cards/" + f["card"][0])
         else:
             picture = art(f["art"], "Drawing of a %s" % f["name"].lower())
             art_class = "art"
         out.append(
-            '<li%s>\n  <a href="%s">\n    <span class="%s">%s</span>\n'
+            '<li%s>\n  <a href="%s">\n    <span class="%s"%s>%s</span>\n'
             '    <strong>%s</strong>\n    <span>%s</span>\n'
             '    <span class="meta">Part code %s</span>\n  </a>\n</li>'
-            % (data_attrs, rel(depth, "products/%s/" % slug), art_class, picture,
+            % (data_attrs, rel(depth, "products/%s/" % slug), art_class, art_bg, picture,
                esc(f["name"]), esc(f["summary"]), esc(f["code"])))
     return '<ul class="pcards" id="productList">\n%s\n</ul>' % "\n".join(out)
 

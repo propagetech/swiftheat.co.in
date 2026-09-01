@@ -1,0 +1,152 @@
+{
+ "cards/band-heaters.jpg": {
+  "ground": "#ffffff",
+  "h": 232,
+  "w": 411
+ },
+ "cards/cartridge-heaters.jpg": {
+  "ground": "#ffffff",
+  "h": 232,
+  "w": 413
+ },
+ "cards/ceramic-infrared-heaters.jpg": {
+  "ground": "#ffffff",
+  "h": 232,
+  "w": 276
+ },
+ "cards/coil-heaters.jpg": {
+  "ground": "#ffffff",
+  "h": 232,
+  "w": 193
+ },
+ "cards/nozzle-heaters.jpg": {
+  "ground": "#ffffff",
+  "h": 174,
+  "w": 440
+ },
+ "cards/strip-heaters.jpg": {
+  "ground": "#ffffff",
+  "h": 154,
+  "w": 314
+ },
+ "cards/thermocouples-and-sensors.jpg": {
+  "ground": "#ffffff",
+  "h": 232,
+  "w": 344
+ },
+ "cards/tubular-heaters.jpg": {
+  "ground": "#ffffff",
+  "h": 152,
+  "w": 440
+ },
+ "parts/ch-ceramic-beading.jpg": {
+  "ground": "#d4d3da",
+  "h": 264,
+  "w": 260
+ },
+ "parts/ch-straight.jpg": {
+  "ground": "#ffffff",
+  "h": 264,
+  "w": 146
+ },
+ "parts/ch-strain-clamp.jpg": {
+  "ground": "#ffffff",
+  "h": 259,
+  "w": 217
+ },
+ "parts/ch-thermocouple-grounded.jpg": {
+  "ground": "#ffffff",
+  "h": 210,
+  "w": 90
+ },
+ "parts/ch-thermocouple-j.jpg": {
+  "ground": "#fbfaff",
+  "h": 264,
+  "w": 284
+ },
+ "parts/ch-thermocouple-k.jpg": {
+  "ground": "#ffffff",
+  "h": 248,
+  "w": 400
+ },
+ "parts/co-exit-axial.png": {
+  "ground": "#ffffff",
+  "h": 81,
+  "w": 189
+ },
+ "parts/co-exit-radial.png": {
+  "ground": "#ffffff",
+  "h": 204,
+  "w": 92
+ },
+ "parts/co-exit-tangential.png": {
+  "ground": "#ffffff",
+  "h": 207,
+  "w": 85
+ },
+ "parts/co-thermocouple-j.jpg": {
+  "ground": "#f8fbfa",
+  "h": 264,
+  "w": 277
+ },
+ "parts/co-thermocouple-k.jpg": {
+  "ground": "#ffffff",
+  "h": 218,
+  "w": 400
+ },
+ "parts/co-thermocouple-none.jpg": {
+  "ground": "#f3f3f3",
+  "h": 232,
+  "w": 311
+ },
+ "photos/band-hero.jpg": {
+  "ground": "#ffffff",
+  "h": 663,
+  "w": 1000
+ },
+ "photos/band-selection.jpg": {
+  "ground": "#ffffff",
+  "h": 298,
+  "w": 896
+ },
+ "photos/cartridge-construction.jpg": {
+  "ground": "#fefefe",
+  "h": 399,
+  "w": 1000
+ },
+ "photos/cartridge-double-ended.jpg": {
+  "ground": null,
+  "h": 781,
+  "w": 1200
+ },
+ "photos/cartridge-hero.jpg": {
+  "ground": "#f4f7fe",
+  "h": 631,
+  "w": 798
+ },
+ "photos/coil-construction.jpg": {
+  "ground": "#ffffff",
+  "h": 276,
+  "w": 272
+ },
+ "photos/coil-selection.jpg": {
+  "ground": "#f3f2f3",
+  "h": 290,
+  "w": 623
+ },
+ "photos/home-hero-works.jpg": {
+  "ground": null,
+  "h": 733,
+  "w": 1100
+ },
+ "photos/products-hero.png": {
+  "ground": "#3451eb",
+  "h": 816,
+  "w": 491
+ },
+ "photos/tubular-construction.jpg": {
+  "ground": "#fefefe",
+  "h": 453,
+  "w": 1000
+ }
+}
