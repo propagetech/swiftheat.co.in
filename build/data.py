@@ -40,23 +40,23 @@ COMPANY = {
     "state": "Karnataka",
     "pin": "560058",
     "country": "IN",
-    # Still held back. A WhatsApp photo received 31 Aug 2026 shows the premises
-    # signboard, and it prints "sales@swiftheat.co.in" as the company email, same
-    # as the brochure. Neither source mentions info@ at all, which is now two
-    # independent signals that info@ may not be a live, monitored mailbox. This
-    # is exactly the case rule 1 exists for: nothing changes until Swiftheat
-    # answers which address receives enquiries, but the site should not keep
-    # publishing info@ unexamined.
-    "email": "info@swiftheat.co.in",
-    "phone_display": TBD,
-    # From the brochure, both ordinary mobiles rather than an IndiaMART 8047x
-    # call tracking number. The same two numbers are also painted on the
-    # premises signboard (WhatsApp photo, 31 Aug 2026), so two independent
-    # sources now agree. Still not published: the house rule is that a number
-    # is dialled and answered directly before it goes on the site, and that
-    # call has not been made yet.
-    "phone_unverified": ("9108803706", "8553002014"),
-    "email_unverified": ("rekha@swiftheat.co.in", "sales@swiftheat.co.in"),
+    # Settled 11 Sep 2026, web 2.pptx slide 34: the client struck through
+    # info@swiftheat.co.in on the contact page screenshot and wrote sales@ over it.
+    # That is now three sources agreeing (brochure, premises signboard, and the
+    # client's own correction), and the first of them is an instruction rather than
+    # an inference. info@ is no longer published anywhere.
+    "email": "sales@swiftheat.co.in",
+    # Confirmed 11 Sep 2026, web 2.pptx slide 34, written over the "To confirm" rows
+    # on the contact page. The same two mobiles the brochure and the signboard carry,
+    # now given directly by the client as the numbers to publish.
+    "phone_display": "9108803706 / 8553002014",
+    "phone_primary": "9108803706",
+    "whatsapp": "9108803706",
+    "hours": "9:30 to 6 pm",
+    # Kept for the record. Both mobiles are ordinary numbers rather than an
+    # IndiaMART 8047x call tracking number, and both are now published above at the
+    # client's own instruction. rekha@ came off the brochure and is not published.
+    "email_other": "rekha@swiftheat.co.in",
     # Confirmed from Swiftheat's own IndiaMART company profile and the MCA
     # registry, August 2026. Both are the company's own filings, not a third
     # party's description, so they are publishable.
@@ -71,20 +71,35 @@ COMPANY = {
     # public MCA/GST record already on file, and it is now first party evidence
     # rather than a public-record inference.
     "gst": "29ABGCS6671R1Z8",
-    # Confirmed 31 Aug 2026: the same signboard photo prints "ISO 9001:2015
-    # Certified Company" directly under the Swiftheat name, and a separate
-    # image supplied the same day (docs/image001.png) shows a BSCIC/NABCB
-    # "ISO 9001 REGISTERED" mark, QM 030. Treated as confirmed; the certificate
-    # itself has not been supplied, so this is not yet a certificate number.
+    # The certificate itself arrived 11 Sep 2026 in anotherpptanddocuments/, so this
+    # is no longer a claim read off a signboard. BSCIC Certifications Pvt Ltd,
+    # scope "Manufacture & Supply of Industrial Heating Elements and Thermo
+    # Sensors", IAF scope 18, issued 13 Nov 2025, first surveillance due
+    # 12 Nov 2026, expiry 12 Nov 2028.
     "iso": "ISO 9001:2015 Certified Company",
-    # Settled 31 Aug 2026. A WhatsApp photo of the premises signboard, bolted to
-    # the building Swiftheat actually operates from, prints this address, and it
-    # is the one address that matches what the site (and the email signature)
-    # already published. Neither the MCA filing plot nor the 2026 brochure's
-    # plot is where the signboard is. Kept for the record, not for republishing.
-    #   B-132, 3rd Cross  MCA filing at incorporation, and the old site
-    #   C-262, 6th Cross  email signature, the signboard photo, and street/area below
-    #   C-205, 4th Cross  the 2026 printed brochure, 2nd Floor, Peenya 1st Stage
+    "iso_cert": "BN24227/23203",
+    "iso_body": "BSCIC Certifications Pvt Ltd",
+    "iso_valid": "Issued 13 Nov 2025, valid to 12 Nov 2028",
+    # Udyam registration certificate, supplied 11 Sep 2026. Micro enterprise,
+    # major activity manufacturing, registered 17 Aug 2021.
+    "udyam": "UDYAM-KR-03-0254545",
+    # Two addresses, not one, settled 11 Sep 2026.
+    #
+    # The client wrote "Address is correct" beside C-262 on web 2.pptx slide 36, and
+    # the premises signboard is bolted to that building, so C-262 is where the works
+    # is and where a courier goes. But the three statutory documents supplied the
+    # same day all give C-205, 4th Cross: the GST registration certificate amended
+    # 27 Feb 2025 (First Floor), the ISO 9001 certificate (2nd Floor) and the Udyam
+    # certificate (2nd Floor). The MCA incorporation certificate gives a fourth,
+    # B-132, which is the 2021 filing and appears to be stale.
+    #
+    # So the site stops calling one address "works and registered office" and names
+    # them separately. The wording is queried with Swiftheat; the split itself is
+    # what the documents support.
+    #   B-132, 3rd Cross  MCA filing at incorporation, and the old site. Stale.
+    #   C-262, 6th Cross  signboard, email signature, client confirmation. The works.
+    #   C-205, 4th Cross  GST, ISO and Udyam certificates. The registered office.
+    "registered_office": "No. C-205, 2nd Floor, 4th Cross, Peenya Industrial Area 1st Stage, Bengaluru 560058",
     "address_registry": "B-132, 3rd Cross, 1st Stage, Peenya Industrial Estate, Bangalore 560058",
     "address_brochure": "No. C-205, 2nd Floor, 4th Cross, Peenya 1st Stage, Peenya Industrial Area, Bangalore 560058",
     "domain": "swiftheat.co.in",
@@ -112,7 +127,8 @@ FAMILIES = [
            ("35 to 1500 mm", "Length range", False),
            ("800 °C", "Max sheath temp", False),
            ("120 W/sq in", "Max watt density", False)],
- "temps": (200, 750),
+ # Top of the bar is the confirmed 800 °C Incoloy figure from the table below.
+ "temps": (200, 800),
  "construction": [
    "A resistance coil is wound over a ceramic core and centred inside a metal sheath. The void is "
    "packed with magnesium oxide, then the whole assembly is compacted by swaging, which crushes the "
@@ -222,7 +238,8 @@ FAMILIES = [
            ("300 to 1200 mm", "Heated length", False),
            ("200 to 1200 W", "Wattage range", False),
            ("400 °C", "Max sheath temp", False)],
- "temps": (200, 750),
+ # Top of the bar is the confirmed 400 °C from the table below.
+ "temps": (200, 400),
  "construction": [
    "A resistance conductor and its mineral insulation are drawn down inside a metal sheath, then the "
    "whole cable is wound into a close pitched spiral. The result is a heater that is mostly surface: "
@@ -318,7 +335,8 @@ FAMILIES = [
            ("20 to 400 mm", "Width", False),
            ("100 to 9000 W", "Wattage range", False),
            ("500 °C", "Max working temp", False)],
- "temps": (150, 700),
+ # Top of the bar is the confirmed 500 °C ceramic figure.
+ "temps": (150, 500),
  "construction": [
    "A ceramic band carries the resistance wire threaded through interlocking ceramic tiles, held in a "
    "stainless steel outer with a ceramic fibre insulation blanket behind it. The wire never touches "
@@ -495,8 +513,10 @@ FAMILIES = [
  "chips": [("60 to 2000 mm", "Length range", False),
            ("20 to 150 mm", "Width range", False),
            ("100 to 6000 W", "Wattage range", False),
-           (TBD, "Max sheath temp", True)],
- "temps": (150, 650),
+           # Confirmed 11 Sep 2026, web 2.pptx slide 2: "350 Deg C" written over the
+           # max sheath temp chip. Same figure carried into the spec table below.
+           ("350 °C", "Max sheath temp", False)],
+ "temps": (150, 350),
  "construction": [
    "Resistance ribbon is wound over a mica or ceramic former, insulated, and pressed into a flat "
    "metal case. The case is the working surface, so how flat it is and how hard it is clamped decide "
@@ -509,7 +529,8 @@ FAMILIES = [
  ],
  "spec_cols": ["Property", "Plain", "Finned"],
  "spec_rows": [
-   ("Maximum sheath temperature", TBD, TBD),
+   # web 2.pptx slide 2. Watt density was not answered and stays TBD.
+   ("Maximum sheath temperature", "350 °C", "350 °C"),
    ("Maximum watt density", TBD, TBD),
    ("Standard voltages", "230, 240, 415 V", "230, 240, 415 V"),
    ("Length range", "60 to 2000 mm", "60 to 2000 mm"),
@@ -522,7 +543,8 @@ FAMILIES = [
  "dim_cols": ["Dimension", "Symbol", "Note"],
  "dim_rows": [("Length", "L", "Overall, including any cold ends"),
               ("Width", "W", "Across the case"),
-              ("Thickness", "T", TBD),
+              # web 2.pptx slide 3: "standard" written over the thickness note.
+              ("Thickness", "T", "Standard section"),
               ("Mounting hole diameter", "d", "And quantity"),
               ("Hole positions", "-", "From a stated datum end"),
               ("Terminal position", "-", "Which end, or centre")],
@@ -574,8 +596,12 @@ FAMILIES = [
  "chips": [("6.5 to 16 mm", "Sheath diameter", False),
            ("100 to 4000 mm", "Length range", False),
            ("100 to 9000 W", "Wattage range", False),
-           (TBD, "Max sheath temp", True)],
- "temps": (150, 750),
+           # web 2.pptx slide 9 gives 400 °C stainless and 800 °C Incoloy. The chip
+           # carries the higher of the two, as cartridge and band already do. Slide 7
+           # marked "600 deg C" against this chip, which agrees with neither column;
+           # queried with Swiftheat 11 Sep 2026, the table figure is used meanwhile.
+           ("800 °C", "Max sheath temp", False)],
+ "temps": (150, 800),
  "construction": [
    "A resistance coil runs down the centre of a metal tube, packed in magnesium oxide and compacted "
    "so the powder becomes a solid, electrically insulating, thermally conducting core. Cold ends at "
@@ -589,15 +615,16 @@ FAMILIES = [
  ],
  "spec_cols": ["Property", "Stainless steel", "Incoloy"],
  "spec_rows": [
-   ("Maximum sheath temperature", TBD, TBD),
-   ("Maximum watt density in air", TBD, TBD),
-   ("Maximum watt density in liquid", TBD, TBD),
+   # Confirmed 11 Sep 2026, web 2.pptx slide 9.
+   ("Maximum sheath temperature", "400 °C", "800 °C"),
+   ("Maximum watt density in air", "25 to 30 W/sq in", "25 to 30 W/sq in"),
+   ("Maximum watt density in liquid", "60 W/sq in", "60 W/sq in"),
    ("Standard voltages", "230, 240, 415 V", "230, 240, 415 V"),
    ("Sheath diameters", "6.5, 8, 8.5, 11, 12.5, 16 mm", "6.5, 8, 8.5, 11, 12.5, 16 mm"),
    ("Length range", "100 to 4000 mm", "100 to 4000 mm"),
    ("Wattage range", "100 to 9000 W", "100 to 9000 W"),
    ("Bend forms", "Straight, U, W, coiled", "Straight, U, W, coiled"),
-   ("Cold end length", TBD, TBD),
+   ("Cold end length", "As required", "As required"),
  ],
  "dim_caption": "What we need in order to make a tubular heater",
  "dim_cols": ["Dimension", "Symbol", "Note"],
@@ -616,8 +643,9 @@ FAMILIES = [
      ("BC", "Coiled", "Wound to a helix. Send a drawing.", "", "Flexible-Tubular-heaters.png"),
    ]),
    ("Sheath material", [
-     ("SS", "Stainless steel", "General process work.", TBD),
-     ("IN", "Incoloy", "Higher temperature and more aggressive media.", TBD),
+     # web 2.pptx slide 11. Mild steel and copper were not answered.
+     ("SS", "Stainless steel", "General process work.", "400 °C"),
+     ("IN", "Incoloy", "Higher temperature and more aggressive media.", "800 °C"),
      ("MS", "Mild steel", "Dry air and oil, where cost matters.", TBD),
      ("CU", "Copper", "Clean water only.", TBD),
    ]),
@@ -662,11 +690,14 @@ FAMILIES = [
  "meta": "Thermocouples and temperature sensors made in Peenya, Bangalore. Types J, K, N, T, E, R, S, "
          "B and C, PT100, PT500 and PT1000 RTDs, washer, lug, bolt, spring loaded and manifold styles.",
  "facets": {"heats": "sensor", "industry": "injection-moulding|extrusion|food-processing|pharmaceutical-machinery|industrial-heating|packaging-machinery|blow-moulding|die-and-mould|rubber", "form": "sensor"},
- "chips": [("1.5 to 8 mm", "Sheath diameter", False),
+ # web 2.pptx slide 15 corrected the sheath diameter chip to 1 to 21 mm and asked
+ # for PT500 and PT1000 to be named alongside PT100.
+ "noun": "sensor",
+ "chips": [("1 to 21 mm", "Sheath diameter", False),
            ("20 to 2000 mm", "Immersion length", False),
-           ("9 types, PT100", "Types offered", False),
+           ("9 types, PT100 to PT1000", "Types offered", False),
            ("Class 1 and Class A", "Tolerance class", False)],
- "temps": (0, 1100),
+ "temps": (0, 1200),
  "construction": [
    "A thermocouple is two dissimilar wires joined at one end. The junction produces a small voltage "
    "that varies with temperature, and the controller reads that voltage. Everything else, the sheath, "
@@ -681,20 +712,26 @@ FAMILIES = [
  "spec_cols": ["Property", "Thermocouple", "RTD"],
  "spec_rows": [
    ("Types offered", "J, K, N, T, E, R, S, B, C", "PT100, PT500, PT1000"),
-   ("Useful range", TBD, TBD),
+   # Confirmed 11 Sep 2026, web 2.pptx slide 17.
+   ("Useful range", "0 to 1200 °C", "-200 to +300 °C"),
    ("Tolerance class", "Class 1", "Class A"),
    ("Calibration", "100 percent, certificate on request", "100 percent, certificate on request"),
-   ("Sheath diameters", "1.5, 3, 4.5, 6, 8 mm", "3, 4.5, 6, 8 mm"),
+   # web 2.pptx slide 17 replaced the discrete list with a range. The list builder
+   # still offers the old discrete sizes; which sizes inside the range are standard
+   # is queried with Swiftheat 11 Sep 2026.
+   ("Sheath diameters", "1 to 21 mm", "3.5 to 21 mm"),
    ("Immersion length range", "20 to 2000 mm", "20 to 2000 mm"),
    ("Cable length range", "100 to 10000 mm", "100 to 10000 mm"),
    ("Junction arrangements", "Grounded, ungrounded, exposed", "Not applicable"),
    ("Connections", "Plug, bare tails, terminal head", "Plug, bare tails, terminal head"),
    ("Terminals", "PVC pin, round lug, fork", "PVC pin, round lug, fork"),
-   ("Washer style", "OD 8 to 16 mm, bolt M3 to M10, 3 to 6 mm thick", TBD),
+   # web 2.pptx slide 17: "same" written against the RTD column.
+   ("Washer style", "OD 8 to 16 mm, bolt M3 to M10, 3 to 6 mm thick",
+                    "OD 8 to 16 mm, bolt M3 to M10, 3 to 6 mm thick"),
    ("Lug style", "OD 8 to 20 mm, bolt M3 to M12, 0.5 to 3 mm thick", TBD),
    ("Bolt style, fixed or rotational", "Standard thread sizes", "Standard thread sizes"),
    ("Spring loaded style", "Bayonet ID 11 to 18 mm, spring 100 to 1000 mm", "Bayonet ID 11 to 18 mm, spring 100 to 1000 mm"),
-   ("Mineral insulated sheath", "2 to 8 mm", TBD),
+   ("Mineral insulated sheath", "1 to 8 mm", "3 to 8 mm"),
    ("Manifold style", "TEF-68, 4 mm diameter, 11 and 12 mm tip", "Not applicable"),
  ],
  "dim_caption": "What we need in order to make a sensor",
@@ -768,8 +805,12 @@ FAMILIES = [
  "chips": [("100 to 2000 W", "Wattage range", False),
            ("230, 240 V", "Voltages", False),
            ("Trough, panel, hollow", "Element forms", False),
-           (TBD, "Peak wavelength", True)],
- "temps": (300, 750),
+           # web 2.pptx slide 22 gives the wavelength. Slide 20 wrote "700 deg C"
+           # against this chip, which is a temperature against a wavelength label and
+           # also disagrees with the 300 °C face temperature two slides later; queried
+           # with Swiftheat 11 Sep 2026. The ladder uses their own 300 and 700.
+           ("3 to 6 µm", "Peak wavelength", False)],
+ "temps": (300, 700),
  "construction": [
    "A resistance coil is embedded in a moulded ceramic body. When the ceramic is hot it radiates in "
    "the medium wave infrared band, and that radiation crosses the gap and is absorbed at the surface "
@@ -786,8 +827,8 @@ FAMILIES = [
    ("Element forms", "Trough, flat panel, hollow"),
    ("Wattage range", "100 to 2000 W"),
    ("Standard voltages", "230, 240 V"),
-   ("Element face temperature", TBD),
-   ("Peak wavelength", TBD),
+   ("Element face temperature", "300 °C"),
+   ("Peak wavelength", "3 to 6 µm"),
    ("Inbuilt thermocouple", "Type K, optional"),
    ("Reflector", "Optional, fitted"),
    ("Typical working distance", "20 to 1000 mm, application dependent"),

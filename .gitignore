@@ -4,6 +4,11 @@
 # public. Same principle as client-communication/ in the motorover repo.
 docs/
 
+# Client deliveries land here before they are sorted into docs/. They carry
+# statutory documents (PAN, GST, Udyam and ISO certificates), and the repo root
+# is what Cloudflare Pages serves, so nothing in here may be committed.
+anotherpptanddocuments/
+
 # macOS
 .DS_Store
 

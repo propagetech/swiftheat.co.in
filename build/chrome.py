@@ -308,7 +308,7 @@ def _footer(depth):
         ("about/", "About Swiftheat"),
         ("capabilities/", "Custom solutions and capabilities"),
         ("quality/", "Quality and testing"),
-        ("resources/", "Resources and downloads"),
+        ("resources/", "Resources and the works"),
         ("build-a-list/", "Build a requirement list"),
         ("contact/", "Contact and get a quote"),
     ])
@@ -401,7 +401,7 @@ def page(path, title, description, body, active="", depth=None, jsonld=None, jum
   <div class="wrap">
     <span class="where">%(area)s, %(city)s %(pin)s</span>
     <a href="%(builder)s">Build a list</a>
-    <a href="%(resources)s">Downloads</a>
+    <a href="tel:+919108803706">9108803706</a>
     <a href="mailto:%(email)s">%(email)s</a>
   </div>
 </div>

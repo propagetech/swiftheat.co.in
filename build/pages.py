@@ -20,6 +20,8 @@ ORG = {
     "alternateName": COMPANY["short"],
     "url": COMPANY["origin"] + "/",
     "email": COMPANY["email"],
+    # Publishable from 11 Sep 2026, web 2.pptx slide 34. E.164 so Google can dial it.
+    "telephone": "+91-9108803706",
     "address": ADDRESS,
     "areaServed": "IN",
     "description": "Manufacturer of industrial heating elements in Peenya Industrial Area, "
@@ -164,8 +166,9 @@ def home():
       <p>One scale, used the same way on every product page, so families can be compared at a
         glance rather than read one table at a time.</p>
       %(scales)s
-      <p class="cap">Indicative ranges for each element type, not Swiftheat ratings. Confirmed
-        figures replace these before publication.</p>
+      <p class="cap">Each bar tops out at Swiftheat's confirmed maximum from that family's
+        specification table. Nozzle heaters are the one family still waiting on a figure, and their
+        bar is indicative for the element type.</p>
     </div>
     <div>
       <h2>Made here, not traded</h2>
@@ -437,20 +440,21 @@ def about():
       <div class="contactcard">
         <dl>
           <dt>Registered name</dt><dd>%(name)s</dd>
-          <dt>Works and registered office</dt>
+          <dt>Works</dt>
           <dd>%(street)s,<br>%(area)s,<br>%(city)s %(pin)s</dd>
+          <dt>Registered office</dt><dd>%(registered_office)s</dd>
           <dt>Year founded</dt><dd>%(founded_long)s</dd>
           <dt>CIN</dt><dd>%(cin)s</dd>
-          <dt>Plant area</dt><dd class="tbd">%(tbd)s</dd>
+          <dt>Plant area</dt><dd>3000 sq ft</dd>
           <dt>People</dt><dd>%(staff)s</dd>
-          <dt>Certifications</dt><dd>%(iso)s. Nothing further is claimed until the
-            certificate itself has been supplied.</dd>
+          <dt>Certifications</dt><dd>%(iso)s, certificate %(iso_cert)s,
+            issued by %(iso_body)s.</dd>
           <dt>GST</dt><dd>%(gst)s</dd>
-          <dt>Udyam or MSME</dt><dd class="tbd">%(tbd)s</dd>
+          <dt>Udyam or MSME</dt><dd>%(udyam)s</dd>
         </dl>
       </div>
-      <p class="cap">Every item marked "to confirm" is waiting on a document from Swiftheat, not on
-        a decision. Claims that cannot be evidenced are not published.</p>
+      <p class="cap">Every number here is taken from a document Swiftheat has supplied. Claims that
+        cannot be evidenced are not published.</p>
     </div>
   </div>
 </section>
@@ -515,6 +519,9 @@ def about():
         "city": esc(COMPANY["city"]), "pin": esc(COMPANY["pin"]), "tbd": TBD,
         "founded_long": esc(COMPANY["founded_long"]), "cin": esc(COMPANY["cin"]),
         "staff": esc(COMPANY["staff"]), "iso": esc(COMPANY["iso"]), "gst": esc(COMPANY["gst"]),
+        "registered_office": esc(COMPANY["registered_office"]),
+        "iso_cert": esc(COMPANY["iso_cert"]), "iso_body": esc(COMPANY["iso_body"]),
+        "udyam": esc(COMPANY["udyam"]),
         "inds": cards(1, [("applications/%s/" % i["slug"], i["name"], i["problem"]) for i in INDUSTRIES]),
     }
     return page("about/index.html", "About | %s" % COMPANY["name"],
@@ -569,7 +576,8 @@ def capabilities():
           gets proposed.</li>
         <li><strong>Confirmation.</strong> The coded specification is agreed. That code is what
           appears on the works order and on the label.</li>
-        <li><strong>Manufacture.</strong> <span class="tbd">Lead times to be confirmed.</span></li>
+        <li><strong>Manufacture.</strong> Four to six days on a standard element, from the day the
+          specification is agreed.</li>
         <li><strong>Test and despatch.</strong> Resistance, high voltage and dimensional checks
           recorded against the order.</li>
       </ol>
@@ -586,7 +594,7 @@ def capabilities():
           <dt>Press and forming</dt><dd class="tbd">%(tbd)s</dd>
           <dt>Machining</dt><dd class="tbd">%(tbd)s</dd>
           <dt>Test equipment</dt><dd class="tbd">%(tbd)s</dd>
-          <dt>Plant area</dt><dd class="tbd">%(tbd)s</dd>
+          <dt>Plant area</dt><dd>3000 sq ft</dd>
         </dl>
       </div>
       <p class="cap">Published as a list of named machines, not as an adjective.</p>
@@ -761,7 +769,10 @@ def quality():
       <div class="contactcard">
         <dl>
           <dt>ISO 9001</dt><dd>%(iso)s</dd>
-          <dt>Udyam or MSME registration</dt><dd class="tbd">%(tbd)s</dd>
+          <dt>ISO certificate</dt><dd>%(iso_cert)s, %(iso_body)s.<br>%(iso_valid)s</dd>
+          <dt>ISO scope</dt><dd>Manufacture and supply of industrial heating elements and
+            thermo sensors</dd>
+          <dt>Udyam or MSME registration</dt><dd>%(udyam)s</dd>
           <dt>GST</dt><dd>%(gst)s</dd>
           <dt>CIN</dt><dd>%(cin)s</dd>
         </dl>
@@ -781,6 +792,8 @@ def quality():
   </div>
 </section>
 """ % {"tbd": TBD, "cin": COMPANY["cin"], "iso": esc(COMPANY["iso"]), "gst": esc(COMPANY["gst"]),
+       "iso_cert": esc(COMPANY["iso_cert"]), "iso_body": esc(COMPANY["iso_body"]),
+       "iso_valid": esc(COMPANY["iso_valid"]), "udyam": esc(COMPANY["udyam"]),
        "testcards": icon_cards(1, [
         ("noun-multimeter-8419064.svg", "Resistance",
          "Catches the wrong wattage, a wrong turn count and a bad joint. It is also the number you "
@@ -805,18 +818,15 @@ def quality():
 # ---------------------------------------------------------------- resources
 
 def resources():
-    fam_rows = "".join(
-        '<li><span aria-disabled="true"><span>%s datasheet</span>'
-        '<span class="meta">PDF, to be produced</span></span></li>' % esc(f["name"]) for f in FAMILIES)
     body = """
 <section class="hero">
   <div class="wrap grid">
     <div>
       <p class="eyebrow">Resources</p>
-      <h1>Downloads, drawings and the works gallery</h1>
-      <p class="lede">Everything here is free and none of it sits behind a form. A buyer should be
-        able to forward a datasheet to their purchase department in one click without giving up an
-        email address first.</p>
+      <h1>Drawings, reference data and the works</h1>
+      <p class="lede">Everything here is free and none of it sits behind a form. The drawings and the
+        specification tables live on the product pages themselves, where a buyer can act on them
+        without giving up an email address first.</p>
       <div class="actions">
         <a class="btn" href="../build-a-list/">Build a requirement list</a>
         <a class="btn btn-ghost" href="../contact/">Ask for something specific</a>
@@ -830,32 +840,6 @@ def resources():
   </div>
 </section>
 
-<section class="band">
-  <div class="wrap two">
-    <div>
-      <h2>Product datasheets</h2>
-      <p>One per family: construction, specification table, dimensions and the full option list with
-        codes. These are produced from the same source as the product pages, so they cannot drift
-        apart from what the site says.</p>
-      <ul class="dl">%(fams)s</ul>
-    </div>
-    <div>
-      <h2>Company documents</h2>
-      <ul class="dl">
-        <li><span aria-disabled="true"><span>Full product catalogue</span><span class="meta">PDF, to be produced</span></span></li>
-        <li><span aria-disabled="true"><span>Printable order form</span><span class="meta">PDF, to be produced</span></span></li>
-        <li><span aria-disabled="true"><span>Installation and removal guide</span><span class="meta">PDF, to be produced</span></span></li>
-        <li><span aria-disabled="true"><span>ISO certificate</span><span class="meta">Awaiting the certificate</span></span></li>
-        <li><span aria-disabled="true"><span>Sample test certificate, redacted</span><span class="meta">Awaiting a sample</span></span></li>
-      </ul>
-      <div class="note">
-        <p><strong>Nothing is published as a download until it exists.</strong> A dead link to a
-          catalogue costs more trust than an honest note saying it is coming.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="band alt">
   <div class="wrap">
     <div class="sechead">
@@ -864,10 +848,14 @@ def resources():
         real manufacturer can show, and it is what separates a works from a trading company.</p>
     </div>
     <div class="three">
-      <div class="shot"><span class="label">Photograph required</span><p>Winding: the machine and the
-        operator, mid run.</p></div>
-      <div class="shot"><span class="label">Photograph required</span><p>Assembly bench with parts
-        laid out in progress.</p></div>
+      <div class="shot filled">
+        <img src="../imgs/photos/works-winding-bench.jpg" width="960" height="640" loading="lazy"
+          alt="A Swiftheat operator winding an element on the bench lathe, with the shop floor behind">
+      </div>
+      <div class="shot filled">
+        <img src="../imgs/photos/works-assembly-bench.jpg" width="960" height="640" loading="lazy"
+          alt="An operator at the Swiftheat assembly bench, ceramic insulators laid out in front of the machine">
+      </div>
       <div class="shot"><span class="label">Photograph required</span><p>Test bench: element
         connected, instrument reading visible.</p></div>
       <div class="shot"><span class="label">Photograph required</span><p>Finished goods packed and
@@ -901,10 +889,10 @@ def resources():
     </div>
   </div>
 </section>
-""" % {"fams": fam_rows}
-    return page("resources/index.html", "Resources and downloads | %s" % COMPANY["name"],
-                "Datasheets, catalogues, drawings and the works gallery. Free, and never behind a "
-                "form.",
+"""
+    return page("resources/index.html", "Resources and the works | %s" % COMPANY["name"],
+                "Dimensioned drawings, reference data and a gallery of the works at Peenya. Free, "
+                "and never behind a form.",
                 body, active="resources/", depth=1,
                 crumb=[("", "Home"), (None, "Resources")])
 
@@ -934,14 +922,15 @@ def contact():
           <dt>Works and office</dt>
           <dd>%(street)s,<br>%(area)s,<br>%(city)s %(pin)s</dd>
           <dt>Email</dt><dd><a href="mailto:%(email)s">%(email)s</a></dd>
-          <dt>Phone</dt><dd class="tbd">%(tbd)s</dd>
-          <dt>WhatsApp</dt><dd class="tbd">%(tbd)s</dd>
-          <dt>Hours</dt><dd class="tbd">%(tbd)s</dd>
+          <dt>Phone</dt><dd><a href="tel:+919108803706">9108803706</a> /
+            <a href="tel:+918553002014">8553002014</a></dd>
+          <dt>WhatsApp</dt><dd><a href="https://wa.me/91%(whatsapp)s" rel="noopener">%(whatsapp)s</a></dd>
+          <dt>Hours</dt><dd>%(hours)s, Monday to Saturday</dd>
           <dt>Directions</dt><dd><a href="%(maps)s" rel="noopener">Open in Google Maps</a></dd>
         </dl>
       </div>
-      <p class="cap">The phone number on the previous site was a placeholder that nobody could call.
-        No number goes back on the site until it has been dialled and answered.</p>
+      <p class="cap">Both numbers reach the works directly. The number on the previous site was a
+        placeholder that nobody could call.</p>
     </div>
   </div>
 </section>
@@ -981,6 +970,7 @@ def contact():
 """ % {
         "street": esc(COMPANY["street"]), "area": esc(COMPANY["area"]), "city": esc(COMPANY["city"]),
         "pin": esc(COMPANY["pin"]), "email": COMPANY["email"], "tbd": TBD, "maps": maps,
+        "whatsapp": esc(COMPANY["whatsapp"]), "hours": esc(COMPANY["hours"]),
         "enquiry": enquiry(
             1, "Send a specification", "Website enquiry",
             "Fill in what you know and leave the rest. The message is composed in your own mail "
@@ -991,6 +981,7 @@ def contact():
     }
     ld = dict(ORG)
     ld["@type"] = "LocalBusiness"
+    ld["openingHours"] = "Mo-Sa 09:30-18:00"
     return page("contact/index.html", "Contact and get a quote | %s" % COMPANY["name"],
                 "Swiftheat Thermal Technologies, Peenya Industrial Area 1st Stage, Bengaluru 560058. "
                 "Send a heater specification and it is quoted from directly.",

@@ -61,10 +61,9 @@ def _hero_figure(f, slug, depth):
                 '        <figcaption>%s, made to order in Peenya. Every dimension and option on '
                 'this page is one you choose.</figcaption>\n      </figure>'
                 % (_img(shot, depth, eager=True), esc(f["name"])))
-    return ('<figure class="drawing">\n        %s\n'
-            '        <figcaption>The same drawing the list builder produces. Every number on it '
-            'is a box you\n          fill in, and every option you choose changes the picture.'
-            '</figcaption>\n      </figure>' % art(
+    # The explanatory caption was marked "Not required" by the client on web 2.pptx
+    # slides 2 and 15. The drawing stays; only the sentence under it goes.
+    return ('<figure class="drawing">\n        %s\n      </figure>' % art(
                 f["art"], "Drawing of a %s, with the principal dimensions called out"
                 % f["name"].lower()))
 
@@ -229,7 +228,7 @@ def product_page(f):
     lo, hi = f["temps"]
     jump = [("construction", "Construction"), ("data", "Technical data"), ("dimensions", "Dimensions"),
             ("options", "Options"), ("selection", "Selection guide"), ("failure", "Failure modes"),
-            ("applications", "Applications"), ("downloads", "Downloads"), ("enquiry", "Request a quote")]
+            ("applications", "Applications"), ("enquiry", "Request a quote")]
 
     sel = "".join("<h3>%s</h3><p>%s</p>" % (esc(t), esc(b)) for t, b in f["selection"])
     fails = cards(depth, [("#enquiry", t, b) for t, b in f["failures"]])
@@ -295,8 +294,6 @@ def product_page(f):
     <div>
       <figure class="drawing">
         %(art2)s
-        <figcaption>Numbered callouts match the numbered boxes in the
-          <a href="%(builder)s">list builder</a>. Not to scale.</figcaption>
       </figure>
     </div>
   </div>
@@ -316,7 +313,7 @@ def product_page(f):
 <section class="band" id="selection">
   <div class="wrap two">
     <div>
-      <h2>Choosing the right heater</h2>
+      <h2>Choosing the right %(noun)s</h2>
       %(selection)s
     </div>
     %(selshot)s
@@ -341,31 +338,19 @@ def product_page(f):
   </div>
 </section>
 
-<section class="band alt" id="downloads">
-  <div class="wrap two">
-    <div>
-      <h2>Downloads</h2>
-      <p>Free, and never behind a form. A buyer should be able to forward a datasheet to their
-        purchase department in one click without giving up an email address first.</p>
-      <ul class="dl">
-        <li><span aria-disabled="true"><span>%(name)s datasheet</span><span class="meta">PDF, to be produced</span></span></li>
-        <li><span aria-disabled="true"><span>Dimensional drawing</span><span class="meta">PDF, to be produced</span></span></li>
-        <li><span aria-disabled="true"><span>Installation and removal guide</span><span class="meta">PDF, to be produced</span></span></li>
-        <li><span aria-disabled="true"><span>Printable order form</span><span class="meta">PDF, to be produced</span></span></li>
-      </ul>
-      <p>Until the PDFs exist, the <a href="%(builder)s">list builder</a> generates a printable
-        requirement document from whatever you specify.</p>
-    </div>
-    <div>
-      <h2>Related products</h2>
-      %(related)s
-    </div>
+<section class="band alt" id="related">
+  <div class="wrap">
+    <h2>Related products</h2>
+    %(related)s
   </div>
 </section>
 
 %(enquiry)s
 """ % {
         "name": esc(f["name"]),
+        # web 2.pptx slide 18: the client wrote "Sensor" over "Choosing the right
+        # heater" on the sensors page. A thermocouple is not a heater.
+        "noun": f.get("noun", "heater"),
         "lede": esc(f["lede"]),
         "chips": _chips(f["chips"]),
         "builder": rel(depth, "build-a-list/"),
@@ -378,7 +363,11 @@ def product_page(f):
                          % esc(f["name"])),
         "art2": art(f["art"], "Dimensioned drawing of a %s" % f["name"].lower()),
         "construction": "".join("<p>%s</p>" % esc(p) for p in f["construction"]),
-        "tscale": tscale(lo, hi),
+        # Nozzle is the only family whose maximum is still unconfirmed, so it is the
+        # only one that keeps the indicative wording.
+        "tscale": tscale(lo, hi, note=None if slug == "nozzle-heaters" else
+                         "The upper limit is Swiftheat's confirmed rating from the specification "
+                         "table below. The lower end is indicative for this element type."),
         "spec": _spec_table(f),
         "dims": _dim_table(f),
         "dimkeys": esc(f["dim_keys"]),
