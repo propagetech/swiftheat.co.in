@@ -99,6 +99,36 @@
   "h": 232,
   "w": 311
  },
+ "parts/ir-flat-panel.jpg": {
+  "ground": "#ffffff",
+  "h": 264,
+  "w": 236
+ },
+ "parts/sh-finned.jpg": {
+  "ground": "#ffffff",
+  "h": 264,
+  "w": 380
+ },
+ "parts/sh-plain.jpg": {
+  "ground": "#ffffff",
+  "h": 229,
+  "w": 400
+ },
+ "parts/th-coiled.jpg": {
+  "ground": "#ffffff",
+  "h": 264,
+  "w": 254
+ },
+ "parts/th-u-form.jpg": {
+  "ground": "#ffffff",
+  "h": 264,
+  "w": 361
+ },
+ "parts/th-w-form.jpg": {
+  "ground": "#fdfdfd",
+  "h": 264,
+  "w": 176
+ },
  "photos/band-hero.jpg": {
   "ground": "#ffffff",
   "h": 663,
@@ -108,6 +138,16 @@
   "ground": "#ffffff",
   "h": 298,
   "w": 896
+ },
+ "photos/capabilities-engineering.jpg": {
+  "ground": "#ffffff",
+  "h": 329,
+  "w": 512
+ },
+ "photos/capabilities-hero.jpg": {
+  "ground": "#ffffff",
+  "h": 557,
+  "w": 920
  },
  "photos/cartridge-construction.jpg": {
   "ground": "#fefefe",
@@ -134,19 +174,119 @@
   "h": 290,
   "w": 623
  },
+ "photos/contact-frontage.jpg": {
+  "ground": null,
+  "h": 1280,
+  "w": 960
+ },
  "photos/home-hero-works.jpg": {
   "ground": null,
   "h": 733,
   "w": 1100
+ },
+ "photos/ir-construction.jpg": {
+  "ground": "#ffffff",
+  "h": 689,
+  "w": 1400
+ },
+ "photos/ir-hero.jpg": {
+  "ground": "#ffffff",
+  "h": 280,
+  "w": 333
+ },
+ "photos/ir-selection.jpg": {
+  "ground": "#e1e2e6",
+  "h": 276,
+  "w": 504
  },
  "photos/products-hero.png": {
   "ground": "#3451eb",
   "h": 722,
   "w": 432
  },
+ "photos/resources-hero.jpg": {
+  "ground": null,
+  "h": 1280,
+  "w": 960
+ },
+ "photos/sensors-construction.jpg": {
+  "ground": "#ffffff",
+  "h": 329,
+  "w": 880
+ },
+ "photos/sensors-hero.jpg": {
+  "ground": "#ffffff",
+  "h": 504,
+  "w": 1000
+ },
+ "photos/sensors-selection.jpg": {
+  "ground": "#ffffff",
+  "h": 420,
+  "w": 1525
+ },
+ "photos/strip-construction.jpg": {
+  "ground": "#f8f8f8",
+  "h": 564,
+  "w": 641
+ },
+ "photos/strip-hero.jpg": {
+  "ground": "#ffffff",
+  "h": 443,
+  "w": 1000
+ },
+ "photos/strip-selection.jpg": {
+  "ground": "#c8c8c8",
+  "h": 374,
+  "w": 567
+ },
+ "photos/th-bend-forms.jpg": {
+  "ground": "#ffffff",
+  "h": 613,
+  "w": 566
+ },
  "photos/tubular-construction.jpg": {
   "ground": "#fefefe",
   "h": 453,
   "w": 1000
+ },
+ "photos/tubular-hero.jpg": {
+  "ground": "#ffffff",
+  "h": 396,
+  "w": 402
+ },
+ "photos/tubular-selection.jpg": {
+  "ground": "#ffffff",
+  "h": 353,
+  "w": 1600
+ },
+ "photos/works-gallery-1.jpg": {
+  "ground": null,
+  "h": 1280,
+  "w": 960
+ },
+ "photos/works-gallery-2.jpg": {
+  "ground": null,
+  "h": 1280,
+  "w": 960
+ },
+ "photos/works-gallery-3.jpg": {
+  "ground": null,
+  "h": 1280,
+  "w": 960
+ },
+ "photos/works-gallery-4.jpg": {
+  "ground": null,
+  "h": 1280,
+  "w": 960
+ },
+ "photos/works-gallery-5.jpg": {
+  "ground": null,
+  "h": 1280,
+  "w": 960
+ },
+ "photos/works-gallery-6.jpg": {
+  "ground": null,
+  "h": 1280,
+  "w": 960
  }
 }

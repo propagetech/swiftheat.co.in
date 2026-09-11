@@ -319,7 +319,7 @@ def _footer(depth):
         <h3>%(name)s</h3>
         <p>%(street)s,<br>%(area)s,<br>%(city)s %(pin)s</p>
         <p><a href="mailto:%(email)s">%(email)s</a><br>
-          <span class="tbd">Phone number and registered address to be confirmed before publication.</span></p>
+          <a href="tel:+91%(phone)s">%(phone_display)s</a></p>
       </div>
       <div><h3>Products</h3><ul>%(prod)s</ul></div>
       <div><h3>Applications</h3><ul>%(ind)s<li><a href="%(allind)s">All industries</a></li></ul></div>
@@ -338,6 +338,8 @@ def _footer(depth):
         "city": esc(COMPANY["city"]),
         "pin": esc(COMPANY["pin"]),
         "email": COMPANY["email"],
+        "phone": esc(COMPANY["phone_primary"]),
+        "phone_display": esc(COMPANY["phone_display"]),
         "prod": prod, "ind": ind, "comp": comp,
         "allind": rel(depth, "applications/"),
     }

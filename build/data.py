@@ -551,8 +551,8 @@ FAMILIES = [
  "dim_keys": "L length, W width, T thickness, d hole diameter",
  "options": [
    ("Profile", [
-     ("F0", "Plain", "Flat case, for clamping to metal.", ""),
-     ("F1", "Finned", "Fins on the back, for heating air.", ""),
+     ("F0", "Plain", "Flat case, for clamping to metal.", "", "parts/sh-plain.jpg"),
+     ("F1", "Finned", "Fins on the back, for heating air.", "", "parts/sh-finned.jpg"),
    ]),
    ("Termination", [
      ("S1", "Screw terminals", "Exposed screw posts at one end.", ""),
@@ -638,9 +638,9 @@ FAMILIES = [
  "options": [
    ("Bend form", [
      ("B0", "Straight", "The plain rod.", ""),
-     ("BU", "U form", "Folded once, both terminals at the same end.", ""),
-     ("BW", "W form", "Folded twice, more heated length in the same envelope.", ""),
-     ("BC", "Coiled", "Wound to a helix. Send a drawing.", "", "Flexible-Tubular-heaters.png"),
+     ("BU", "U form", "Folded once, both terminals at the same end.", "", "parts/th-u-form.jpg"),
+     ("BW", "W form", "Folded twice, more heated length in the same envelope.", "", "parts/th-w-form.jpg"),
+     ("BC", "Coiled", "Wound to a helix. Send a drawing.", "", "parts/th-coiled.jpg"),
    ]),
    ("Sheath material", [
      # web 2.pptx slide 11. Mild steel and copper were not answered.
@@ -684,8 +684,8 @@ FAMILIES = [
  "code": "TS",
  "art": "sensor",
  "card": ("thermocouples-and-sensors.jpg", 344, 232),
- "lede": "The measuring half of the job. Nine thermocouple types and PT100 class RTDs, made to the "
-         "immersion length, junction and connection your controller expects.",
+ "lede": "The measuring half of the job. Nine thermocouple types and PT100, PT500 and PT1000 RTDs, "
+         "made to the immersion length, junction and connection your controller expects.",
  "summary": "Types J, K, N, T, E, R, S, B and C, plus PT100, PT500 and PT1000 RTDs, made to length.",
  "meta": "Thermocouples and temperature sensors made in Peenya, Bangalore. Types J, K, N, T, E, R, S, "
          "B and C, PT100, PT500 and PT1000 RTDs, washer, lug, bolt, spring loaded and manifold styles.",
@@ -748,6 +748,7 @@ FAMILIES = [
      ("K", "Type K thermocouple", "Nickel chromium. Wider range than Type J.", ""),
      ("PT1", "PT100 RTD", "Platinum, 100 ohm at 0 degrees C. Highest stability.", ""),
      ("PT5", "PT500 RTD", "Platinum, 500 ohm at 0 degrees C.", ""),
+     ("PT10", "PT1000 RTD", "Platinum, 1000 ohm at 0 degrees C.", ""),
    ]),
    ("Junction", [
      ("G", "Grounded", "Bonded to the sheath. Fastest of the protected types.", ""),
@@ -845,7 +846,7 @@ FAMILIES = [
  "options": [
    ("Element form", [
      ("FT", "Trough", "Concentrates the radiation into a band.", ""),
-     ("FF", "Flat panel", "Even spread over an area.", ""),
+     ("FF", "Flat panel", "Even spread over an area.", "", "parts/ir-flat-panel.jpg"),
      ("FH", "Hollow", "Deeper body, for higher output per element.", ""),
    ]),
    ("Inbuilt thermocouple", [
@@ -933,10 +934,43 @@ FAMILY_PHOTOS = {
                  "Ceramic and mica band heaters across the diameter range, with terminal boxes, "
                  "screw terminals and clamping straps"),
  },
+ "strip-heaters": {
+   # web 2.pptx slides 2, 4 and 5.
+   "hero": ("strip-hero.jpg", 1000, 443,
+            "Strip heaters in plain and finned form, with screw terminals, braided leads and "
+            "flying leads"),
+   "construction": ("strip-construction.jpg", 641, 564,
+                    "A plain strip heater with screw terminals and slotted mounting tabs"),
+   "selection": ("strip-selection.jpg", 567, 374,
+                 "Plain, finned and short strip heaters across the forms made to order"),
+ },
  "tubular-heaters": {
+   # web 2.pptx slides 7 and 13. Construction cutaway stays from the earlier client composite.
+   "hero": ("tubular-hero.jpg", 402, 396,
+            "Tubular heaters in straight, U, W, coiled and flanged forms"),
    "construction": ("tubular-construction.jpg", 1000, 453,
                     "Cutaway of a tubular heater, labelled: tube diameter, tube material, "
                     "insulation material, resistance wire and lead wire"),
+   "selection": ("tubular-selection.jpg", 1600, 353,
+                 "U form, serpentine and finned tubular heaters as made for air and immersion duty"),
+ },
+ "thermocouples-and-sensors": {
+   # web 2.pptx slides 15 and 16. Slide 18 GIF was a third-party infographic and is not used.
+   "hero": ("sensors-hero.jpg", 1000, 504,
+            "Thermocouples and RTDs in spring loaded, bent, armored and ring terminal styles"),
+   "construction": ("sensors-construction.jpg", 880, 329,
+                    "Washer, lug, bolt, spring loaded and manifold style temperature sensors"),
+   "selection": ("sensors-selection.jpg", 1525, 420,
+                 "Thermocouple and RTD assemblies across the styles made to length in Peenya"),
+ },
+ "ceramic-infrared-heaters": {
+   # web 2.pptx slides 20, 21 and 23.
+   "hero": ("ir-hero.jpg", 333, 280,
+            "A ceramic infrared trough element with ceramic beaded leads"),
+   "construction": ("ir-construction.jpg", 1400, 689,
+                    "Ceramic infrared trough elements, front and back, with ceramic beaded leads"),
+   "selection": ("ir-selection.jpg", 504, 276,
+                 "Trough, square, bulb and flat panel ceramic infrared elements"),
  },
 }
 

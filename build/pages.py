@@ -547,10 +547,10 @@ def capabilities():
         <a class="btn btn-ghost" href="../build-a-list/">Specify it yourself</a>
       </div>
     </div>
-    <div class="shot">
-      <span class="label">Photograph required</span>
-      <p>A winding machine or a press mid operation, hands in shot. Portrait or landscape, minimum
-        2000 px wide.</p>
+    <div class="shot filled shot-part"%(caphbg)s>
+      <img src="../imgs/photos/capabilities-hero.jpg" width="%(caphw)d" height="%(caphh)d"
+        style="max-width:min(100%%,%(caphw)dpx)" loading="eager"
+        alt="Cartridge, tubular, thermocouple, ceramic infrared, coil and band heaters made in Peenya">
     </div>
   </div>
 </section>
@@ -613,14 +613,22 @@ def capabilities():
       <p>That judgement is what the option codes and the selection guidance on every product page are
         for: to put as much of it as possible in front of the buyer before they enquire.</p>
     </div>
-    <div class="shot shot-sm">
-      <span class="label">Photograph required</span>
-      <p>A drawing on the bench beside the finished element. Shows the design to part relationship in
-        one frame.</p>
+    <div class="shot shot-sm filled shot-part"%(capebg)s>
+      <img src="../imgs/photos/capabilities-engineering.jpg" width="%(capew)d" height="%(capeh)d"
+        style="max-width:min(100%%,%(capew)dpx)" loading="lazy"
+        alt="Heating elements fitted into machine tooling, with leads dressed ready for connection">
     </div>
   </div>
 </section>
-""" % {"tbd": TBD, "capcards": icon_cards(1, [
+""" % {
+        "tbd": TBD,
+        "caphbg": imgmeta.bg("photos/capabilities-hero.jpg", pad=True),
+        "caphw": imgmeta.size("photos/capabilities-hero.jpg")[0],
+        "caphh": imgmeta.size("photos/capabilities-hero.jpg")[1],
+        "capebg": imgmeta.bg("photos/capabilities-engineering.jpg", pad=True),
+        "capew": imgmeta.size("photos/capabilities-engineering.jpg")[0],
+        "capeh": imgmeta.size("photos/capabilities-engineering.jpg")[1],
+        "capcards": icon_cards(1, [
         ("noun-technical-drawing-8436969.svg", "Custom design",
          "An element designed around your drawing, your bore, your clearance and your duty. Most of "
          "the catalogue exists to give that conversation a starting point, not to be ordered from "
@@ -832,10 +840,9 @@ def resources():
         <a class="btn btn-ghost" href="../contact/">Ask for something specific</a>
       </div>
     </div>
-    <div class="shot">
-      <span class="label">Photograph required</span>
-      <p>A printed catalogue and a datasheet on the bench. Used as the section image here and on the
-        home page.</p>
+    <div class="shot filled">
+      <img src="../imgs/photos/resources-hero.jpg" width="960" height="1280" loading="eager"
+        alt="A Swiftheat operator at a bench machine on the Peenya shop floor">
     </div>
   </div>
 </section>
@@ -849,24 +856,28 @@ def resources():
     </div>
     <div class="three">
       <div class="shot filled">
-        <img src="../imgs/photos/works-winding-bench.jpg" width="960" height="640" loading="lazy"
-          alt="A Swiftheat operator winding an element on the bench lathe, with the shop floor behind">
+        <img src="../imgs/photos/works-gallery-1.jpg" width="960" height="1280" loading="lazy"
+          alt="A Swiftheat operator at a cream finishing machine on the shop floor">
       </div>
       <div class="shot filled">
-        <img src="../imgs/photos/works-assembly-bench.jpg" width="960" height="640" loading="lazy"
-          alt="An operator at the Swiftheat assembly bench, ceramic insulators laid out in front of the machine">
-      </div>
-      <div class="shot"><span class="label">Photograph required</span><p>Test bench: element
-        connected, instrument reading visible.</p></div>
-      <div class="shot"><span class="label">Photograph required</span><p>Finished goods packed and
-        labelled for despatch.</p></div>
-      <div class="shot filled">
-        <img src="../imgs/photos/works-product-range.jpg" width="3714" height="2475" loading="lazy"
-          alt="A set of finished Swiftheat cartridge heaters laid out on paper">
+        <img src="../imgs/photos/works-gallery-2.jpg" width="960" height="1280" loading="lazy"
+          alt="An operator working at a bench machine with ceramic insulators laid out beside him">
       </div>
       <div class="shot filled">
-        <img src="../imgs/photos/works-building-signage.jpg" width="2041" height="900" loading="lazy"
-          alt="The Swiftheat works at Plot C-262, 6th Cross, Peenya Industrial Area, from three angles">
+        <img src="../imgs/photos/works-gallery-3.jpg" width="960" height="1280" loading="lazy"
+          alt="Shop floor workstations and tooling at the Peenya works">
+      </div>
+      <div class="shot filled">
+        <img src="../imgs/photos/works-gallery-4.jpg" width="960" height="1280" loading="lazy"
+          alt="Assembly and winding benches inside the Swiftheat works">
+      </div>
+      <div class="shot filled">
+        <img src="../imgs/photos/works-gallery-5.jpg" width="960" height="1280" loading="lazy"
+          alt="Finished elements and materials staged on the shop floor">
+      </div>
+      <div class="shot filled">
+        <img src="../imgs/photos/works-gallery-6.jpg" width="960" height="1280" loading="lazy"
+          alt="The Swiftheat works signboard at Plot C-262, Peenya Industrial Area">
       </div>
     </div>
   </div>
@@ -955,9 +966,9 @@ def contact():
       <p>Peenya Industrial Area 1st Stage, near SVC Co-operative Bank. Come and see the plant if you
         are specifying anything unusual: half an hour on the shop floor settles more than a week of
         email.</p>
-      <div class="shot shot-sm">
-        <span class="label">Photograph required</span>
-        <p>The unit frontage and signage from the road, so a first time visitor recognises it.</p>
+      <div class="shot shot-sm filled">
+        <img src="../imgs/photos/contact-frontage.jpg" width="960" height="1280" loading="lazy"
+          alt="The Swiftheat works signboard at Plot C-262, 6th Cross, Peenya Industrial Area">
       </div>
       <p class="cap" style="margin-top:16px">No map is embedded here on purpose. An embedded map
         loads third party scripts and sets cookies, which would mean a consent banner on every page
