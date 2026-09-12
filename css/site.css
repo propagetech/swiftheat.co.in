@@ -176,7 +176,7 @@ section.band.ink{background:var(--ink-900);color:hsl(214 18% 84%);border-bottom-
 section.band.ink h2,section.band.ink h3{color:#fff}
 section.band.ink p{color:hsl(214 16% 78%)}
 section.band.ink a{color:hsl(30 90% 78%)}
-.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:var(--s7);align-items:start}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:var(--s7);align-items:start}
 .three{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--s6);align-items:start}
 .sechead{max-width:64ch;margin-bottom:var(--s6)}
 .sechead p{margin-bottom:0}
@@ -429,6 +429,9 @@ footer.site .legal p{margin:0;color:hsl(214 14% 62%)}
      so tighten it rather than shrinking the logo itself */
   .logo small{letter-spacing:.06em}
   .logo img{width:150px}
+  /* three utility links wrap onto two rows at 360; start them left so the
+     email is not marooned on the right of an otherwise empty row */
+  .topbar .wrap{justify-content:flex-start;gap:var(--s2) var(--s4)}
 }
 @media (max-width:980px){
   /* house rule: 44px minimum tap target on touch widths */
