@@ -415,9 +415,6 @@ section.band.alt .contactcard{background:var(--paper)}
 .contactcard dt:first-child{margin-top:0}
 .contactcard dd{margin:var(--s1) 0 0;font-size:1rem;color:var(--ink-900)}
 .contactcard dd a{display:inline-flex;align-items:center;min-height:44px}
-.quality-photo{margin-top:var(--s5);overflow:hidden;border-radius:var(--radius);box-shadow:var(--shadow-image)}
-.quality-photo img{display:block;width:100%;height:auto;aspect-ratio:16 / 9;object-fit:cover}
-
 /* ---------- footer ---------- */
 footer.site{background:var(--ink-900);color:hsl(214 16% 70%);padding:var(--s8) 0 var(--s6);font-size:.9rem}
 footer.site .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:var(--s6)}

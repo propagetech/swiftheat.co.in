@@ -23,7 +23,7 @@
         "index.html"
       ],
       "integratedHtml": [
-        "index.html"
+        "resources/index.html"
       ],
       "suggestedPlacements": [
         {
@@ -72,9 +72,7 @@
       "relatedHtml": [
         "index.html"
       ],
-      "integratedHtml": [
-        "about/index.html"
-      ],
+      "integratedHtml": [],
       "suggestedPlacements": [
         {
           "html": "index.html",
@@ -148,9 +146,7 @@
       "relatedHtml": [
         "products/strip-heaters/index.html"
       ],
-      "integratedHtml": [
-        "products/strip-heaters/index.html"
-      ],
+      "integratedHtml": [],
       "suggestedPlacements": [
         {
           "html": "products/strip-heaters/index.html",
@@ -215,9 +211,7 @@
       "relatedHtml": [
         "products/strip-heaters/index.html"
       ],
-      "integratedHtml": [
-        "products/strip-heaters/index.html"
-      ],
+      "integratedHtml": [],
       "suggestedPlacements": [
         {
           "html": "products/strip-heaters/index.html",
@@ -242,9 +236,7 @@
       "relatedHtml": [
         "products/strip-heaters/index.html"
       ],
-      "integratedHtml": [
-        "products/strip-heaters/index.html"
-      ],
+      "integratedHtml": [],
       "suggestedPlacements": [
         {
           "html": "products/strip-heaters/index.html",
@@ -269,9 +261,7 @@
       "relatedHtml": [
         "products/strip-heaters/index.html"
       ],
-      "integratedHtml": [
-        "products/strip-heaters/index.html"
-      ],
+      "integratedHtml": [],
       "suggestedPlacements": [
         {
           "html": "products/strip-heaters/index.html",
@@ -296,9 +286,7 @@
       "relatedHtml": [
         "products/strip-heaters/index.html"
       ],
-      "integratedHtml": [
-        "products/strip-heaters/index.html"
-      ],
+      "integratedHtml": [],
       "suggestedPlacements": [
         {
           "html": "products/strip-heaters/index.html",
@@ -346,9 +334,7 @@
       "relatedHtml": [
         "products/strip-heaters/index.html"
       ],
-      "integratedHtml": [
-        "products/strip-heaters/index.html"
-      ],
+      "integratedHtml": [],
       "suggestedPlacements": [
         {
           "html": "products/strip-heaters/index.html",
@@ -417,9 +403,7 @@
       "relatedHtml": [
         "products/tubular-heaters/index.html"
       ],
-      "integratedHtml": [
-        "products/tubular-heaters/index.html"
-      ],
+      "integratedHtml": [],
       "suggestedPlacements": [
         {
           "html": "products/tubular-heaters/index.html",
@@ -636,7 +620,9 @@
       "relatedHtml": [
         "products/tubular-heaters/index.html"
       ],
-      "integratedHtml": [],
+      "integratedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
       "suggestedPlacements": [
         {
           "html": "products/tubular-heaters/index.html",
@@ -776,9 +762,7 @@
       "relatedHtml": [
         "products/tubular-heaters/index.html"
       ],
-      "integratedHtml": [
-        "products/tubular-heaters/index.html"
-      ],
+      "integratedHtml": [],
       "suggestedPlacements": [
         {
           "html": "products/tubular-heaters/index.html",
@@ -847,9 +831,7 @@
       "relatedHtml": [
         "products/thermocouples-and-sensors/index.html"
       ],
-      "integratedHtml": [
-        "products/thermocouples-and-sensors/index.html"
-      ],
+      "integratedHtml": [],
       "suggestedPlacements": [
         {
           "html": "products/thermocouples-and-sensors/index.html",
@@ -918,9 +900,7 @@
       "relatedHtml": [
         "products/thermocouples-and-sensors/index.html"
       ],
-      "integratedHtml": [
-        "products/thermocouples-and-sensors/index.html"
-      ],
+      "integratedHtml": [],
       "suggestedPlacements": [
         {
           "html": "products/thermocouples-and-sensors/index.html",
@@ -989,9 +969,7 @@
       "relatedHtml": [
         "products/thermocouples-and-sensors/index.html"
       ],
-      "integratedHtml": [
-        "products/thermocouples-and-sensors/index.html"
-      ],
+      "integratedHtml": [],
       "suggestedPlacements": [
         {
           "html": "products/thermocouples-and-sensors/index.html",
@@ -1104,9 +1082,7 @@
       "relatedHtml": [
         "products/ceramic-infrared-heaters/index.html"
       ],
-      "integratedHtml": [
-        "products/ceramic-infrared-heaters/index.html"
-      ],
+      "integratedHtml": [],
       "suggestedPlacements": [
         {
           "html": "products/ceramic-infrared-heaters/index.html",
@@ -1198,9 +1174,7 @@
       "relatedHtml": [
         "products/ceramic-infrared-heaters/index.html"
       ],
-      "integratedHtml": [
-        "products/ceramic-infrared-heaters/index.html"
-      ],
+      "integratedHtml": [],
       "suggestedPlacements": [
         {
           "html": "products/ceramic-infrared-heaters/index.html",
@@ -1263,9 +1237,7 @@
       "relatedHtml": [
         "products/ceramic-infrared-heaters/index.html"
       ],
-      "integratedHtml": [
-        "capabilities/index.html"
-      ],
+      "integratedHtml": [],
       "suggestedPlacements": [
         {
           "html": "capabilities/index.html",
@@ -1330,9 +1302,7 @@
       "relatedHtml": [
         "quality/index.html"
       ],
-      "integratedHtml": [
-        "capabilities/index.html"
-      ],
+      "integratedHtml": [],
       "suggestedPlacements": [
         {
           "html": "capabilities/index.html",
@@ -1376,9 +1346,7 @@
       "relatedHtml": [
         "quality/index.html"
       ],
-      "integratedHtml": [
-        "quality/index.html"
-      ],
+      "integratedHtml": [],
       "suggestedPlacements": [],
       "altText": "industrial quality assurance concept"
     },
