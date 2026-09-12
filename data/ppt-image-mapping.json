@@ -1,0 +1,1782 @@
+{
+  "sourcePresentation": "anotherpptanddocuments/web 2.pptx",
+  "preservation": "Files in imgs/ppt-originals are byte-for-byte copies of embedded PowerPoint media.",
+  "usageNote": "Use content-image records for HTML. Page-reference records are review screenshots and should not be published as page imagery.",
+  "integrationNote": "integratedHtml lists pages currently using each original; suggestedPlacements records other reviewed slots.",
+  "count": 75,
+  "images": [
+    {
+      "source": "ppt/media/image1.jpeg",
+      "file": "imgs/ppt-originals/swiftheat-technician-electrical-workbench.jpeg",
+      "role": "content-image",
+      "width": 960,
+      "height": 1280,
+      "bytes": 252466,
+      "sha256": "a2b6b7488d987c8eb7e82be6716ac8fbc4ad5c61628a0171550f22b6e93a66a0",
+      "slides": [
+        1
+      ],
+      "slideNotes": [
+        "Check which photo is better"
+      ],
+      "relatedHtml": [
+        "index.html"
+      ],
+      "integratedHtml": [
+        "index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "index.html",
+          "selector": ".hero-dark .shot img",
+          "purpose": "source for homepage works collage"
+        }
+      ],
+      "altText": "swiftheat technician electrical workbench"
+    },
+    {
+      "source": "ppt/media/image2.png",
+      "file": "imgs/ppt-originals/swiftheat-homepage-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 165228,
+      "sha256": "5afde5104056cb3e83f13d2cb809e7c3833b31ea9bdf7e18f73e877997e83cce",
+      "slides": [
+        1
+      ],
+      "slideNotes": [
+        "Check which photo is better"
+      ],
+      "relatedHtml": [
+        "index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image3.png",
+      "file": "imgs/ppt-originals/swiftheat-factory-photo-collage.png",
+      "role": "content-image",
+      "width": 1536,
+      "height": 1536,
+      "bytes": 2557559,
+      "sha256": "c683149a287a5e757f084c59786580432707f1b40da65d78533407b602e95938",
+      "slides": [
+        1
+      ],
+      "slideNotes": [
+        "Check which photo is better"
+      ],
+      "relatedHtml": [
+        "index.html"
+      ],
+      "integratedHtml": [
+        "about/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "index.html",
+          "selector": ".hero-dark .shot img",
+          "purpose": "source for homepage works collage"
+        },
+        {
+          "html": "about/index.html",
+          "selector": ".hero .shot img",
+          "purpose": "source for about-page works collage"
+        }
+      ],
+      "altText": "swiftheat factory photo collage"
+    },
+    {
+      "source": "ppt/media/image4.png",
+      "file": "imgs/ppt-originals/swiftheat-workshop-cctv-overview.png",
+      "role": "content-image",
+      "width": 1600,
+      "height": 900,
+      "bytes": 1774225,
+      "sha256": "057fb0a3110a63522eee9fb03d8dbddd02339632e7cb8fbb0b67a565b38c51db",
+      "slides": [
+        1
+      ],
+      "slideNotes": [
+        "Check which photo is better"
+      ],
+      "relatedHtml": [
+        "index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": "swiftheat workshop cctv overview"
+    },
+    {
+      "source": "ppt/media/image5.png",
+      "file": "imgs/ppt-originals/strip-heaters-page-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 128424,
+      "sha256": "8e781b180bbef7ee34fd8cb3776899cb2abd182d41d1386f85d0f18997e0652d",
+      "slides": [
+        2
+      ],
+      "slideNotes": [
+        "350 Deg C | Not required"
+      ],
+      "relatedHtml": [
+        "products/strip-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image6.jpg",
+      "file": "imgs/ppt-originals/strip-heater-product-range.jpg",
+      "role": "content-image",
+      "width": 849,
+      "height": 361,
+      "bytes": 21136,
+      "sha256": "18e3aa744ee0b409a8ddbecf644b3f2d2249fac3216e305c1fb992cd093f1107",
+      "slides": [
+        2
+      ],
+      "slideNotes": [
+        "350 Deg C | Not required"
+      ],
+      "relatedHtml": [
+        "products/strip-heaters/index.html"
+      ],
+      "integratedHtml": [
+        "products/strip-heaters/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "products/strip-heaters/index.html",
+          "selector": ".hero .figure-photo img",
+          "purpose": "hero product range"
+        }
+      ],
+      "altText": "strip heater product range"
+    },
+    {
+      "source": "ppt/media/image7.png",
+      "file": "imgs/ppt-originals/strip-heaters-configurator-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 116646,
+      "sha256": "7d80b94da69de4aa9f8326ce15741086489bb3f7b6bd32b30312c3f9aa27f8a6",
+      "slides": [
+        3
+      ],
+      "slideNotes": [
+        "Not required | standard"
+      ],
+      "relatedHtml": [
+        "products/strip-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image8.png",
+      "file": "imgs/ppt-originals/strip-heaters-options-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 109601,
+      "sha256": "fd99d13780ead06f93442bc17de318cff909c871a5dd27caa68508e3c547cbd5",
+      "slides": [
+        4
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/strip-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image9.jpg",
+      "file": "imgs/ppt-originals/strip-heater-construction-terminal.jpg",
+      "role": "content-image",
+      "width": 489,
+      "height": 408,
+      "bytes": 9627,
+      "sha256": "15ad75bf412ee33e7e3bd926916b94e7a08b7b5b9ab5d847b9491a5fd4e95a47",
+      "slides": [
+        4
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/strip-heaters/index.html"
+      ],
+      "integratedHtml": [
+        "products/strip-heaters/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "products/strip-heaters/index.html",
+          "selector": "#construction img",
+          "purpose": "construction detail"
+        }
+      ],
+      "altText": "strip heater construction terminal"
+    },
+    {
+      "source": "ppt/media/image10.jpg",
+      "file": "imgs/ppt-originals/finned-strip-heater.jpg",
+      "role": "content-image",
+      "width": 180,
+      "height": 103,
+      "bytes": 5772,
+      "sha256": "985282de4d238d7ab6815c4590f353937ef6c4834105b22b8537abf162eeefc1",
+      "slides": [
+        4
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/strip-heaters/index.html"
+      ],
+      "integratedHtml": [
+        "products/strip-heaters/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "products/strip-heaters/index.html",
+          "selector": "#options .opts li:nth-child(2) .optshot",
+          "purpose": "finned profile option"
+        }
+      ],
+      "altText": "finned strip heater"
+    },
+    {
+      "source": "ppt/media/image11.png",
+      "file": "imgs/ppt-originals/strip-heater-terminal-options.png",
+      "role": "content-image",
+      "width": 323,
+      "height": 177,
+      "bytes": 72173,
+      "sha256": "f40b117031a260d50f77ad8b35f4ccf9b7d54ec7bab088bff3c11a48d2a3e3f1",
+      "slides": [
+        4
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/strip-heaters/index.html"
+      ],
+      "integratedHtml": [
+        "products/strip-heaters/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "products/strip-heaters/index.html",
+          "selector": "#options .opts li:nth-child(1) .optshot",
+          "purpose": "plain profile option"
+        }
+      ],
+      "altText": "strip heater terminal options"
+    },
+    {
+      "source": "ppt/media/image12.png",
+      "file": "imgs/ppt-originals/mica-strip-heater-with-lead-wires.png",
+      "role": "content-image",
+      "width": 219,
+      "height": 139,
+      "bytes": 28701,
+      "sha256": "7835b51e2e89cd6a06162d187e0bda66e3e79f978b55122bebd71a6f8bd9cfcc",
+      "slides": [
+        4
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/strip-heaters/index.html"
+      ],
+      "integratedHtml": [
+        "products/strip-heaters/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "products/strip-heaters/index.html",
+          "selector": "#options .optgroup:nth-of-type(2)",
+          "purpose": "flying-lead termination option"
+        }
+      ],
+      "altText": "mica strip heater with lead wires"
+    },
+    {
+      "source": "ppt/media/image13.png",
+      "file": "imgs/ppt-originals/strip-heater-selection-guide-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 154802,
+      "sha256": "1a24e8edbfd32c1abbe1bf23b29dc82632bfc66fe3aaf82e7970bb75d4e3bf60",
+      "slides": [
+        5
+      ],
+      "slideNotes": [
+        "whole"
+      ],
+      "relatedHtml": [
+        "products/strip-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image14.jpg",
+      "file": "imgs/ppt-originals/strip-heater-product-family.jpg",
+      "role": "content-image",
+      "width": 405,
+      "height": 270,
+      "bytes": 10551,
+      "sha256": "73abbff96cfd89b877d488f87d4758c72dd63ed74b51d1a1b79fffd31ce74362",
+      "slides": [
+        5
+      ],
+      "slideNotes": [
+        "whole"
+      ],
+      "relatedHtml": [
+        "products/strip-heaters/index.html"
+      ],
+      "integratedHtml": [
+        "products/strip-heaters/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "products/strip-heaters/index.html",
+          "selector": "#selection img",
+          "purpose": "selection product family"
+        }
+      ],
+      "altText": "strip heater product family"
+    },
+    {
+      "source": "ppt/media/image15.png",
+      "file": "imgs/ppt-originals/strip-heaters-unused-page-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 157397,
+      "sha256": "0f818ef6ebf6fb8c2ea95ef69a09fbf6c1b959a4a31062df295147248042ddf5",
+      "slides": [
+        6
+      ],
+      "slideNotes": [
+        "This page not required"
+      ],
+      "relatedHtml": [
+        "products/strip-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image16.png",
+      "file": "imgs/ppt-originals/tubular-heaters-page-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 145250,
+      "sha256": "5c44a2c04a7b3dca8215f3cd3ce4786a0d65d78c52f379b3d61734f5df5ba70a",
+      "slides": [
+        7
+      ],
+      "slideNotes": [
+        "600 | deg | C"
+      ],
+      "relatedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image17.png",
+      "file": "imgs/ppt-originals/tubular-heater-product-range.png",
+      "role": "content-image",
+      "width": 297,
+      "height": 304,
+      "bytes": 78387,
+      "sha256": "49743753cd0830764a418035d7e59af0efe92398f9c27d023a1f74c67d6873d5",
+      "slides": [
+        7
+      ],
+      "slideNotes": [
+        "600 | deg | C"
+      ],
+      "relatedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "integratedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "products/tubular-heaters/index.html",
+          "selector": ".hero .figure-photo img",
+          "purpose": "hero product range"
+        }
+      ],
+      "altText": "tubular heater product range"
+    },
+    {
+      "source": "ppt/media/image18.png",
+      "file": "imgs/ppt-originals/tubular-heater-applications-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 153548,
+      "sha256": "e8a8ac37cfc32da27826308b1ff5e74c3f86df870aed88b40ece9858e111124c",
+      "slides": [
+        8
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image19.png",
+      "file": "imgs/ppt-originals/tubular-heater-bend-shapes.png",
+      "role": "content-image",
+      "width": 472,
+      "height": 512,
+      "bytes": 147587,
+      "sha256": "3f29f05274ac0821e37e238dddd7fd9caa30cbe7f2d9f281999471441d892d23",
+      "slides": [
+        8
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [
+        {
+          "html": "products/tubular-heaters/index.html",
+          "selector": "#options",
+          "purpose": "bend-form visual guide"
+        }
+      ],
+      "altText": "tubular heater bend shapes"
+    },
+    {
+      "source": "ppt/media/image20.png",
+      "file": "imgs/ppt-originals/tubular-heater-specifications-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 123954,
+      "sha256": "add8363b3e01019ffb07679bef40b60110030a33df6afe7a5c57aaa87cebf74a",
+      "slides": [
+        9
+      ],
+      "slideNotes": [
+        "400 | deg | C | 800 | deg | C | 25-30W / | Sq | in | 25-30W / | Sq | in | 60W / | Sq | in | 60W / | Sq | in | As required | As required"
+      ],
+      "relatedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image21.png",
+      "file": "imgs/ppt-originals/tubular-heater-configurator-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 122173,
+      "sha256": "2d66fe180c69d6ab7f3310e4480ba219dc158957c57f7f299d0e8db0aecd0b46",
+      "slides": [
+        10
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image22.png",
+      "file": "imgs/ppt-originals/tubular-heater-options-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 122804,
+      "sha256": "5cb436177a5848524f25d6ce430254fbfbaa44ebc036736cc006d5f706ab572f",
+      "slides": [
+        11
+      ],
+      "slideNotes": [
+        "400 | deg | C | 800 | deg | C"
+      ],
+      "relatedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image23.png",
+      "file": "imgs/ppt-originals/straight-tubular-heater.png",
+      "role": "content-image",
+      "width": 250,
+      "height": 250,
+      "bytes": 2486,
+      "sha256": "4f080c725153d4819aa68a56003ab1893d3740962f4056c2315db5c5f0c1143f",
+      "slides": [
+        11
+      ],
+      "slideNotes": [
+        "400 | deg | C | 800 | deg | C"
+      ],
+      "relatedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "integratedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "products/tubular-heaters/index.html",
+          "selector": "#options .opts li:nth-child(1) .optshot",
+          "purpose": "straight bend form"
+        }
+      ],
+      "altText": "straight tubular heater"
+    },
+    {
+      "source": "ppt/media/image24.jpg",
+      "file": "imgs/ppt-originals/u-shaped-tubular-heater.jpg",
+      "role": "content-image",
+      "width": 554,
+      "height": 554,
+      "bytes": 14416,
+      "sha256": "2535b8956e351a775a141b44f642d98d24d834b37a1730268eeb4defd79eec1a",
+      "slides": [
+        11
+      ],
+      "slideNotes": [
+        "400 | deg | C | 800 | deg | C"
+      ],
+      "relatedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "integratedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "products/tubular-heaters/index.html",
+          "selector": "#options .opts li:nth-child(2) .optshot",
+          "purpose": "U bend form"
+        }
+      ],
+      "altText": "u shaped tubular heater"
+    },
+    {
+      "source": "ppt/media/image25.jpg",
+      "file": "imgs/ppt-originals/m-shaped-tubular-heater.jpg",
+      "role": "content-image",
+      "width": 225,
+      "height": 225,
+      "bytes": 3776,
+      "sha256": "e44601ddbe9fce6dae30d8d22a3336fab6f0ae0d421a17a497650c998337df76",
+      "slides": [
+        11
+      ],
+      "slideNotes": [
+        "400 | deg | C | 800 | deg | C"
+      ],
+      "relatedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [
+        {
+          "html": "products/tubular-heaters/index.html",
+          "selector": "#options .opts li:nth-child(3) .optshot",
+          "purpose": "M bend form alternate"
+        }
+      ],
+      "altText": "m shaped tubular heater"
+    },
+    {
+      "source": "ppt/media/image26.jpg",
+      "file": "imgs/ppt-originals/coiled-tubular-heater.jpg",
+      "role": "content-image",
+      "width": 225,
+      "height": 225,
+      "bytes": 4572,
+      "sha256": "f98b9b04b175cb1b719fe7c82c038a93ca00e88dc3ec5e5b59bd55fb233e9dd7",
+      "slides": [
+        11
+      ],
+      "slideNotes": [
+        "400 | deg | C | 800 | deg | C"
+      ],
+      "relatedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [
+        {
+          "html": "products/tubular-heaters/index.html",
+          "selector": "#options .opts li:nth-child(4) .optshot",
+          "purpose": "coiled form alternate"
+        }
+      ],
+      "altText": "coiled tubular heater"
+    },
+    {
+      "source": "ppt/media/image27.png",
+      "file": "imgs/ppt-originals/tubular-heater-options-gallery-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 128677,
+      "sha256": "75706b86e216e176dc4dd4fad44e4fec69b90b5c9bb83130c5d2e329fdd70c1f",
+      "slides": [
+        12
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image28.png",
+      "file": "imgs/ppt-originals/tubular-heater-selection-guide-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 146089,
+      "sha256": "123b1109fb1c6dd10fab0fc245fd45a857d86ceb4665ca524d6b45665d09c20c",
+      "slides": [
+        13
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image29.jpg",
+      "file": "imgs/ppt-originals/bent-u-tubular-heater.jpg",
+      "role": "content-image",
+      "width": 554,
+      "height": 554,
+      "bytes": 10102,
+      "sha256": "2999bb3f2de3f5068f99bd0b7524b56bbbd825b6a2dfdda5efc1ddcc5850c4fb",
+      "slides": [
+        13
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [
+        {
+          "html": "products/tubular-heaters/index.html",
+          "selector": "#selection img",
+          "purpose": "selection-guide source"
+        }
+      ],
+      "altText": "bent u tubular heater"
+    },
+    {
+      "source": "ppt/media/image30.jpg",
+      "file": "imgs/ppt-originals/m-shaped-tubular-heater-dark.jpg",
+      "role": "content-image",
+      "width": 447,
+      "height": 447,
+      "bytes": 12326,
+      "sha256": "0e936a7920e726db2f5f4f8c7b4744dc2726ad90dab82f5ea5519326ce39833e",
+      "slides": [
+        13
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "integratedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "products/tubular-heaters/index.html",
+          "selector": "#options .opts li:nth-child(3) .optshot",
+          "purpose": "M bend form"
+        }
+      ],
+      "altText": "m shaped tubular heater dark"
+    },
+    {
+      "source": "ppt/media/image31.png",
+      "file": "imgs/ppt-originals/tubular-heater-elements-comparison.png",
+      "role": "content-image",
+      "width": 795,
+      "height": 359,
+      "bytes": 124984,
+      "sha256": "9f4132ea29be7b339879b055501fc586e001c957a116e32217a79ef91ffafe9a",
+      "slides": [
+        13
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [
+        {
+          "html": "products/tubular-heaters/index.html",
+          "selector": "#selection img",
+          "purpose": "selection comparison source"
+        }
+      ],
+      "altText": "tubular heater elements comparison"
+    },
+    {
+      "source": "ppt/media/image32.jpg",
+      "file": "imgs/ppt-originals/flanged-immersion-tubular-heater.jpg",
+      "role": "content-image",
+      "width": 225,
+      "height": 225,
+      "bytes": 7879,
+      "sha256": "31fb49f99a2ebd9193e7230658559ed1129263b3c92668d3c4982995453f041b",
+      "slides": [
+        13
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "integratedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "products/tubular-heaters/index.html",
+          "selector": "#options .opts li:nth-child(4) .optshot",
+          "purpose": "flanged or coiled form"
+        }
+      ],
+      "altText": "flanged immersion tubular heater"
+    },
+    {
+      "source": "ppt/media/image33.png",
+      "file": "imgs/ppt-originals/tubular-heaters-unused-page-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 150409,
+      "sha256": "e7487de9fe604a7145b7ecbadcd371005d818dbcd2e9c727ef4508f430da7b08",
+      "slides": [
+        14
+      ],
+      "slideNotes": [
+        "This page not required"
+      ],
+      "relatedHtml": [
+        "products/tubular-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image34.png",
+      "file": "imgs/ppt-originals/temperature-sensors-page-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 137027,
+      "sha256": "a96f6aeeb42395402ab204a557a5c423c46851e80461da0b24f6fd3e42ff7c34",
+      "slides": [
+        15
+      ],
+      "slideNotes": [
+        "Not required | 1mm to 21 mm | Also PT500 and PT1000"
+      ],
+      "relatedHtml": [
+        "products/thermocouples-and-sensors/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image35.jpg",
+      "file": "imgs/ppt-originals/thermocouple-temperature-sensor-range.jpg",
+      "role": "content-image",
+      "width": 900,
+      "height": 450,
+      "bytes": 59264,
+      "sha256": "a91b0c7d737f59c03185f72eebeb37c6ed0e895200381e3d96eaa27bdbf9d4b9",
+      "slides": [
+        15
+      ],
+      "slideNotes": [
+        "Not required | 1mm to 21 mm | Also PT500 and PT1000"
+      ],
+      "relatedHtml": [
+        "products/thermocouples-and-sensors/index.html"
+      ],
+      "integratedHtml": [
+        "products/thermocouples-and-sensors/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "products/thermocouples-and-sensors/index.html",
+          "selector": ".hero .figure-photo img",
+          "purpose": "hero sensor range"
+        }
+      ],
+      "altText": "thermocouple temperature sensor range"
+    },
+    {
+      "source": "ppt/media/image36.png",
+      "file": "imgs/ppt-originals/temperature-sensor-applications-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 160834,
+      "sha256": "2ce397c44f06500138c79d660211abc031f1de1697e8b25f7b579b61174c9907",
+      "slides": [
+        16
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/thermocouples-and-sensors/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image37.jpg",
+      "file": "imgs/ppt-originals/industrial-temperature-sensor-range.jpg",
+      "role": "content-image",
+      "width": 400,
+      "height": 330,
+      "bytes": 21938,
+      "sha256": "d87b8d2b85a745febade2fa1b1734365e924c21402a5ed916a409ead1d98a4fa",
+      "slides": [
+        16
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/thermocouples-and-sensors/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [
+        {
+          "html": "products/thermocouples-and-sensors/index.html",
+          "selector": "#construction img",
+          "purpose": "sensor family source"
+        }
+      ],
+      "altText": "industrial temperature sensor range"
+    },
+    {
+      "source": "ppt/media/image38.png",
+      "file": "imgs/ppt-originals/thermocouple-probe-assemblies.png",
+      "role": "content-image",
+      "width": 424,
+      "height": 292,
+      "bytes": 94118,
+      "sha256": "e44d3f2636764431fe5167fa46337a979b8c236d6b7ba119db5ef81c16b931a3",
+      "slides": [
+        16
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/thermocouples-and-sensors/index.html"
+      ],
+      "integratedHtml": [
+        "products/thermocouples-and-sensors/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "products/thermocouples-and-sensors/index.html",
+          "selector": "#construction img",
+          "purpose": "probe construction source"
+        }
+      ],
+      "altText": "thermocouple probe assemblies"
+    },
+    {
+      "source": "ppt/media/image39.png",
+      "file": "imgs/ppt-originals/temperature-sensor-specifications-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 119433,
+      "sha256": "2718ad2d2a41561611e52c5d3b2171eec2b19d583ccfc7b5f178da5a349473b2",
+      "slides": [
+        17
+      ],
+      "slideNotes": [
+        "0- 1200 | deg | C | -200- + 300 | deg | C | 1 mm- 21mm | 3.5mm- 21mm | same | 1 mm- 8mm | 3 mm- 8mm"
+      ],
+      "relatedHtml": [
+        "products/thermocouples-and-sensors/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image40.png",
+      "file": "imgs/ppt-originals/temperature-sensor-selection-guide-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 161320,
+      "sha256": "e369200f701135dc2b2402a400f87945ef69cd1526e891a545d71647457e97db",
+      "slides": [
+        18
+      ],
+      "slideNotes": [
+        "Sensor"
+      ],
+      "relatedHtml": [
+        "products/thermocouples-and-sensors/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image41.gif",
+      "file": "imgs/ppt-originals/thermocouple-selection-chart.gif",
+      "role": "content-image",
+      "width": 1280,
+      "height": 1656,
+      "bytes": 1854675,
+      "sha256": "030d40c604e035bf38fd8b835acae6623cf5847a679899a739d249b6fe037376",
+      "slides": [
+        18
+      ],
+      "slideNotes": [
+        "Sensor"
+      ],
+      "relatedHtml": [
+        "products/thermocouples-and-sensors/index.html"
+      ],
+      "integratedHtml": [
+        "products/thermocouples-and-sensors/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "products/thermocouples-and-sensors/index.html",
+          "selector": "#selection img",
+          "purpose": "selection chart"
+        }
+      ],
+      "altText": "thermocouple selection chart"
+    },
+    {
+      "source": "ppt/media/image42.png",
+      "file": "imgs/ppt-originals/temperature-sensor-downloads-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 134767,
+      "sha256": "54eac51287d931d57ec4d93a749c316626c61c653da7aa74f4f82cb5aebf0fbe",
+      "slides": [
+        19
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/thermocouples-and-sensors/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image43.png",
+      "file": "imgs/ppt-originals/ceramic-infrared-heaters-page-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 138317,
+      "sha256": "dbd40489f582679c35864dfef002bed94ca7099df004be33cba711e2191487ab",
+      "slides": [
+        20
+      ],
+      "slideNotes": [
+        "700 | deg | C"
+      ],
+      "relatedHtml": [
+        "products/ceramic-infrared-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image44.jpeg",
+      "file": "imgs/ppt-originals/ceramic-infrared-heater-elements.jpeg",
+      "role": "content-image",
+      "width": 215,
+      "height": 235,
+      "bytes": 4235,
+      "sha256": "c898da64e483a018dc98d97ac2a887cfcd9d8f384e60cec0a83c42efc931e957",
+      "slides": [
+        20
+      ],
+      "slideNotes": [
+        "700 | deg | C"
+      ],
+      "relatedHtml": [
+        "products/ceramic-infrared-heaters/index.html"
+      ],
+      "integratedHtml": [
+        "products/ceramic-infrared-heaters/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "products/ceramic-infrared-heaters/index.html",
+          "selector": ".hero .figure-photo img",
+          "purpose": "hero infrared range"
+        }
+      ],
+      "altText": "ceramic infrared heater elements"
+    },
+    {
+      "source": "ppt/media/image45.png",
+      "file": "imgs/ppt-originals/infrared-heater-applications-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 155483,
+      "sha256": "88530f7de47b30315897461c579201c5d109c8919bb669c36928b75c8381c722",
+      "slides": [
+        21
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/ceramic-infrared-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image46.jpg",
+      "file": "imgs/ppt-originals/ceramic-infrared-heater-panel-elements.jpg",
+      "role": "content-image",
+      "width": 3000,
+      "height": 1485,
+      "bytes": 530326,
+      "sha256": "9e1787d33069d34bdc7deffb9f0f8b01f51ab640b705214db9a3fb21d02b8cfe",
+      "slides": [
+        21
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/ceramic-infrared-heaters/index.html"
+      ],
+      "integratedHtml": [
+        "products/ceramic-infrared-heaters/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "products/ceramic-infrared-heaters/index.html",
+          "selector": "#construction img",
+          "purpose": "construction product family"
+        }
+      ],
+      "altText": "ceramic infrared heater panel elements"
+    },
+    {
+      "source": "ppt/media/image47.jpg",
+      "file": "imgs/ppt-originals/ceramic-infrared-flat-panel-heater.jpg",
+      "role": "content-image",
+      "width": 1000,
+      "height": 1000,
+      "bytes": 61613,
+      "sha256": "a8c00c254ef1d7872a825332162c7aab21e2737acc8e9e0c3c2a2357064efc89",
+      "slides": [
+        21
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/ceramic-infrared-heaters/index.html"
+      ],
+      "integratedHtml": [
+        "products/ceramic-infrared-heaters/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "products/ceramic-infrared-heaters/index.html",
+          "selector": "#options .optshot img",
+          "purpose": "flat-panel option"
+        }
+      ],
+      "altText": "ceramic infrared flat panel heater"
+    },
+    {
+      "source": "ppt/media/image48.png",
+      "file": "imgs/ppt-originals/infrared-heater-specifications-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 119695,
+      "sha256": "29986968a16974c56f4c5bad809a3e243a8075666ca94878d497b8167e8d0c68",
+      "slides": [
+        22
+      ],
+      "slideNotes": [
+        "300 | deg | 3 to 6 \u00b5m"
+      ],
+      "relatedHtml": [
+        "products/ceramic-infrared-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image49.png",
+      "file": "imgs/ppt-originals/infrared-heater-selection-guide-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 152834,
+      "sha256": "ba1ab17344fab2f3db5ea1ebd7a2dc756ed36f003e0eff15f7930308c718efd6",
+      "slides": [
+        23
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/ceramic-infrared-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image50.png",
+      "file": "imgs/ppt-originals/ceramic-infrared-heater-product-range.png",
+      "role": "content-image",
+      "width": 360,
+      "height": 269,
+      "bytes": 76329,
+      "sha256": "15fed9396abc479649be081376378854ae8d30ca7cbc23341617892971e06945",
+      "slides": [
+        23
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/ceramic-infrared-heaters/index.html"
+      ],
+      "integratedHtml": [
+        "products/ceramic-infrared-heaters/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "products/ceramic-infrared-heaters/index.html",
+          "selector": "#selection img",
+          "purpose": "selection product range"
+        }
+      ],
+      "altText": "ceramic infrared heater product range"
+    },
+    {
+      "source": "ppt/media/image51.png",
+      "file": "imgs/ppt-originals/infrared-heater-downloads-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 152077,
+      "sha256": "9274d75629d25c18ebb82d86e29285c9935b940edc9eec5c9551f37c113070d3",
+      "slides": [
+        24
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/ceramic-infrared-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image52.png",
+      "file": "imgs/ppt-originals/swiftheat-capabilities-page-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 155542,
+      "sha256": "818a61b193e7ae7aa8eb8f63da1574ccf0db2d0696f2d564dc802945ad98d721",
+      "slides": [
+        25
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/ceramic-infrared-heaters/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image53.png",
+      "file": "imgs/ppt-originals/industrial-heating-element-product-range.png",
+      "role": "content-image",
+      "width": 657,
+      "height": 398,
+      "bytes": 269775,
+      "sha256": "43216ee66abff1c9ca88ba1f35ea230db04b51de5e16628cbc8620dbcd5e597a",
+      "slides": [
+        25
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "products/ceramic-infrared-heaters/index.html"
+      ],
+      "integratedHtml": [
+        "capabilities/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "capabilities/index.html",
+          "selector": ".hero .shot img",
+          "purpose": "capabilities hero product range"
+        }
+      ],
+      "altText": "industrial heating element product range"
+    },
+    {
+      "source": "ppt/media/image54.png",
+      "file": "imgs/ppt-originals/swiftheat-capabilities-specification-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 136172,
+      "sha256": "73e0c561cfe0a67c8f82da24d9a918ac9668080391bf001df0aab54790e52b55",
+      "slides": [
+        26
+      ],
+      "slideNotes": [
+        "4 to 6 days"
+      ],
+      "relatedHtml": [
+        "capabilities/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image55.png",
+      "file": "imgs/ppt-originals/swiftheat-engineering-page-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 151192,
+      "sha256": "e9e01e5333a3e882dcaca4aff657bb3db43d36dee62866a42239b8148056a680",
+      "slides": [
+        27
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "quality/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image56.png",
+      "file": "imgs/ppt-originals/heater-manufacturing-process-collage.png",
+      "role": "content-image",
+      "width": 366,
+      "height": 237,
+      "bytes": 172547,
+      "sha256": "ac73df264d641db9fa1ac151dadaa1c31319732111aa76175ad5328e459aff8a",
+      "slides": [
+        27
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "quality/index.html"
+      ],
+      "integratedHtml": [
+        "capabilities/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "capabilities/index.html",
+          "selector": ".band img",
+          "purpose": "engineering process collage"
+        }
+      ],
+      "altText": "heater manufacturing process collage"
+    },
+    {
+      "source": "ppt/media/image57.png",
+      "file": "imgs/ppt-originals/swiftheat-quality-page-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 144884,
+      "sha256": "d009f053270970e6f10f9b18b538eb74fc31fda2d6cf86c58631d51efbe14c42",
+      "slides": [
+        28
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "quality/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image58.jpeg",
+      "file": "imgs/ppt-originals/industrial-quality-assurance-concept.jpeg",
+      "role": "content-image",
+      "width": 1267,
+      "height": 720,
+      "bytes": 121583,
+      "sha256": "7b6a6a7f9df4a1d7b5107fd89574e64fe464935df8d9a564cd5725cb9e601581",
+      "slides": [
+        28
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "quality/index.html"
+      ],
+      "integratedHtml": [
+        "quality/index.html"
+      ],
+      "suggestedPlacements": [],
+      "altText": "industrial quality assurance concept"
+    },
+    {
+      "source": "ppt/media/image59.png",
+      "file": "imgs/ppt-originals/swiftheat-quality-testing-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 144428,
+      "sha256": "d4b95a45f5bde712c960b41cacedbbb6de2a9ddd13f3030518edf7f38a9d2fa4",
+      "slides": [
+        29
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "quality/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image60.png",
+      "file": "imgs/ppt-originals/swiftheat-quality-traceability-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 144682,
+      "sha256": "067242a7b638151ced34009bfe308c0634180bb2df0d54a6ebe54a34727458ef",
+      "slides": [
+        30
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "quality/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image61.png",
+      "file": "imgs/ppt-originals/swiftheat-quality-certifications-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 146204,
+      "sha256": "fe626fe5ca7d4aaec64e3ea926d24da88ed39570c998ae769413b0407af5a17d",
+      "slides": [
+        31
+      ],
+      "slideNotes": [
+        "Available | Available | Available"
+      ],
+      "relatedHtml": [
+        "quality/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image62.png",
+      "file": "imgs/ppt-originals/swiftheat-resources-page-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 155270,
+      "sha256": "d37c664074da858d1aa044bdc576980aac22d74e0516be7668f4f04a9fc5b643",
+      "slides": [
+        32
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "resources/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image63.png",
+      "file": "imgs/ppt-originals/swiftheat-works-gallery-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 164990,
+      "sha256": "8e9759c615a36978cd42dfa3ebeb16f6828ec9be8fc7784e53e5ebd15c988f5d",
+      "slides": [
+        33
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "resources/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image64.jpeg",
+      "file": "imgs/ppt-originals/swiftheat-wire-winding-machine-operator.jpeg",
+      "role": "content-image",
+      "width": 960,
+      "height": 1280,
+      "bytes": 173788,
+      "sha256": "a5c7761e6fba7744634404b3a0fb28f1e067c7e9a4f6f69dc8664577ffbf22bb",
+      "slides": [
+        33
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "resources/index.html"
+      ],
+      "integratedHtml": [
+        "resources/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "resources/index.html",
+          "selector": ".three .shot:nth-child(2) img",
+          "purpose": "wire-winding operator"
+        }
+      ],
+      "altText": "swiftheat wire winding machine operator"
+    },
+    {
+      "source": "ppt/media/image65.jpeg",
+      "file": "imgs/ppt-originals/swiftheat-lathe-machine-operator.jpeg",
+      "role": "content-image",
+      "width": 960,
+      "height": 1280,
+      "bytes": 182592,
+      "sha256": "d5e43a4043765bccfcc1a95fb7f1a9f9f8cf4ec95c1654fc08b30af33d20a8b5",
+      "slides": [
+        33
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "resources/index.html"
+      ],
+      "integratedHtml": [
+        "resources/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "resources/index.html",
+          "selector": ".hero .shot img",
+          "purpose": "resources hero"
+        },
+        {
+          "html": "resources/index.html",
+          "selector": ".three .shot:nth-child(1) img",
+          "purpose": "lathe operator"
+        }
+      ],
+      "altText": "swiftheat lathe machine operator"
+    },
+    {
+      "source": "ppt/media/image66.jpeg",
+      "file": "imgs/ppt-originals/swiftheat-office-customer-support.jpeg",
+      "role": "content-image",
+      "width": 960,
+      "height": 1280,
+      "bytes": 152838,
+      "sha256": "7601600c1fe2fb12735cb871472e6602e61fdf76c02a5ff2865745c4e45958fd",
+      "slides": [
+        33
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "resources/index.html"
+      ],
+      "integratedHtml": [
+        "resources/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "resources/index.html",
+          "selector": ".three .shot:nth-child(3) img",
+          "purpose": "office support"
+        }
+      ],
+      "altText": "swiftheat office customer support"
+    },
+    {
+      "source": "ppt/media/image67.jpeg",
+      "file": "imgs/ppt-originals/swiftheat-engineering-design-workstation.jpeg",
+      "role": "content-image",
+      "width": 960,
+      "height": 1280,
+      "bytes": 192060,
+      "sha256": "caa4776ec4d6e7e5f6202d103d1716c0b1a877bccc024f3e0d0ca522678b230d",
+      "slides": [
+        33
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "resources/index.html"
+      ],
+      "integratedHtml": [
+        "resources/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "resources/index.html",
+          "selector": ".three .shot:nth-child(4) img",
+          "purpose": "engineering workstation"
+        }
+      ],
+      "altText": "swiftheat engineering design workstation"
+    },
+    {
+      "source": "ppt/media/image68.jpeg",
+      "file": "imgs/ppt-originals/swiftheat-heater-testing-workshop.jpeg",
+      "role": "content-image",
+      "width": 960,
+      "height": 1280,
+      "bytes": 203430,
+      "sha256": "c44dee60e67bed0bf437144fe3542345abb7da4bd61f32bb2e1538d023dd2a09",
+      "slides": [
+        33
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "resources/index.html"
+      ],
+      "integratedHtml": [
+        "resources/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "resources/index.html",
+          "selector": ".three .shot:nth-child(5) img",
+          "purpose": "heater testing workshop"
+        }
+      ],
+      "altText": "swiftheat heater testing workshop"
+    },
+    {
+      "source": "ppt/media/image69.jpeg",
+      "file": "imgs/ppt-originals/swiftheat-peenya-factory-entrance.jpeg",
+      "role": "content-image",
+      "width": 960,
+      "height": 1280,
+      "bytes": 215176,
+      "sha256": "894e033edcd1d2d05110de310b9068d2c8172f589c0a9be3391dbab5ca8d45cf",
+      "slides": [
+        33
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "resources/index.html"
+      ],
+      "integratedHtml": [
+        "contact/index.html",
+        "resources/index.html"
+      ],
+      "suggestedPlacements": [
+        {
+          "html": "resources/index.html",
+          "selector": ".three .shot:nth-child(6) img",
+          "purpose": "factory entrance"
+        },
+        {
+          "html": "contact/index.html",
+          "selector": ".shot img",
+          "purpose": "factory entrance"
+        }
+      ],
+      "altText": "swiftheat peenya factory entrance"
+    },
+    {
+      "source": "ppt/media/image70.png",
+      "file": "imgs/ppt-originals/swiftheat-contact-page-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 131235,
+      "sha256": "aaf36b79b637aedbe3ba40643b410c5819d45024dfc743ab09059c2af56ba87e",
+      "slides": [
+        34
+      ],
+      "slideNotes": [
+        "sales@swiftheat.co.in | 9108803706 / 8553002014 | 9108803706 | 9:30 to 6 pm"
+      ],
+      "relatedHtml": [
+        "contact/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image71.png",
+      "file": "imgs/ppt-originals/swiftheat-about-page-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 152919,
+      "sha256": "9ffd95fa42e145c864e97b391e48ade8ed5a9a6892a0e13eaed54521e75d7a2d",
+      "slides": [
+        35
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "about/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image72.png",
+      "file": "imgs/ppt-originals/swiftheat-factory-cctv-overview-reference.png",
+      "role": "page-reference",
+      "width": 1600,
+      "height": 900,
+      "bytes": 1756261,
+      "sha256": "06f5c2e3d9de92233d14405929482ac7c1181ac93cc9039ab2aa9d2c78c80c1a",
+      "slides": [
+        35
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "about/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image73.png",
+      "file": "imgs/ppt-originals/swiftheat-company-facts-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 177847,
+      "sha256": "7cec46919689876146fa8cb18a7595391ae5df3bae600e3325d5b1bc98d22ade",
+      "slides": [
+        36
+      ],
+      "slideNotes": [
+        "3000 | Sq | ft | ISO | Address is correct"
+      ],
+      "relatedHtml": [
+        "about/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image74.png",
+      "file": "imgs/ppt-originals/swiftheat-mission-values-design-reference.png",
+      "role": "page-reference",
+      "width": 1280,
+      "height": 720,
+      "bytes": 150432,
+      "sha256": "8307a5223bb670dc4b885f5e8203724cc13c900b572c43aa9c49fa2daecc9270",
+      "slides": [
+        37
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "about/index.html",
+        "contact/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [],
+      "altText": ""
+    },
+    {
+      "source": "ppt/media/image75.jpeg",
+      "file": "imgs/ppt-originals/swiftheat-bengaluru-location-map.jpeg",
+      "role": "content-image",
+      "width": 722,
+      "height": 1600,
+      "bytes": 152978,
+      "sha256": "a13f5852e733805f4cba2490fee52e1ab62a73a09015be0c883e9d7cc06d3ee7",
+      "slides": [
+        37
+      ],
+      "slideNotes": [],
+      "relatedHtml": [
+        "about/index.html",
+        "contact/index.html"
+      ],
+      "integratedHtml": [],
+      "suggestedPlacements": [
+        {
+          "html": "contact/index.html",
+          "selector": ".shot",
+          "purpose": "location reference; use as a linked image only if desired"
+        }
+      ],
+      "altText": "swiftheat bengaluru location map"
+    }
+  ]
+}

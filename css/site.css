@@ -28,6 +28,7 @@
   --heat-700:hsl(4 84% 33%);--heat-600:hsl(6 86% 39%);--heat-500:hsl(12 100% 58%);
   --heat-400:hsl(6 74% 48%);--heat-200:hsl(8 90% 90%);--heat-100:hsl(10 88% 96%);
   --focus:hsl(215 90% 42%);
+  --shadow-image:0 1px 2px hsl(214 32% 11% / .08),0 12px 32px hsl(214 32% 11% / .12);
   --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;--s9:96px;
   --radius:3px;--wrap:1180px;
   --header-h:72px;   /* masthead height; the sticky jump nav offsets by it */
@@ -139,7 +140,7 @@ img{max-width:100%;height:auto}
 .shot .label{font-size:.75rem;text-transform:uppercase;letter-spacing:.13em;color:var(--heat-700);font-weight:600}
 .shot p{font-size:.9rem;color:var(--ink-600);margin:var(--s3) auto 0;max-width:34ch}
 .shot-sm{min-height:150px}
-.shot.filled{display:block;padding:0;background:none;border-style:solid;overflow:hidden}
+.shot.filled{display:block;padding:0;background:none;border-style:solid;overflow:hidden;box-shadow:var(--shadow-image)}
 .shot.filled img{display:block;width:100%;height:100%;object-fit:cover;border-radius:calc(var(--radius) - 1px)}
 /* A part on a knocked out ground rather than a photograph of a room. Cover
    would crop the ends off the element, so it is contained and given a surface
@@ -150,7 +151,7 @@ img{max-width:100%;height:auto}
    than the picture being cut out to match the panel. The fallback is what the
    panel was before any photograph landed in it. */
 .shot.filled.shot-part{background:var(--art-bg,var(--surface));border-color:var(--ink-200);
-  padding:var(--art-pad,var(--s5));min-height:0;display:flex;align-items:center;justify-content:center}
+  padding:var(--art-pad,var(--s5));min-height:0;display:flex;align-items:center;justify-content:center;box-shadow:none}
 .shot.filled.shot-part img{width:auto;max-width:100%;height:auto;max-height:340px;object-fit:contain}
 section.band.alt .shot.filled.shot-part{background:var(--art-bg,var(--paper))}
 .hero .shot.filled.shot-part{background:var(--art-bg,var(--surface))}
@@ -189,10 +190,15 @@ figcaption{font-size:.82rem;color:var(--ink-600);margin-top:var(--s3)}
    hero and one without still look like the same page. */
 /* The build caps each photograph at its own pixel width, so centre what is
    narrower than the figure rather than leaving it hard against the left. */
+.figure-photo{box-shadow:var(--shadow-image)}
 .figure-photo img{display:block;width:100%;height:auto;max-height:400px;object-fit:contain;margin-inline:auto}
 section.band.alt .drawing{background:var(--art-bg,var(--paper))}
 section.band.ink .drawing{background:hsl(214 30% 15%);border-color:hsl(214 24% 26%)}
 section.band.ink figcaption{color:hsl(214 14% 66%)}
+
+/* The works gallery uses one deliberate portrait crop so mixed phone-camera
+   framing reads as a cohesive set while retaining each original image file. */
+.three > .shot.filled{aspect-ratio:3 / 4;min-height:0}
 
 /* ---------- tables ---------- */
 .tablewrap{overflow-x:auto;border:1px solid var(--ink-200);border-radius:var(--radius);background:var(--surface);margin:0 0 var(--s5)}
@@ -409,6 +415,8 @@ section.band.alt .contactcard{background:var(--paper)}
 .contactcard dt:first-child{margin-top:0}
 .contactcard dd{margin:var(--s1) 0 0;font-size:1rem;color:var(--ink-900)}
 .contactcard dd a{display:inline-flex;align-items:center;min-height:44px}
+.quality-photo{margin-top:var(--s5);overflow:hidden;border-radius:var(--radius);box-shadow:var(--shadow-image)}
+.quality-photo img{display:block;width:100%;height:auto;aspect-ratio:16 / 9;object-fit:cover}
 
 /* ---------- footer ---------- */
 footer.site{background:var(--ink-900);color:hsl(214 16% 70%);padding:var(--s8) 0 var(--s6);font-size:.9rem}
