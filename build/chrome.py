@@ -197,9 +197,9 @@ def product_cards(depth, slugs, facets=False):
         art_bg = ""
         if f.get("card"):
             picture = ('<img src="%s" width="%d" height="%d" alt="" loading="lazy">'
-                       % (rel(depth, "imgs/cards/" + f["card"][0]), f["card"][1], f["card"][2]))
+                       % (rel(depth, "imgs/" + f["card"][0]), f["card"][1], f["card"][2]))
             art_class = "art art-photo"
-            art_bg = imgmeta.bg("cards/" + f["card"][0])
+            art_bg = imgmeta.bg(f["card"][0])
         else:
             picture = art(f["art"], "Drawing of a %s" % f["name"].lower())
             art_class = "art"

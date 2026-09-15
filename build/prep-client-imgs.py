@@ -7,11 +7,8 @@
 The client marked up screenshots of the preview site in PowerPoint and dropped a
 photograph onto each slot they wanted filled. Those photographs come out of the
 deck as ppt/media/imageNN, which is what docs/uploads-2026-08-31/web1-ppt-images
-holds, byte for byte. This turns them into the three shapes the site uses:
-
-  imgs/cards/   one per product family, for the family cards
-  imgs/parts/   option thumbnails for the option catalogue
-  imgs/photos/  the larger presentation images: hero, construction, selection
+holds, byte for byte. This turns them into files in imgs/: family cards, option
+thumbnails, and the larger presentation images (hero, construction, selection).
 
 The background stays. An earlier cut of this knocked the studio ground out to
 transparency so one picture could sit on a warm card and the next on a sunk
@@ -48,9 +45,6 @@ from imgprep import _hex, crop_borders, enhance, ground  # noqa: E402
 ROOT = os.path.join(HERE, "..")
 SRC = os.path.join(ROOT, "docs", "uploads-2026-08-31", "web1-ppt-images")
 IMGS = os.path.join(ROOT, "imgs")
-CARDS = os.path.join(IMGS, "cards")
-PARTS = os.path.join(IMGS, "parts")
-PHOTOS = os.path.join(IMGS, "photos")
 META = os.path.join(IMGS, "client-imgs.json")
 
 # Crops the client set in PowerPoint, as the deck records them: a fraction of
@@ -259,27 +253,27 @@ PRESENTATION = [
 
 
 def main():
-    print("family cards -> imgs/cards")
+    print("family cards -> imgs/")
     for name, out, kw in FAMILY_CARDS:
         kw = dict(kw)
         kw.setdefault("target_h", 232)
         kw.setdefault("target_w", 440)
-        p, size, g = prep(name, out, CARDS, **kw)
+        p, size, g = prep(name, out, IMGS, **kw)
         print("  %-14s %-32s %4dx%-4d %7d B  ground %s"
               % (name, out, size[0], size[1], os.path.getsize(p), g))
 
-    print("option thumbnails -> imgs/parts")
+    print("option thumbnails -> imgs/")
     for name, out, kw in OPTION_PARTS:
         kw = dict(kw)
         kw.setdefault("target_h", 264)
         kw.setdefault("target_w", 400)
-        p, size, g = prep(name, out, PARTS, **kw)
+        p, size, g = prep(name, out, IMGS, **kw)
         print("  %-14s %-32s %4dx%-4d %7d B  ground %s"
               % (name, out, size[0], size[1], os.path.getsize(p), g))
 
-    print("presentation -> imgs/photos")
+    print("presentation -> imgs/")
     for name, out, kw in PRESENTATION:
-        p, size, g = prep(name, out, PHOTOS, **dict(kw))
+        p, size, g = prep(name, out, IMGS, **dict(kw))
         print("  %-14s %-32s %4dx%-4d %7d B  ground %s"
               % (name, out, size[0], size[1], os.path.getsize(p), g))
 
@@ -292,14 +286,14 @@ def main():
     print("client composite image26.jpeg -> panels")
     for out, box in [("cartridge-construction.jpg", (86, 268, 1379, 872)),
                      ("tubular-construction.jpg", (96, 911, 1367, 1582))]:
-        p, size, g = panel("image26.jpeg", out, PHOTOS, box)
+        p, size, g = panel("image26.jpeg", out, IMGS, box)
         print("  %-14s %-32s %4dx%-4d %7d B  ground %s"
               % ("image26.jpeg", out, size[0], size[1], os.path.getsize(p), g))
 
     # Two photographs for one slot: the band heater application shot. Both carry
     # a crop the client set in PowerPoint, which is where the framing came from.
-    print("pair -> imgs/photos")
-    p, size, g = pair(["image65.jpg", "image66.jpg"], "band-selection.jpg", PHOTOS)
+    print("pair -> imgs/")
+    p, size, g = pair(["image65.jpg", "image66.jpg"], "band-selection.jpg", IMGS)
     print("  %-14s %-32s %4dx%-4d %7d B  ground %s"
           % ("image65+66", "band-selection.jpg", size[0], size[1], os.path.getsize(p), g))
 
@@ -308,14 +302,14 @@ def main():
     # at his desk. Three of them are already carrying the about and quality
     # pages, so this takes one frame from each of the three registers rather
     # than repeating either of those collages wholesale.
-    print("home hero collage -> imgs/photos")
+    print("home hero collage -> imgs/")
     p, size, g = photo_collage(["image1.jpeg", "image5.jpeg", "image7.jpeg"],
-                               "home-hero-works.jpg", PHOTOS, size=(1100, 733))
+                               "home-hero-works.jpg", IMGS, size=(1100, 733))
     print("  %-14s %-32s %4dx%-4d %7d B  ground %s"
           % ("image1+5+7", "home-hero-works.jpg", size[0], size[1], os.path.getsize(p), g))
 
-    print("photographs -> imgs/photos")
-    p, size, g = photo("image30.jpeg", "cartridge-double-ended.jpg", PHOTOS,
+    print("photographs -> imgs/")
+    p, size, g = photo("image30.jpeg", "cartridge-double-ended.jpg", IMGS,
                        box=(300, 250, 3450, 2300), cap=1200)
     print("  %-14s %-32s %4dx%-4d %7d B  ground %s"
           % ("image30.jpeg", "cartridge-double-ended.jpg", size[0], size[1],

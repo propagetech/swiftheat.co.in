@@ -25,8 +25,8 @@ def _photo(slug, key):
 
 
 def _img_rel(name):
-    """A file under imgs/. Bare names still mean photos/ from the first client drop."""
-    return name if "/" in name else "photos/" + name
+    """A file under imgs/."""
+    return name.rsplit("/", 1)[-1]
 
 
 def _img(shot, depth, eager=False, extra_style=""):

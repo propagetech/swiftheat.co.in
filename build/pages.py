@@ -103,7 +103,7 @@ def home():
       </ul>
     </div>
     <div class="shot filled">
-      <img src="imgs/enhanced-imgs/works-shop-floor-wide.png" width="1448" height="1086" loading="eager"
+      <img src="imgs/works-shop-floor-wide.png" width="1448" height="1086" loading="eager"
         alt="The Swiftheat shop floor in Peenya, with operators at winding and assembly benches">
     </div>
   </div>
@@ -233,7 +233,7 @@ def products_index():
       </div>
     </div>
     <div class="shot filled shot-part"%(herobg)s>
-      <img src="../imgs/photos/products-hero.png" width="%(herow)d" height="%(heroh)d"
+      <img src="../imgs/products-hero.png" width="%(herow)d" height="%(heroh)d"
         style="max-width:min(100%%,%(herow)dpx)" loading="eager"
         alt="Cartridge, coil, band and nozzle heaters laid out together with thermocouples,
           sensors and a tubular element">
@@ -311,9 +311,9 @@ def products_index():
         # behind it is painted that blue rather than the picture being cut off
         # its ground. Every lead and every white braided sleeve in it survives
         # that way, which no knockout of a blue this strong managed.
-        "herobg": imgmeta.bg("photos/products-hero.png", pad=True),
-        "herow": imgmeta.size("photos/products-hero.png")[0],
-        "heroh": imgmeta.size("photos/products-hero.png")[1],
+        "herobg": imgmeta.bg("products-hero.png", pad=True),
+        "herow": imgmeta.size("products-hero.png")[0],
+        "heroh": imgmeta.size("products-hero.png")[1],
     }
     ld = {"@context": "https://schema.org", "@type": "CollectionPage",
           "name": "Products", "description": "Eight families of industrial heating element.",
@@ -344,7 +344,7 @@ def applications_index():
       </div>
     </div>
     <div class="shot filled shot-part" style="--art-bg:#ffffff">
-      <img src="../imgs/enhanced-imgs/applications-heaters-in-tooling.png" width="1448" height="1086" loading="eager"
+      <img src="../imgs/applications-heaters-in-tooling.png" width="1448" height="1086" loading="eager"
         alt="Industrial heaters fitted into tooling, with leads dressed ready for connection">
     </div>
   </div>
@@ -410,7 +410,7 @@ def about():
       </div>
     </div>
     <div class="shot filled">
-      <img src="../imgs/enhanced-imgs/works-shop-floor.png" width="1448" height="1086" loading="eager"
+      <img src="../imgs/works-shop-floor.png" width="1448" height="1086" loading="eager"
         alt="The Swiftheat shop floor in Peenya, with operators at benches and machines">
     </div>
   </div>
@@ -547,7 +547,7 @@ def capabilities():
       </div>
     </div>
     <div class="shot filled shot-part"%(caphbg)s>
-      <img src="../imgs/enhanced-imgs/products-range-collage.png" width="%(caphw)d" height="%(caphh)d"
+      <img src="../imgs/products-range-collage.png" width="%(caphw)d" height="%(caphh)d"
         style="max-width:min(100%%,%(caphw)dpx)" loading="eager"
         alt="Cartridge, tubular, thermocouple, ceramic infrared, coil and band heaters made in Peenya">
     </div>
@@ -602,7 +602,7 @@ def capabilities():
         for: to put as much of it as possible in front of the buyer before they enquire.</p>
     </div>
     <div class="shot shot-sm filled shot-part"%(capebg)s>
-      <img src="../imgs/enhanced-imgs/applications-heaters-in-tooling.png" width="%(capew)d" height="%(capeh)d"
+      <img src="../imgs/applications-heaters-in-tooling.png" width="%(capew)d" height="%(capeh)d"
         style="max-width:min(100%%,%(capew)dpx)" loading="lazy"
         alt="Heating elements fitted into machine tooling, with leads dressed ready for connection">
     </div>
@@ -610,12 +610,12 @@ def capabilities():
 </section>
 """ % {
         "tbd": TBD,
-        "caphbg": imgmeta.bg("enhanced-imgs/products-range-collage.png", pad=True),
-        "caphw": imgmeta.size("enhanced-imgs/products-range-collage.png")[0],
-        "caphh": imgmeta.size("enhanced-imgs/products-range-collage.png")[1],
-        "capebg": imgmeta.bg("enhanced-imgs/applications-heaters-in-tooling.png", pad=True),
-        "capew": imgmeta.size("enhanced-imgs/applications-heaters-in-tooling.png")[0],
-        "capeh": imgmeta.size("enhanced-imgs/applications-heaters-in-tooling.png")[1],
+        "caphbg": imgmeta.bg("products-range-collage.png", pad=True),
+        "caphw": imgmeta.size("products-range-collage.png")[0],
+        "caphh": imgmeta.size("products-range-collage.png")[1],
+        "capebg": imgmeta.bg("applications-heaters-in-tooling.png", pad=True),
+        "capew": imgmeta.size("applications-heaters-in-tooling.png")[0],
+        "capeh": imgmeta.size("applications-heaters-in-tooling.png")[1],
         "capcards": icon_cards(1, [
         ("noun-technical-drawing-8436969.svg", "Custom design",
          "An element designed around your drawing, your bore, your clearance and your duty. Most of "
@@ -655,7 +655,7 @@ def quality():
       </div>
     </div>
     <div class="shot filled shot-part" style="--art-bg:#ffffff">
-      <img src="../imgs/enhanced-imgs/quality-assurance.png" width="1254" height="1254" loading="eager"
+      <img src="../imgs/quality-assurance.png" width="1254" height="1254" loading="eager"
         alt="Quality assurance covering inspection, records, calibration and process control">
     </div>
   </div>
@@ -821,7 +821,7 @@ def resources():
       </div>
     </div>
     <div class="shot filled">
-      <img src="../imgs/enhanced-imgs/works-winding-machine.png" width="1122" height="1402" loading="eager"
+      <img src="../imgs/works-winding-machine.png" width="1122" height="1402" loading="eager"
         alt="A Swiftheat operator at a winding machine on the Peenya shop floor">
     </div>
   </div>
@@ -836,27 +836,27 @@ def resources():
     </div>
     <div class="three">
       <div class="shot filled">
-        <img src="../imgs/enhanced-imgs/workshop-worker-at-the-winding-machine.png" width="1536" height="1024" loading="lazy"
+        <img src="../imgs/workshop-worker-at-the-winding-machine.png" width="1536" height="1024" loading="lazy"
           alt="A Swiftheat operator winding resistance wire, with colleagues at nearby machines">
       </div>
       <div class="shot filled">
-        <img src="../imgs/enhanced-imgs/works-winding-machine.png" width="1122" height="1402" loading="lazy"
+        <img src="../imgs/works-winding-machine.png" width="1122" height="1402" loading="lazy"
           alt="A Swiftheat operator at a winding machine, with ceramic tubes on the bench">
       </div>
       <div class="shot filled">
-        <img src="../imgs/enhanced-imgs/works-machine-operators.png" width="1122" height="1402" loading="lazy"
+        <img src="../imgs/works-machine-operators.png" width="1122" height="1402" loading="lazy"
           alt="Two Swiftheat operators at a bench machine on the Peenya shop floor">
       </div>
       <div class="shot filled">
-        <img src="../imgs/enhanced-imgs/works-office-desktop.png" width="1122" height="1402" loading="lazy"
+        <img src="../imgs/works-office-desktop.png" width="1122" height="1402" loading="lazy"
           alt="Swiftheat employee working at a desktop computer in the Peenya office">
       </div>
       <div class="shot filled">
-        <img src="../imgs/enhanced-imgs/works-office-laptop.png" width="1122" height="1402" loading="lazy"
+        <img src="../imgs/works-office-laptop.png" width="1122" height="1402" loading="lazy"
           alt="Swiftheat employee working at a laptop in the Peenya office">
       </div>
       <div class="shot filled">
-        <img src="../imgs/enhanced-imgs/works-entrance-c262.png" width="1122" height="1402" loading="lazy"
+        <img src="../imgs/works-entrance-c262.png" width="1122" height="1402" loading="lazy"
           alt="The Swiftheat works entrance at Plot C-262, Peenya Industrial Area">
       </div>
     </div>
@@ -947,7 +947,7 @@ def contact():
         are specifying anything unusual: half an hour on the shop floor settles more than a week of
         email.</p>
       <div class="shot shot-sm filled">
-        <img src="../imgs/enhanced-imgs/works-entrance-c262.png" width="1122" height="1402" loading="lazy"
+        <img src="../imgs/works-entrance-c262.png" width="1122" height="1402" loading="lazy"
           alt="The Swiftheat works entrance at Plot C-262, Peenya Industrial Area, with the shop floor visible inside">
       </div>
       <p class="cap" style="margin-top:16px">No map is embedded here on purpose. An embedded map

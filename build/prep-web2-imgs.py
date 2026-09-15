@@ -28,8 +28,8 @@ SRC = os.path.join(ROOT, "docs", "uploads-2026-09-11", "web2-ppt-images")
 # Prefer the labelled Website images folder when the same frame exists there.
 WEB = os.path.join(ROOT, "docs", "Website images")
 IMGS = os.path.join(ROOT, "imgs")
-PARTS = os.path.join(IMGS, "parts")
-PHOTOS = os.path.join(IMGS, "photos")
+PARTS = IMGS
+PHOTOS = IMGS
 META = os.path.join(IMGS, "client-imgs.json")
 
 _meta = {}

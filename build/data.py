@@ -164,33 +164,33 @@ FAMILIES = [
  "options": [
    ("Termination", [
      ("T1", "Single end, straight", "Leads exit axially from one end. The default.", "",
-      "parts/ch-straight.jpg"),
+      "ch-straight.jpg"),
      ("T2", "Single end, right angle", "For tight clearance above the tool face.", "", "Right-angle-exit.png"),
      ("T3", "Double ended", "One lead from each end, for through holes.", "",
-      "photos/cartridge-double-ended.jpg"),
+      "cartridge-double-ended.jpg"),
    ]),
    ("Lead protection", [
      ("L1", "Silicone coated fibreglass", "General purpose, dry and clean environments.", TBD, "Silicon-coated-Fibreglass-sleeve.png"),
      ("L3", "Braided metal sleeve", "Abrasion resistance where leads move or rub.", TBD, "Braided-Metal-sleeve.png"),
      ("L4", "Armour cable", "Full mechanical protection on a moving platen.", TBD, "Armour.png"),
      ("L5", "Ceramic beading", "Highest lead exit temperature, no organic insulation.", TBD,
-      "parts/ch-ceramic-beading.jpg"),
+      "ch-ceramic-beading.jpg"),
    ]),
    ("Inbuilt thermocouple", [
-     ("TC0", "None", "Control from a separate sensor.", "", "parts/ch-straight.jpg"),
+     ("TC0", "None", "Control from a separate sensor.", "", "ch-straight.jpg"),
      ("TCJ", "Type J, ungrounded", "Iron constantan, isolated from the sheath.", "",
-      "parts/ch-thermocouple-j.jpg"),
+      "ch-thermocouple-j.jpg"),
      ("TCK", "Type K, ungrounded", "Higher range than Type J.", "",
-      "parts/ch-thermocouple-k.jpg"),
+      "ch-thermocouple-k.jpg"),
      ("TCG", "Grounded junction", "Faster response, junction bonded to the sheath.", "",
-      "parts/ch-thermocouple-grounded.jpg"),
+      "ch-thermocouple-grounded.jpg"),
    ]),
    ("Mounting and fittings", [
-     ("M0", "None", "Plain sheath, no fitting.", "", "parts/ch-straight.jpg"),
+     ("M0", "None", "Plain sheath, no fitting.", "", "ch-straight.jpg"),
      ("M1", "Round flange", "Welded, for surface mounting to a plate.", "", "Flange.png"),
      ("M2", "Threaded fitting", "NPT or BSP, size to be specified.", "", "Heater-with-Spl-mountable-threads.png"),
      ("M3", "T strain clamp", "Strain relief where the lead is pulled in service.", "",
-      "parts/ch-strain-clamp.jpg"),
+      "ch-strain-clamp.jpg"),
    ]),
  ],
  "options_note": "Thermocouple junction position is specified separately: disc end, mid length or lead end. "
@@ -283,15 +283,15 @@ FAMILIES = [
      ("PT", "Rectangular section", "Widest contact face. The usual hot runner choice.", ""),
    ]),
    ("Lead exit", [
-     ("EA", "Axial", "Leads leave along the axis of the coil.", "", "parts/co-exit-axial.png"),
-     ("ER", "Radial", "Leads leave out of the side.", "", "parts/co-exit-radial.png"),
+     ("EA", "Axial", "Leads leave along the axis of the coil.", "", "co-exit-axial.png"),
+     ("ER", "Radial", "Leads leave out of the side.", "", "co-exit-radial.png"),
      ("ET", "Tangential", "Leads leave off the tangent, for tight manifold pockets.", "",
-      "parts/co-exit-tangential.png"),
+      "co-exit-tangential.png"),
    ]),
    ("Inbuilt thermocouple", [
-     ("TC0", "None", "Control from a separate sensor.", "", "parts/co-thermocouple-none.jpg"),
-     ("TCJ", "Type J", "Iron constantan.", "", "parts/co-thermocouple-j.jpg"),
-     ("TCK", "Type K", "Higher range than Type J.", "", "parts/co-thermocouple-k.jpg"),
+     ("TC0", "None", "Control from a separate sensor.", "", "co-thermocouple-none.jpg"),
+     ("TCJ", "Type J", "Iron constantan.", "", "co-thermocouple-j.jpg"),
+     ("TCK", "Type K", "Higher range than Type J.", "", "co-thermocouple-k.jpg"),
    ]),
  ],
  "options_note": "State which end the leads leave from, and whether a reflection tube or sleeve is required. "
@@ -551,14 +551,14 @@ FAMILIES = [
  "dim_keys": "L length, W width, T thickness, d hole diameter",
  "options": [
    ("Profile", [
-     ("F0", "Plain", "Flat case, for clamping to metal.", "", "enhanced-imgs/strip-heaters-plain.png"),
-     ("F1", "Finned", "Fins on the back, for heating air.", "", "enhanced-imgs/strip-heaters-finned.png"),
+     ("F0", "Plain", "Flat case, for clamping to metal.", "", "strip-heaters-plain.png"),
+     ("F1", "Finned", "Fins on the back, for heating air.", "", "strip-heaters-finned.png"),
    ]),
    ("Termination", [
      ("S1", "Screw terminals", "Exposed screw posts at one end.", "",
-      "enhanced-imgs/strip-heaters-terminals-and-mounting.png"),
+      "strip-heaters-terminals-and-mounting.png"),
      ("S3", "Flying leads", "Leads with the protection of your choice.", "",
-      "enhanced-imgs/strip-heaters-flying-leads.png"),
+      "strip-heaters-flying-leads.png"),
    ]),
  ],
  "options_note": "Sheath material, hole pattern and any bend or curve are quoted from your drawing.",
@@ -641,13 +641,13 @@ FAMILIES = [
  "dim_keys": "D sheath diameter, L overall length, HL heated length, CZ cold end",
  "options": [
    ("Bend form", [
-     ("B0", "Straight", "The plain rod.", "", "enhanced-imgs/tubular-heaters-straight.png"),
+     ("B0", "Straight", "The plain rod.", "", "tubular-heaters-straight.png"),
      ("BU", "U form", "Folded once, both terminals at the same end.", "",
-      "enhanced-imgs/tubular-heaters-u-form.png"),
+      "tubular-heaters-u-form.png"),
      ("BW", "W form", "Folded twice, more heated length in the same envelope.", "",
-      "enhanced-imgs/tubular-heaters-w-form.png"),
+      "tubular-heaters-w-form.png"),
      ("BC", "Coiled", "Wound to a helix. Send a drawing.", "",
-      "enhanced-imgs/tubular-heaters-coiled.png"),
+      "tubular-heaters-coiled.png"),
    ]),
    ("Sheath material", [
      # web 2.pptx slide 11: mild steel and copper cards crossed out.
@@ -857,9 +857,9 @@ FAMILIES = [
  "options": [
    ("Element form", [
      ("FT", "Trough", "Concentrates the radiation into a band.", "",
-      "enhanced-imgs/ceramic-infrared-heaters-trough.png"),
+      "ceramic-infrared-heaters-trough.png"),
      ("FF", "Flat panel", "Even spread over an area.", "",
-      "enhanced-imgs/ceramic-infrared-heaters-flat-panel.png"),
+      "ceramic-infrared-heaters-flat-panel.png"),
      ("FH", "Hollow", "Deeper body, for higher output per element.", ""),
    ]),
    ("Inbuilt thermocouple", [
@@ -949,70 +949,70 @@ FAMILY_PHOTOS = {
  },
  "strip-heaters": {
    # web 2.pptx slides 2, 4 and 5, matched to enhanced-imgs.
-   "hero": ("enhanced-imgs/strip-heaters-hero.png", 1448, 1086,
+   "hero": ("strip-heaters-hero.png", 1448, 1086,
             "Strip heaters in plain and finned form, with screw terminals and flying leads"),
-   "construction": ("enhanced-imgs/strip-heaters-terminals-and-mounting.png", 1254, 1254,
+   "construction": ("strip-heaters-terminals-and-mounting.png", 1254, 1254,
                     "Plain strip heaters with screw terminals, slotted mounting tabs and the "
                     "matching hardware"),
-   "selection": ("enhanced-imgs/strip-heaters-product-range.png", 1254, 1254,
+   "selection": ("strip-heaters-product-range.png", 1254, 1254,
                  "Finned, plain and flying-lead strip heaters across the forms made to order"),
    "after_options": [
-     ("enhanced-imgs/strip-and-band-heaters.png", 1254, 1254,
+     ("strip-and-band-heaters.png", 1254, 1254,
       "Plain strip heaters with screw terminals alongside mica band heaters"),
    ],
  },
  "tubular-heaters": {
    # web 2.pptx slides 7, 8, 11 and 13. Construction uses the labelled cutaway
    # from the enhanced set. Extra forms sit with the selection shot as a collage.
-   "hero": ("enhanced-imgs/tubular-heaters-hero.png", 1448, 1086,
+   "hero": ("tubular-heaters-hero.png", 1448, 1086,
             "Tubular heaters in U form, coiled, serpentine and W form"),
-   "construction": ("enhanced-imgs/a-resistance-coil-runs-down-the-centre-of-a-metal-tube.png",
+   "construction": ("a-resistance-coil-runs-down-the-centre-of-a-metal-tube.png",
                     1199, 1312,
                     "Cutaway of a tubular heater, labelled: tube diameter, tube material, "
                     "insulation material, resistance wire and lead wire"),
-   "selection": ("enhanced-imgs/tubular-heaters-u-and-w-forms.png", 1448, 1086,
+   "selection": ("tubular-heaters-u-and-w-forms.png", 1448, 1086,
                  "U form and W form tubular heaters as made for air and immersion duty"),
    # Extra forms sit with the selection shot as a clickable collage. The bend
    # chart from slide 8 is omitted: the labelled diagrams were too small as a
    # tile, and the option codes already name the bend forms.
    "gallery": [
-     ("enhanced-imgs/tubular-heaters-flanged-immersion.png", 1448, 1086,
+     ("tubular-heaters-flanged-immersion.png", 1448, 1086,
       "Flanged immersion tubular heater with a close view of the U bends and the terminal head"),
-     ("enhanced-imgs/tubular-heaters-serpentine.png", 1254, 1254,
+     ("tubular-heaters-serpentine.png", 1254, 1254,
       "A serpentine tubular heater, a custom multi-bend form quoted from a drawing"),
-     ("enhanced-imgs/tubular-heaters-finned.png", 1254, 1254,
+     ("tubular-heaters-finned.png", 1254, 1254,
       "Finned tubular heaters in U form and serpentine form, for heating air"),
-     ("enhanced-imgs/tubular-heaters-product-range.png", 1254, 1254,
+     ("tubular-heaters-product-range.png", 1254, 1254,
       "Tubular heaters in serpentine, coiled, U, immersion and helical forms"),
    ],
  },
  "thermocouples-and-sensors": {
    # web 2.pptx slides 15, 16 and 18. Hero and construction use the product
    # stills; the selection slot uses the slide 18 chart.
-   "hero": ("enhanced-imgs/thermocouples-assemblies.png", 1254, 1254,
+   "hero": ("thermocouples-assemblies.png", 1254, 1254,
             "Thermocouples and RTDs in spring loaded, bent, armored and ring terminal styles"),
-   "construction": ("enhanced-imgs/thermocouples-and-sensors-range.png", 1254, 1254,
+   "construction": ("thermocouples-and-sensors-range.png", 1254, 1254,
                     "Thermocouple and RTD assemblies across the styles made to length in Peenya"),
    "construction_gallery": [
-     ("enhanced-imgs/thermocouples-probe-styles.png", 1254, 1254,
+     ("thermocouples-probe-styles.png", 1254, 1254,
       "Thermocouple probes in bayonet, spring loaded, compression, clamp and "
       "washer styles"),
    ],
-   "selection": ("enhanced-imgs/thermocouple-selection-infographic-third-party.png", 1254, 1254,
+   "selection": ("thermocouple-selection-infographic-third-party.png", 1254, 1254,
                  "Fourteen factors for thermocouple selection, covering type, range, junction, "
                  "sheath and mounting"),
  },
  "ceramic-infrared-heaters": {
    # web 2.pptx slides 20, 21 and 23.
-   "hero": ("enhanced-imgs/ceramic-infrared-heaters-hero.png", 1448, 1086,
+   "hero": ("ceramic-infrared-heaters-hero.png", 1448, 1086,
             "Ceramic infrared heaters in trough, flat panel and square forms, with ceramic "
             "beaded leads"),
-   "construction": ("enhanced-imgs/ceramic-infrared-heaters-trough.png", 1448, 1086,
+   "construction": ("ceramic-infrared-heaters-trough.png", 1448, 1086,
                     "Ceramic infrared trough elements, front and back, with ceramic beaded leads"),
-   "selection": ("enhanced-imgs/ceramic-infrared-heaters-element-forms.png", 1448, 1086,
+   "selection": ("ceramic-infrared-heaters-element-forms.png", 1448, 1086,
                  "Trough, rectangular, square and hollow ceramic infrared elements"),
    "after_options": [
-     ("enhanced-imgs/ceramic-infrared-heaters-product-range.png", 1448, 1086,
+     ("ceramic-infrared-heaters-product-range.png", 1448, 1086,
       "Trough, square, bulb and flat panel ceramic infrared elements"),
    ],
  },
