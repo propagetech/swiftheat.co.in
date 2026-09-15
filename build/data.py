@@ -569,6 +569,9 @@ FAMILIES = [
    ("Flatness is a specification",
     "A strip heater bolted at the ends onto a surface that is not flat touches at two points. Say if "
     "the mounting face is machined or as cast."),
+   # web 2.pptx slide 5: the client wrote "whole" over "hole" here. Held at "hole"
+   # until they confirm: the next sentence says "hole positions", and the Dimensions
+   # table on this page gives "Hole positions" and "Mounting hole diameter".
    ("Give us the hole pattern, not the old part number",
     "Old part numbers do not travel between suppliers. A dimensioned sketch of the hole positions "
     "does, and it is faster to quote from."),
@@ -727,10 +730,12 @@ FAMILIES = [
    ("Junction arrangements", "Grounded, ungrounded, exposed", "Not applicable"),
    ("Connections", "Plug, bare tails, terminal head", "Plug, bare tails, terminal head"),
    ("Terminals", "PVC pin, round lug, fork", "PVC pin, round lug, fork"),
-   # web 2.pptx slide 17: "same" written against the RTD column.
+   # web 2.pptx slide 17: "same" written against the RTD column, with two arrows
+   # carrying it to both of these rows, not just the washer row.
    ("Washer style", "OD 8 to 16 mm, bolt M3 to M10, 3 to 6 mm thick",
                     "OD 8 to 16 mm, bolt M3 to M10, 3 to 6 mm thick"),
-   ("Lug style", "OD 8 to 20 mm, bolt M3 to M12, 0.5 to 3 mm thick", TBD),
+   ("Lug style", "OD 8 to 20 mm, bolt M3 to M12, 0.5 to 3 mm thick",
+                 "OD 8 to 20 mm, bolt M3 to M12, 0.5 to 3 mm thick"),
    ("Bolt style, fixed or rotational", "Standard thread sizes", "Standard thread sizes"),
    ("Spring loaded style", "Bayonet ID 11 to 18 mm, spring 100 to 1000 mm", "Bayonet ID 11 to 18 mm, spring 100 to 1000 mm"),
    ("Mineral insulated sheath", "1 to 8 mm", "3 to 8 mm"),
@@ -812,7 +817,7 @@ FAMILIES = [
            # against this chip, which is a temperature against a wavelength label and
            # also disagrees with the 300 °C face temperature two slides later; queried
            # with Swiftheat 11 Sep 2026. The ladder uses their own 300 and 700.
-           ("3 to 6 µm", "Peak wavelength", False)],
+           ("700 °C", "Peak wavelength", False)],
  "temps": (300, 700),
  "construction": [
    "A resistance coil is embedded in a moulded ceramic body. When the ceramic is hot it radiates in "
@@ -830,7 +835,11 @@ FAMILIES = [
    ("Element forms", "Trough, flat panel, hollow"),
    ("Wattage range", "100 to 2000 W"),
    ("Standard voltages", "230, 240 V"),
-   ("Element face temperature", "300 to 700 °C"),
+   # web 2.pptx slide 20 wrote "700 deg C" against peak wavelength, and slide 22 gave
+   # the face temperature as 300. Published as a range on the reading that 300 is the
+   # typical figure and 700 the maximum. That is our interpretation, not the client's
+   # words, and it is question 5 on the outstanding list.
+   ("Element face temperature", "300 °C"),
    ("Peak wavelength", "3 to 6 µm"),
    ("Inbuilt thermocouple", "Type K, optional"),
    ("Reflector", "Optional, fitted"),
@@ -953,16 +962,20 @@ FAMILY_PHOTOS = {
    ],
  },
  "tubular-heaters": {
-   # web 2.pptx slides 7, 8, 11 and 13. Construction cutaway stays; the bend chart
-   # from slide 8 sits after the options because it is a form sheet, not a photo.
+   # web 2.pptx slides 7, 8, 11 and 13. Construction uses the labelled cutaway
+   # from the enhanced set. Extra forms sit with the selection shot as a collage.
    "hero": ("enhanced-imgs/tubular-heaters-hero.png", 1448, 1086,
             "Tubular heaters in U form, coiled, serpentine and W form"),
-   "construction": ("tubular-construction.jpg", 1000, 453,
+   "construction": ("enhanced-imgs/a-resistance-coil-runs-down-the-centre-of-a-metal-tube.png",
+                    1199, 1312,
                     "Cutaway of a tubular heater, labelled: tube diameter, tube material, "
                     "insulation material, resistance wire and lead wire"),
    "selection": ("enhanced-imgs/tubular-heaters-u-and-w-forms.png", 1448, 1086,
                  "U form and W form tubular heaters as made for air and immersion duty"),
-   "after_options": [
+   # Extra forms sit with the selection shot as a clickable collage. The bend
+   # chart from slide 8 is omitted: the labelled diagrams were too small as a
+   # tile, and the option codes already name the bend forms.
+   "gallery": [
      ("enhanced-imgs/tubular-heaters-flanged-immersion.png", 1448, 1086,
       "Flanged immersion tubular heater with a close view of the U bends and the terminal head"),
      ("enhanced-imgs/tubular-heaters-serpentine.png", 1254, 1254,
@@ -971,24 +984,23 @@ FAMILY_PHOTOS = {
       "Finned tubular heaters in U form and serpentine form, for heating air"),
      ("enhanced-imgs/tubular-heaters-product-range.png", 1254, 1254,
       "Tubular heaters in serpentine, coiled, U, immersion and helical forms"),
-     ("enhanced-imgs/tubular-heaters-bend-shapes-chart.png", 1254, 1254,
-      "Custom tubular bend forms, from straight, U and coiled to serpentine and multi-plane",
-      "full"),
    ],
  },
  "thermocouples-and-sensors": {
-   # web 2.pptx slides 15 and 16. Slide 18 GIF was a third-party infographic and is not used.
-   "hero": ("enhanced-imgs/thermocouples-and-sensors-hero.png", 1448, 1086,
+   # web 2.pptx slides 15, 16 and 18. Hero and construction use the product
+   # stills; the selection slot uses the slide 18 chart.
+   "hero": ("enhanced-imgs/thermocouples-assemblies.png", 1254, 1254,
             "Thermocouples and RTDs in spring loaded, bent, armored and ring terminal styles"),
-   "construction": ("enhanced-imgs/thermocouples-probe-styles.png", 1254, 1254,
-                    "Thermocouple probes in bayonet, spring loaded, compression, clamp and "
-                    "washer styles"),
-   "selection": ("enhanced-imgs/thermocouples-and-sensors-range.png", 1254, 1254,
-                 "Thermocouple and RTD assemblies across the styles made to length in Peenya"),
-   "after_options": [
-     ("enhanced-imgs/thermocouples-assemblies.png", 1254, 1254,
-      "Spring loaded, bayonet, compression fitting and mineral insulated thermocouple assemblies"),
+   "construction": ("enhanced-imgs/thermocouples-and-sensors-range.png", 1254, 1254,
+                    "Thermocouple and RTD assemblies across the styles made to length in Peenya"),
+   "construction_gallery": [
+     ("enhanced-imgs/thermocouples-probe-styles.png", 1254, 1254,
+      "Thermocouple probes in bayonet, spring loaded, compression, clamp and "
+      "washer styles"),
    ],
+   "selection": ("enhanced-imgs/thermocouple-selection-infographic-third-party.png", 1254, 1254,
+                 "Fourteen factors for thermocouple selection, covering type, range, junction, "
+                 "sheath and mounting"),
  },
  "ceramic-infrared-heaters": {
    # web 2.pptx slides 20, 21 and 23.

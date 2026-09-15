@@ -1,7 +1,8 @@
 /* Swiftheat — one script for the whole site.
-   Three small, independent pieces: the mobile nav, the product finder, and the
-   enquiry form that composes a readable email. Nothing here is required for the
-   content to be readable; the page works with the script blocked. */
+   Four small, independent pieces: the mobile nav, the product finder, the
+   enquiry form that composes a readable email, and the photograph gallery.
+   Nothing here is required for the content to be readable; the page works
+   with the script blocked. */
 (function () {
   'use strict';
 
@@ -143,6 +144,127 @@
     }
     if (btn) btn.addEventListener('click', send);
     refresh();
+  })();
+
+  /* ---------- photograph gallery ---------- */
+  /* Each [data-gallery] is one set. Tiles are ordinary links, so with the
+     script blocked they still open the picture. With it, they open a dialog
+     you can slide left and right, with the keyboard and with a swipe. */
+  (function gallery() {
+    var groups = Array.prototype.slice.call(document.querySelectorAll('[data-gallery]'));
+    if (!groups.length || typeof HTMLDialogElement !== 'function') return;
+
+    var dlg = document.createElement('dialog');
+    dlg.className = 'gallery';
+    dlg.setAttribute('aria-label', 'Product photographs');
+    dlg.innerHTML =
+      '<div class="gallery-bar">'
+      + '<p class="gallery-count"></p>'
+      + '<button type="button" class="gallery-close" aria-label="Close">'
+      + '<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">'
+      + '<path d="M2 2l10 10M12 2L2 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'
+      + '</svg></button></div>'
+      + '<div class="gallery-stage-wrap">'
+      + '<button type="button" class="gallery-prev" aria-label="Previous photograph">'
+      + '<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">'
+      + '<path d="M9 2L4 7l5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
+      + '</svg></button>'
+      + '<div class="gallery-stage"><div class="gallery-track"></div></div>'
+      + '<button type="button" class="gallery-next" aria-label="Next photograph">'
+      + '<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">'
+      + '<path d="M5 2l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
+      + '</svg></button></div>'
+      + '<p class="gallery-cap" aria-live="polite"></p>';
+    document.body.appendChild(dlg);
+
+    var track = dlg.querySelector('.gallery-track');
+    var stage = dlg.querySelector('.gallery-stage');
+    var countEl = dlg.querySelector('.gallery-count');
+    var capEl = dlg.querySelector('.gallery-cap');
+    var slides = [];
+    var index = 0;
+    var startX = 0;
+
+    function itemsFrom(group) {
+      return Array.prototype.map.call(group.querySelectorAll('a[href]'), function (a) {
+        var img = a.querySelector('img');
+        return {
+          src: a.getAttribute('href'),
+          alt: img ? (img.getAttribute('alt') || '') : '',
+          w: img ? img.getAttribute('width') : '',
+          h: img ? img.getAttribute('height') : ''
+        };
+      });
+    }
+
+    function render(items) {
+      track.innerHTML = '';
+      slides = items;
+      dlg.classList.toggle('gallery-multi', items.length > 1);
+      items.forEach(function (item) {
+        var slide = document.createElement('div');
+        slide.className = 'gallery-slide';
+        var img = document.createElement('img');
+        img.src = item.src;
+        img.alt = item.alt;
+        if (item.w) img.width = item.w;
+        if (item.h) img.height = item.h;
+        slide.appendChild(img);
+        track.appendChild(slide);
+      });
+    }
+
+    function show(i) {
+      if (!slides.length) return;
+      index = (i + slides.length) % slides.length;
+      track.style.transform = 'translateX(' + (-100 * index) + '%)';
+      countEl.textContent = (index + 1) + ' of ' + slides.length;
+      capEl.textContent = slides[index].alt;
+    }
+
+    function open(group, i) {
+      render(itemsFrom(group));
+      dlg.showModal();
+      show(i);
+    }
+
+    function close() {
+      if (dlg.open) dlg.close();
+    }
+
+    groups.forEach(function (group) {
+      var links = Array.prototype.slice.call(group.querySelectorAll('a[href]'));
+      links.forEach(function (a, i) {
+        a.addEventListener('click', function (e) {
+          if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+          e.preventDefault();
+          open(group, i);
+        });
+      });
+    });
+
+    dlg.querySelector('.gallery-close').addEventListener('click', close);
+    dlg.querySelector('.gallery-prev').addEventListener('click', function () { show(index - 1); });
+    dlg.querySelector('.gallery-next').addEventListener('click', function () { show(index + 1); });
+    dlg.addEventListener('click', function (e) {
+      var r = dlg.getBoundingClientRect();
+      if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) {
+        close();
+      }
+    });
+    dlg.addEventListener('keydown', function (e) {
+      if (slides.length < 2) return;
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(index + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); show(index - 1); }
+    });
+
+    stage.addEventListener('pointerdown', function (e) { startX = e.clientX; });
+    stage.addEventListener('pointerup', function (e) {
+      if (slides.length < 2) return;
+      var dx = e.clientX - startX;
+      if (dx > 40) show(index - 1);
+      else if (dx < -40) show(index + 1);
+    });
   })();
 
 })();

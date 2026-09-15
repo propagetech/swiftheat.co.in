@@ -654,14 +654,9 @@ def quality():
         <a class="btn" href="../contact/">Ask for a sample certificate</a>
       </div>
     </div>
-    <div class="contactcard">
-      <h2>Verified company details</h2>
-      <dl>
-        <dt>Quality system</dt><dd>%(iso)s</dd>
-        <dt>Certificate</dt><dd>%(iso_cert)s</dd>
-        <dt>Valid to</dt><dd>12 November 2028</dd>
-        <dt>Registration</dt><dd>%(udyam)s</dd>
-      </dl>
+    <div class="shot filled shot-part" style="--art-bg:#ffffff">
+      <img src="../imgs/enhanced-imgs/quality-assurance.png" width="1254" height="1254" loading="eager"
+        alt="Quality assurance covering inspection, records, calibration and process control">
     </div>
   </div>
 </section>
@@ -725,26 +720,30 @@ def quality():
         above are the ones the industry runs and the ones we expect to publish, but what Swiftheat
         actually runs, on what equipment and to what criterion, is still to be confirmed. Nothing
         goes on this page until it has.</p>
-      <div class="shot filled shot-part" style="--art-bg:#ffffff">
-        <img src="../imgs/enhanced-imgs/quality-assurance.png" width="1254" height="1254" loading="lazy"
-          alt="Quality assurance covering inspection, records, calibration and process control">
-      </div>
     </div>
   </div>
 </section>
 
 <section class="band">
-  <div class="wrap">
-    <h2>What arrives with the delivery</h2>
-    <p>The paperwork matters as much as the part on a plant that has to prove what it fitted.</p>
-    <ul class="check">
-      <li>The coded specification, matching the enquiry</li>
-      <li>Measured resistance for each element</li>
-      <li>High voltage test result</li>
-      <li>Dimensional check against the drawing</li>
-      <li>Calibration certificate for sensors, when requested</li>
-    </ul>
-    <p>If you need a redacted sample certificate before ordering, ask and we will send one.</p>
+  <div class="wrap two">
+    <div>
+      <h2>Material traceability</h2>
+      <p>Sheath material, resistance wire and insulation are the three things a buyer cannot verify
+        by looking. What is recorded against a batch, and what can be produced afterwards, will be
+        published here.</p>
+    </div>
+    <div>
+      <h2>What arrives with the delivery</h2>
+      <p>The paperwork matters as much as the part on a plant that has to prove what it fitted.</p>
+      <ul class="check">
+        <li>The coded specification, matching the enquiry</li>
+        <li>Measured resistance for each element</li>
+        <li>High voltage test result</li>
+        <li>Dimensional check against the drawing</li>
+        <li>Calibration certificate for sensors, when requested</li>
+      </ul>
+      <p>If you need a redacted sample certificate before ordering, ask and we will send one.</p>
+    </div>
   </div>
 </section>
 
@@ -837,24 +836,24 @@ def resources():
     </div>
     <div class="three">
       <div class="shot filled">
-        <img src="../imgs/enhanced-imgs/works-machine-operators.png" width="1122" height="1402" loading="lazy"
-          alt="Two Swiftheat operators at a bench machine on the Peenya shop floor">
+        <img src="../imgs/enhanced-imgs/workshop-worker-at-the-winding-machine.png" width="1536" height="1024" loading="lazy"
+          alt="A Swiftheat operator winding resistance wire, with colleagues at nearby machines">
       </div>
       <div class="shot filled">
         <img src="../imgs/enhanced-imgs/works-winding-machine.png" width="1122" height="1402" loading="lazy"
           alt="A Swiftheat operator at a winding machine, with ceramic tubes on the bench">
       </div>
       <div class="shot filled">
-        <img src="../imgs/enhanced-imgs/works-office-laptop.png" width="1122" height="1402" loading="lazy"
-          alt="Swiftheat employee working at a laptop in the Peenya office">
+        <img src="../imgs/enhanced-imgs/works-machine-operators.png" width="1122" height="1402" loading="lazy"
+          alt="Two Swiftheat operators at a bench machine on the Peenya shop floor">
       </div>
       <div class="shot filled">
         <img src="../imgs/enhanced-imgs/works-office-desktop.png" width="1122" height="1402" loading="lazy"
           alt="Swiftheat employee working at a desktop computer in the Peenya office">
       </div>
       <div class="shot filled">
-        <img src="../imgs/enhanced-imgs/works-shop-floor.png" width="1448" height="1086" loading="lazy"
-          alt="The Swiftheat shop floor in Peenya, with operators at benches and machines">
+        <img src="../imgs/enhanced-imgs/works-office-laptop.png" width="1122" height="1402" loading="lazy"
+          alt="Swiftheat employee working at a laptop in the Peenya office">
       </div>
       <div class="shot filled">
         <img src="../imgs/enhanced-imgs/works-entrance-c262.png" width="1122" height="1402" loading="lazy"
@@ -1129,8 +1128,8 @@ BUILDER_BODY = """
       <div class="foot">
         <p><strong>%(name)s</strong><br>
           %(street)s, %(area)s, %(city)s %(pin)s<br>
-          <a href="mailto:%(email)s">%(email)s</a>
-          <span class="tbd">Phone number to be confirmed before publication.</span></p>
+          <a href="mailto:%(email)s">%(email)s</a><br>
+          %(phone)s</p>
         <p>This is a requirement list, not a quotation. Prices and lead times follow from Swiftheat
           once the specification is confirmed. Where a value was left blank, our engineers will
           propose one.</p>
@@ -1145,6 +1144,9 @@ def build_a_list():
     body = BUILDER_BODY % {
         "name": esc(COMPANY["name"]), "street": esc(COMPANY["street"]), "area": esc(COMPANY["area"]),
         "city": esc(COMPANY["city"]), "pin": esc(COMPANY["pin"]), "email": COMPANY["email"],
+        # web 2.pptx slide 34 confirmed both mobiles. This footer prints on the
+        # requirement list a buyer hands round their own office, so it carries them.
+        "phone": esc(COMPANY["phone_display"]),
     }
     return page("build-a-list/index.html", "Build a heater requirement list | %s" % COMPANY["name"],
                 "Specify several heaters in one pass, see each one drawn as you specify it, and "

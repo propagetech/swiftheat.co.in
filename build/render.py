@@ -113,6 +113,68 @@ def _shot(slug, key, depth, classes, placeholder):
             % (classes, _bg(shot), _img(shot, depth)))
 
 
+def _lightbox_shot(shot, depth, classes):
+    """A single photograph that still opens the gallery dialog on click.
+
+    Without JavaScript the wrapping link opens the picture. With it, the same
+    dialog as the collage, minus the previous and next controls.
+    """
+    href = rel(depth, "imgs/" + _img_rel(shot[0]))
+    return ('<div class="%s filled shot-part" data-gallery%s>\n'
+            '      <a href="%s">\n        %s\n      </a>\n    </div>'
+            % (classes, _bg(shot), href, _img(shot, depth)))
+
+
+def _collage_item(shot, depth, extra_class=""):
+    href = rel(depth, "imgs/" + _img_rel(shot[0]))
+    cls = "collage-item" + ((" " + extra_class) if extra_class else "")
+    return ('<a class="%s"%s href="%s">\n        %s\n      </a>'
+            % (cls, _bg(shot), href, _img(shot, depth)))
+
+
+def _collage(primary, extras, depth):
+    """Clickable tiles. Without JavaScript each is still a link to the picture.
+    With it, they open one gallery that slides left and right.
+
+    Two photographs stack at lead size so neither is a leftover half-cell.
+    A wide tile is for a form sheet that has to stay readable.
+    """
+    items = [_collage_item(primary, depth, "collage-lead")]
+    lone_extra = len(extras) == 1
+    for shot in extras:
+        if len(shot) > 4 and shot[4] == "wide":
+            extra_class = "collage-wide"
+        elif lone_extra:
+            extra_class = "collage-lead"
+        else:
+            extra_class = ""
+        items.append(_collage_item(shot, depth, extra_class))
+    return ('<figure class="collage" data-gallery>\n      %s\n'
+            '      <figcaption>Click a photograph to enlarge.</figcaption>\n'
+            '    </figure>' % "\n      ".join(items))
+
+
+def _selshot(slug, depth, placeholder):
+    """Selection photograph. Extra forms become a collage; a single shot still
+    opens the gallery so a labelled chart can be read at full size."""
+    extras = FAMILY_PHOTOS.get(slug, {}).get("gallery") or []
+    primary = _photo(slug, "selection")
+    if extras and primary:
+        return _collage(primary, extras, depth)
+    if primary:
+        return _lightbox_shot(primary, depth, "shot shot-sm")
+    return _shot(slug, "selection", depth, "shot shot-sm", placeholder)
+
+
+def _conshot(slug, depth, placeholder):
+    """Construction photograph, or a clickable collage when extra forms exist."""
+    extras = FAMILY_PHOTOS.get(slug, {}).get("construction_gallery") or []
+    primary = _photo(slug, "construction")
+    if not extras or not primary:
+        return _shot(slug, "construction", depth, "shot", placeholder)
+    return _collage(primary, extras, depth)
+
+
 def _val(v):
     return '<span class="tbd">%s</span>' % esc(v) if v == TBD else esc(v)
 
@@ -383,12 +445,12 @@ def product_page(f):
         "chips": _chips(f["chips"]),
         "builder": rel(depth, "build-a-list/"),
         "herofig": _hero_figure(f, slug, depth),
-        "conshot": _shot(slug, "construction", depth, "shot",
-                         "%s, three quarter view on white, macro. Minimum 2000 px wide. One of a "
-                         "set of four\n        for this family." % esc(f["name"])),
-        "selshot": _shot(slug, "selection", depth, "shot shot-sm",
-                         "%s installed on a customer machine. One application shot per family."
-                         % esc(f["name"])),
+        "conshot": _conshot(slug, depth,
+                            "%s, three quarter view on white, macro. Minimum 2000 px wide. One of a "
+                            "set of four\n        for this family." % esc(f["name"])),
+        "selshot": _selshot(slug, depth,
+                            "%s installed on a customer machine. One application shot per family."
+                            % esc(f["name"])),
         "art2": art(f["art"], "Dimensioned drawing of a %s" % f["name"].lower()),
         "construction": "".join("<p>%s</p>" % esc(p) for p in f["construction"]),
         # Nozzle is the only family whose maximum is still unconfirmed, so it is the

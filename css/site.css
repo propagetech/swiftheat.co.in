@@ -152,6 +152,9 @@ img{max-width:100%;height:auto}
    panel was before any photograph landed in it. */
 .shot.filled.shot-part{background:var(--art-bg,var(--surface));border-color:var(--ink-200);
   padding:var(--art-pad,var(--s5));min-height:0;display:flex;align-items:center;justify-content:center;box-shadow:none}
+.shot[data-gallery] a{display:flex;align-items:center;justify-content:center;width:100%;
+  min-height:44px;text-decoration:none;color:inherit;cursor:zoom-in}
+.shot[data-gallery]:hover{border-color:var(--heat-500)}
 .shot.filled.shot-part img{width:auto;max-width:100%;height:auto;max-height:340px;object-fit:contain}
 section.band.alt .shot.filled.shot-part{background:var(--art-bg,var(--paper))}
 .hero .shot.filled.shot-part{background:var(--art-bg,var(--surface))}
@@ -199,6 +202,57 @@ section.band.ink figcaption{color:hsl(214 14% 66%)}
 /* The works gallery uses one deliberate portrait crop so mixed phone-camera
    framing reads as a cohesive set while retaining each original image file. */
 .three > .shot.filled{aspect-ratio:3 / 4;min-height:0}
+
+/* Product-form collage: one lead photograph plus a tight 2-up of the rest.
+   Related pictures sit closer to each other than to the copy beside them.
+   The lead is the primary; the small tiles are secondary by size, not by
+   colour. A wide tile is for a form sheet that has to stay readable. */
+.collage{display:grid;grid-template-columns:1fr 1fr;gap:var(--s2);margin:0}
+.collage-item{display:flex;align-items:center;justify-content:center;
+  min-height:44px;padding:var(--s3);text-decoration:none;color:inherit;cursor:zoom-in;
+  background:var(--art-bg,var(--surface));border:1px solid var(--ink-200);border-radius:var(--radius)}
+.collage-lead,.collage-wide{grid-column:1 / -1;padding:var(--s4)}
+.collage-item:hover{border-color:var(--heat-500)}
+.collage-item img{display:block;width:auto;max-width:100%;height:auto;max-height:140px;object-fit:contain}
+.collage-lead img{max-height:240px}
+.collage-wide img{max-height:none}
+.collage figcaption{grid-column:1 / -1}
+
+/* Click-to-enlarge gallery. Native dialog so the rest of the page is inert.
+   Dark ground, light type, 44 px controls. The track slides; reduced-motion
+   users get an instant swap instead. */
+.gallery{width:min(960px, calc(100vw - 32px));max-height:calc(100dvh - 32px);
+  margin:auto;padding:var(--s5);border:0;border-radius:var(--radius);overflow:auto;
+  background:var(--ink-900);color:hsl(214 16% 84%);
+  box-shadow:0 24px 64px hsl(214 32% 6% / .45)}
+.gallery::backdrop{background:hsl(214 32% 11% / .88)}
+.gallery-bar{display:flex;align-items:center;justify-content:space-between;
+  gap:var(--s4);margin:0 0 var(--s4)}
+.gallery-count{margin:0;font-size:.82rem;color:hsl(214 14% 70%);font-variant-numeric:tabular-nums}
+.gallery-stage{overflow:hidden;position:relative;margin:0 48px}
+.gallery:not(.gallery-multi) .gallery-prev,
+.gallery:not(.gallery-multi) .gallery-next{display:none}
+.gallery:not(.gallery-multi) .gallery-stage{margin:0}
+.gallery:not(.gallery-multi) .gallery-count{visibility:hidden}
+.gallery-track{display:flex;transition:transform .28s ease}
+.gallery-slide{flex:0 0 100%;display:flex;align-items:center;justify-content:center;min-height:0}
+.gallery-slide img{display:block;width:auto;max-width:100%;height:auto;
+  max-height:min(68dvh, 720px);object-fit:contain}
+.gallery-cap{margin:var(--s4) 0 0;font-size:.9rem;color:hsl(214 16% 84%);max-width:none;text-align:center}
+.gallery-close,.gallery-prev,.gallery-next{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:44px;min-height:44px;padding:0;cursor:pointer;
+  background:hsl(214 30% 15%);border:1px solid hsl(214 24% 36%);border-radius:var(--radius);
+  color:#fff;font:inherit}
+.gallery-close:hover,.gallery-prev:hover,.gallery-next:hover{
+  background:hsl(214 30% 17%);border-color:var(--heat-500);color:#fff}
+.gallery-stage-wrap{position:relative}
+.gallery-prev,.gallery-next{position:absolute;top:50%;transform:translateY(-50%);z-index:1}
+.gallery-prev{left:var(--s2)}
+.gallery-next{right:var(--s2)}
+@media (prefers-reduced-motion:reduce){
+  .gallery-track{transition:none}
+}
 
 /* ---------- tables ---------- */
 .tablewrap{overflow-x:auto;border:1px solid var(--ink-200);border-radius:var(--radius);background:var(--surface);margin:0 0 var(--s5)}
@@ -463,7 +517,7 @@ footer.site .legal p{margin:0;color:hsl(214 14% 62%)}
 .nojs .mainnav{display:block}
 
 @media print{
-  .topbar,.masthead,.jump,.crumb,footer.site,.actions,.rfq{display:none}
+  .topbar,.masthead,.jump,.crumb,footer.site,.actions,.rfq,.gallery{display:none}
   body{background:#fff}
   section.band{border:0;padding:var(--s5) 0}
 }
