@@ -103,9 +103,8 @@ def home():
       </ul>
     </div>
     <div class="shot filled">
-      <img src="imgs/photos/home-hero-works.jpg" width="1100" height="733" loading="eager"
-        alt="Three views of Swiftheat in Peenya: an engineer checking a drawing at his desk, an
-          operator at a machine on the shop floor, and the works entrance at Plot C-262">
+      <img src="imgs/enhanced-imgs/works-shop-floor-wide.png" width="1448" height="1086" loading="eager"
+        alt="The Swiftheat shop floor in Peenya, with operators at winding and assembly benches">
     </div>
   </div>
 </section>
@@ -344,9 +343,9 @@ def applications_index():
         <a class="btn btn-onink" href="../products/">Browse by product instead</a>
       </div>
     </div>
-    <div class="shot">
-      <span class="label">Photograph required</span>
-      <p>A customer plant floor, machines running. Landscape, minimum 2400 px wide.</p>
+    <div class="shot filled shot-part" style="--art-bg:#ffffff">
+      <img src="../imgs/enhanced-imgs/applications-heaters-in-tooling.png" width="1448" height="1086" loading="eager"
+        alt="Industrial heaters fitted into tooling, with leads dressed ready for connection">
     </div>
   </div>
 </section>
@@ -411,8 +410,8 @@ def about():
       </div>
     </div>
     <div class="shot filled">
-      <img src="../imgs/photos/about-hero-works-floor.jpg" width="1810" height="1200" loading="eager"
-        alt="Two Swiftheat operators at benches on the Peenya shop floor, winding and finishing elements">
+      <img src="../imgs/enhanced-imgs/works-shop-floor.png" width="1448" height="1086" loading="eager"
+        alt="The Swiftheat shop floor in Peenya, with operators at benches and machines">
     </div>
   </div>
 </section>
@@ -548,7 +547,7 @@ def capabilities():
       </div>
     </div>
     <div class="shot filled shot-part"%(caphbg)s>
-      <img src="../imgs/photos/capabilities-hero.jpg" width="%(caphw)d" height="%(caphh)d"
+      <img src="../imgs/enhanced-imgs/products-range-collage.png" width="%(caphw)d" height="%(caphh)d"
         style="max-width:min(100%%,%(caphw)dpx)" loading="eager"
         alt="Cartridge, tubular, thermocouple, ceramic infrared, coil and band heaters made in Peenya">
     </div>
@@ -583,21 +582,10 @@ def capabilities():
       </ol>
     </div>
     <div>
-      <h2>Machinery and infrastructure</h2>
-      <p>Buyers in this category read a machine list as a proxy for what a works can actually hold to.
-        Swiftheat's list will be published here in full once supplied.</p>
-      <div class="contactcard">
-        <dl>
-          <dt>Winding and coiling</dt><dd class="tbd">%(tbd)s</dd>
-          <dt>Swaging and compaction</dt><dd class="tbd">%(tbd)s</dd>
-          <dt>Welding</dt><dd class="tbd">%(tbd)s</dd>
-          <dt>Press and forming</dt><dd class="tbd">%(tbd)s</dd>
-          <dt>Machining</dt><dd class="tbd">%(tbd)s</dd>
-          <dt>Test equipment</dt><dd class="tbd">%(tbd)s</dd>
-          <dt>Plant area</dt><dd>3000 sq ft</dd>
-        </dl>
-      </div>
-      <p class="cap">Published as a list of named machines, not as an adjective.</p>
+      <h2>Plant and works</h2>
+      <p>The works is 3000 sq ft at Plot C-262, Peenya Industrial Area. Come and see it if you are
+        specifying anything unusual: half an hour on the shop floor settles more than a week of
+        email.</p>
     </div>
   </div>
 </section>
@@ -614,7 +602,7 @@ def capabilities():
         for: to put as much of it as possible in front of the buyer before they enquire.</p>
     </div>
     <div class="shot shot-sm filled shot-part"%(capebg)s>
-      <img src="../imgs/photos/capabilities-engineering.jpg" width="%(capew)d" height="%(capeh)d"
+      <img src="../imgs/enhanced-imgs/applications-heaters-in-tooling.png" width="%(capew)d" height="%(capeh)d"
         style="max-width:min(100%%,%(capew)dpx)" loading="lazy"
         alt="Heating elements fitted into machine tooling, with leads dressed ready for connection">
     </div>
@@ -622,12 +610,12 @@ def capabilities():
 </section>
 """ % {
         "tbd": TBD,
-        "caphbg": imgmeta.bg("photos/capabilities-hero.jpg", pad=True),
-        "caphw": imgmeta.size("photos/capabilities-hero.jpg")[0],
-        "caphh": imgmeta.size("photos/capabilities-hero.jpg")[1],
-        "capebg": imgmeta.bg("photos/capabilities-engineering.jpg", pad=True),
-        "capew": imgmeta.size("photos/capabilities-engineering.jpg")[0],
-        "capeh": imgmeta.size("photos/capabilities-engineering.jpg")[1],
+        "caphbg": imgmeta.bg("enhanced-imgs/products-range-collage.png", pad=True),
+        "caphw": imgmeta.size("enhanced-imgs/products-range-collage.png")[0],
+        "caphh": imgmeta.size("enhanced-imgs/products-range-collage.png")[1],
+        "capebg": imgmeta.bg("enhanced-imgs/applications-heaters-in-tooling.png", pad=True),
+        "capew": imgmeta.size("enhanced-imgs/applications-heaters-in-tooling.png")[0],
+        "capeh": imgmeta.size("enhanced-imgs/applications-heaters-in-tooling.png")[1],
         "capcards": icon_cards(1, [
         ("noun-technical-drawing-8436969.svg", "Custom design",
          "An element designed around your drawing, your bore, your clearance and your duty. Most of "
@@ -666,9 +654,14 @@ def quality():
         <a class="btn" href="../contact/">Ask for a sample certificate</a>
       </div>
     </div>
-    <div class="shot">
-      <span class="label">Photograph required</span>
-      <p>The test bench in use: an element connected, meter reading visible. Minimum 2000 px wide.</p>
+    <div class="contactcard">
+      <h2>Verified company details</h2>
+      <dl>
+        <dt>Quality system</dt><dd>%(iso)s</dd>
+        <dt>Certificate</dt><dd>%(iso_cert)s</dd>
+        <dt>Valid to</dt><dd>12 November 2028</dd>
+        <dt>Registration</dt><dd>%(udyam)s</dd>
+      </dl>
     </div>
   </div>
 </section>
@@ -732,38 +725,26 @@ def quality():
         above are the ones the industry runs and the ones we expect to publish, but what Swiftheat
         actually runs, on what equipment and to what criterion, is still to be confirmed. Nothing
         goes on this page until it has.</p>
+      <div class="shot filled shot-part" style="--art-bg:#ffffff">
+        <img src="../imgs/enhanced-imgs/quality-assurance.png" width="1254" height="1254" loading="lazy"
+          alt="Quality assurance covering inspection, records, calibration and process control">
+      </div>
     </div>
   </div>
 </section>
 
 <section class="band">
-  <div class="wrap two">
-    <div>
-      <h2>Material traceability</h2>
-      <p>Sheath material, resistance wire and insulation are the three things a buyer cannot verify
-        by looking. What is recorded against a batch, and what can be produced afterwards, will be
-        published here.</p>
-      <div class="contactcard">
-        <dl>
-          <dt>Sheath material records</dt><dd class="tbd">%(tbd)s</dd>
-          <dt>Resistance wire records</dt><dd class="tbd">%(tbd)s</dd>
-          <dt>Batch identification on the part</dt><dd class="tbd">%(tbd)s</dd>
-          <dt>Retention period</dt><dd class="tbd">%(tbd)s</dd>
-        </dl>
-      </div>
-    </div>
-    <div>
-      <h2>What arrives with the delivery</h2>
-      <p>The paperwork matters as much as the part on a plant that has to prove what it fitted.</p>
-      <ul class="check">
-        <li>The coded specification, matching the enquiry</li>
-        <li>Measured resistance for each element</li>
-        <li>High voltage test result</li>
-        <li>Dimensional check against the drawing</li>
-        <li><span class="tbd">Certificate format to be confirmed</span></li>
-      </ul>
-      <p>If you need a redacted sample certificate before ordering, ask and we will send one.</p>
-    </div>
+  <div class="wrap">
+    <h2>What arrives with the delivery</h2>
+    <p>The paperwork matters as much as the part on a plant that has to prove what it fitted.</p>
+    <ul class="check">
+      <li>The coded specification, matching the enquiry</li>
+      <li>Measured resistance for each element</li>
+      <li>High voltage test result</li>
+      <li>Dimensional check against the drawing</li>
+      <li>Calibration certificate for sensors, when requested</li>
+    </ul>
+    <p>If you need a redacted sample certificate before ordering, ask and we will send one.</p>
   </div>
 </section>
 
@@ -841,8 +822,8 @@ def resources():
       </div>
     </div>
     <div class="shot filled">
-      <img src="../imgs/photos/resources-hero.jpg" width="960" height="1280" loading="eager"
-        alt="A Swiftheat operator at a bench machine on the Peenya shop floor">
+      <img src="../imgs/enhanced-imgs/works-winding-machine.png" width="1122" height="1402" loading="eager"
+        alt="A Swiftheat operator at a winding machine on the Peenya shop floor">
     </div>
   </div>
 </section>
@@ -856,28 +837,28 @@ def resources():
     </div>
     <div class="three">
       <div class="shot filled">
-        <img src="../imgs/photos/works-gallery-1.jpg" width="960" height="1280" loading="lazy"
-          alt="A Swiftheat operator at a cream finishing machine on the shop floor">
+        <img src="../imgs/enhanced-imgs/works-machine-operators.png" width="1122" height="1402" loading="lazy"
+          alt="Two Swiftheat operators at a bench machine on the Peenya shop floor">
       </div>
       <div class="shot filled">
-        <img src="../imgs/photos/works-gallery-2.jpg" width="960" height="1280" loading="lazy"
-          alt="An operator working at a bench machine with ceramic insulators laid out beside him">
+        <img src="../imgs/enhanced-imgs/works-winding-machine.png" width="1122" height="1402" loading="lazy"
+          alt="A Swiftheat operator at a winding machine, with ceramic tubes on the bench">
       </div>
       <div class="shot filled">
-        <img src="../imgs/photos/works-gallery-3.jpg" width="960" height="1280" loading="lazy"
-          alt="Shop floor workstations and tooling at the Peenya works">
+        <img src="../imgs/enhanced-imgs/works-office-laptop.png" width="1122" height="1402" loading="lazy"
+          alt="Swiftheat employee working at a laptop in the Peenya office">
       </div>
       <div class="shot filled">
-        <img src="../imgs/photos/works-gallery-4.jpg" width="960" height="1280" loading="lazy"
-          alt="Assembly and winding benches inside the Swiftheat works">
+        <img src="../imgs/enhanced-imgs/works-office-desktop.png" width="1122" height="1402" loading="lazy"
+          alt="Swiftheat employee working at a desktop computer in the Peenya office">
       </div>
       <div class="shot filled">
-        <img src="../imgs/photos/works-gallery-5.jpg" width="960" height="1280" loading="lazy"
-          alt="Finished elements and materials staged on the shop floor">
+        <img src="../imgs/enhanced-imgs/works-shop-floor.png" width="1448" height="1086" loading="lazy"
+          alt="The Swiftheat shop floor in Peenya, with operators at benches and machines">
       </div>
       <div class="shot filled">
-        <img src="../imgs/photos/works-gallery-6.jpg" width="960" height="1280" loading="lazy"
-          alt="The Swiftheat works signboard at Plot C-262, Peenya Industrial Area">
+        <img src="../imgs/enhanced-imgs/works-entrance-c262.png" width="1122" height="1402" loading="lazy"
+          alt="The Swiftheat works entrance at Plot C-262, Peenya Industrial Area">
       </div>
     </div>
   </div>
@@ -967,8 +948,8 @@ def contact():
         are specifying anything unusual: half an hour on the shop floor settles more than a week of
         email.</p>
       <div class="shot shot-sm filled">
-        <img src="../imgs/photos/contact-frontage.jpg" width="960" height="1280" loading="lazy"
-          alt="The Swiftheat works signboard at Plot C-262, 6th Cross, Peenya Industrial Area">
+        <img src="../imgs/enhanced-imgs/works-entrance-c262.png" width="1122" height="1402" loading="lazy"
+          alt="The Swiftheat works entrance at Plot C-262, Peenya Industrial Area, with the shop floor visible inside">
       </div>
       <p class="cap" style="margin-top:16px">No map is embedded here on purpose. An embedded map
         loads third party scripts and sets cookies, which would mean a consent banner on every page

@@ -149,8 +149,7 @@
           { c: 'B0', t: 'Straight', d: '' }, { c: 'BU', t: 'U form', d: '' },
           { c: 'BW', t: 'W form', d: '' }, { c: 'BC', t: 'Coiled', d: 'Send a drawing' } ] },
         { title: 'Sheath', k: 'sheath', opts: [
-          { c: 'SS', t: 'Stainless', d: '' }, { c: 'IN', t: 'Incoloy', d: 'Higher temperature' },
-          { c: 'MS', t: 'Mild steel', d: '' }, { c: 'CU', t: 'Copper', d: 'Water only' } ] },
+          { c: 'SS', t: 'Stainless', d: '' }, { c: 'IN', t: 'Incoloy', d: 'Higher temperature' } ] },
         { title: 'Terminal', k: 'term', opts: [
           { c: 'S0', t: 'Studs', d: '' }, { c: 'S1', t: 'Screw terminals', d: '' }, { c: 'S3', t: 'Leads', d: '' } ] }
       ] },

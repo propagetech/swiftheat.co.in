@@ -24,7 +24,12 @@ def _photo(slug, key):
     return FAMILY_PHOTOS.get(slug, {}).get(key)
 
 
-def _img(shot, depth, eager=False):
+def _img_rel(name):
+    """A file under imgs/. Bare names still mean photos/ from the first client drop."""
+    return name if "/" in name else "photos/" + name
+
+
+def _img(shot, depth, eager=False, extra_style=""):
     """A client photograph, never drawn larger than the pixels it has.
 
     Several of these arrive around 300 px and the panels they sit in are 750 px
@@ -39,16 +44,38 @@ def _img(shot, depth, eager=False):
     sit in is not, so this is the difference between a whole cutaway and a
     cropped one.
     """
-    f, w, h, alt = shot
-    return ('<img src="%s" width="%d" height="%d" style="max-width:min(100%%,%dpx)" loading="%s"\n'
+    f, w, h, alt = shot[:4]
+    style = "max-width:min(100%%,%dpx)" % w
+    if extra_style:
+        style += ";" + extra_style
+    return ('<img src="%s" width="%d" height="%d" style="%s" loading="%s"\n'
             '        alt="%s">'
-            % (rel(depth, "imgs/photos/" + f), w, h, w, "eager" if eager else "lazy",
-               esc(alt)))
+            % (rel(depth, "imgs/" + _img_rel(f)), w, h, style,
+               "eager" if eager else "lazy", esc(alt)))
 
 
 def _bg(shot, pad=False):
     """Repaint the panel behind a photograph to the ground it was shot on."""
-    return imgmeta.bg("photos/" + shot[0], pad=pad)
+    return imgmeta.bg(_img_rel(shot[0]), pad=pad)
+
+
+def _after_options(slug, depth):
+    """Extra product shots pasted onto the options block in web 2.pptx."""
+    shots = FAMILY_PHOTOS.get(slug, {}).get("after_options") or []
+    if not shots:
+        return ""
+    grid, rest = [], []
+    for shot in shots:
+        is_full = len(shot) > 4 and shot[4] == "full"
+        extra = "max-height:none;width:100%" if is_full else ""
+        block = ('<div class="shot filled shot-part"%s>\n      %s\n    </div>'
+                 % (_bg(shot), _img(shot, depth, extra_style=extra)))
+        (rest if is_full else grid).append(block)
+    html = ""
+    if grid:
+        html += '<div class="two">\n      %s\n    </div>\n    ' % "\n      ".join(grid)
+    html += "\n    ".join(rest)
+    return html
 
 
 def _hero_figure(f, slug, depth):
@@ -307,6 +334,7 @@ def product_page(f):
       number, and every code here is the code that appears on your requirement document.</p>
     %(options)s
     <p>%(optnote)s</p>
+    %(afteropts)s
   </div>
 </section>
 
@@ -373,6 +401,7 @@ def product_page(f):
         "dimkeys": esc(f["dim_keys"]),
         "options": _options(f),
         "optnote": esc(f["options_note"]),
+        "afteropts": _after_options(slug, depth),
         "selection": sel,
         "failures": fails,
         "apps": apps,
