@@ -2,7 +2,7 @@
 """The pages that are not one of the two repeating types."""
 from . import imgmeta
 from .chrome import (art, cards, enquiry, esc, icon_cards, page, product_cards, rel, tscale, NAV)
-from .data import COMPANY, FAMILIES, FAMILY_BY_SLUG, INDUSTRIES, INDUSTRY_BY_SLUG, TBD
+from .data import COMPANY, INDUSTRIES, LISTED_FAMILIES, TBD
 
 ADDRESS = {
     "@type": "PostalAddress",
@@ -31,7 +31,7 @@ ORG = {
 
 
 def _general_fields():
-    prod = "".join("<option>%s</option>" % esc(f["name"]) for f in FAMILIES)
+    prod = "".join("<option>%s</option>" % esc(f["name"]) for f in LISTED_FAMILIES)
     ind = "".join("<option>%s</option>" % esc(i["name"]) for i in INDUSTRIES)
     return """        <fieldset>
           <legend><span class="idx">02</span> What you are heating</legend>
@@ -80,7 +80,7 @@ def _general_fields():
 
 def home():
     depth = 0
-    prods = product_cards(depth, [f["slug"] for f in FAMILIES]).replace(' id="productList"', "")
+    prods = product_cards(depth, [f["slug"] for f in LISTED_FAMILIES]).replace(' id="productList"', "")
     inds = cards(depth, [("applications/%s/" % i["slug"], i["name"], i["lede"]) for i in INDUSTRIES])
     body = """
 <section class="hero hero-dark">
@@ -96,7 +96,7 @@ def home():
         <a class="btn btn-onink" href="#enquiry">Send a specification</a>
       </div>
       <ul class="chips">
-        <li><b>8</b><span>Product families</span></li>
+        <li><b>7</b><span>Product families</span></li>
         <li><b>9</b><span>Industries served</span></li>
         <li><b>%(codes)d</b><span>Coded options published</span></li>
         <li><b>%(founded)s</b><span>Manufacturing since</span></li>
@@ -113,7 +113,7 @@ def home():
   <div class="wrap">
     <div class="sechead">
       <h2>What we make</h2>
-      <p>Eight families. Every one of them is made to a size, a wattage and a set of options you
+      <p>Seven families. Every one of them is made to a size, a wattage and a set of options you
         choose, and every option carries a code that follows the part from enquiry to delivery.</p>
     </div>
     %(prods)s
@@ -166,8 +166,7 @@ def home():
         glance rather than read one table at a time.</p>
       %(scales)s
       <p class="cap">Each bar tops out at Swiftheat's confirmed maximum from that family's
-        specification table. Nozzle heaters are the one family still waiting on a figure, and their
-        bar is indicative for the element type.</p>
+        specification table. The lower end is indicative for the element type.</p>
     </div>
     <div>
       <h2>Made here, not traded</h2>
@@ -192,13 +191,13 @@ def home():
             ("noun-multimeter-8419064.svg", "Tested before despatch",
              "Resistance, high voltage and dimensional checks."),
         ]),
-        "codes": sum(len(o) for f in FAMILIES for _, o in f["options"]),
+        "codes": sum(len(o) for f in LISTED_FAMILIES for _, o in f["options"]),
         "prods": prods,
         "inds": inds,
         "scales": "".join(
             '<h3 style="margin-bottom:8px"><a href="products/%s/">%s</a></h3>%s'
             % (f["slug"], esc(f["name"]), tscale(f["temps"][0], f["temps"][1], note=" "))
-            for f in FAMILIES),
+            for f in LISTED_FAMILIES),
         "enquiry": enquiry(
             depth, "Tell us what you need heated", "Website enquiry",
             "If you know the specification, fill it in. If you do not, describe the machine and the "
@@ -223,7 +222,7 @@ def products_index():
   <div class="wrap grid">
     <div>
       <p class="eyebrow">Products</p>
-      <h1>Eight families, every one made to order</h1>
+      <h1>Seven families, every one made to order</h1>
       <p class="lede">Every family page carries the construction, the specification table, the
         dimensions, the full option catalogue with codes, the selection guidance and the failure
         modes. Nothing is held back for a phone call.</p>
@@ -305,8 +304,8 @@ def products_index():
 </section>
 """ % {
         "indopts": "".join('<option value="%s">%s</option>' % (i["slug"], esc(i["name"])) for i in INDUSTRIES),
-        "n": len(FAMILIES),
-        "prods": product_cards(depth, [f["slug"] for f in FAMILIES], facets=True),
+        "n": len(LISTED_FAMILIES),
+        "prods": product_cards(depth, [f["slug"] for f in LISTED_FAMILIES], facets=True),
         # The montage the client supplied is on a saturated blue, so the panel
         # behind it is painted that blue rather than the picture being cut off
         # its ground. Every lead and every white braided sleeve in it survives
@@ -316,7 +315,7 @@ def products_index():
         "heroh": imgmeta.size("products-hero.png")[1],
     }
     ld = {"@context": "https://schema.org", "@type": "CollectionPage",
-          "name": "Products", "description": "Eight families of industrial heating element.",
+          "name": "Products", "description": "Seven families of industrial heating element.",
           "publisher": {"@type": "Organization", "name": COMPANY["name"]}}
     return page("products/index.html", "Products | %s" % COMPANY["name"],
                 "Cartridge, coil, ceramic and mica band, nozzle, strip, tubular and ceramic infrared "
@@ -331,21 +330,15 @@ def applications_index():
     depth = 1
     body = """
 <section class="hero hero-dark">
-  <div class="wrap grid">
-    <div>
-      <p class="eyebrow">Applications</p>
-      <h1>Nine industries, mapped zone by zone</h1>
-      <p class="lede">Most heater sites list industries and stop there. Each of these pages carries a
-        process diagram with the heated zones marked, and a table that maps the machine you already
-        have to the element type each position wants.</p>
-      <div class="actions">
-        <a class="btn" href="../build-a-list/">Build a requirement list</a>
-        <a class="btn btn-onink" href="../products/">Browse by product instead</a>
-      </div>
-    </div>
-    <div class="shot filled shot-part" style="--art-bg:#ffffff">
-      <img src="../imgs/applications-heaters-in-tooling.png" width="1448" height="1086" loading="eager"
-        alt="Industrial heaters fitted into tooling, with leads dressed ready for connection">
+  <div class="wrap">
+    <p class="eyebrow">Applications</p>
+    <h1>Nine industries, mapped zone by zone</h1>
+    <p class="lede">Most heater sites list industries and stop there. Each of these pages carries a
+      process diagram with the heated zones marked, and a table that maps the machine you already
+      have to the element type each position wants.</p>
+    <div class="actions">
+      <a class="btn" href="../build-a-list/">Build a requirement list</a>
+      <a class="btn btn-onink" href="../products/">Browse by product instead</a>
     </div>
   </div>
 </section>
@@ -665,27 +658,9 @@ def quality():
   <div class="wrap">
     <div class="sechead">
       <h2>The electrical tests</h2>
-      <p>Four named tests, each with what it catches. The equipment used and the pass criteria are
-        published once Swiftheat confirms them.</p>
+      <p>Four named tests, each with what it catches.</p>
     </div>
     %(testcards)s
-    <div class="tablewrap" style="margin-top:32px">
-      <table>
-        <caption>Equipment used and the criterion applied, per test</caption>
-        <thead><tr><th scope="col">Test</th><th scope="col">Equipment</th>
-          <th scope="col">Criterion</th><th scope="col">Recorded against the order</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">Resistance</th><td class="tbd">%(tbd)s</td><td class="tbd">%(tbd)s</td>
-            <td class="tbd">%(tbd)s</td></tr>
-          <tr><th scope="row">High voltage</th><td class="tbd">%(tbd)s</td><td class="tbd">%(tbd)s</td>
-            <td class="tbd">%(tbd)s</td></tr>
-          <tr><th scope="row">Insulation resistance</th><td class="tbd">%(tbd)s</td>
-            <td class="tbd">%(tbd)s</td><td class="tbd">%(tbd)s</td></tr>
-          <tr><th scope="row">Dimensional inspection</th><td class="tbd">%(tbd)s</td>
-            <td class="tbd">%(tbd)s</td><td class="tbd">%(tbd)s</td></tr>
-        </tbody>
-      </table>
-    </div>
     <div class="note">
       <p><strong>Why insulation resistance is worth publishing.</strong> A cartridge heater that has
         sat in a damp store reads low on insulation resistance and can often be recovered by baking
@@ -1180,7 +1155,7 @@ def not_found():
     %(prods)s
   </div>
 </section>
-""" % {"prods": cards(0, [("products/%s/" % f["slug"], f["name"], f["summary"]) for f in FAMILIES])}
+""" % {"prods": cards(0, [("products/%s/" % f["slug"], f["name"], f["summary"]) for f in LISTED_FAMILIES])}
     # A 404 is served from any depth, so its links have to be absolute.
     html_out = page("404.html", "Page not found | %s" % COMPANY["name"],
                     "That page is not here. Links to the product families, the industries and the "

@@ -183,8 +183,7 @@
       ],
       groups: [
         { title: 'Element form', k: 'form', opts: [
-          { c: 'FT', t: 'Trough', d: 'Focused' }, { c: 'FF', t: 'Flat panel', d: 'Even spread' },
-          { c: 'FH', t: 'Hollow', d: '' } ] },
+          { c: 'FT', t: 'Trough', d: 'Focused' }, { c: 'FF', t: 'Flat panel', d: 'Even spread' } ] },
         { title: 'Inbuilt thermocouple', k: 'tc', opts: [
           { c: 'TC0', t: 'None', d: '' }, { c: 'TCK', t: 'Type K', d: '' } ] },
         { title: 'Reflector', k: 'refl', opts: [
@@ -1238,7 +1237,7 @@
   $('printBtn').addEventListener('click', function () { window.print(); });
   $('mailBtn').addEventListener('click', function () {
     var subj = 'Heater requirement list' + ($('cComp').value ? ' from ' + $('cComp').value : '');
-    window.location.href = 'mailto:enquiry@swiftheat.co.in?subject=' +
+    window.location.href = 'mailto:sales@swiftheat.co.in?subject=' +
       encodeURIComponent(subj) + '&body=' + encodeURIComponent(plainText());
   });
   $('waBtn').addEventListener('click', function () {

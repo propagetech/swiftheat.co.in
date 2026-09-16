@@ -85,9 +85,11 @@ def _srcrect(im, c):
 def save(im, path, quality=88, line_art=False, has_ground=True):
     """Write the picture and record its size and its ground colour.
 
-    JPEG for a photograph. The one exception is the three coil exit drawings,
-    which are pen on white: a palette PNG of those is both smaller than the
-    JPEG and lossless, where a JPEG rings visibly along every line.
+    JPEG for a photograph unless the output name is already .png, which is how
+    the enhanced client set is stored. The one other exception is the three coil
+    exit drawings, which are pen on white: a palette PNG of those is both
+    smaller than the JPEG and lossless, where a JPEG rings visibly along every
+    line.
     """
     os.makedirs(os.path.dirname(path), exist_ok=True)
     if line_art:
@@ -95,6 +97,8 @@ def save(im, path, quality=88, line_art=False, has_ground=True):
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", UserWarning)
             q.save(path, "PNG", optimize=True)
+    elif path.lower().endswith(".png"):
+        im.save(path, "PNG", optimize=True)
     else:
         im.save(path, "JPEG", quality=quality, optimize=True, progressive=True)
     # A photograph of a room has no studio ground, so it records none: it is
@@ -206,36 +210,36 @@ def photo_collage(names, out, dest, size=(1800, 1200), gutter=12, quality=80):
 # 440 covers a 2x screen. The width cap is the one that usually binds: a phone
 # goes single column and draws these wider than the desktop grid does.
 FAMILY_CARDS = [
-    ("image9.jpg", "cartridge-heaters.jpg", {}),
-    ("image10.jpg", "coil-heaters.jpg", {}),
-    ("image11.png", "band-heaters.jpg", {}),
-    ("image12.png", "nozzle-heaters.jpg", {}),
-    ("image14.jpg", "strip-heaters.jpg", {}),
-    ("image15.jpg", "tubular-heaters.jpg", {}),
+    ("image9.jpg", "cartridge-heaters.png", {}),
+    ("image10.jpg", "coil-heaters-hero.png", {}),
+    ("image11.png", "band-heaters.png", {}),
+    ("image12.png", "nozzle-heaters.png", {}),
+    ("image14.jpg", "strip-heaters.png", {}),
+    ("image15.jpg", "tubular-heaters-u-and-w-forms.png", {}),
     # The only one whose border is not found by measurement. It is a rounded
     # rule, so the last tenth of every side is corner radius and reads as
     # ground, and JPEG has left a warm three by three smudge in each of the four
     # corners outside it, which is far enough off white to be product and so
     # holds the box out past the rule. Crop inside the rule and the general
     # trim finishes the job.
-    ("image16.jpg", "thermocouples-and-sensors.jpg", {"crop": (13, 13, 387, 317)}),
-    ("image17.jpeg", "ceramic-infrared-heaters.jpg", {}),
+    ("image16.jpg", "thermocouples-and-sensors-range.png", {"crop": (13, 13, 387, 317)}),
+    ("image17.jpeg", "ceramic-infrared-heaters.png", {}),
 ]
 
 # ---- option thumbnails, drawn in a 132 px slot -----------------------------
 OPTION_PARTS = [
-    ("image31.jpg", "ch-straight.jpg", {}),
-    ("image33.jpg", "ch-ceramic-beading.jpg", {}),
-    ("image35.jpg", "ch-thermocouple-j.jpg", {}),
-    ("image36.jpg", "ch-thermocouple-k.jpg", {}),
-    ("image37.png", "ch-thermocouple-grounded.jpg", {}),
-    ("image38.png", "ch-strain-clamp.jpg", {}),
+    ("image31.jpg", "ch-straight.png", {}),
+    ("image33.jpg", "ch-ceramic-beading.png", {}),
+    ("image35.jpg", "ch-thermocouple-j.png", {}),
+    ("image36.jpg", "ch-thermocouple-k.png", {}),
+    ("image37.png", "ch-thermocouple-grounded.png", {}),
+    ("image38.png", "ch-strain-clamp.png", {}),
     ("image48.png", "co-exit-tangential.png", {"line_art": True}),
     ("image49.png", "co-exit-radial.png", {"line_art": True}),
     ("image50.png", "co-exit-axial.png", {"line_art": True}),
-    ("image51.jpg", "co-thermocouple-none.jpg", {}),
-    ("image52.jpg", "co-thermocouple-j.jpg", {}),
-    ("image53.jpg", "co-thermocouple-k.jpg", {}),
+    ("image51.jpg", "co-thermocouple-none.png", {}),
+    ("image52.jpg", "co-thermocouple-j.png", {}),
+    ("image53.jpg", "co-thermocouple-k.png", {}),
 ]
 
 # ---- the larger presentation images ----------------------------------------
@@ -244,11 +248,11 @@ OPTION_PARTS = [
 # wants lossless, and build/relabel-band-cutaway.py owns it because the labels
 # are reset into Inter on the way through.
 PRESENTATION = [
-    ("image57.jpg", "band-hero.jpg", {"cap": 1000}),
+    ("image57.jpg", "band-hero.png", {"cap": 1000}),
     ("image22.png", "products-hero.png", {"cap": 820, "max_up": 1.2}),
-    ("image43.png", "coil-construction.jpg", {"target_h": 420}),
-    ("image55.jpg", "coil-selection.jpg", {"cap": 900}),
-    ("image24.jpg", "cartridge-hero.jpg", {"cap": 1000, "quality": 86}),
+    ("image43.png", "coil-construction.png", {"target_h": 420}),
+    ("image55.jpg", "coil-selection.png", {"cap": 900}),
+    ("image24.jpg", "cartridge-hero.png", {"cap": 1000, "quality": 86}),
 ]
 
 
@@ -293,9 +297,9 @@ def main():
     # Two photographs for one slot: the band heater application shot. Both carry
     # a crop the client set in PowerPoint, which is where the framing came from.
     print("pair -> imgs/")
-    p, size, g = pair(["image65.jpg", "image66.jpg"], "band-selection.jpg", IMGS)
+    p, size, g = pair(["image65.jpg", "image66.jpg"], "band-selection.png", IMGS)
     print("  %-14s %-32s %4dx%-4d %7d B  ground %s"
-          % ("image65+66", "band-selection.jpg", size[0], size[1], os.path.getsize(p), g))
+          % ("image65+66", "band-selection.png", size[0], size[1], os.path.getsize(p), g))
 
     # The home page hero. The client piled six photographs of the works onto
     # this one slot: three of the building, two of the floor, one of an engineer
@@ -309,10 +313,10 @@ def main():
           % ("image1+5+7", "home-hero-works.jpg", size[0], size[1], os.path.getsize(p), g))
 
     print("photographs -> imgs/")
-    p, size, g = photo("image30.jpeg", "cartridge-double-ended.jpg", IMGS,
+    p, size, g = photo("image30.jpeg", "cartridge-double-ended.png", IMGS,
                        box=(300, 250, 3450, 2300), cap=1200)
     print("  %-14s %-32s %4dx%-4d %7d B  ground %s"
-          % ("image30.jpeg", "cartridge-double-ended.jpg", size[0], size[1],
+          % ("image30.jpeg", "cartridge-double-ended.png", size[0], size[1],
              os.path.getsize(p), g))
 
     with open(META, "w", encoding="utf-8") as fh:

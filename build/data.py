@@ -115,7 +115,7 @@ FAMILIES = [
  "nav": "Cartridge",
  "code": "CH",
  "art": "cartridge",
- "card": ("cartridge-heaters.jpg", 413, 232),
+ "card": ("cartridge-heaters.png", 1254, 1254),
  "lede": "Swaged, high watt density heaters for bore mounting in moulds, platens and dies. "
          "Built to your drawing, with or without an inbuilt thermocouple.",
  "summary": "Bore mounted in moulds, platens and dies. Round, swaged, made to your length.",
@@ -164,33 +164,33 @@ FAMILIES = [
  "options": [
    ("Termination", [
      ("T1", "Single end, straight", "Leads exit axially from one end. The default.", "",
-      "ch-straight.jpg"),
+      "ch-straight.png"),
      ("T2", "Single end, right angle", "For tight clearance above the tool face.", "", "Right-angle-exit.png"),
      ("T3", "Double ended", "One lead from each end, for through holes.", "",
-      "cartridge-double-ended.jpg"),
+      "cartridge-double-ended.png"),
    ]),
    ("Lead protection", [
      ("L1", "Silicone coated fibreglass", "General purpose, dry and clean environments.", TBD, "Silicon-coated-Fibreglass-sleeve.png"),
      ("L3", "Braided metal sleeve", "Abrasion resistance where leads move or rub.", TBD, "Braided-Metal-sleeve.png"),
      ("L4", "Armour cable", "Full mechanical protection on a moving platen.", TBD, "Armour.png"),
      ("L5", "Ceramic beading", "Highest lead exit temperature, no organic insulation.", TBD,
-      "ch-ceramic-beading.jpg"),
+      "ch-ceramic-beading.png"),
    ]),
    ("Inbuilt thermocouple", [
-     ("TC0", "None", "Control from a separate sensor.", "", "ch-straight.jpg"),
+     ("TC0", "None", "Control from a separate sensor.", "", "ch-straight.png"),
      ("TCJ", "Type J, ungrounded", "Iron constantan, isolated from the sheath.", "",
-      "ch-thermocouple-j.jpg"),
+      "ch-thermocouple-j.png"),
      ("TCK", "Type K, ungrounded", "Higher range than Type J.", "",
-      "ch-thermocouple-k.jpg"),
+      "ch-thermocouple-k.png"),
      ("TCG", "Grounded junction", "Faster response, junction bonded to the sheath.", "",
-      "ch-thermocouple-grounded.jpg"),
+      "ch-thermocouple-grounded.png"),
    ]),
    ("Mounting and fittings", [
-     ("M0", "None", "Plain sheath, no fitting.", "", "ch-straight.jpg"),
+     ("M0", "None", "Plain sheath, no fitting.", "", "ch-straight.png"),
      ("M1", "Round flange", "Welded, for surface mounting to a plate.", "", "Flange.png"),
      ("M2", "Threaded fitting", "NPT or BSP, size to be specified.", "", "Heater-with-Spl-mountable-threads.png"),
      ("M3", "T strain clamp", "Strain relief where the lead is pulled in service.", "",
-      "ch-strain-clamp.jpg"),
+      "ch-strain-clamp.png"),
    ]),
  ],
  "options_note": "Thermocouple junction position is specified separately: disc end, mid length or lead end. "
@@ -227,7 +227,7 @@ FAMILIES = [
  "nav": "Coil",
  "code": "CO",
  "art": "coil",
- "card": ("coil-heaters.jpg", 193, 232),
+ "card": ("coil-heaters-hero.png", 1254, 1254),
  "lede": "Spiral wound elements that wrap a nozzle or a manifold and put a high watt density into a "
          "very small area, with the thermocouple built into the coil.",
  "summary": "Hot runner nozzles and manifolds. Wound to the diameter, profiled along the length.",
@@ -289,9 +289,9 @@ FAMILIES = [
       "co-exit-tangential.png"),
    ]),
    ("Inbuilt thermocouple", [
-     ("TC0", "None", "Control from a separate sensor.", "", "co-thermocouple-none.jpg"),
-     ("TCJ", "Type J", "Iron constantan.", "", "co-thermocouple-j.jpg"),
-     ("TCK", "Type K", "Higher range than Type J.", "", "co-thermocouple-k.jpg"),
+     ("TC0", "None", "Control from a separate sensor.", "", "co-thermocouple-none.png"),
+     ("TCJ", "Type J", "Iron constantan.", "", "co-thermocouple-j.png"),
+     ("TCK", "Type K", "Higher range than Type J.", "", "co-thermocouple-k.png"),
    ]),
  ],
  "options_note": "State which end the leads leave from, and whether a reflection tube or sleeve is required. "
@@ -316,20 +316,21 @@ FAMILIES = [
    ("Thermocouple in the wrong place", "The controller holds a temperature the melt never sees."),
  ],
  "industries": ["injection-moulding", "blow-moulding", "packaging-machinery", "extrusion"],
- "related": ["nozzle-heaters", "cartridge-heaters", "thermocouples-and-sensors"],
+ "related": ["band-heaters", "cartridge-heaters", "thermocouples-and-sensors"],
 },
 {
  "slug": "band-heaters",
- "name": "Ceramic and Mica Band Heaters",
- "nav": "Band",
+ # web 3.pptx slide 4: club the nozzle page into this one.
+ "name": "Ceramic and Mica Band and Nozzle Heaters",
+ "nav": "Band and nozzle",
  "code": "BH",
  "art": "band",
- "card": ("band-heaters.jpg", 411, 232),
- "lede": "Clamped around barrels and cylinders to heat them evenly. Ceramic for the higher "
+ "card": ("band-heaters.png", 1254, 1254),
+ "lede": "Clamped around barrels, cylinders and injection nozzles. Ceramic for the higher "
          "temperatures and insulated running, mica where the section has to stay thin.",
- "summary": "Barrels, cylinders and pipes. One piece, split, expandable or partial coverage.",
- "meta": "Ceramic and mica band heaters made in Peenya, Bangalore. Inside diameters 20 to 800 mm, "
-         "one piece, two piece, expandable and partial coverage, built to your cutout drawing.",
+ "summary": "Barrels, cylinders, pipes and injection nozzles. One piece, split, expandable or partial coverage.",
+ "meta": "Ceramic and mica band and nozzle heaters made in Peenya, Bangalore. Band inside "
+         "diameters 20 to 800 mm, nozzle outside diameters 10 to 150 mm, built to your cutout drawing.",
  "facets": {"heats": "metal", "industry": "injection-moulding|extrusion|blow-moulding|packaging-machinery|rubber|food-processing", "form": "wrap"},
  "chips": [("20 to 800 mm", "Inside diameter", False),
            ("20 to 400 mm", "Width", False),
@@ -348,6 +349,10 @@ FAMILIES = [
    "Whichever it is, the heater only works if it clamps down onto the barrel. A band that has been "
    "opened and refitted a dozen times, or fitted to a barrel that has worn oval, is heating an air "
    "gap.",
+   "A nozzle heater is the same construction at nozzle proportions: short, small in diameter and "
+   "usually clamped rather than strapped. Wall thickness on the platen bore decides whether ceramic "
+   "will fit at all, and most nozzle heaters carry the thermocouple because the controller is "
+   "holding the melt at the gate.",
  ],
  "spec_cols": ["Property", "Ceramic", "Mica"],
  "spec_rows": [
@@ -360,6 +365,9 @@ FAMILIES = [
    ("Section thickness", "Not required", "Not required"),
    ("Cutouts and holes", "Yes, to your drawing", "Yes, to your drawing"),
    ("Insulation blanket", "Optional", "Not applicable"),
+   ("Nozzle outside diameter", "10 to 150 mm", "10 to 150 mm"),
+   ("Nozzle heated length", "20 to 400 mm", "20 to 400 mm"),
+   ("Inbuilt thermocouple on a nozzle", "J or K", "J or K"),
  ],
  "dim_caption": "What we need in order to make a band",
  "dim_cols": ["Dimension", "Symbol", "Note"],
@@ -368,8 +376,11 @@ FAMILIES = [
               ("Gap at the joint", "G", "State if a specific gap is required"),
               ("Angle of coverage", "A", "Partial coverage only"),
               ("Cutout positions", "-", "Position and size, from a stated datum"),
-              ("Termination position", "-", "Clock position on the circumference")],
- "dim_keys": "ID inside diameter, W width, G joint gap, A angle of coverage",
+              ("Termination position", "-", "Clock position on the circumference"),
+              ("Nozzle outside diameter", "OD", "Measured at the seat of the heater"),
+              ("Nozzle heated length", "HL", "Along the nozzle"),
+              ("Maximum wall thickness available", "T", "The bore the nozzle passes through")],
+ "dim_keys": "ID inside diameter, W width, G joint gap, A angle of coverage, OD nozzle diameter, HL nozzle heated length, T wall thickness",
  "options": [
    ("Material", [
      ("CE", "Ceramic", "Higher temperature, insulated, heat directed inward.", "500 °C"),
@@ -393,9 +404,15 @@ FAMILIES = [
      ("S3", "Flying leads", "Leads with the protection of your choice.", ""),
      ("S4", "Terminal box", "Enclosed box, for washdown or dusty plant.", ""),
    ]),
+   ("Inbuilt thermocouple, nozzle heaters", [
+     ("TC0", "None", "Control from a separate sensor.", ""),
+     ("TCJ", "Type J", "Iron constantan.", ""),
+     ("TCK", "Type K", "Higher range than Type J.", ""),
+   ]),
  ],
  "options_note": "Cutouts, thermocouple holes and slots are made to your drawing. Send the drawing "
-                 "with the enquiry and state the datum you are measuring from.",
+                 "with the enquiry and state the datum you are measuring from. For a nozzle heater, "
+                 "state the clock position of the terminal so it clears the platen.",
  "selection": [
    ("Measure the barrel, not the drawing",
     "Barrels wear. An inside diameter taken from the machine's original drawing can be a millimetre "
@@ -406,6 +423,9 @@ FAMILIES = [
    ("Insulate the ones that pay for it",
     "An insulation blanket on a barrel band cuts the heat lost into the shop and shortens heat up "
     "time. It is worth it on continuous running machines and rarely worth it on short duty ones."),
+   ("Clearance decides the material on a nozzle",
+    "Measure the bore the nozzle passes through before choosing ceramic. If the available wall is "
+    "thin, mica is not a compromise, it is the only option that fits."),
  ],
  "failures": [
    ("Not clamped down", "The commonest failure. Air between band and barrel traps heat in the element."),
@@ -413,17 +433,23 @@ FAMILIES = [
    ("Contamination at the joint", "Purged plastic finds the gap, carbonises and insulates."),
    ("Terminal damage", "Screw terminals loosened by vibration arc and burn the connection."),
    ("Wrong construction for the fit", "A one piece band fitted where the barrel could not be cleared, forced open on assembly."),
+   ("Clamped onto a worn nozzle", "The heater no longer grips and heats an air gap."),
+   ("Terminal fouling on a nozzle", "The terminal position was never stated, so it hits the platen on assembly."),
  ],
  "industries": ["injection-moulding", "extrusion", "blow-moulding", "packaging-machinery", "rubber", "food-processing"],
- "related": ["nozzle-heaters", "coil-heaters", "strip-heaters"],
+ "related": ["coil-heaters", "strip-heaters", "cartridge-heaters"],
 },
 {
  "slug": "nozzle-heaters",
+ # web 3.pptx slide 4: this page is clubbed into band-heaters. Kept as a family
+ # so the list builder can still quote a nozzle line; the HTML page redirects.
+ "listed": False,
+ "redirect": "band-heaters",
  "name": "Ceramic and Mica Nozzle Heaters",
  "nav": "Nozzle",
  "code": "NZ",
  "art": "nozzle",
- "card": ("nozzle-heaters.jpg", 440, 174),
+ "card": ("nozzle-heaters.png", 1448, 1086),
  "lede": "Short bands sized for the nozzle itself, where there is very little room, the temperature "
          "has to hold steady and the thermocouple usually has to come built in.",
  "summary": "Injection nozzles and short cylindrical sections with no room for a full band.",
@@ -503,7 +529,7 @@ FAMILIES = [
  "nav": "Strip",
  "code": "SH",
  "art": "strip",
- "card": ("strip-heaters.jpg", 314, 154),
+ "card": ("strip-heaters.png", 1448, 1086),
  "lede": "Flat elements bolted to a plate, a platen or a sealing bar, in plain form for conduction "
          "and finned form for moving air.",
  "summary": "Flat and gently curved surfaces, sealing bars, platens and duct air.",
@@ -529,9 +555,9 @@ FAMILIES = [
  ],
  "spec_cols": ["Property", "Plain", "Finned"],
  "spec_rows": [
-   # web 2.pptx slide 2. Watt density was not answered and stays TBD.
+   # web 3.pptx slide 5: 30 W/sq in over the Plain column, 40 W/sq in over Finned.
    ("Maximum sheath temperature", "350 °C", "350 °C"),
-   ("Maximum watt density", TBD, TBD),
+   ("Maximum watt density", "30 W/sq in", "40 W/sq in"),
    ("Standard voltages", "230, 240, 415 V", "230, 240, 415 V"),
    ("Length range", "60 to 2000 mm", "60 to 2000 mm"),
    ("Width range", "20 to 150 mm", "20 to 150 mm"),
@@ -591,7 +617,7 @@ FAMILIES = [
  "nav": "Tubular",
  "code": "TH",
  "art": "tubular",
- "card": ("tubular-heaters.jpg", 440, 152),
+ "card": ("tubular-heaters-u-and-w-forms.png", 1448, 1086),
  "lede": "The general purpose element. A mineral insulated tube that can be bent to almost any form "
          "and put into air, into liquid or clamped against a surface.",
  "summary": "Air, liquids and surfaces. Straight, U form, W form or coiled to your drawing.",
@@ -688,7 +714,7 @@ FAMILIES = [
  "nav": "Sensors",
  "code": "TS",
  "art": "sensor",
- "card": ("thermocouples-and-sensors.jpg", 344, 232),
+ "card": ("thermocouples-and-sensors-range.png", 1254, 1254),
  "lede": "The measuring half of the job. Nine thermocouple types and PT100, PT500 and PT1000 RTDs, "
          "made to the immersion length, junction and connection your controller expects.",
  "summary": "Types J, K, N, T, E, R, S, B and C, plus PT100, PT500 and PT1000 RTDs, made to length.",
@@ -786,6 +812,21 @@ FAMILIES = [
     "A sensor that stops short of the melt reads the steel around it. Measure from the seating face "
     "to where the tip has to sit."),
  ],
+ "selection_table": {
+  # web 3.pptx slide 6, replacing the third-party infographic on this slot.
+  "caption": "Thermocouple type, temperature range and tolerance class",
+  "cols": ["Type", "Short term", "Continuous", "Class 1", "Class 2", "Class 3"],
+  "rows": [
+   ("Type E", "-40 to +900 °C", "0 to +800 °C", "-40 to +800 °C", "-40 to +900 °C", "-200 to +40 °C"),
+   ("Type J", "-180 to +800 °C", "0 to +750 °C", "-40 to +750 °C", "-40 to +750 °C", "Not applicable"),
+   ("Type K", "-180 to +1300 °C", "0 to +1100 °C", "-40 to +1000 °C", "-40 to +1200 °C", "-200 to +40 °C"),
+   ("Type N", "-270 to +1300 °C", "0 to +1100 °C", "-40 to +1000 °C", "-40 to +1200 °C", "-200 to +40 °C"),
+   ("Type R", "-50 to +1700 °C", "0 to +1600 °C", "0 to +1600 °C", "0 to +1600 °C", "Not applicable"),
+   ("Type S", "-50 to +1750 °C", "0 to +1600 °C", "0 to +1600 °C", "0 to +1600 °C", "Not applicable"),
+   ("Type T", "-250 to +400 °C", "-185 to +300 °C", "-40 to +350 °C", "-40 to +350 °C", "-200 to +40 °C"),
+   ("Type B", "0 to +1820 °C", "+200 to +1700 °C", "Not applicable", "+600 to +1700 °C", "+600 to +1700 °C"),
+  ],
+ },
  "failures": [
    ("Wrong type for the controller", "The reading is plausible and wrong, so nobody questions it."),
    ("Insufficient immersion", "The sensor reads the fitting, not the process."),
@@ -803,16 +844,16 @@ FAMILIES = [
  "nav": "Ceramic IR",
  "code": "IR",
  "art": "ir",
- "card": ("ceramic-infrared-heaters.jpg", 276, 232),
+ "card": ("ceramic-infrared-heaters.png", 1254, 1254),
  "lede": "Radiant elements that heat the surface of the work directly, without heating the air in "
-         "between. Trough, flat panel and hollow forms, with or without a reflector.",
+         "between. Trough and flat panel forms, with or without a reflector.",
  "summary": "Radiant surface heating, thermoforming, drying and preheating.",
- "meta": "Ceramic infrared heaters made in Peenya, Bangalore. Trough, flat panel and hollow element "
+ "meta": "Ceramic infrared heaters made in Peenya, Bangalore. Trough and flat panel element "
          "forms, 100 to 2000 W, reflector and inbuilt thermocouple optional.",
  "facets": {"heats": "radiant|air", "industry": "packaging-machinery|blow-moulding|food-processing|industrial-heating|pharmaceutical-machinery", "form": "radiant"},
  "chips": [("100 to 2000 W", "Wattage range", False),
            ("230, 240 V", "Voltages", False),
-           ("Trough, panel, hollow", "Element forms", False),
+           ("Trough or flat panel", "Element forms", False),
            # web 2.pptx slide 22 gives the wavelength. Slide 20 wrote "700 deg C"
            # against this chip, which is a temperature against a wavelength label and
            # also disagrees with the 300 °C face temperature two slides later; queried
@@ -832,7 +873,7 @@ FAMILIES = [
  ],
  "spec_cols": ["Property", "Value"],
  "spec_rows": [
-   ("Element forms", "Trough, flat panel, hollow"),
+   ("Element forms", "Trough, flat panel"),
    ("Wattage range", "100 to 2000 W"),
    ("Standard voltages", "230, 240 V"),
    # web 2.pptx slide 20 wrote "700 deg C" against peak wavelength, and slide 22 gave
@@ -847,7 +888,7 @@ FAMILIES = [
  ],
  "dim_caption": "What we need in order to specify a radiant installation",
  "dim_cols": ["Input", "Symbol", "Note"],
- "dim_rows": [("Element form", "-", "Trough, flat panel or hollow"),
+ "dim_rows": [("Element form", "-", "Trough or flat panel"),
               ("Wattage per element", "W", "And how many elements"),
               ("Distance to the work", "d", "Face of the element to the surface"),
               ("Target surface temperature", "-", "What the work has to reach"),
@@ -860,7 +901,7 @@ FAMILIES = [
       "ceramic-infrared-heaters-trough.png"),
      ("FF", "Flat panel", "Even spread over an area.", "",
       "ceramic-infrared-heaters-flat-panel.png"),
-     ("FH", "Hollow", "Deeper body, for higher output per element.", ""),
+     # web 3.pptx slide 7: "We dont have this" on the Hollow card.
    ]),
    ("Inbuilt thermocouple", [
      ("TC0", "None", "Control by power percentage or from a separate sensor.", ""),
@@ -898,6 +939,7 @@ FAMILIES = [
 ]
 
 FAMILY_BY_SLUG = {f["slug"]: f for f in FAMILIES}
+LISTED_FAMILIES = [f for f in FAMILIES if f.get("listed", True)]
 
 # --------------------------------------------- client supplied photography
 #
@@ -909,9 +951,6 @@ FAMILY_BY_SLUG = {f["slug"]: f for f in FAMILIES}
 # had, which is the drawing in the hero and the dashed placeholder elsewhere.
 #
 # Not here on purpose:
-#   cartridge selection  the file they placed carries another supplier's
-#                        watermark, so the placeholder stays until we have one
-#                        that is ours to publish
 #   tubular construction came out of the cartridge composite they supplied. It
 #                        is the panel of it labelled TUBULAR HEATER, so it is
 #                        placed here rather than thrown away, but they did not
@@ -920,30 +959,36 @@ FAMILY_BY_SLUG = {f["slug"]: f for f in FAMILIES}
 # (file, width, height, alt)
 FAMILY_PHOTOS = {
  "cartridge-heaters": {
-   "hero": ("cartridge-hero.jpg", 798, 631,
+   "hero": ("cartridge-hero.png", 1254, 1254,
             "Cartridge heaters in a range of diameters and lengths, straight and right angle, "
             "with braided and fibreglass leads"),
    "construction": ("cartridge-construction.jpg", 1000, 399,
                     "Cutaway of a cartridge heater, labelled: cold area, sheath, insulation, "
                     "resistive heating element, power pin, seal and electrical connection"),
+   # web 3.pptx slide 1, over the selection placeholder.
+   "selection": ("cartridge-heaters-selection.png", 1254, 1254,
+                 "Cartridge heaters in four diameters with fibreglass and mineral-insulated leads"),
  },
  "coil-heaters": {
-   "construction": ("coil-construction.jpg", 272, 276,
-                    "Coil heaters wound in square and round section, with fibreglass leads and "
-                    "brass and steel bodies"),
-   "selection": ("coil-selection.jpg", 623, 290,
+   # web 3.pptx slides 2 and 3.
+   "hero": ("coil-heaters-hero.png", 1254, 1254,
+            "A coiled nozzle heater with a braided metal lead and colour coded tails"),
+   "construction": ("coil-heaters-construction.png", 1254, 1254,
+                    "Coil heaters in several diameters and pitches, with and without lead "
+                    "protection"),
+   "selection": ("coil-selection.png", 1448, 1086,
                  "Coil heaters and nozzle heaters laid out together, showing the range of "
                  "diameters and pitches wound to order"),
  },
  "band-heaters": {
-   "hero": ("band-hero.jpg", 1000, 663,
+   "hero": ("band-hero.png", 1254, 1254,
             "Six ceramic and mica band heaters of different diameters, some clamped closed and "
             "some opened out"),
    "construction": ("band-construction.png", 824, 751,
                     "Cutaway of a ceramic band heater, labelled: nickel chrome resistance wire, "
                     "ceramic fibre insulation, stainless steel housing, stainless steel screw "
                     "terminals, terminal box and strap welded barrel nuts"),
-   "selection": ("band-selection.jpg", 896, 298,
+   "selection": ("band-selection.png", 1254, 1254,
                  "Ceramic and mica band heaters across the diameter range, with terminal boxes, "
                  "screw terminals and clamping straps"),
  },
@@ -987,8 +1032,9 @@ FAMILY_PHOTOS = {
    ],
  },
  "thermocouples-and-sensors": {
-   # web 2.pptx slides 15, 16 and 18. Hero and construction use the product
-   # stills; the selection slot uses the slide 18 chart.
+   # web 2.pptx slides 15 and 16. Hero and construction use the product stills.
+   # web 3.pptx slide 6 replaces the third-party infographic with a type/range
+   # table, published as HTML rather than as a bitmap.
    "hero": ("thermocouples-assemblies.png", 1254, 1254,
             "Thermocouples and RTDs in spring loaded, bent, armored and ring terminal styles"),
    "construction": ("thermocouples-and-sensors-range.png", 1254, 1254,
@@ -998,9 +1044,6 @@ FAMILY_PHOTOS = {
       "Thermocouple probes in bayonet, spring loaded, compression, clamp and "
       "washer styles"),
    ],
-   "selection": ("thermocouple-selection-infographic-third-party.png", 1254, 1254,
-                 "Fourteen factors for thermocouple selection, covering type, range, junction, "
-                 "sheath and mounting"),
  },
  "ceramic-infrared-heaters": {
    # web 2.pptx slides 20, 21 and 23.
@@ -1009,12 +1052,10 @@ FAMILY_PHOTOS = {
             "beaded leads"),
    "construction": ("ceramic-infrared-heaters-trough.png", 1448, 1086,
                     "Ceramic infrared trough elements, front and back, with ceramic beaded leads"),
-   "selection": ("ceramic-infrared-heaters-element-forms.png", 1448, 1086,
-                 "Trough, rectangular, square and hollow ceramic infrared elements"),
-   "after_options": [
-     ("ceramic-infrared-heaters-product-range.png", 1448, 1086,
-      "Trough, square, bulb and flat panel ceramic infrared elements"),
-   ],
+   # Selection uses the product-range still rather than the forms sheet that
+   # included a hollow body. web 3.pptx slide 7: they do not make hollow.
+   "selection": ("ceramic-infrared-heaters-product-range.png", 1448, 1086,
+                 "Trough, rectangular, square and flat panel ceramic infrared elements"),
  },
 }
 
@@ -1528,7 +1569,7 @@ FORMS = {
    ("ctrl", "Controller make and model", "text", "so the type matches"),
  ],
  "ceramic-infrared-heaters": [
-   ("form", "Element form", "select", ["FT trough","FF flat panel","FH hollow","Recommend one"]),
+   ("form", "Element form", "select", ["FT trough","FF flat panel","Recommend one"]),
    ("watt", "Wattage per element", "number", (100, 2000, "W")),
    ("volt", "Voltage", "select", ["230 V","240 V"]),
    ("count", "How many elements", "number", (1, 999, "nos")),

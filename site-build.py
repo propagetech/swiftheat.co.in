@@ -34,7 +34,10 @@ def main():
     written.append(write("index.html", pages.home()))
     written.append(write("products/index.html", pages.products_index()))
     for f in FAMILIES:
-        written.append(write("products/%s/index.html" % f["slug"], render.product_page(f)))
+        if f.get("redirect"):
+            written.append(write("products/%s/index.html" % f["slug"], render.redirect_page(f)))
+        else:
+            written.append(write("products/%s/index.html" % f["slug"], render.product_page(f)))
     written.append(write("applications/index.html", pages.applications_index()))
     for i in INDUSTRIES:
         written.append(write("applications/%s/index.html" % i["slug"], render.industry_page(i)))

@@ -369,8 +369,8 @@ describe('drawing snapshots', () => {
       { dia: '3', len: '120', clen: '500' }, { type: 'K', junc: 'E', conn: 'B' }],
     ['sensor-8x2000-pt100-head', 'sensor',
       { dia: '8', len: '2000', clen: '10000' }, { type: 'PT1', junc: 'U', conn: 'H' }],
-    ['ir-hollow-900-reflector', 'ir',
-      { watt: '1200', volt: '230', dist: '900' }, { form: 'FH', tc: 'TCK', refl: 'R1' }],
+    ['ir-trough-900-reflector', 'ir',
+      { watt: '1200', volt: '230', dist: '900' }, { form: 'FT', tc: 'TCK', refl: 'R1' }],
     ['cartridge-25x1500-double-ended-beads', 'cartridge',
       { dia: '25', len: '1500', hlen: '1400' }, { term: 'T3', lead: 'L5', tc: 'TCG', mount: 'M2' }],
   ];

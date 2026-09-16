@@ -10,7 +10,7 @@ import os
 import re
 
 from . import imgmeta
-from .data import COMPANY, FAMILIES, INDUSTRIES, PREVIEW_NOINDEX, TBD
+from .data import COMPANY, INDUSTRIES, LISTED_FAMILIES, PREVIEW_NOINDEX, TBD
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ART = os.path.join(HERE, "art")
@@ -301,7 +301,7 @@ def _nav(depth, active):
 
 def _footer(depth):
     prod = "".join('<li><a href="%s">%s</a></li>' % (rel(depth, "products/%s/" % f["slug"]), esc(f["name"]))
-                   for f in FAMILIES)
+                   for f in LISTED_FAMILIES)
     ind = "".join('<li><a href="%s">%s</a></li>' % (rel(depth, "applications/%s/" % i["slug"]), esc(i["name"]))
                   for i in INDUSTRIES[:6])
     comp = "".join('<li><a href="%s">%s</a></li>' % (rel(depth, h), esc(t)) for h, t in [

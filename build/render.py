@@ -16,7 +16,7 @@ machine to the element type.
 from . import imgmeta
 from .chrome import (art, cards, crumbs, enquiry, esc, flow, flow_legend, page,
                      product_cards, rel, tscale)
-from .data import (COMPANY, FAMILIES, FAMILY_BY_SLUG, FAMILY_PHOTOS, FORMS, INDUSTRIES,
+from .data import (COMPANY, FAMILY_BY_SLUG, FAMILY_PHOTOS, FORMS, INDUSTRIES,
                    INDUSTRY_BY_SLUG, TBD)
 
 
@@ -175,6 +175,18 @@ def _conshot(slug, depth, placeholder):
     return _collage(primary, extras, depth)
 
 
+def _selection_table(table):
+    head = "".join('<th scope="col">%s</th>' % esc(c) for c in table["cols"])
+    rows = []
+    for row in table["rows"]:
+        cells = "".join("<td>%s</td>" % esc(c) for c in row[1:])
+        rows.append('<tr><th scope="row">%s</th>%s</tr>' % (esc(row[0]), cells))
+    return ('<div class="tablewrap" style="margin-top:32px"><table>\n'
+            '<caption>%s</caption>\n'
+            '<thead><tr>%s</tr></thead>\n<tbody>%s</tbody>\n</table></div>'
+            % (esc(table["caption"]), head, "".join(rows)))
+
+
 def _val(v):
     return '<span class="tbd">%s</span>' % esc(v) if v == TBD else esc(v)
 
@@ -264,7 +276,16 @@ def _form_fields(slug):
 
 def _industry_fields(slug):
     ind = INDUSTRY_BY_SLUG[slug]
-    prod = "".join("<option>%s</option>" % esc(FAMILY_BY_SLUG[s]["name"]) for s in ind["products"])
+    names = []
+    seen = set()
+    for s in ind["products"]:
+        p = FAMILY_BY_SLUG[s]
+        target = p.get("redirect") or s
+        if target in seen:
+            continue
+        seen.add(target)
+        names.append(FAMILY_BY_SLUG[target]["name"])
+    prod = "".join("<option>%s</option>" % esc(n) for n in names)
     checks = "".join("<option>%s</option>" % esc(c) for c in [])
     return """        <fieldset>
           <legend><span class="idx">02</span> The application</legend>
@@ -323,7 +344,8 @@ def product_page(f):
     fails = cards(depth, [("#enquiry", t, b) for t, b in f["failures"]])
     apps = cards(depth, [("applications/%s/" % s, INDUSTRY_BY_SLUG[s]["name"], INDUSTRY_BY_SLUG[s]["lede"])
                          for s in f["industries"]])
-    rel_products = product_cards(depth, f["related"])
+    rel_products = product_cards(depth, [s for s in f["related"]
+                                         if FAMILY_BY_SLUG[s].get("listed", True)])
     # Related products reuse the finder markup but must not carry its id twice.
     rel_products = rel_products.replace(' id="productList"', "")
 
@@ -401,12 +423,15 @@ def product_page(f):
 </section>
 
 <section class="band" id="selection">
-  <div class="wrap two">
-    <div>
-      <h2>Choosing the right %(noun)s</h2>
-      %(selection)s
+  <div class="wrap">
+    <div%(selwrap)s>
+      <div>
+        <h2>Choosing the right %(noun)s</h2>
+        %(selection)s
+      </div>
+      %(selshot)s
     </div>
-    %(selshot)s
+    %(seltable)s
   </div>
 </section>
 
@@ -448,16 +473,17 @@ def product_page(f):
         "conshot": _conshot(slug, depth,
                             "%s, three quarter view on white, macro. Minimum 2000 px wide. One of a "
                             "set of four\n        for this family." % esc(f["name"])),
-        "selshot": _selshot(slug, depth,
+        "selwrap": ' class="two"' if (not f.get("selection_table") or _photo(slug, "selection")) else "",
+        "selshot": "" if f.get("selection_table") and not _photo(slug, "selection") else
+                   _selshot(slug, depth,
                             "%s installed on a customer machine. One application shot per family."
                             % esc(f["name"])),
+        "seltable": (_selection_table(f["selection_table"]) if f.get("selection_table") else ""),
         "art2": art(f["art"], "Dimensioned drawing of a %s" % f["name"].lower()),
         "construction": "".join("<p>%s</p>" % esc(p) for p in f["construction"]),
-        # Nozzle is the only family whose maximum is still unconfirmed, so it is the
-        # only one that keeps the indicative wording.
-        "tscale": tscale(lo, hi, note=None if slug == "nozzle-heaters" else
-                         "The upper limit is Swiftheat's confirmed rating from the specification "
-                         "table below. The lower end is indicative for this element type."),
+        "tscale": tscale(lo, hi,
+                         note="The upper limit is Swiftheat's confirmed rating from the specification "
+                              "table below. The lower end is indicative for this element type."),
         "spec": _spec_table(f),
         "dims": _dim_table(f),
         "dimkeys": esc(f["dim_keys"]),
@@ -522,10 +548,12 @@ def industry_page(ind):
     rows = []
     for name, duty, temp, band, prodslug, why in ind["zones"]:
         p = FAMILY_BY_SLUG[prodslug]
+        target = p.get("redirect") or prodslug
+        shown = FAMILY_BY_SLUG[target]
         rows.append('<tr><th scope="row">%s</th><td>%s</td><td>%s</td>'
                     '<td><a href="%s">%s</a></td><td>%s</td></tr>'
-                    % (esc(name), esc(duty), esc(temp), rel(depth, "products/%s/" % prodslug),
-                       esc(p["name"]), esc(why)))
+                    % (esc(name), esc(duty), esc(temp), rel(depth, "products/%s/" % target),
+                       esc(shown["name"]), esc(why)))
     zone_table = (
         '<div class="tablewrap"><table>\n'
         '<caption>Heating zones on a typical %s line, and the element type each one wants</caption>\n'
@@ -539,21 +567,14 @@ def industry_page(ind):
 
     body = """
 <section class="hero hero-dark">
-  <div class="wrap grid">
-    <div>
-      <p class="eyebrow">Industry</p>
-      <h1>%(name)s</h1>
-      <p class="lede">%(lede)s</p>
-      <p>%(problem)s</p>
-      <div class="actions">
-        <a class="btn" href="#zones">See the zone by zone table</a>
-        <a class="btn btn-onink" href="#enquiry">Request a quote</a>
-      </div>
-    </div>
-    <div class="shot">
-      <span class="label">Photograph required</span>
-      <p>A real %(lname)s machine in a customer plant, with Swiftheat elements fitted. Landscape,
-        minimum 2400 px wide.</p>
+  <div class="wrap">
+    <p class="eyebrow">Industry</p>
+    <h1>%(name)s</h1>
+    <p class="lede">%(lede)s</p>
+    <p>%(problem)s</p>
+    <div class="actions">
+      <a class="btn" href="#zones">See the zone by zone table</a>
+      <a class="btn btn-onink" href="#enquiry">Request a quote</a>
     </div>
   </div>
 </section>
@@ -594,15 +615,9 @@ def industry_page(ind):
 </section>
 
 <section class="band alt" id="notes">
-  <div class="wrap two">
-    <div>
-      <h2>Application notes</h2>
-      %(notes)s
-    </div>
-    <div class="shot shot-sm">
-      <span class="label">Photograph required</span>
-      <p>Close up of a heated zone on a %(lname)s machine: barrel, tool face or sealing station.</p>
-    </div>
+  <div class="wrap">
+    <h2>Application notes</h2>
+    %(notes)s
   </div>
 </section>
 
@@ -636,7 +651,8 @@ def industry_page(ind):
                      % ind["name"].lower()),
         "legend": flow_legend(),
         "zones": zone_table,
-        "products": product_cards(depth, ind["products"]).replace(' id="productList"', ""),
+        "products": product_cards(depth, [s for s in ind["products"]
+                                          if FAMILY_BY_SLUG[s].get("listed", True)]).replace(' id="productList"', ""),
         "notes": notes,
         "checks": checks,
         "builder": rel(depth, "build-a-list/"),
@@ -669,3 +685,49 @@ def industry_page(ind):
         jump=jump,
         crumb=[("", "Home"), ("applications/", "Applications"), (None, ind["name"])],
     )
+
+
+def redirect_page(f):
+    """A static stand-in for a family that has been clubbed into another page."""
+    target = f["redirect"]
+    dest = FAMILY_BY_SLUG[target]
+    depth = 2
+    href = rel(depth, "products/%s/" % target)
+    dest_url = COMPANY["origin"] + "/products/%s/" % target
+    body = """
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">This page has moved</p>
+    <h1>%(name)s are listed with %(dest)s</h1>
+    <p class="lede">Ceramic and mica nozzle heaters use the same construction as band heaters, at
+      nozzle proportions. They now live on one page.</p>
+    <div class="actions">
+      <a class="btn" href="%(href)s">Open %(dest)s</a>
+    </div>
+  </div>
+</section>
+""" % {"name": esc(f["name"]), "dest": esc(dest["name"]), "href": href}
+    html = page(
+        "products/%s/index.html" % f["slug"],
+        "%s | %s" % (f["name"], COMPANY["name"]),
+        dest["meta"],
+        body,
+        active="products/",
+        depth=depth,
+        crumb=[("", "Home"), ("products/", "Products"), (None, f["name"])],
+    )
+    html = html.replace(
+        '<meta charset="utf-8">',
+        '<meta charset="utf-8">\n<meta http-equiv="refresh" content="0;url=%s">' % href,
+    )
+    old_canon = COMPANY["origin"] + "/products/%s/" % f["slug"]
+    html = html.replace(
+        'rel="canonical" href="%s"' % old_canon,
+        'rel="canonical" href="%s"' % dest_url,
+    )
+    html = html.replace(
+        'property="og:url" content="%s"' % old_canon,
+        'property="og:url" content="%s"' % dest_url,
+    )
+    return html
+

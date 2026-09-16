@@ -23,7 +23,7 @@ with open(META, encoding="utf-8") as _fh:
 
 
 def meta(rel):
-    """rel is the path under imgs/, e.g. "band-heaters.jpg"."""
+    """rel is the path under imgs/, e.g. "band-heaters.png"."""
     return IMGS.get(rel)
 
 

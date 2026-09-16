@@ -85,7 +85,7 @@
     if (!form) return;
     var pre = document.getElementById('mailPreview');
     var btn = document.getElementById('composeBtn');
-    var to = form.getAttribute('data-to') || 'enquiry@swiftheat.co.in';
+    var to = form.getAttribute('data-to') || 'sales@swiftheat.co.in';
     var subject = form.getAttribute('data-subject') || 'Website enquiry';
     var heading = form.getAttribute('data-heading') || 'ENQUIRY';
 

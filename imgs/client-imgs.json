@@ -1,73 +1,113 @@
 {
- "band-heaters.jpg": {
-  "ground": "#ffffff",
-  "h": 232,
-  "w": 411
+ "Armour.png": {
+  "ground": "#a5a9b1",
+  "h": 1254,
+  "w": 1254
  },
- "cartridge-heaters.jpg": {
-  "ground": "#ffffff",
-  "h": 232,
-  "w": 413
+ "Braided-Metal-sleeve.png": {
+  "ground": "#cec9c2",
+  "h": 1254,
+  "w": 1254
  },
- "ceramic-infrared-heaters.jpg": {
-  "ground": "#ffffff",
-  "h": 232,
-  "w": 276
+ "Flange.png": {
+  "ground": "#dfdfe1",
+  "h": 1254,
+  "w": 1254
  },
- "coil-heaters.jpg": {
-  "ground": "#ffffff",
-  "h": 232,
-  "w": 193
+ "Heater-with-Spl-mountable-threads.png": {
+  "ground": "#c9d0d9",
+  "h": 1254,
+  "w": 1254
  },
- "nozzle-heaters.jpg": {
-  "ground": "#ffffff",
-  "h": 174,
-  "w": 440
+ "Right-angle-exit.png": {
+  "ground": "#d9dbe0",
+  "h": 1774,
+  "w": 887
  },
- "strip-heaters.jpg": {
-  "ground": "#ffffff",
-  "h": 154,
-  "w": 314
+ "Silicon-coated-Fibreglass-sleeve.png": {
+  "ground": "#e6e6e8",
+  "h": 1774,
+  "w": 887
  },
- "thermocouples-and-sensors.jpg": {
-  "ground": "#ffffff",
-  "h": 232,
-  "w": 344
+ "a-resistance-coil-runs-down-the-centre-of-a-metal-tube.png": {
+  "ground": "#fefefe",
+  "h": 1312,
+  "w": 1199
  },
- "tubular-heaters.jpg": {
-  "ground": "#ffffff",
-  "h": 152,
-  "w": 440
+ "band-heaters.png": {
+  "ground": "#dce1e8",
+  "h": 1254,
+  "w": 1254
  },
- "ch-ceramic-beading.jpg": {
-  "ground": "#d4d3da",
-  "h": 264,
-  "w": 260
+ "band-hero.png": {
+  "ground": "#d6d8da",
+  "h": 1254,
+  "w": 1254
  },
- "ch-straight.jpg": {
-  "ground": "#ffffff",
-  "h": 264,
-  "w": 146
+ "band-selection.png": {
+  "ground": "#d4d6dc",
+  "h": 1254,
+  "w": 1254
  },
- "ch-strain-clamp.jpg": {
-  "ground": "#ffffff",
-  "h": 259,
-  "w": 217
+ "cartridge-construction.jpg": {
+  "ground": "#fefefe",
+  "h": 399,
+  "w": 1000
  },
- "ch-thermocouple-grounded.jpg": {
-  "ground": "#ffffff",
-  "h": 210,
-  "w": 90
+ "cartridge-double-ended.png": {
+  "ground": "#b0b1b5",
+  "h": 1254,
+  "w": 1254
  },
- "ch-thermocouple-j.jpg": {
-  "ground": "#fbfaff",
-  "h": 264,
-  "w": 284
+ "cartridge-heaters-selection.png": {
+  "ground": "#afbdd0",
+  "h": 1254,
+  "w": 1254
  },
- "ch-thermocouple-k.jpg": {
-  "ground": "#ffffff",
-  "h": 248,
-  "w": 400
+ "cartridge-heaters.png": {
+  "ground": "#e4e4e5",
+  "h": 1254,
+  "w": 1254
+ },
+ "cartridge-hero.png": {
+  "ground": "#cdd3db",
+  "h": 1254,
+  "w": 1254
+ },
+ "ceramic-infrared-heaters.png": {
+  "ground": "#c9c2bd",
+  "h": 1254,
+  "w": 1254
+ },
+ "ch-ceramic-beading.png": {
+  "ground": "#d6cdc4",
+  "h": 1254,
+  "w": 1254
+ },
+ "ch-straight.png": {
+  "ground": "#c3c8cf",
+  "h": 1254,
+  "w": 1254
+ },
+ "ch-strain-clamp.png": {
+  "ground": "#d4d8dd",
+  "h": 1254,
+  "w": 1254
+ },
+ "ch-thermocouple-grounded.png": {
+  "ground": "#d9dce3",
+  "h": 1254,
+  "w": 1254
+ },
+ "ch-thermocouple-j.png": {
+  "ground": "#e7ebf2",
+  "h": 1254,
+  "w": 1254
+ },
+ "ch-thermocouple-k.png": {
+  "ground": "#ebeced",
+  "h": 1254,
+  "w": 1254
  },
  "co-exit-axial.png": {
   "ground": "#ffffff",
@@ -84,20 +124,45 @@
   "h": 207,
   "w": 85
  },
- "co-thermocouple-j.jpg": {
-  "ground": "#f8fbfa",
-  "h": 264,
-  "w": 277
+ "co-thermocouple-j.png": {
+  "ground": "#d4dce5",
+  "h": 1254,
+  "w": 1254
  },
- "co-thermocouple-k.jpg": {
-  "ground": "#ffffff",
-  "h": 218,
-  "w": 400
+ "co-thermocouple-k.png": {
+  "ground": "#d4d9e2",
+  "h": 1254,
+  "w": 1254
  },
- "co-thermocouple-none.jpg": {
-  "ground": "#f3f3f3",
-  "h": 232,
-  "w": 311
+ "co-thermocouple-none.png": {
+  "ground": "#cdcecf",
+  "h": 1254,
+  "w": 1254
+ },
+ "coil-construction.png": {
+  "ground": "#dbd9d6",
+  "h": 1254,
+  "w": 1254
+ },
+ "coil-heaters-construction.png": {
+  "ground": "#dcdddf",
+  "h": 1254,
+  "w": 1254
+ },
+ "coil-heaters-hero.png": {
+  "ground": "#d0d5da",
+  "h": 1254,
+  "w": 1254
+ },
+ "coil-selection.png": {
+  "ground": "#d5d4d3",
+  "h": 1086,
+  "w": 1448
+ },
+ "nozzle-heaters.png": {
+  "ground": "#c3c8cf",
+  "h": 1086,
+  "w": 1448
  },
  "parts/ir-flat-panel.jpg": {
   "ground": "#ffffff",
@@ -129,16 +194,6 @@
   "h": 264,
   "w": 176
  },
- "band-hero.jpg": {
-  "ground": "#ffffff",
-  "h": 663,
-  "w": 1000
- },
- "band-selection.jpg": {
-  "ground": "#ffffff",
-  "h": 298,
-  "w": 896
- },
  "photos/capabilities-engineering.jpg": {
   "ground": "#ffffff",
   "h": 329,
@@ -148,31 +203,6 @@
   "ground": "#ffffff",
   "h": 557,
   "w": 920
- },
- "cartridge-construction.jpg": {
-  "ground": "#fefefe",
-  "h": 399,
-  "w": 1000
- },
- "cartridge-double-ended.jpg": {
-  "ground": null,
-  "h": 781,
-  "w": 1200
- },
- "cartridge-hero.jpg": {
-  "ground": "#f4f7fe",
-  "h": 631,
-  "w": 798
- },
- "coil-construction.jpg": {
-  "ground": "#ffffff",
-  "h": 276,
-  "w": 272
- },
- "coil-selection.jpg": {
-  "ground": "#f3f2f3",
-  "h": 290,
-  "w": 623
  },
  "photos/contact-frontage.jpg": {
   "ground": null,
@@ -198,11 +228,6 @@
   "ground": "#e1e2e6",
   "h": 276,
   "w": 504
- },
- "products-hero.png": {
-  "ground": "#3451eb",
-  "h": 722,
-  "w": 432
  },
  "photos/resources-hero.jpg": {
   "ground": null,
@@ -243,11 +268,6 @@
   "ground": "#ffffff",
   "h": 613,
   "w": 566
- },
- "a-resistance-coil-runs-down-the-centre-of-a-metal-tube.png": {
-  "ground": "#fefefe",
-  "h": 1312,
-  "w": 1199
  },
  "photos/tubular-construction.jpg": {
   "ground": "#fefefe",
@@ -293,5 +313,25 @@
   "ground": null,
   "h": 1280,
   "w": 960
+ },
+ "products-hero.png": {
+  "ground": "#d2d5d6",
+  "h": 1448,
+  "w": 1086
+ },
+ "strip-heaters.png": {
+  "ground": "#d1d3d5",
+  "h": 1086,
+  "w": 1448
+ },
+ "thermocouples-and-sensors-range.png": {
+  "ground": "#d6d8dd",
+  "h": 1254,
+  "w": 1254
+ },
+ "tubular-heaters-u-and-w-forms.png": {
+  "ground": "#ebecee",
+  "h": 1086,
+  "w": 1448
  }
 }
