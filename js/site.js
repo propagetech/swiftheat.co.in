@@ -185,14 +185,20 @@
     var index = 0;
     var startX = 0;
 
+    function imageLinks(group) {
+      return Array.prototype.filter.call(group.querySelectorAll('a[href]'), function (a) {
+        return a.querySelector('img');
+      });
+    }
+
     function itemsFrom(group) {
-      return Array.prototype.map.call(group.querySelectorAll('a[href]'), function (a) {
+      return imageLinks(group).map(function (a) {
         var img = a.querySelector('img');
         return {
           src: a.getAttribute('href'),
-          alt: img ? (img.getAttribute('alt') || '') : '',
-          w: img ? img.getAttribute('width') : '',
-          h: img ? img.getAttribute('height') : ''
+          alt: a.getAttribute('data-caption') || img.getAttribute('alt') || '',
+          w: img.getAttribute('width') || '',
+          h: img.getAttribute('height') || ''
         };
       });
     }
@@ -223,6 +229,8 @@
     }
 
     function open(group, i) {
+      var label = group.getAttribute('data-gallery');
+      dlg.setAttribute('aria-label', label || 'Product photographs');
       render(itemsFrom(group));
       dlg.showModal();
       show(i);
@@ -233,8 +241,7 @@
     }
 
     groups.forEach(function (group) {
-      var links = Array.prototype.slice.call(group.querySelectorAll('a[href]'));
-      links.forEach(function (a, i) {
+      imageLinks(group).forEach(function (a, i) {
         a.addEventListener('click', function (e) {
           if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
           e.preventDefault();

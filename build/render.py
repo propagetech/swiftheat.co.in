@@ -68,8 +68,7 @@ def _after_options(slug, depth):
     for shot in shots:
         is_full = len(shot) > 4 and shot[4] == "full"
         extra = "max-height:none;width:100%" if is_full else ""
-        block = ('<div class="shot filled shot-part"%s>\n      %s\n    </div>'
-                 % (_bg(shot), _img(shot, depth, extra_style=extra)))
+        block = _lightbox_shot(shot, depth, "shot", extra_style=extra)
         (rest if is_full else grid).append(block)
     html = ""
     if grid:
@@ -113,7 +112,7 @@ def _shot(slug, key, depth, classes, placeholder):
             % (classes, _bg(shot), _img(shot, depth)))
 
 
-def _lightbox_shot(shot, depth, classes):
+def _lightbox_shot(shot, depth, classes, extra_style=""):
     """A single photograph that still opens the gallery dialog on click.
 
     Without JavaScript the wrapping link opens the picture. With it, the same
@@ -122,7 +121,7 @@ def _lightbox_shot(shot, depth, classes):
     href = rel(depth, "imgs/" + _img_rel(shot[0]))
     return ('<div class="%s filled shot-part" data-gallery%s>\n'
             '      <a href="%s">\n        %s\n      </a>\n    </div>'
-            % (classes, _bg(shot), href, _img(shot, depth)))
+            % (classes, _bg(shot), href, _img(shot, depth, extra_style=extra_style)))
 
 
 def _collage_item(shot, depth, extra_class=""):
@@ -167,12 +166,18 @@ def _selshot(slug, depth, placeholder):
 
 
 def _conshot(slug, depth, placeholder):
-    """Construction photograph, or a clickable collage when extra forms exist."""
+    """Construction photograph, or a clickable collage when extra forms exist.
+
+    A single shot still opens the gallery so labelled cutaways can be read at
+    full size.
+    """
     extras = FAMILY_PHOTOS.get(slug, {}).get("construction_gallery") or []
     primary = _photo(slug, "construction")
-    if not extras or not primary:
-        return _shot(slug, "construction", depth, "shot", placeholder)
-    return _collage(primary, extras, depth)
+    if extras and primary:
+        return _collage(primary, extras, depth)
+    if primary:
+        return _lightbox_shot(primary, depth, "shot")
+    return _shot(slug, "construction", depth, "shot", placeholder)
 
 
 def _selection_table(table):
@@ -215,14 +220,17 @@ def _dim_table(f):
             '<tbody>%s</tbody>\n</table></div>' % (esc(f["dim_caption"]), head, rows))
 
 
-def _options(f):
+def _options(f, depth=2):
     out = []
+    has_photos = False
     for n, (title, opts) in enumerate(f["options"], 1):
         li = []
         # Only some options have a photograph. Where any in the group does, the
         # rest reserve the same slot, so the code badge and the option name sit
         # on one line across the row instead of stepping up and down.
         any_shot = any(len(o) > 4 and o[4] for o in opts)
+        if any_shot:
+            has_photos = True
         for opt in opts:
             code, name, why, rating = opt[:4]
             img = opt[4] if len(opt) > 4 else None
@@ -231,21 +239,29 @@ def _options(f):
                 rate = '<span class="rating">Temperature rating to confirm</span>'
             elif rating:
                 rate = '<span class="rating">Rated to %s</span>' % esc(rating)
-            # Decorative: the card names the option in words directly below.
+            # Empty alt: the card names the option in the heading below. The
+            # link caption is what the gallery dialog reads aloud.
             if img:
                 w, h = imgmeta.size(img) or (0, 0)
-                shot = ('<span class="optshot"%s><img src="../../imgs/%s" width="%d" '
-                        'height="%d" alt="" loading="lazy"></span>'
-                        % (imgmeta.bg(img), img, w, h))
+                href = rel(depth, "imgs/" + img)
+                caption = "%s. %s" % (code, name)
+                shot = ('<a class="optshot" href="%s"%s data-caption="%s" '
+                        'aria-label="Enlarge: %s"><img src="%s" width="%d" '
+                        'height="%d" alt="" loading="lazy"></a>'
+                        % (href, imgmeta.bg(img), esc(caption), esc(caption),
+                           href, w, h))
             elif any_shot:
                 shot = '<span class="optshot"></span>'
             else:
                 shot = ""
             li.append('<li><span class="code">%s</span>%s<h4>%s</h4><p>%s</p>%s</li>'
                       % (esc(code), shot, esc(name), esc(why), rate))
-        out.append('<div class="optgroup"><h3><span class="idx">%02d</span> %s</h3>'
-                   '<ul class="opts">%s</ul></div>' % (n, esc(title), "".join(li)))
-    return "".join(out)
+        gallery = ' data-gallery="%s"' % esc(title) if any_shot else ""
+        out.append('<div class="optgroup"%s><h3><span class="idx">%02d</span> %s</h3>'
+                   '<ul class="opts">%s</ul></div>' % (gallery, n, esc(title), "".join(li)))
+    hint = ('<p class="cap">Click a photograph to enlarge.</p>\n    '
+            if has_photos else "")
+    return hint + "".join(out)
 
 
 def _form_fields(slug):
@@ -487,7 +503,7 @@ def product_page(f):
         "spec": _spec_table(f),
         "dims": _dim_table(f),
         "dimkeys": esc(f["dim_keys"]),
-        "options": _options(f),
+        "options": _options(f, depth),
         "optnote": esc(f["options_note"]),
         "afteropts": _after_options(slug, depth),
         "selection": sel,

@@ -13,6 +13,19 @@ ADDRESS = {
     "addressCountry": COMPANY["country"],
 }
 
+def _gallery_photo(depth, name, w, h, alt, eager=False):
+    """A shop-floor photograph that opens the page gallery on click."""
+    href = rel(depth, "imgs/" + name)
+    return (
+        '<div class="shot filled">\n'
+        '        <a href="%s">\n'
+        '          <img src="%s" width="%d" height="%d" loading="%s"\n'
+        '            alt="%s">\n'
+        '        </a>\n'
+        '      </div>' % (href, href, w, h, "eager" if eager else "lazy", esc(alt))
+    )
+
+
 ORG = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -809,32 +822,10 @@ def resources():
       <p>A gallery of the plant, the machinery and the people. This is the single strongest thing a
         real manufacturer can show, and it is what separates a works from a trading company.</p>
     </div>
-    <div class="three">
-      <div class="shot filled">
-        <img src="../imgs/workshop-worker-at-the-winding-machine.png" width="1536" height="1024" loading="lazy"
-          alt="A Swiftheat operator winding resistance wire, with colleagues at nearby machines">
-      </div>
-      <div class="shot filled">
-        <img src="../imgs/works-winding-machine.png" width="1122" height="1402" loading="lazy"
-          alt="A Swiftheat operator at a winding machine, with ceramic tubes on the bench">
-      </div>
-      <div class="shot filled">
-        <img src="../imgs/works-machine-operators.png" width="1122" height="1402" loading="lazy"
-          alt="Two Swiftheat operators at a bench machine on the Peenya shop floor">
-      </div>
-      <div class="shot filled">
-        <img src="../imgs/works-office-desktop.png" width="1122" height="1402" loading="lazy"
-          alt="Swiftheat employee working at a desktop computer in the Peenya office">
-      </div>
-      <div class="shot filled">
-        <img src="../imgs/works-office-laptop.png" width="1122" height="1402" loading="lazy"
-          alt="Swiftheat employee working at a laptop in the Peenya office">
-      </div>
-      <div class="shot filled">
-        <img src="../imgs/works-entrance-c262.png" width="1122" height="1402" loading="lazy"
-          alt="The Swiftheat works entrance at Plot C-262, Peenya Industrial Area">
-      </div>
+    <div class="three" data-gallery="The works">
+      %(works)s
     </div>
+    <p class="cap">Click a photograph to enlarge.</p>
   </div>
 </section>
 
@@ -855,7 +846,22 @@ def resources():
     </div>
   </div>
 </section>
-"""
+""" % {
+        "works": "\n      ".join((
+            _gallery_photo(1, "workshop-worker-at-the-winding-machine.png", 1536, 1024,
+                           "A Swiftheat operator winding resistance wire, with colleagues at nearby machines"),
+            _gallery_photo(1, "works-winding-machine.png", 1122, 1402,
+                           "A Swiftheat operator at a winding machine, with ceramic tubes on the bench"),
+            _gallery_photo(1, "works-machine-operators.png", 1122, 1402,
+                           "Two Swiftheat operators at a bench machine on the Peenya shop floor"),
+            _gallery_photo(1, "works-office-desktop.png", 1122, 1402,
+                           "Swiftheat employee working at a desktop computer in the Peenya office"),
+            _gallery_photo(1, "works-office-laptop.png", 1122, 1402,
+                           "Swiftheat employee working at a laptop in the Peenya office"),
+            _gallery_photo(1, "works-entrance-c262.png", 1122, 1402,
+                           "The Swiftheat works entrance at Plot C-262, Peenya Industrial Area"),
+        )),
+    }
     return page("resources/index.html", "Resources and the works | %s" % COMPANY["name"],
                 "Dimensioned drawings, reference data and a gallery of the works at Peenya. Free, "
                 "and never behind a form.",
@@ -921,9 +927,11 @@ def contact():
       <p>Peenya Industrial Area 1st Stage, near SVC Co-operative Bank. Come and see the plant if you
         are specifying anything unusual: half an hour on the shop floor settles more than a week of
         email.</p>
-      <div class="shot shot-sm filled">
-        <img src="../imgs/works-entrance-c262.png" width="1122" height="1402" loading="lazy"
-          alt="The Swiftheat works entrance at Plot C-262, Peenya Industrial Area, with the shop floor visible inside">
+      <div class="shot shot-sm filled" data-gallery>
+        <a href="../imgs/works-entrance-c262.png">
+          <img src="../imgs/works-entrance-c262.png" width="1122" height="1402" loading="lazy"
+            alt="The Swiftheat works entrance at Plot C-262, Peenya Industrial Area, with the shop floor visible inside">
+        </a>
       </div>
       <p class="cap" style="margin-top:16px">No map is embedded here on purpose. An embedded map
         loads third party scripts and sets cookies, which would mean a consent banner on every page
