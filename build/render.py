@@ -83,10 +83,14 @@ def _hero_figure(f, slug, depth):
     Dimensions section, so nothing is lost by giving the hero to a photograph."""
     shot = _photo(slug, "hero")
     if shot:
-        return ('<figure class="drawing figure-photo"' + _bg(shot) + '>\n        %s\n'
+        href = rel(depth, "imgs/" + _img_rel(shot[0]))
+        return ('<figure class="drawing figure-photo" data-gallery="%s"%s>\n'
+                '        <a href="%s">\n        %s\n        </a>\n'
                 '        <figcaption>%s, made to order in Peenya. Every dimension and option on '
-                'this page is one you choose.</figcaption>\n      </figure>'
-                % (_img(shot, depth, eager=True), esc(f["name"])))
+                'this page is one you choose. Click the photograph to enlarge.</figcaption>\n'
+                '      </figure>'
+                % (esc(f["name"]), _bg(shot), href, _img(shot, depth, eager=True),
+                   esc(f["name"])))
     # The explanatory caption was marked "Not required" by the client on web 2.pptx
     # slides 2 and 15. The drawing stays; only the sentence under it goes.
     return ('<figure class="drawing">\n        %s\n      </figure>' % art(
