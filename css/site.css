@@ -155,6 +155,7 @@ img{max-width:100%;height:auto}
 .shot[data-gallery] a{display:flex;align-items:center;justify-content:center;width:100%;
   min-height:44px;text-decoration:none;color:inherit;cursor:zoom-in}
 .shot[data-gallery]:hover,.three[data-gallery] .shot:hover{border-color:var(--heat-500)}
+.shot.filled:not(.shot-part)[data-gallery] > a{display:block;height:100%}
 .shot.filled.shot-part img{width:auto;max-width:100%;height:auto;max-height:340px;object-fit:contain}
 section.band.alt .shot.filled.shot-part{background:var(--art-bg,var(--paper))}
 .hero .shot.filled.shot-part{background:var(--art-bg,var(--surface))}

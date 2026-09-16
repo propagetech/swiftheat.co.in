@@ -13,16 +13,24 @@ ADDRESS = {
     "addressCountry": COMPANY["country"],
 }
 
-def _gallery_photo(depth, name, w, h, alt, eager=False):
-    """A shop-floor photograph that opens the page gallery on click."""
+def _gallery_photo(depth, name, w, h, alt, eager=False, grouped=False,
+                   classes="shot filled", wrap_extra="", img_style=""):
+    """A photograph that opens the gallery dialog on click.
+
+    grouped=True when the tile already sits inside a parent [data-gallery], so
+    the set can be swiped. A lone shot carries data-gallery itself.
+    """
     href = rel(depth, "imgs/" + name)
+    gallery = "" if grouped else " data-gallery"
+    style = (' style="%s"' % img_style) if img_style else ""
     return (
-        '<div class="shot filled">\n'
+        '<div class="%s"%s%s>\n'
         '        <a href="%s">\n'
-        '          <img src="%s" width="%d" height="%d" loading="%s"\n'
+        '          <img src="%s" width="%d" height="%d"%s loading="%s"\n'
         '            alt="%s">\n'
         '        </a>\n'
-        '      </div>' % (href, href, w, h, "eager" if eager else "lazy", esc(alt))
+        '      </div>' % (classes, gallery, wrap_extra, href, href, w, h, style,
+                          "eager" if eager else "lazy", esc(alt))
     )
 
 
@@ -115,10 +123,7 @@ def home():
         <li><b>%(founded)s</b><span>Manufacturing since</span></li>
       </ul>
     </div>
-    <div class="shot filled">
-      <img src="imgs/works-shop-floor-wide.png" width="1448" height="1086" loading="eager"
-        alt="The Swiftheat shop floor in Peenya, with operators at winding and assembly benches">
-    </div>
+    %(hero)s
   </div>
 </section>
 
@@ -204,6 +209,10 @@ def home():
             ("noun-multimeter-8419064.svg", "Tested before despatch",
              "Resistance, high voltage and dimensional checks."),
         ]),
+        "hero": _gallery_photo(
+            0, "works-shop-floor-wide.png", 1448, 1086,
+            "The Swiftheat shop floor in Peenya, with operators at winding and assembly benches",
+            eager=True),
         "codes": sum(len(o) for f in LISTED_FAMILIES for _, o in f["options"]),
         "prods": prods,
         "inds": inds,
@@ -244,12 +253,7 @@ def products_index():
         <a class="btn btn-ghost" href="../applications/">Browse by industry instead</a>
       </div>
     </div>
-    <div class="shot filled shot-part"%(herobg)s>
-      <img src="../imgs/products-hero.png" width="%(herow)d" height="%(heroh)d"
-        style="max-width:min(100%%,%(herow)dpx)" loading="eager"
-        alt="Cartridge, coil, band and nozzle heaters laid out together with thermocouples,
-          sensors and a tubular element">
-    </div>
+    %(hero)s
   </div>
 </section>
 
@@ -323,9 +327,14 @@ def products_index():
         # behind it is painted that blue rather than the picture being cut off
         # its ground. Every lead and every white braided sleeve in it survives
         # that way, which no knockout of a blue this strong managed.
-        "herobg": imgmeta.bg("products-hero.png", pad=True),
-        "herow": imgmeta.size("products-hero.png")[0],
-        "heroh": imgmeta.size("products-hero.png")[1],
+        "hero": _gallery_photo(
+            depth, "products-hero.png",
+            imgmeta.size("products-hero.png")[0], imgmeta.size("products-hero.png")[1],
+            "Cartridge, coil, band and nozzle heaters laid out together with thermocouples, "
+            "sensors and a tubular element",
+            eager=True, classes="shot filled shot-part",
+            wrap_extra=imgmeta.bg("products-hero.png", pad=True),
+            img_style="max-width:min(100%%,%dpx)" % imgmeta.size("products-hero.png")[0]),
     }
     ld = {"@context": "https://schema.org", "@type": "CollectionPage",
           "name": "Products", "description": "Seven families of industrial heating element.",
@@ -415,10 +424,7 @@ def about():
         <a class="btn btn-ghost" href="../contact/">Come and see the works</a>
       </div>
     </div>
-    <div class="shot filled">
-      <img src="../imgs/works-shop-floor.png" width="1448" height="1086" loading="eager"
-        alt="The Swiftheat shop floor in Peenya, with operators at benches and machines">
-    </div>
+    %(hero)s
   </div>
 </section>
 
@@ -527,6 +533,10 @@ def about():
         "registered_office": esc(COMPANY["registered_office"]),
         "iso_cert": esc(COMPANY["iso_cert"]), "iso_body": esc(COMPANY["iso_body"]),
         "udyam": esc(COMPANY["udyam"]),
+        "hero": _gallery_photo(
+            1, "works-shop-floor.png", 1448, 1086,
+            "The Swiftheat shop floor in Peenya, with operators at benches and machines",
+            eager=True),
         "inds": cards(1, [("applications/%s/" % i["slug"], i["name"], i["problem"]) for i in INDUSTRIES]),
     }
     return page("about/index.html", "About | %s" % COMPANY["name"],
@@ -552,11 +562,7 @@ def capabilities():
         <a class="btn btn-ghost" href="../build-a-list/">Specify it yourself</a>
       </div>
     </div>
-    <div class="shot filled shot-part"%(caphbg)s>
-      <img src="../imgs/products-range-collage.png" width="%(caphw)d" height="%(caphh)d"
-        style="max-width:min(100%%,%(caphw)dpx)" loading="eager"
-        alt="Cartridge, tubular, thermocouple, ceramic infrared, coil and band heaters made in Peenya">
-    </div>
+    %(hero)s
   </div>
 </section>
 
@@ -607,21 +613,27 @@ def capabilities():
       <p>That judgement is what the option codes and the selection guidance on every product page are
         for: to put as much of it as possible in front of the buyer before they enquire.</p>
     </div>
-    <div class="shot shot-sm filled shot-part"%(capebg)s>
-      <img src="../imgs/applications-heaters-in-tooling.png" width="%(capew)d" height="%(capeh)d"
-        style="max-width:min(100%%,%(capew)dpx)" loading="lazy"
-        alt="Heating elements fitted into machine tooling, with leads dressed ready for connection">
-    </div>
+    %(tooling)s
   </div>
 </section>
 """ % {
         "tbd": TBD,
-        "caphbg": imgmeta.bg("products-range-collage.png", pad=True),
-        "caphw": imgmeta.size("products-range-collage.png")[0],
-        "caphh": imgmeta.size("products-range-collage.png")[1],
-        "capebg": imgmeta.bg("applications-heaters-in-tooling.png", pad=True),
-        "capew": imgmeta.size("applications-heaters-in-tooling.png")[0],
-        "capeh": imgmeta.size("applications-heaters-in-tooling.png")[1],
+        "hero": _gallery_photo(
+            1, "products-range-collage.png",
+            imgmeta.size("products-range-collage.png")[0],
+            imgmeta.size("products-range-collage.png")[1],
+            "Cartridge, tubular, thermocouple, ceramic infrared, coil and band heaters made in Peenya",
+            eager=True, classes="shot filled shot-part",
+            wrap_extra=imgmeta.bg("products-range-collage.png", pad=True),
+            img_style="max-width:min(100%%,%dpx)" % imgmeta.size("products-range-collage.png")[0]),
+        "tooling": _gallery_photo(
+            1, "applications-heaters-in-tooling.png",
+            imgmeta.size("applications-heaters-in-tooling.png")[0],
+            imgmeta.size("applications-heaters-in-tooling.png")[1],
+            "Heating elements fitted into machine tooling, with leads dressed ready for connection",
+            classes="shot shot-sm filled shot-part",
+            wrap_extra=imgmeta.bg("applications-heaters-in-tooling.png", pad=True),
+            img_style="max-width:min(100%%,%dpx)" % imgmeta.size("applications-heaters-in-tooling.png")[0]),
         "capcards": icon_cards(1, [
         ("noun-technical-drawing-8436969.svg", "Custom design",
          "An element designed around your drawing, your bore, your clearance and your duty. Most of "
@@ -660,10 +672,7 @@ def quality():
         <a class="btn" href="../contact/">Ask for a sample certificate</a>
       </div>
     </div>
-    <div class="shot filled shot-part" style="--art-bg:#ffffff">
-      <img src="../imgs/quality-assurance.png" width="1254" height="1254" loading="eager"
-        alt="Quality assurance covering inspection, records, calibration and process control">
-    </div>
+    %(hero)s
   </div>
 </section>
 
@@ -770,6 +779,11 @@ def quality():
 """ % {"tbd": TBD, "cin": COMPANY["cin"], "iso": esc(COMPANY["iso"]), "gst": esc(COMPANY["gst"]),
        "iso_cert": esc(COMPANY["iso_cert"]), "iso_body": esc(COMPANY["iso_body"]),
        "iso_valid": esc(COMPANY["iso_valid"]), "udyam": esc(COMPANY["udyam"]),
+       "hero": _gallery_photo(
+           1, "quality-assurance.png", 1254, 1254,
+           "Quality assurance covering inspection, records, calibration and process control",
+           eager=True, classes="shot filled shot-part",
+           wrap_extra=' style="--art-bg:#ffffff"'),
        "testcards": icon_cards(1, [
         ("noun-multimeter-8419064.svg", "Resistance",
          "Catches the wrong wattage, a wrong turn count and a bad joint. It is also the number you "
@@ -808,10 +822,7 @@ def resources():
         <a class="btn btn-ghost" href="../contact/">Ask for something specific</a>
       </div>
     </div>
-    <div class="shot filled">
-      <img src="../imgs/works-winding-machine.png" width="1122" height="1402" loading="eager"
-        alt="A Swiftheat operator at a winding machine on the Peenya shop floor">
-    </div>
+    %(hero)s
   </div>
 </section>
 
@@ -847,19 +858,29 @@ def resources():
   </div>
 </section>
 """ % {
+        "hero": _gallery_photo(
+            1, "works-winding-machine.png", 1122, 1402,
+            "A Swiftheat operator at a winding machine on the Peenya shop floor",
+            eager=True),
         "works": "\n      ".join((
             _gallery_photo(1, "workshop-worker-at-the-winding-machine.png", 1536, 1024,
-                           "A Swiftheat operator winding resistance wire, with colleagues at nearby machines"),
+                           "A Swiftheat operator winding resistance wire, with colleagues at nearby machines",
+                           grouped=True),
             _gallery_photo(1, "works-winding-machine.png", 1122, 1402,
-                           "A Swiftheat operator at a winding machine, with ceramic tubes on the bench"),
+                           "A Swiftheat operator at a winding machine, with ceramic tubes on the bench",
+                           grouped=True),
             _gallery_photo(1, "works-machine-operators.png", 1122, 1402,
-                           "Two Swiftheat operators at a bench machine on the Peenya shop floor"),
+                           "Two Swiftheat operators at a bench machine on the Peenya shop floor",
+                           grouped=True),
             _gallery_photo(1, "works-office-desktop.png", 1122, 1402,
-                           "Swiftheat employee working at a desktop computer in the Peenya office"),
+                           "Swiftheat employee working at a desktop computer in the Peenya office",
+                           grouped=True),
             _gallery_photo(1, "works-office-laptop.png", 1122, 1402,
-                           "Swiftheat employee working at a laptop in the Peenya office"),
+                           "Swiftheat employee working at a laptop in the Peenya office",
+                           grouped=True),
             _gallery_photo(1, "works-entrance-c262.png", 1122, 1402,
-                           "The Swiftheat works entrance at Plot C-262, Peenya Industrial Area"),
+                           "The Swiftheat works entrance at Plot C-262, Peenya Industrial Area",
+                           grouped=True),
         )),
     }
     return page("resources/index.html", "Resources and the works | %s" % COMPANY["name"],
