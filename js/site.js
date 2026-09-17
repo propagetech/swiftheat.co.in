@@ -8,8 +8,14 @@
 
   document.documentElement.classList.remove('nojs');
 
+  /* Each widget is isolated: a throw in the enquiry form must not kill the
+     gallery, and the other way around. */
+  function run(fn) {
+    try { fn(); } catch (e) {}
+  }
+
   /* ---------- mobile navigation ---------- */
-  (function nav() {
+  run(function nav() {
     var btn = document.querySelector('.navtoggle');
     var panel = document.getElementById('mainnav');
     if (!btn || !panel) return;
@@ -30,10 +36,10 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && !closed() && mq.matches) { set(false); btn.focus(); }
     });
-  })();
+  });
 
   /* ---------- product finder ---------- */
-  (function finder() {
+  run(function finder() {
     var form = document.getElementById('finder');
     if (!form) return;
     var items = Array.prototype.slice.call(document.querySelectorAll('#productList > li'));
@@ -73,14 +79,14 @@
       apply();
     });
     apply();
-  })();
+  });
 
   /* ---------- enquiry form ---------- */
   /* Reads whatever fieldsets the page happens to carry, so one function serves
      the scoped form on every product page, every industry page and the contact
      page. The composed message goes to the visitor's own mail application: no
      server, no database, nothing stored anywhere. */
-  (function rfq() {
+  run(function rfq() {
     var form = document.getElementById('rfqForm');
     if (!form) return;
     var pre = document.getElementById('mailPreview');
@@ -144,15 +150,17 @@
     }
     if (btn) btn.addEventListener('click', send);
     refresh();
-  })();
+  });
 
   /* ---------- photograph gallery ---------- */
   /* Each [data-gallery] is one set. Tiles are ordinary links, so with the
      script blocked they still open the picture. With it, they open a dialog
      you can slide left and right, with the keyboard and with a swipe. */
-  (function gallery() {
+  run(function gallery() {
     var groups = Array.prototype.slice.call(document.querySelectorAll('[data-gallery]'));
-    if (!groups.length || typeof HTMLDialogElement !== 'function') return;
+    var canDialog = typeof HTMLDialogElement === 'function'
+      || typeof document.createElement('dialog').showModal === 'function';
+    if (!groups.length || !canDialog) return;
 
     var dlg = document.createElement('dialog');
     dlg.className = 'gallery';
@@ -272,6 +280,6 @@
       if (dx > 40) show(index - 1);
       else if (dx < -40) show(index + 1);
     });
-  })();
+  });
 
 })();

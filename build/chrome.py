@@ -14,6 +14,17 @@ from .data import COMPANY, INDUSTRIES, LISTED_FAMILIES, PREVIEW_NOINDEX, TBD
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ART = os.path.join(HERE, "art")
+ROOT = os.path.join(HERE, "..")
+
+
+def _asset(depth, path):
+    """A relative asset URL with a mtime query so a new file is not served stale."""
+    full = os.path.join(ROOT, path)
+    href = rel(depth, path)
+    try:
+        return "%s?v=%d" % (href, int(os.path.getmtime(full)))
+    except OSError:
+        return href
 
 NAV = [
     ("products/", "Products"),
@@ -363,12 +374,12 @@ def page(path, title, description, body, active="", depth=None, jsonld=None, jum
         depth = len([p for p in path.split("/") if p and not p.endswith(".html")])
     canonical = COMPANY["origin"] + "/" + (path if path != "index.html" else "")
     canonical = canonical.replace("/index.html", "/")
-    css = ['<link rel="stylesheet" href="%s">' % rel(depth, "css/site.css")]
+    css = ['<link rel="stylesheet" href="%s">' % _asset(depth, "css/site.css")]
     for c in (extra_css or []):
-        css.append('<link rel="stylesheet" href="%s">' % rel(depth, c))
-    scripts = ['<script src="%s"></script>' % rel(depth, "js/site.js")]
+        css.append('<link rel="stylesheet" href="%s">' % _asset(depth, c))
+    scripts = ['<script src="%s"></script>' % _asset(depth, "js/site.js")]
     for j in (extra_js or []):
-        scripts.append('<script src="%s"></script>' % rel(depth, j))
+        scripts.append('<script src="%s"></script>' % _asset(depth, j))
     ld = ""
     if jsonld:
         import json
