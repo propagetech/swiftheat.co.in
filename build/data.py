@@ -170,10 +170,12 @@ FAMILIES = [
       "cartridge-double-ended.png"),
    ]),
    ("Lead protection", [
-     ("L1", "Silicone coated fibreglass", "General purpose, dry and clean environments.", TBD, "Silicon-coated-Fibreglass-sleeve.png"),
+     # L1 and L5 ratings are the continuous limits Swiftheat already publish in
+     # options_note below. L3 and L4 are mechanical sleeves; no temperature was given.
+     ("L1", "Silicone coated fibreglass", "General purpose, dry and clean environments.", "450 °C", "Silicon-coated-Fibreglass-sleeve.png"),
      ("L3", "Braided metal sleeve", "Abrasion resistance where leads move or rub.", TBD, "Braided-Metal-sleeve.png"),
      ("L4", "Armour cable", "Full mechanical protection on a moving platen.", TBD, "Armour.png"),
-     ("L5", "Ceramic beading", "Highest lead exit temperature, no organic insulation.", TBD,
+     ("L5", "Ceramic beading", "Highest lead exit temperature, no organic insulation.", "900 to 1000 °C",
       "ch-ceramic-beading.png"),
    ]),
    ("Inbuilt thermocouple", [
@@ -459,7 +461,8 @@ FAMILIES = [
  "chips": [("10 to 150 mm", "Nozzle diameter", False),
            ("20 to 400 mm", "Heated length", False),
            ("100 to 3000 W", "Wattage range", False),
-           (TBD, "Max working temp", True)],
+           # Same ceramic figure as band heaters: this family was clubbed into that page.
+           ("500 °C", "Max working temp", False)],
  "temps": (150, 700),
  "construction": [
    "A nozzle heater is a band heater built to nozzle proportions: short, small in diameter and "
@@ -473,8 +476,9 @@ FAMILIES = [
  ],
  "spec_cols": ["Property", "Ceramic", "Mica"],
  "spec_rows": [
-   ("Maximum working temperature", TBD, TBD),
-   ("Maximum watt density", TBD, TBD),
+   # Temperature and watt density taken from the clubbed band heater table.
+   ("Maximum working temperature", "500 °C", "250 °C"),
+   ("Maximum watt density", "50 W/sq in", "20 W/sq in"),
    ("Standard voltages", "110, 230, 240 V", "110, 230, 240 V"),
    ("Nozzle outside diameter", "10 to 150 mm", "10 to 150 mm"),
    ("Heated length range", "20 to 400 mm", "20 to 400 mm"),
@@ -492,8 +496,8 @@ FAMILIES = [
  "dim_keys": "OD nozzle outside diameter, HL heated length, T available wall thickness",
  "options": [
    ("Material", [
-     ("CE", "Ceramic", "Higher temperature, thicker section.", TBD),
-     ("MI", "Mica", "Thin section where clearance is the constraint.", TBD),
+     ("CE", "Ceramic", "Higher temperature, thicker section.", "500 °C"),
+     ("MI", "Mica", "Thin section where clearance is the constraint.", "250 °C"),
    ]),
    ("Inbuilt thermocouple", [
      ("TC0", "None", "Control from a separate sensor.", ""),

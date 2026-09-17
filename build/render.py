@@ -200,6 +200,25 @@ def _val(v):
     return '<span class="tbd">%s</span>' % esc(v) if v == TBD else esc(v)
 
 
+def _spec_note(f):
+    """The waiting-on-engineers banner only belongs on a table that still has
+    unmarked figures. Families whose numbers have already been supplied should
+    not keep telling a buyer that the table is unfinished."""
+    pending = any(c == TBD for row in f.get("spec_rows") or [] for c in row[1:])
+    pending = pending or any(chip[0] == TBD or (len(chip) > 2 and chip[2])
+                             for chip in f.get("chips") or [])
+    if not pending:
+        return ""
+    return (
+        '    <div class="note">\n'
+        '      <p><strong>Figures marked "to confirm" are not published yet.</strong> The structure of this\n'
+        '        table is settled; the numbers come from Swiftheat\'s engineers and nothing appears here until\n'
+        '        they are confirmed. Published tolerances are worth having: to a die and mould buyer, a stated\n'
+        '        diameter tolerance says more about process control than any badge.</p>\n'
+        '    </div>\n'
+    )
+
+
 def _chips(chips):
     li = "".join('<li><b%s>%s</b><span>%s</span></li>'
                  % (' class="tbd"' if t else "", esc(v), esc(l)) for v, l, t in chips)
@@ -403,13 +422,7 @@ def product_page(f):
 <section class="band alt" id="data">
   <div class="wrap">
     <h2>Technical data</h2>
-    <div class="note">
-      <p><strong>Figures marked "to confirm" are not published yet.</strong> The structure of this
-        table is settled; the numbers come from Swiftheat's engineers and nothing appears here until
-        they are confirmed. Published tolerances are worth having: to a die and mould buyer, a stated
-        diameter tolerance says more about process control than any badge.</p>
-    </div>
-    %(spec)s
+%(spec_note)s    %(spec)s
   </div>
 </section>
 
@@ -504,6 +517,7 @@ def product_page(f):
         "tscale": tscale(lo, hi,
                          note="The upper limit is Swiftheat's confirmed rating from the specification "
                               "table below. The lower end is indicative for this element type."),
+        "spec_note": _spec_note(f),
         "spec": _spec_table(f),
         "dims": _dim_table(f),
         "dimkeys": esc(f["dim_keys"]),

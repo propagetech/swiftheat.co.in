@@ -15,8 +15,8 @@
 <meta name="theme-color" content="#0d1620">
 <link rel="preload" href="../fonts/archivo-narrow-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../css/site.css?v=1789638448">
-<link rel="stylesheet" href="../css/bom.css?v=1787695203">
+<link rel="stylesheet" href="../css/site.css?v=1789641421">
+<link rel="stylesheet" href="../css/bom.css?v=1789640433">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -118,7 +118,7 @@
               <label for="qty">Quantity <span class="u">nos</span></label>
               <input id="qty" type="number" min="1" max="9999" value="1" inputmode="numeric">
             </div>
-            <div class="spec" style="max-width:260px">
+            <div class="spec spec-note">
               <label for="lineNote">Note for this line <span class="u">optional</span></label>
               <input id="lineNote" type="text" placeholder="e.g. for machine 3, urgent">
             </div>
@@ -133,9 +133,12 @@
         <section class="viz-panel" id="vizPanel" hidden aria-labelledby="vizTitle">
           <div class="viz-head">
             <h2 id="vizTitle">Live drawing</h2>
-            <div class="viewtoggle" id="viewToggle" role="group" aria-label="Drawing style">
-              <button type="button" data-mode="flat" aria-pressed="true">Flat</button>
-              <button type="button" data-mode="iso" aria-pressed="false">Isometric</button>
+            <div class="viz-tools">
+              <div class="viewtoggle" id="viewToggle" role="group" aria-label="Drawing style">
+                <button type="button" data-mode="flat" aria-pressed="true">Flat</button>
+                <button type="button" data-mode="iso" aria-pressed="false">Isometric</button>
+              </div>
+              <button type="button" class="viz-fold" id="vizFold" aria-expanded="true" aria-controls="vizArt">Hide drawing</button>
             </div>
           </div>
           <div id="vizArt"></div>
@@ -246,7 +249,7 @@
   </div>
 </footer>
 
-<script src="../js/site.js?v=1789638448"></script>
-<script src="../js/bom.js?v=1789562794"></script>
+<script src="../js/site.js?v=1789641418"></script>
+<script src="../js/bom.js?v=1789640433"></script>
 </body>
 </html>

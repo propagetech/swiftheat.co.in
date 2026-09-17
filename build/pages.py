@@ -853,7 +853,6 @@ def resources():
       <h2>Reference data</h2>
       <p>Watt density guidance, bore fit tables, thermocouple type comparison and failure diagnosis
         will be published here as reference pages rather than as gated PDFs.</p>
-      <p class="tbd">To be written once the specification ranges are confirmed.</p>
     </div>
   </div>
 </section>
@@ -1036,7 +1035,7 @@ BUILDER_BODY = """
               <label for="qty">Quantity <span class="u">nos</span></label>
               <input id="qty" type="number" min="1" max="9999" value="1" inputmode="numeric">
             </div>
-            <div class="spec" style="max-width:260px">
+            <div class="spec spec-note">
               <label for="lineNote">Note for this line <span class="u">optional</span></label>
               <input id="lineNote" type="text" placeholder="e.g. for machine 3, urgent">
             </div>
@@ -1051,9 +1050,12 @@ BUILDER_BODY = """
         <section class="viz-panel" id="vizPanel" hidden aria-labelledby="vizTitle">
           <div class="viz-head">
             <h2 id="vizTitle">Live drawing</h2>
-            <div class="viewtoggle" id="viewToggle" role="group" aria-label="Drawing style">
-              <button type="button" data-mode="flat" aria-pressed="true">Flat</button>
-              <button type="button" data-mode="iso" aria-pressed="false">Isometric</button>
+            <div class="viz-tools">
+              <div class="viewtoggle" id="viewToggle" role="group" aria-label="Drawing style">
+                <button type="button" data-mode="flat" aria-pressed="true">Flat</button>
+                <button type="button" data-mode="iso" aria-pressed="false">Isometric</button>
+              </div>
+              <button type="button" class="viz-fold" id="vizFold" aria-expanded="true" aria-controls="vizArt">Hide drawing</button>
             </div>
           </div>
           <div id="vizArt"></div>

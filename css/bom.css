@@ -18,18 +18,14 @@
      above the steps and stays on screen while you work down them, the list
      drops to the bottom. Flex, not grid: a sticky grid item can only stick
      inside its own row, which is exactly its own height, so it never moves. */
-  .builder{display:flex;flex-direction:column;gap:var(--s6)}
+  .builder{display:flex;flex-direction:column;gap:var(--s6);align-items:stretch}
   .rail{display:contents}
   /* flex items default to min-width:auto, which lets a tile grid push the
      whole column wider than the viewport */
   .steps,.viz-panel,.cart{min-width:0;max-width:100%}
-  .viz-panel{order:-1;position:sticky;top:var(--header-h);z-index:6}
+  .viz-panel{order:-1;position:sticky;top:var(--header-offset);z-index:6;transition:top .22s ease}
   .steps{order:0}
   .cart{order:1}
-}
-@media (max-width:900px){
-  /* the masthead stops being sticky here, so the drawing takes the top */
-  .viz-panel{top:0}
 }
 
 .step{margin-bottom:var(--s8)}
@@ -77,12 +73,35 @@
 .viz-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
   gap:var(--s3);margin-bottom:var(--s3)}
 .viz-head h2{margin:0;font-size:1.05rem}
+.viz-tools{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2)}
+.viz-fold{display:none;align-items:center;justify-content:center;min-height:44px;
+  padding:var(--s2) var(--s3);background:var(--surface);border:1px solid var(--ink-300);
+  border-radius:var(--radius);font:inherit;font-size:.8rem;font-weight:600;color:var(--ink-700);
+  cursor:pointer;white-space:nowrap}
+.viz-fold:hover{border-color:var(--heat-500);color:var(--ink-900)}
 .viz-panel #vizArt svg{width:100%;height:auto;display:block}
 .viz-panel .cap{font-size:.78rem;color:var(--ink-600);margin:var(--s3) 0 0;line-height:1.45}
 @media (max-width:1040px){
-  .viz-panel{padding:var(--s3) var(--s4) var(--s4);box-shadow:0 6px 14px hsl(214 32% 11% / .10)}
-  .viz-panel #vizArt svg{max-height:30vh}
+  .viz-panel{width:100%;padding:var(--s3) var(--s4) var(--s4);box-shadow:0 6px 14px hsl(214 32% 11% / .10)}
+  .viz-panel #vizArt svg{max-height:min(22dvh,168px)}
   .viz-panel .cap{display:none}
+  .viz-fold{display:inline-flex}
+  .viz-head h2{font-size:.95rem}
+  .viz-panel.is-folded{padding:var(--s2) var(--s4);background:var(--surface)}
+  .viz-panel.is-folded .viz-head{margin-bottom:0;flex-wrap:nowrap;gap:var(--s2)}
+  .viz-panel.is-folded .viz-head h2{flex:1 1 auto;min-width:0}
+  .viz-panel.is-folded #vizArt,
+  .viz-panel.is-folded .viewtoggle{display:none}
+  .dimfield input,.dimfield select,.spec input,.who input{
+    scroll-margin-top:72px;scroll-margin-bottom:16px}
+  #builderView{padding-bottom:var(--builder-kb,0px)}
+}
+@media (max-width:700px){
+  #builderView > .hero{padding:var(--s5) 0}
+  #builderView > .hero h1{font-size:1.85rem}
+  #builderView > .hero .lede{font-size:1rem}
+  #builderView > .band{padding:var(--s6) 0}
+  .step{margin-bottom:var(--s6)}
 }
 
 .partcode{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--s3);margin-top:var(--s5);
@@ -92,6 +111,12 @@
 
 .addrow{display:flex;flex-wrap:wrap;gap:var(--s4);align-items:flex-end;margin-top:var(--s5)}
 .addrow .spec{max-width:150px}
+.addrow .spec-note{max-width:260px}
+@media (max-width:700px){
+  .addrow{flex-direction:column;align-items:stretch}
+  .addrow .spec,.addrow .spec-note{max-width:none}
+  .addrow .btn{width:100%;text-align:center}
+}
 
 /* the list, second in the rail */
 .cart{background:var(--surface);border:1px solid var(--ink-200);

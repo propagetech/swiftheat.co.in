@@ -1250,4 +1250,107 @@
     items.splice(parseInt(b.getAttribute('data-i'), 10), 1);
     renderCart();
   });
+
+  /* On a phone the drawing sticks at the top so you can see it answer the
+     sizes. When the keyboard is open that same panel, plus the masthead,
+     leaves no room for the field. Fold it to a one-line bar, keep the active
+     field inside the visual viewport, and let a tap bring the drawing back. */
+  (function phoneWorkspace() {
+    var panel = $('vizPanel');
+    var fold = $('vizFold');
+    var root = document.documentElement;
+    if (!panel || !fold) return;
+
+    var mq = window.matchMedia('(max-width:1040px)');
+    var userPinned = false;
+    var folded = false;
+    var keepTimer = 0;
+
+    function isField(el) {
+      if (!el || !el.tagName) return false;
+      var t = el.tagName;
+      return t === 'INPUT' || t === 'SELECT' || t === 'TEXTAREA';
+    }
+    function keyboardUp() {
+      var vv = window.visualViewport;
+      if (!vv) return false;
+      return (window.innerHeight - vv.height) > 120;
+    }
+    function setFolded(on) {
+      folded = on;
+      panel.classList.toggle('is-folded', on);
+      fold.setAttribute('aria-expanded', String(!on));
+      fold.textContent = on ? 'Show drawing' : 'Hide drawing';
+    }
+    function keyboardInset() {
+      var vv = window.visualViewport;
+      if (!vv) return 0;
+      return Math.max(0, window.innerHeight - vv.height - vv.offsetTop);
+    }
+    function keepVisible(el) {
+      if (!mq.matches || !isField(el) || panel.hidden) return;
+      var vv = window.visualViewport;
+      var offset = vv ? vv.offsetTop : 0;
+      var viewH = vv ? vv.height : window.innerHeight;
+      var wrap = el.closest('.dimfield, .spec') || el;
+      var wr = wrap.getBoundingClientRect();
+      var r = el.getBoundingClientRect();
+      var top = wr.top - offset;
+      var bottom = Math.max(wr.bottom, r.bottom) - offset;
+      var topSafe = panel.getBoundingClientRect().bottom - offset + 12;
+      var botSafe = viewH - 16;
+      if (top < topSafe || bottom > botSafe) {
+        window.scrollBy(0, top - topSafe);
+      }
+    }
+    function scheduleKeep(el) {
+      window.clearTimeout(keepTimer);
+      keepTimer = window.setTimeout(function () { keepVisible(el); }, 60);
+    }
+    function sync() {
+      if (!mq.matches) {
+        setFolded(false);
+        userPinned = false;
+        root.style.removeProperty('--builder-kb');
+        return;
+      }
+      var typing = isField(document.activeElement) || keyboardUp();
+      root.style.setProperty('--builder-kb', keyboardInset() + 'px');
+      if (typing && !userPinned) {
+        setFolded(true);
+        scheduleKeep(document.activeElement);
+      } else if (!typing) {
+        userPinned = false;
+        setFolded(false);
+      }
+    }
+
+    fold.addEventListener('click', function () {
+      if (folded) {
+        userPinned = true;
+        setFolded(false);
+        scheduleKeep(document.activeElement);
+      } else {
+        userPinned = false;
+        setFolded(true);
+      }
+    });
+    document.addEventListener('focusin', function (e) {
+      if (!isField(e.target)) return;
+      userPinned = false;
+      sync();
+    });
+    document.addEventListener('focusout', function () {
+      window.setTimeout(sync, 50);
+    });
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', sync);
+      window.visualViewport.addEventListener('scroll', function () {
+        keepVisible(document.activeElement);
+      });
+    }
+    window.addEventListener('resize', sync);
+    if (mq.addEventListener) mq.addEventListener('change', sync);
+    sync();
+  })();
 })();

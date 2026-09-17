@@ -1,8 +1,9 @@
 /* Swiftheat — one script for the whole site.
-   Five small, independent pieces: the mobile nav, the jump-nav current section,
-   the product finder, the enquiry form that composes a readable email, and the
-   photograph gallery. Nothing here is required for the content to be readable;
-   the page works with the script blocked. */
+   Six small, independent pieces: the mobile nav, the auto-hiding sticky header,
+   the jump-nav current section, the product finder, the enquiry form that
+   composes a readable email, and the photograph gallery. Nothing here is
+   required for the content to be readable; the page works with the script
+   blocked. */
 (function () {
   'use strict';
 
@@ -36,6 +37,8 @@
 
     var subBtn = panel.querySelector('.subtoggle');
     var subItem = panel.querySelector('.has-sub');
+    var parentLink = subItem ? subItem.querySelector(':scope > a') : null;
+    var subList = panel.querySelector('#nav-products');
     function subOpen() {
       return subBtn && subBtn.getAttribute('aria-expanded') === 'true';
     }
@@ -43,12 +46,35 @@
       if (!subBtn || !subItem) return;
       subBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
       subItem.classList.toggle('is-open', open);
+      if (open) subItem.classList.remove('is-closed');
     }
-    setSub(subOpen());
+    function subVisible() {
+      return subList && window.getComputedStyle(subList).display !== 'none';
+    }
+    function collapseSub() {
+      setSub(false);
+      if (subItem) subItem.classList.add('is-closed');
+    }
+    // Family pages mark the accordion open in HTML. That is for the phone
+    // drawer; on desktop hover and focus already reveal the list, and is-open
+    // would pin it on the page.
+    setSub(mq.matches && subOpen());
     if (subBtn) {
       subBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         setSub(!subOpen());
+      });
+    }
+    if (parentLink) {
+      parentLink.addEventListener('click', function (e) {
+        if (!subVisible()) return;
+        e.preventDefault();
+        collapseSub();
+      });
+    }
+    if (subItem) {
+      subItem.addEventListener('mouseleave', function () {
+        subItem.classList.remove('is-closed');
       });
     }
 
@@ -66,6 +92,111 @@
       }
       if (!closed() && mq.matches) { set(false); btn.focus(); }
     });
+  });
+
+  /* ---------- auto-hiding sticky header ---------- */
+  /* Scroll down to read, the masthead slides away. Scroll up and it comes
+     back, which is how most long pages now behave. The jump nav keeps its
+     own sticky slot and moves up into the space the header left. Reduced
+     motion skips the scroll-driven hide, but a focused field or an open
+     keyboard still puts the header away so the field is not covered. An
+     open mobile menu pins the header too. */
+  run(function autohide() {
+    var header = document.querySelector('.masthead');
+    if (!header) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    var root = document.documentElement;
+    var btn = document.querySelector('.navtoggle');
+    var mq = window.matchMedia('(max-width:980px)');
+    var lastY = window.scrollY;
+    var accumulated = 0;
+    var hidden = false;
+    var ticking = false;
+    var THRESHOLD = 12;
+
+    function menuOpen() {
+      // On desktop the toggle is kept aria-expanded so the nav stays in the
+      // tree; that is not an open mobile menu.
+      return mq.matches && btn && btn.getAttribute('aria-expanded') === 'true';
+    }
+    function fieldFocused() {
+      var el = document.activeElement;
+      if (!el || !el.tagName) return false;
+      var t = el.tagName;
+      return t === 'INPUT' || t === 'SELECT' || t === 'TEXTAREA';
+    }
+    function keyboardUp() {
+      var vv = window.visualViewport;
+      if (!vv) return false;
+      return (window.innerHeight - vv.height) > 120;
+    }
+    function setHidden(next) {
+      if (next === hidden) return;
+      hidden = next;
+      root.classList.toggle('header-hidden', hidden);
+    }
+    function update() {
+      var y = Math.max(0, window.scrollY);
+      var dy = y - lastY;
+      lastY = y;
+      var typing = mq.matches && (fieldFocused() || keyboardUp());
+      root.classList.toggle('is-scrolled', y > 16);
+      root.classList.toggle('is-typing', typing);
+
+      /* A focused field or an open keyboard must get the masthead out of the
+         way, even when scroll-driven auto-hide is off for reduced motion.
+         Otherwise the sticky header and the keyboard split the screen and the
+         field sits under one of them. */
+      if (typing) {
+        accumulated = 0;
+        setHidden(true);
+        return;
+      }
+      if (reduce.matches) {
+        setHidden(false);
+        return;
+      }
+
+      if (y < header.offsetHeight || menuOpen() || header.contains(document.activeElement)) {
+        accumulated = 0;
+        setHidden(false);
+        return;
+      }
+      if ((dy > 0 && accumulated < 0) || (dy < 0 && accumulated > 0)) accumulated = 0;
+      accumulated += dy;
+      if (accumulated > THRESHOLD) setHidden(true);
+      else if (accumulated < -THRESHOLD) setHidden(false);
+    }
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () {
+        ticking = false;
+        update();
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    document.addEventListener('focusin', update);
+    document.addEventListener('focusout', function () {
+      window.setTimeout(update, 50);
+    });
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', update);
+      window.visualViewport.addEventListener('scroll', onScroll);
+    }
+    header.addEventListener('focusin', function () {
+      if (!fieldFocused()) setHidden(false);
+    });
+    if (btn) {
+      btn.addEventListener('click', function () {
+        window.requestAnimationFrame(function () {
+          if (menuOpen()) setHidden(false);
+        });
+      });
+    }
+    update();
   });
 
   /* ---------- jump nav, current section ---------- */
