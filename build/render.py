@@ -549,7 +549,7 @@ def product_page(f):
         "%s | %s" % (f["name"], COMPANY["name"]),
         f["meta"],
         body,
-        active="products/",
+        active="products/%s/" % slug,
         depth=depth,
         jsonld=ld,
         jump=jump,
@@ -732,7 +732,7 @@ def redirect_page(f):
         "%s | %s" % (f["name"], COMPANY["name"]),
         dest["meta"],
         body,
-        active="products/",
+        active="products/%s/" % target,
         depth=depth,
         crumb=[("", "Home"), ("products/", "Products"), (None, f["name"])],
     )

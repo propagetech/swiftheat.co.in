@@ -75,12 +75,31 @@ img{max-width:100%;height:auto}
   font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}
 .navtoggle svg{display:block}
 .mainnav{margin-left:auto}
-.mainnav ul{display:flex;gap:var(--s1);list-style:none;margin:0;padding:0;max-width:none}
+.mainnav > ul{display:flex;gap:var(--s1);list-style:none;margin:0;padding:0;max-width:none}
+.mainnav li{margin:0}
 .mainnav a{display:block;padding:var(--s3) var(--s3);color:var(--ink-700);text-decoration:none;font-size:.92rem;font-weight:500;border-radius:var(--radius);white-space:nowrap}
 .mainnav a:hover{background:var(--ink-100);color:var(--ink-900)}
-.mainnav a[aria-current]{color:var(--heat-700);box-shadow:inset 0 -3px 0 var(--heat-500)}
+.mainnav > ul > li > a[aria-current]{color:var(--heat-700);box-shadow:inset 0 -3px 0 var(--heat-500)}
 .mainnav .cta a{background:var(--heat-600);color:#fff;font-weight:600}
 .mainnav .cta a:hover{background:var(--heat-700);color:#fff}
+/* Products disclosure: hover and focus-within on desktop, a 44px chevron on
+   touch. Child combinators keep the nested list from inheriting the row. */
+.mainnav .has-sub{position:relative}
+.mainnav .has-sub > a{display:flex;align-items:center;gap:var(--s2)}
+.mainnav .has-sub > a::after{content:"";width:0;height:0;border-left:4px solid transparent;
+  border-right:4px solid transparent;border-top:5px solid currentColor;margin-top:2px}
+.mainnav .subtoggle{display:none;align-items:center;justify-content:center;min-width:44px;min-height:44px;
+  padding:0;border:0;background:transparent;color:var(--ink-700);cursor:pointer}
+.mainnav .subtoggle svg{display:block}
+.mainnav .submenu{display:none;position:absolute;top:calc(100% - 1px);left:0;z-index:21;
+  min-width:18rem;margin:0;padding:var(--s2) 0;list-style:none;max-width:none;
+  background:var(--surface);border:1px solid var(--ink-200);border-top:3px solid var(--heat-500);
+  border-radius:var(--radius);box-shadow:var(--shadow-image)}
+.mainnav .has-sub:hover > .submenu,
+.mainnav .has-sub:focus-within > .submenu,
+.mainnav .has-sub.is-open > .submenu{display:block}
+.mainnav .submenu a{white-space:normal;font-size:.88rem;line-height:1.35;padding:var(--s3) var(--s4);border-radius:0}
+.mainnav .submenu a[aria-current]{color:var(--heat-700);box-shadow:inset 3px 0 0 var(--heat-500)}
 
 .btn{display:inline-block;background:var(--heat-600);color:#fff;text-decoration:none;font-weight:600;
   padding:var(--s3) var(--s5);border-radius:var(--radius);min-height:44px;line-height:1.85;border:0;cursor:pointer;font-size:1rem;font-family:inherit}
@@ -92,9 +111,12 @@ img{max-width:100%;height:auto}
 .btn-onink{background:transparent;color:#fff;border:1px solid hsl(214 24% 36%)}
 .btn-onink:hover{background:hsl(214 30% 17%);color:#fff;border-color:var(--heat-500)}
 
-.crumb{font-size:.85rem;color:var(--ink-600);padding:var(--s4) 0}
-.crumb ol{display:flex;flex-wrap:wrap;gap:var(--s2);list-style:none;margin:0;padding:0;max-width:none}
-.crumb li{margin:0}
+/* Same surface as the masthead, so this is a trail not a tinted band between
+   two white sections. Items stay on one line; they wrap as a unit, not as a
+   full-width first step that parks the rest on a second row. */
+.crumb{font-size:.85rem;color:var(--ink-600);background:var(--surface);padding:var(--s2) 0}
+.crumb ol{display:flex;flex-wrap:wrap;align-items:center;column-gap:var(--s2);row-gap:0;list-style:none;margin:0;padding:0;max-width:none}
+.crumb li{margin:0;display:flex;align-items:center;flex:0 0 auto;white-space:nowrap}
 .crumb li::after{content:"\203A";margin-left:var(--s2);color:var(--ink-300)}
 .crumb li:last-child::after{content:""}
 .crumb a{color:var(--ink-600)}
@@ -163,16 +185,24 @@ section.band.alt .shot.filled.shot-part{background:var(--art-bg,var(--paper))}
 /* ---------- jump nav ---------- */
 .jump{background:var(--surface-sunk);border-bottom:1px solid var(--ink-200);position:sticky;top:var(--header-h);z-index:15}
 /* The link row scrolls sideways when it does not fit. Without an edge fade a
-   phone user sees four of eight links and no hint the rest are there. */
+   phone user sees four of eight links and no hint the rest are there. Right
+   padding on the list matches the fade so the last link can scroll clear of it. */
 .jump .wrap{position:relative}
 .jump .wrap::after{content:"";position:absolute;top:0;right:0;bottom:0;width:40px;
   pointer-events:none;background:linear-gradient(to right,hsl(40 20% 95% / 0),var(--surface-sunk))}
 @media (min-width:1100px){.jump .wrap::after{display:none}}
-.jump ul{display:flex;gap:var(--s1);list-style:none;margin:0;padding:0;overflow-x:auto;max-width:none}
+.jump ul{display:flex;gap:var(--s1);list-style:none;margin:0;padding:0 40px 0 0;overflow-x:auto;max-width:none}
+@media (min-width:1100px){.jump ul{padding-right:0}}
 .jump li{margin:0}
 .jump a{display:block;white-space:nowrap;padding:var(--s3) var(--s4);font-size:.85rem;font-weight:500;
   color:var(--ink-700);text-decoration:none;border-bottom:2px solid transparent}
 .jump a:hover{color:var(--ink-900);border-bottom-color:var(--heat-500)}
+/* Current section: same underline as hover, plus the heat-700 used on the
+   main nav's aria-current, so the marker is not colour alone. */
+.jump a[aria-current]{color:var(--heat-700);border-bottom-color:var(--heat-500)}
+/* Hash targets sit under the sticky masthead and jump row. Offset them so a
+   click lands with the heading in view, which also keeps the spy in step. */
+.jump ~ main section[id]{scroll-margin-top:calc(var(--header-h) + var(--s7))}
 
 /* ---------- sections ---------- */
 section.band{padding:var(--s8) 0;border-bottom:1px solid var(--ink-200)}
@@ -505,24 +535,43 @@ footer.site .legal p{margin:0;color:hsl(214 14% 62%)}
   .topbar .wrap{gap:var(--s4)}
   .topbar a{display:inline-flex;align-items:center;min-height:44px}
   .topbar .where{display:none}
-  .crumb a{display:inline-flex;align-items:center;min-height:44px}
+  /* Tap target is the row itself. Extra padding was stacking to a 76px band. */
+  .crumb{padding:0}
+  .crumb ol,.crumb a,.crumb li{min-height:44px}
+  .crumb a{display:inline-flex;align-items:center}
   /* padding rather than a height, so the lockup keeps its own proportions
      while the anchor still meets the 44px tap target */
   .logo{min-height:44px;padding:var(--s1) 0}
   .hero .grid{grid-template-columns:1fr;gap:var(--s6)}
   .masthead{position:static}.jump{top:0}
+  .jump ~ main section[id]{scroll-margin-top:var(--s7)}
   .preview{position:static}
   .navtoggle{display:inline-flex}
   .mainnav{margin-left:0;width:100%;order:3;border-top:1px solid var(--ink-200);padding:var(--s2) 0 var(--s4)}
   .mainnav[hidden]{display:none}
-  .mainnav ul{display:block}
+  .mainnav > ul{display:block}
   .mainnav a{padding:var(--s3) var(--s2);min-height:44px;display:flex;align-items:center;border-radius:0;border-bottom:1px solid var(--ink-100)}
   .mainnav .cta a{margin-top:var(--s3);justify-content:center;border-bottom:0}
+  .mainnav .has-sub{display:grid;grid-template-columns:minmax(0,1fr) 44px}
+  .mainnav .has-sub > a::after{display:none}
+  .mainnav .subtoggle{display:inline-flex;border-bottom:1px solid var(--ink-100)}
+  .mainnav .subtoggle:hover{background:var(--ink-100);color:var(--ink-900)}
+  .mainnav .has-sub.is-open > .subtoggle svg{transform:rotate(180deg)}
+  .mainnav .submenu{display:none;position:static;min-width:0;grid-column:1 / -1;
+    border:0;border-radius:0;box-shadow:none;padding:0 0 0 var(--s4);background:transparent}
+  .mainnav .has-sub:hover > .submenu,
+  .mainnav .has-sub:focus-within > .submenu{display:none}
+  .mainnav .has-sub.is-open > .submenu{display:block}
+  .mainnav .submenu a{font-size:.92rem}
   .masthead .wrap{flex-wrap:wrap}
 }
 /* Without JS the toggle cannot work, so the nav must never be hidden. */
 .nojs .navtoggle{display:none}
 .nojs .mainnav{display:block}
+.nojs .subtoggle{display:none}
+@media (max-width:980px){
+  .nojs .mainnav .submenu{display:block}
+}
 
 @media print{
   .topbar,.masthead,.jump,.crumb,footer.site,.actions,.rfq,.gallery{display:none}

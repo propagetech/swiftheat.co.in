@@ -1,8 +1,8 @@
 /* Swiftheat — one script for the whole site.
-   Four small, independent pieces: the mobile nav, the product finder, the
-   enquiry form that composes a readable email, and the photograph gallery.
-   Nothing here is required for the content to be readable; the page works
-   with the script blocked. */
+   Five small, independent pieces: the mobile nav, the jump-nav current section,
+   the product finder, the enquiry form that composes a readable email, and the
+   photograph gallery. Nothing here is required for the content to be readable;
+   the page works with the script blocked. */
 (function () {
   'use strict';
 
@@ -33,9 +33,163 @@
     sync();
 
     btn.addEventListener('click', function () { set(closed()); });
+
+    var subBtn = panel.querySelector('.subtoggle');
+    var subItem = panel.querySelector('.has-sub');
+    function subOpen() {
+      return subBtn && subBtn.getAttribute('aria-expanded') === 'true';
+    }
+    function setSub(open) {
+      if (!subBtn || !subItem) return;
+      subBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      subItem.classList.toggle('is-open', open);
+    }
+    setSub(subOpen());
+    if (subBtn) {
+      subBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        setSub(!subOpen());
+      });
+    }
+
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !closed() && mq.matches) { set(false); btn.focus(); }
+      if (e.key !== 'Escape') return;
+      if (mq.matches && subOpen()) {
+        setSub(false);
+        subBtn.focus();
+        return;
+      }
+      if (subItem && subItem.contains(document.activeElement)) {
+        var parentLink = subItem.querySelector(':scope > a');
+        if (parentLink) parentLink.focus();
+        return;
+      }
+      if (!closed() && mq.matches) { set(false); btn.focus(); }
     });
+  });
+
+  /* ---------- jump nav, current section ---------- */
+  /* The sticky on-this-page row is a list of hash links. Without a marker it
+     does not say which section you are in. Watch the hash targets against the
+     bottom of the sticky bar and set aria-current on the matching link, and
+     slide that link into view when the row itself overflows. */
+  run(function jump() {
+    var nav = document.querySelector('nav.jump');
+    if (!nav) return;
+    var links = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
+    var items = [];
+    links.forEach(function (a) {
+      var id = (a.getAttribute('href') || '').slice(1);
+      var el = id ? document.getElementById(id) : null;
+      if (el) items.push({ a: a, el: el });
+    });
+    if (!items.length) return;
+
+    var list = nav.querySelector('ul');
+    var current = null;
+    var locked = null;
+    var lockFrom = 0;
+    var lockTimer = 0;
+
+    function marker() {
+      return nav.getBoundingClientRect().bottom + 2;
+    }
+
+    function intoView(link) {
+      if (!list) return;
+      var liR = link.parentNode.getBoundingClientRect();
+      var listR = list.getBoundingClientRect();
+      var pad = 40;
+      if (liR.left < listR.left + pad) {
+        list.scrollLeft += liR.left - listR.left - pad;
+      } else if (liR.right > listR.right - pad) {
+        list.scrollLeft += liR.right - listR.right + pad;
+      }
+    }
+
+    function set(link) {
+      if (link === current) return;
+      current = link;
+      items.forEach(function (item) {
+        if (item.a === link) item.a.setAttribute('aria-current', 'location');
+        else item.a.removeAttribute('aria-current');
+      });
+      if (link) intoView(link);
+    }
+
+    function spy() {
+      var y = marker();
+      var found = items[0].a;
+      items.forEach(function (item) {
+        if (item.el.getBoundingClientRect().top <= y) found = item.a;
+      });
+      var doc = document.documentElement;
+      if (window.innerHeight + window.scrollY >= doc.scrollHeight - 8) {
+        found = items[items.length - 1].a;
+      }
+      set(found);
+    }
+
+    function arrived(target) {
+      var top = target.el.getBoundingClientRect().top;
+      var y = marker();
+      if (lockFrom > y) return top <= y + 16;
+      return top >= y - 16 && top <= y + 48;
+    }
+
+    function release() {
+      if (!locked) return;
+      locked = null;
+      window.clearTimeout(lockTimer);
+      spy();
+    }
+
+    function update() {
+      if (locked) {
+        var target = null;
+        var i;
+        for (i = 0; i < items.length; i++) {
+          if (items[i].a === locked) { target = items[i]; break; }
+        }
+        if (!target || arrived(target)) {
+          release();
+          return;
+        }
+        set(locked);
+        return;
+      }
+      spy();
+    }
+
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () {
+        ticking = false;
+        update();
+      });
+    }
+
+    items.forEach(function (item) {
+      item.a.addEventListener('click', function (e) {
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var href = item.a.getAttribute('href');
+        if (location.hash === href) {
+          e.preventDefault();
+          item.el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        }
+        lockFrom = item.el.getBoundingClientRect().top;
+        locked = item.a;
+        set(item.a);
+        window.clearTimeout(lockTimer);
+        lockTimer = window.setTimeout(release, reduce ? 50 : 2000);
+      });
+    });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    window.addEventListener('hashchange', update);
+    update();
   });
 
   /* ---------- product finder ---------- */

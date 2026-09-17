@@ -15,7 +15,7 @@
 <meta name="theme-color" content="#0d1620">
 <link rel="preload" href="../fonts/archivo-narrow-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../css/site.css?v=1789588401">
+<link rel="stylesheet" href="../css/site.css?v=1789638448">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Swiftheat Thermal Technologies Pvt Ltd", "alternateName": "Swiftheat", "url": "https://swiftheat.co.in/", "email": "sales@swiftheat.co.in", "telephone": "+91-9108803706", "address": {"@type": "PostalAddress", "streetAddress": "Plot No. C-262, 6th Cross, near SVC Co-operative Bank", "addressLocality": "Bengaluru", "addressRegion": "Karnataka", "postalCode": "560058", "addressCountry": "IN"}, "areaServed": "IN", "description": "Manufacturer of industrial heating elements in Peenya Industrial Area, Bengaluru: cartridge, coil, band, nozzle, strip, tubular and ceramic infrared heaters, and temperature sensors."}</script>
 </head>
 <body>
@@ -39,7 +39,21 @@
     </button>
     <nav class="mainnav" id="mainnav" aria-label="Main">
       <ul>
-        <li><a href="../products/">Products</a></li>
+        <li class="has-sub">
+          <a href="../products/">Products</a>
+          <button type="button" class="subtoggle" aria-expanded="false" aria-controls="nav-products" aria-label="Product families">
+            <svg width="12" height="8" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="submenu" id="nav-products">
+            <li><a href="../products/cartridge-heaters/">Cartridge Heaters</a></li>
+            <li><a href="../products/coil-heaters/">Coil Heaters</a></li>
+            <li><a href="../products/band-heaters/">Ceramic and Mica Band and Nozzle Heaters</a></li>
+            <li><a href="../products/strip-heaters/">Strip Heaters</a></li>
+            <li><a href="../products/tubular-heaters/">Tubular Heaters</a></li>
+            <li><a href="../products/thermocouples-and-sensors/">Thermocouples and Temperature Sensors</a></li>
+            <li><a href="../products/ceramic-infrared-heaters/">Ceramic Infrared Heaters</a></li>
+          </ul>
+        </li>
         <li><a href="../applications/">Applications</a></li>
         <li><a href="../capabilities/">Capabilities</a></li>
         <li><a href="../quality/">Quality</a></li>
@@ -197,6 +211,6 @@
   </div>
 </footer>
 
-<script src="../js/site.js?v=1789588570"></script>
+<script src="../js/site.js?v=1789638448"></script>
 </body>
 </html>

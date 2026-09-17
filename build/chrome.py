@@ -302,12 +302,53 @@ def enquiry(depth, heading, subject, intro, extra_fields="", scope_note=""):
 def _nav(depth, active):
     out = []
     for href, label in NAV:
+        if href == "products/":
+            out.append(_nav_products(depth, active))
+            continue
         cur = ' aria-current="page"' if active == href else ""
         out.append('<li><a href="%s"%s>%s</a></li>' % (rel(depth, href), cur, esc(label)))
     href, label = NAV_CTA
     cur = ' aria-current="page"' if active == href else ""
     out.append('<li class="cta"><a href="%s"%s>%s</a></li>' % (rel(depth, href), cur, esc(label)))
     return "\n        ".join(out)
+
+
+def _nav_products(depth, active):
+    """Products is a disclosure: the label still goes to the index, the nested
+    list is the seven families. On a family page the parent is the current
+    section and the matching child is the page."""
+    on_index = active == "products/"
+    on_family = active.startswith("products/") and not on_index
+    if on_index:
+        parent_cur = ' aria-current="page"'
+    elif on_family:
+        parent_cur = ' aria-current="true"'
+    else:
+        parent_cur = ""
+    items = []
+    for f in LISTED_FAMILIES:
+        href = "products/%s/" % f["slug"]
+        cur = ' aria-current="page"' if active == href else ""
+        items.append('<li><a href="%s"%s>%s</a></li>' % (rel(depth, href), cur, esc(f["name"])))
+    return (
+        '<li class="has-sub">\n'
+        '          <a href="%s"%s>Products</a>\n'
+        '          <button type="button" class="subtoggle" aria-expanded="%s" '
+        'aria-controls="nav-products" aria-label="Product families">\n'
+        '            <svg width="12" height="8" viewBox="0 0 12 8" aria-hidden="true">'
+        '<path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" '
+        'stroke-linecap="round" stroke-linejoin="round"/></svg>\n'
+        '          </button>\n'
+        '          <ul class="submenu" id="nav-products">\n'
+        '            %s\n'
+        '          </ul>\n'
+        '        </li>' % (
+            rel(depth, "products/"),
+            parent_cur,
+            "true" if on_family else "false",
+            "\n            ".join(items),
+        )
+    )
 
 
 def _footer(depth):
