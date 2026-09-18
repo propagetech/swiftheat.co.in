@@ -440,9 +440,9 @@ def about():
         strip, tubular and ceramic infrared heaters, along with the thermocouples and RTDs that
         control them. The company designs to a customer drawing, reverse engineers an element that
         no longer has a drawing, and makes prototypes before a production quantity is committed.</p>
-      <p>The range runs from standard sensing elements held in stock, which ship as they are, through
-        to developments drawn up for one customer and one machine. Most orders sit somewhere between
-        the two: a standard form, in a size and a set of options that only you use.</p>
+      <p>Most orders sit somewhere between a standard form and a one-off: a known construction,
+        in a size and a set of options that only you use. Sensors are made against the order.
+        Nothing is held in stock.</p>
       <p>Manufacturing happens in Peenya, which matters more than it sounds. An element built in the
         same city as the machine it serves can be measured, made, fitted and corrected inside a week.</p>
     </div>
@@ -666,8 +666,8 @@ def quality():
       <p class="eyebrow">Quality and testing</p>
       <h1>What is tested, and what you receive</h1>
       <p class="lede">In this category a certificate on the wall proves less than a test record
-        against your order number. This page will carry both, and neither is claimed until the
-        evidence exists.</p>
+        against your order number. Sensor calibration is published below. Certificates are issued
+        on request.</p>
       <div class="actions">
         <a class="btn" href="../contact/">Ask for a sample certificate</a>
       </div>
@@ -696,38 +696,18 @@ def quality():
   <div class="wrap two">
     <div>
       <h2>Sensor calibration</h2>
-      <p>The one part of this page that is already confirmed, because Swiftheat publish it
-        themselves. Every temperature sensor is calibrated, not a sample from the batch, and the
-        certificate is issued against your order when you ask for it.</p>
+      <p>Every temperature sensor is calibrated, not a sample from the batch, and the certificate is
+        issued against your order when you ask for it.</p>
       <div class="contactcard">
         <dl>
           <dt>Coverage</dt><dd>100 percent of sensors, not a sample</dd>
           <dt>Thermocouple accuracy</dt><dd>Class 1</dd>
           <dt>RTD accuracy</dt><dd>Class A</dd>
           <dt>Certificate</dt><dd>Issued on request, per customer requirement</dd>
-          <dt>Calibration equipment and its own traceability</dt><dd class="tbd">%(tbd)s</dd>
         </dl>
       </div>
       <p class="cap">Ask for the certificate at the enquiry stage rather than after delivery. It is
         issued per requirement, which means it has to be a requirement.</p>
-    </div>
-    <div>
-      <h2>Heater testing</h2>
-      <p>The equivalent statement for heating elements has not been supplied yet. The four tests
-        above are the ones the industry runs and the ones we expect to publish, but what Swiftheat
-        actually runs, on what equipment and to what criterion, is still to be confirmed. Nothing
-        goes on this page until it has.</p>
-    </div>
-  </div>
-</section>
-
-<section class="band">
-  <div class="wrap two">
-    <div>
-      <h2>Material traceability</h2>
-      <p>Sheath material, resistance wire and insulation are the three things a buyer cannot verify
-        by looking. What is recorded against a batch, and what can be produced afterwards, will be
-        published here.</p>
     </div>
     <div>
       <h2>What arrives with the delivery</h2>
@@ -744,7 +724,7 @@ def quality():
   </div>
 </section>
 
-<section class="band alt">
+<section class="band">
   <div class="wrap two">
     <div>
       <h2>Certifications</h2>
@@ -776,7 +756,7 @@ def quality():
     </div>
   </div>
 </section>
-""" % {"tbd": TBD, "cin": COMPANY["cin"], "iso": esc(COMPANY["iso"]), "gst": esc(COMPANY["gst"]),
+""" % {"cin": COMPANY["cin"], "iso": esc(COMPANY["iso"]), "gst": esc(COMPANY["gst"]),
        "iso_cert": esc(COMPANY["iso_cert"]), "iso_body": esc(COMPANY["iso_body"]),
        "iso_valid": esc(COMPANY["iso_valid"]), "udyam": esc(COMPANY["udyam"]),
        "hero": _gallery_photo(

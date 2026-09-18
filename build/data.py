@@ -170,11 +170,11 @@ FAMILIES = [
       "cartridge-double-ended.png"),
    ]),
    ("Lead protection", [
-     # L1 and L5 ratings are the continuous limits Swiftheat already publish in
-     # options_note below. L3 and L4 are mechanical sleeves; no temperature was given.
+     # L1 and L5 from Swiftheat's published continuous limits. L3 and L4 confirmed
+     # 18 Sep 2026: both 300 °C.
      ("L1", "Silicone coated fibreglass", "General purpose, dry and clean environments.", "450 °C", "Silicon-coated-Fibreglass-sleeve.png"),
-     ("L3", "Braided metal sleeve", "Abrasion resistance where leads move or rub.", TBD, "Braided-Metal-sleeve.png"),
-     ("L4", "Armour cable", "Full mechanical protection on a moving platen.", TBD, "Armour.png"),
+     ("L3", "Braided metal sleeve", "Abrasion resistance where leads move or rub.", "300 °C", "Braided-Metal-sleeve.png"),
+     ("L4", "Armour cable", "Full mechanical protection on a moving platen.", "300 °C", "Armour.png"),
      ("L5", "Ceramic beading", "Highest lead exit temperature, no organic insulation.", "900 to 1000 °C",
       "ch-ceramic-beading.png"),
    ]),
@@ -483,7 +483,6 @@ FAMILIES = [
    ("Nozzle outside diameter", "10 to 150 mm", "10 to 150 mm"),
    ("Heated length range", "20 to 400 mm", "20 to 400 mm"),
    ("Wattage range", "100 to 3000 W", "100 to 3000 W"),
-   ("Minimum wall thickness", TBD, TBD),
    ("Inbuilt thermocouple", "J or K", "J or K"),
  ],
  "dim_caption": "What we need in order to make a nozzle heater",
@@ -631,10 +630,8 @@ FAMILIES = [
  "chips": [("6.5 to 16 mm", "Sheath diameter", False),
            ("100 to 4000 mm", "Length range", False),
            ("100 to 9000 W", "Wattage range", False),
-           # web 2.pptx slide 9 gives 400 °C stainless and 800 °C Incoloy. The chip
-           # carries the higher of the two, as cartridge and band already do. Slide 7
-           # marked "600 deg C" against this chip, which agrees with neither column;
-           # queried with Swiftheat 11 Sep 2026, the table figure is used meanwhile.
+           # Confirmed 18 Sep 2026: 400 °C stainless and 800 °C Incoloy. The chip
+           # carries the higher of the two, as cartridge and band already do.
            ("800 °C", "Max sheath temp", False)],
  "temps": (150, 800),
  "construction": [
@@ -649,7 +646,7 @@ FAMILIES = [
  ],
  "spec_cols": ["Property", "Stainless steel", "Incoloy"],
  "spec_rows": [
-   # Confirmed 11 Sep 2026, web 2.pptx slide 9.
+   # Confirmed 18 Sep 2026.
    ("Maximum sheath temperature", "400 °C", "800 °C"),
    ("Maximum watt density in air", "25 to 30 W/sq in", "25 to 30 W/sq in"),
    ("Maximum watt density in liquid", "60 W/sq in", "60 W/sq in"),
@@ -720,7 +717,8 @@ FAMILIES = [
  "art": "sensor",
  "card": ("thermocouples-and-sensors-range.png", 1254, 1254),
  "lede": "The measuring half of the job. Nine thermocouple types and PT100, PT500 and PT1000 RTDs, "
-         "made to the immersion length, junction and connection your controller expects.",
+         "made to the immersion length, junction and connection your controller expects. Nothing is "
+         "held in stock: every sensor is made against the order.",
  "summary": "Types J, K, N, T, E, R, S, B and C, plus PT100, PT500 and PT1000 RTDs, made to length.",
  "meta": "Thermocouples and temperature sensors made in Peenya, Bangalore. Types J, K, N, T, E, R, S, "
          "B and C, PT100, PT500 and PT1000 RTDs, washer, lug, bolt, spring loaded and manifold styles.",
@@ -751,10 +749,10 @@ FAMILIES = [
    ("Useful range", "0 to 1200 °C", "-200 to +300 °C"),
    ("Tolerance class", "Class 1", "Class A"),
    ("Calibration", "100 percent, certificate on request", "100 percent, certificate on request"),
-   # web 2.pptx slide 17 replaced the discrete list with a range. The list builder
-   # still offers the old discrete sizes; which sizes inside the range are standard
-   # is queried with Swiftheat 11 Sep 2026.
+   # Confirmed 18 Sep 2026: nothing is held in stock. Sizes inside the range are
+   # made against the order, not picked from a stock list.
    ("Sheath diameters", "1 to 21 mm", "3.5 to 21 mm"),
+   ("Supply", "Made to order, none held in stock", "Made to order, none held in stock"),
    ("Immersion length range", "20 to 2000 mm", "20 to 2000 mm"),
    ("Cable length range", "100 to 10000 mm", "100 to 10000 mm"),
    ("Junction arrangements", "Grounded, ungrounded, exposed", "Not applicable"),
@@ -773,7 +771,7 @@ FAMILIES = [
  ],
  "dim_caption": "What we need in order to make a sensor",
  "dim_cols": ["Dimension", "Symbol", "Note"],
- "dim_rows": [("Sheath diameter", "D", "From the standard list"),
+ "dim_rows": [("Sheath diameter", "D", "Made to the diameter required"),
               ("Immersion length", "L", "Tip to the underside of the fitting"),
               ("Cable length", "CL", "Tail or lead"),
               ("Process thread", "-", "If a fitting or compression gland is required"),
@@ -798,13 +796,14 @@ FAMILIES = [
      ("H", "Terminal head", "Cast head with a terminal block.", ""),
    ]),
  ],
- "options_note": "The coded list above is the part the requirement builder covers. Types N, T, E, R, "
-                 "S, B and C are made to order alongside them, as are washer, lug, bolt, spring "
-                 "loaded, mineral insulated and manifold styles, compression fittings, bulkheads, "
-                 "NPT and BSP bushes, connectors and extension cable. Continuous limits by lead "
-                 "insulation: Teflon 270 C, fibreglass 450 C, ceramic 900 to 1000 C, and mineral "
-                 "insulated sensors run to 1200 to 1400 C. State the controller make and model if "
-                 "you want us to match an existing sensor.",
+ "options_note": "Nothing is held in stock. Every sensor is made against the order. The coded list "
+                 "above is the part the requirement builder covers. Types N, T, E, R, S, B and C "
+                 "are made alongside them, as are washer, lug, bolt, spring loaded, mineral "
+                 "insulated and manifold styles, compression fittings, bulkheads, NPT and BSP "
+                 "bushes, connectors and extension cable. Continuous limits by lead insulation: "
+                 "Teflon 270 C, fibreglass 450 C, ceramic 900 to 1000 C, and mineral insulated "
+                 "sensors run to 1200 to 1400 C. State the controller make and model if you want "
+                 "us to match an existing sensor.",
  "selection": [
    ("Match the type to the controller",
     "A Type K sensor read by a controller set to Type J is wrong at every temperature, and it is a "
@@ -858,12 +857,9 @@ FAMILIES = [
  "chips": [("100 to 2000 W", "Wattage range", False),
            ("230, 240 V", "Voltages", False),
            ("Trough or flat panel", "Element forms", False),
-           # web 2.pptx slide 22 gives the wavelength. Slide 20 wrote "700 deg C"
-           # against this chip, which is a temperature against a wavelength label and
-           # also disagrees with the 300 °C face temperature two slides later; queried
-           # with Swiftheat 11 Sep 2026. The ladder uses their own 300 and 700.
-           ("700 °C", "Peak wavelength", False)],
- "temps": (300, 700),
+           # Confirmed 18 Sep 2026: 300 °C face temperature, 3 to 6 µm wavelength.
+           ("300 °C", "Element face temp", False)],
+ "temps": (150, 300),
  "construction": [
    "A resistance coil is embedded in a moulded ceramic body. When the ceramic is hot it radiates in "
    "the medium wave infrared band, and that radiation crosses the gap and is absorbed at the surface "
@@ -880,10 +876,7 @@ FAMILIES = [
    ("Element forms", "Trough, flat panel"),
    ("Wattage range", "100 to 2000 W"),
    ("Standard voltages", "230, 240 V"),
-   # web 2.pptx slide 20 wrote "700 deg C" against peak wavelength, and slide 22 gave
-   # the face temperature as 300. Published as a range on the reading that 300 is the
-   # typical figure and 700 the maximum. That is our interpretation, not the client's
-   # words, and it is question 5 on the outstanding list.
+   # Confirmed 18 Sep 2026.
    ("Element face temperature", "300 °C"),
    ("Peak wavelength", "3 to 6 µm"),
    ("Inbuilt thermocouple", "Type K, optional"),
@@ -1563,7 +1556,7 @@ FORMS = {
  ],
  "thermocouples-and-sensors": [
    ("type", "Type", "select", ["J thermocouple","K thermocouple","PT100 RTD","PT500 RTD","PT1000 RTD"]),
-   ("dia", "Sheath diameter", "select", ["1.5 mm","3 mm","4.5 mm","6 mm","8 mm"]),
+   ("dia", "Sheath diameter", "select", ["1.5 mm","3 mm","4.5 mm","6 mm","8 mm","Other, see notes"]),
    ("len", "Immersion length", "number", (20, 2000, "mm")),
    ("clen", "Cable length", "number", (100, 10000, "mm")),
    ("junc", "Junction", "select", ["G grounded","U ungrounded","E exposed"]),
